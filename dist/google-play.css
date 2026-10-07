@@ -1,0 +1,98 @@
+/* Google Play / mobile foundation */
+.auth-route .sidebar,
+.auth-route .workspace > header,
+.auth-route .workspace > footer,
+.auth-route .mobile-nav{display:none!important}
+.auth-route .workspace{margin:0;max-width:none}
+.auth-route main{
+  min-height:100dvh;
+  padding:calc(28px + env(safe-area-inset-top,0px)) 18px calc(28px + env(safe-area-inset-bottom,0px));
+  display:grid;
+  place-items:center;
+  background:radial-gradient(circle at 50% 0%,#10372d 0,#061714 48%,#04110f 100%)
+}
+.login-page{width:min(100%,430px);margin:auto}
+.login-brand{text-align:center;margin-bottom:24px}
+.login-brand.compact{text-align:left}
+.login-spade{display:block;color:var(--gold);font-size:58px;line-height:1;margin-bottom:8px}
+.login-brand h1{font-size:32px;letter-spacing:1px;margin-top:7px}
+.login-brand p{font-size:13px;color:var(--muted);margin-top:8px}
+.language-switch{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+.language{
+  min-height:42px;
+  border:1px solid var(--line);
+  border-radius:9px;
+  background:#0b211b;
+  color:var(--muted);
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:1px
+}
+.language.active{color:var(--gold);border-color:#8e7441;background:#29271c}
+.login-card{border:1px solid #5e5031;border-radius:14px;padding:16px;background:rgba(11,35,28,.9)}
+.login-option{
+  width:100%;
+  min-height:55px;
+  display:grid;
+  grid-template-columns:32px 1fr 22px;
+  align-items:center;
+  text-align:left;
+  gap:10px;
+  border:1px solid var(--line);
+  border-radius:10px;
+  background:#102b22;
+  color:#f4f2e7;
+  padding:0 14px;
+  margin-bottom:10px
+}
+.login-option strong{
+  display:grid;
+  place-items:center;
+  width:30px;
+  height:30px;
+  border:1px solid #4c6458;
+  border-radius:8px;
+  color:var(--gold)
+}
+.login-option span{font-weight:600}
+.login-option i{font-style:normal;color:var(--gold)}
+.login-divider{display:flex;align-items:center;gap:10px;color:#71877b;font-size:9px;letter-spacing:2px;margin:15px 0}
+.login-divider::before,.login-divider::after{content:'';height:1px;background:var(--line);flex:1}
+.login-card label{display:block;color:var(--gold);font-size:10px;letter-spacing:1.5px;margin-bottom:7px}
+.login-card input{
+  width:100%;
+  height:50px;
+  border:1px solid var(--line);
+  border-radius:9px;
+  background:#071a16;
+  color:#f4f2e7;
+  padding:0 14px;
+  font:inherit;
+  font-size:14px;
+  outline:none
+}
+.login-card input:focus{border-color:var(--gold)}
+.login-submit{width:100%;margin-top:12px}
+.create-account-link{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  min-height:50px;
+  margin-top:10px;
+  color:var(--gold);
+  font-size:13px;
+  font-weight:600
+}
+@media(max-width:700px){
+  .mobile-nav{
+    display:flex;
+    overflow-x:auto;
+    overscroll-behavior-x:contain;
+    scroll-snap-type:x mandatory;
+    touch-action:pan-x;
+    scrollbar-width:none
+  }
+  .mobile-nav::-webkit-scrollbar{display:none}
+  .mobile-nav a{min-width:82px;flex:0 0 82px;scroll-snap-align:center}
+}
