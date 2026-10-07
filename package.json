@@ -1,6 +1,0 @@
-{
-  "type": "module",
-  "scripts": {
-    "test": "node --check dist/app.js && node --test tests/*.mjs"
-  }
-}
