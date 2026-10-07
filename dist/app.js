@@ -10,6 +10,7 @@ let currentLanguage='pt-BR';
 try{currentLanguage=storage.getItem('academy.language')||'pt-BR'}catch{}
 if(!supportedLanguages.includes(currentLanguage))currentLanguage='pt-BR';
 let t=createTranslator(currentLanguage);
+document.documentElement.lang=currentLanguage;
 const app=document.querySelector('#app');
 const dialog=document.querySelector('#dialog');
 const pokerinnoDialog=document.querySelector('#pokerinno-dialog');
@@ -127,6 +128,7 @@ function openDialog(title,body){
   previousFocus=document.activeElement;
   document.querySelector('#dialog-title').textContent=title;
   document.querySelector('#dialog-body').textContent=body;
+  document.querySelector('#dialog-action').textContent=t('common.understood');
   dialog.showModal();
 }
 dialog.querySelector('.close').onclick=()=>dialog.close();
