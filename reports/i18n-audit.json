@@ -1,0 +1,297 @@
+{
+  "languages": [
+    "pt-BR",
+    "en-US",
+    "es-ES"
+  ],
+  "keys": 10,
+  "errors": [],
+  "untranslatedCandidates": [
+    {
+      "file": "dist/app.js",
+      "line": 6,
+      "text": "SÉRIE 01"
+    },
+    {
+      "file": "dist/app.js",
+      "line": 7,
+      "text": "Explorar a jornada"
+    },
+    {
+      "file": "dist/app.js",
+      "line": 8,
+      "text": "DEPOIS DO BÁSICO · A HISTÓRIA CONTINUA"
+    },
+    {
+      "file": "dist/app.js",
+      "line": 8,
+      "text": "Aprender é o começo."
+    },
+    {
+      "file": "dist/app.js",
+      "line": 8,
+      "text": "O Academy prepara você para participar da mesa. Evolução, especialização e busca pelo domínio continuam nos demais apps StackUp Hold’em."
+    },
+    {
+      "file": "dist/app.js",
+      "line": 8,
+      "text": "`).join('')}"
+    },
+    {
+      "file": "dist/app.js",
+      "line": 9,
+      "text": "“Poker é um jogo que demora minutos para aprender. Mas leva uma vida para dominar.”"
+    },
+    {
+      "file": "dist/app.js",
+      "line": 9,
+      "text": "— MIKE SEXTON"
+    },
+    {
+      "file": "dist/app.js",
+      "line": 11,
+      "text": "{if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX"
+    },
+    {
+      "file": "dist/app.js",
+      "line": 11,
+      "text": "r.right||e.clientY"
+    },
+    {
+      "file": "dist/app.js",
+      "line": 12,
+      "text": "SUA JORNADA · APRENDER → PRATICAR → JOGAR"
+    },
+    {
+      "file": "dist/app.js",
+      "line": 12,
+      "text": "APRENDER."
+    },
+    {
+      "file": "dist/app.js",
+      "line": 12,
+      "text": "PRATICAR."
+    },
+    {
+      "file": "dist/app.js",
+      "line": 12,
+      "text": "JOGAR."
+    },
+    {
+      "file": "dist/app.js",
+      "line": 12,
+      "text": "“Poker é um jogo que demora minutos para aprender. Mas leva uma vida para dominar.”"
+    },
+    {
+      "file": "dist/app.js",
+      "line": 12,
+      "text": "— MIKE SEXTON"
+    },
+    {
+      "file": "dist/app.js",
+      "line": 12,
+      "text": "Começar a aprender"
+    },
+    {
+      "file": "dist/app.js",
+      "line": 12,
+      "text": "COM POKERINNO, CADA PASSO CONTA."
+    },
+    {
+      "file": "dist/app.js",
+      "line": 12,
+      "text": "Qual será sua próxima descoberta?"
+    },
+    {
+      "file": "dist/app.js",
+      "line": 12,
+      "text": "ESCOLHA SEU CAMINHO"
+    },
+    {
+      "file": "dist/app.js",
+      "line": 12,
+      "text": "`).join('')}"
+    },
+    {
+      "file": "dist/app.js",
+      "line": 12,
+      "text": "APRENDER → PRATICAR → JOGAR"
+    },
+    {
+      "file": "dist/app.js",
+      "line": 12,
+      "text": "UM PASSO DE CADA VEZ"
+    },
+    {
+      "file": "dist/app.js",
+      "line": 12,
+      "text": "Descobrir o jogo"
+    },
+    {
+      "file": "dist/app.js",
+      "line": 12,
+      "text": "Aprenda o jogo, pratique o básico e prepare-se para jogar."
+    },
+    {
+      "file": "dist/app.js",
+      "line": 12,
+      "text": "Ver capítulos →"
+    },
+    {
+      "file": "dist/app.js",
+      "line": 14,
+      "text": "Não conseguimos carregar os conteúdos"
+    },
+    {
+      "file": "dist/app.js",
+      "line": 14,
+      "text": "Tentar novamente →"
+    },
+    {
+      "file": "dist/app.js",
+      "line": 16,
+      "text": "Aulas em preparação"
+    },
+    {
+      "file": "dist/app.js",
+      "line": 16,
+      "text": "`).join('')}"
+    },
+    {
+      "file": "dist/app.js",
+      "line": 17,
+      "text": "c.id===route.split('/')[1]);app.innerHTML=`"
+    },
+    {
+      "file": "dist/app.js",
+      "line": 17,
+      "text": "← Voltar à jornada"
+    },
+    {
+      "file": "dist/app.js",
+      "line": 19,
+      "text": "`).join('')}"
+    },
+    {
+      "file": "dist/app.js",
+      "line": 21,
+      "text": "Olá, explorador."
+    },
+    {
+      "file": "dist/app.js",
+      "line": 21,
+      "text": "Você está conhecendo o Academy. Conecte sua conta quando o acesso estiver disponível."
+    },
+    {
+      "file": "dist/app.js",
+      "line": 21,
+      "text": "Acessar minha conta →"
+    },
+    {
+      "file": "dist/app.js",
+      "line": 21,
+      "text": "Sons da jornada"
+    },
+    {
+      "file": "dist/app.js",
+      "line": 21,
+      "text": "Preferência preparada para as experiências com áudio."
+    },
+    {
+      "file": "dist/app.js",
+      "line": 21,
+      "text": "Reduzir movimentos"
+    },
+    {
+      "file": "dist/app.js",
+      "line": 21,
+      "text": "Uma navegação mais tranquila, com menos animações."
+    },
+    {
+      "file": "dist/app.js",
+      "line": 21,
+      "text": "Privacidade e conta"
+    },
+    {
+      "file": "dist/app.js",
+      "line": 21,
+      "text": "Conta e sincronização disponíveis após a integração."
+    },
+    {
+      "file": "dist/app.js",
+      "line": 21,
+      "text": "Consultar →"
+    },
+    {
+      "file": "dist/index.html",
+      "line": 1,
+      "text": "StackUp Academy · Pokerinno"
+    },
+    {
+      "file": "dist/index.html",
+      "line": 1,
+      "text": "SÉRIE 01 · O COMEÇO"
+    },
+    {
+      "file": "dist/index.html",
+      "line": 1,
+      "text": "UM UNIVERSO DE POSSIBILIDADES"
+    },
+    {
+      "file": "dist/index.html",
+      "line": 1,
+      "text": "Todo grande jogador"
+    },
+    {
+      "file": "dist/index.html",
+      "line": 1,
+      "text": "começa com uma descoberta."
+    },
+    {
+      "file": "dist/index.html",
+      "line": 1,
+      "text": "Conheça Pokerinno ↗"
+    },
+    {
+      "file": "dist/index.html",
+      "line": 1,
+      "text": "SUA JORNADA COMEÇA AQUI"
+    },
+    {
+      "file": "dist/index.html",
+      "line": 1,
+      "text": "STACKUP HOLD’EM"
+    },
+    {
+      "file": "dist/index.html",
+      "line": 1,
+      "text": "APRENDER → PRATICAR → JOGAR"
+    },
+    {
+      "file": "dist/index.html",
+      "line": 1,
+      "text": "POKERINNO · SEU COMPANHEIRO"
+    },
+    {
+      "file": "dist/index.html",
+      "line": 1,
+      "text": "Entendi"
+    },
+    {
+      "file": "dist/login.js",
+      "line": 3,
+      "text": "`).join('')}"
+    },
+    {
+      "file": "dist/swipe.js",
+      "line": 2,
+      "text": "{if(!start||e.pointerId!==start.id)return;const x=e.clientX-start.x,y=e.clientY-start.y;start=null;if(!enabled()||Math.abs(x)"
+    },
+    {
+      "file": "dist/swipe.js",
+      "line": 2,
+      "text": "=0&&next"
+    }
+  ],
+  "note": "Candidatos exigem revisão humana; a varredura não comprova cobertura de todo texto dinâmico ou atributos."
+}
