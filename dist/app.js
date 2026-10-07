@@ -73,7 +73,7 @@ const nextApps=`<section class="next-apps"><span class="eyebrow">DEPOIS DO BÁSI
 ['D ACTION','Identifique pontos de melhoria no Omaha.'],
 ['WRAPS','Aprofunde suas decisões no Omaha.'],
 ['CHIPS UP','Desenvolva a gestão do seu bankroll.']
-].map(([name,desc])=>`<button class="next-app" data-series="${name}"><strong>${name}</strong><span>${desc}</span><i>↗</i></button>`).join('')}</div></section>`;
+].map(([name,desc])=>`<button class="next-app" data-series="${name}"><strong>${name}</strong><span>${desc}</span></button>`).join('')}</div></section>`;
 
 function getPokerinnoMessage(){
   return pokerinnoMessages[currentLanguage]||pokerinnoMessages['pt-BR'];
@@ -188,7 +188,7 @@ function home(){
     ['modalities','✧','Modalidades','Novas mesas. Diferentes possibilidades.'],
     ['practice','♠','Prática','Um espaço para suas próximas decisões.'],
     ['evolution','↗','Sua evolução','Cada descoberta faz parte da sua história.']
-  ].map(([route,symbol,title,desc])=>`<a class="feature" href="#${route}"><span class="badge">${symbol}</span><span class="arrow">↗</span><h3>${title}</h3><p>${desc}</p></a>`).join('')}</div>
+  ].map(([route,symbol,title,desc])=>`<a class="feature" href="#${route}"><span class="badge">${symbol}</span><h3>${title}</h3><p>${desc}</p></a>`).join('')}</div>
   <div class="section-top"><h2>Um passo de cada vez</h2></div>
   <div class="trail-preview"><span class="trail-number">01</span><div><h3>Descobrir o jogo</h3><p>Aprenda o jogo, pratique o básico e prepare-se para jogar.</p></div><a href="#journey">Ver capítulos →</a></div>`;
 }
@@ -255,7 +255,7 @@ function render(){
 
   if(route==='home')app.innerHTML=home();
   else if(route==='journey')app.innerHTML=heading('PRIMEIRA AVENTURA','APRENDER','Aprenda o essencial para acompanhar o jogo e participar da mesa.')+
-    `<div class="list">${chapters.map(c=>`<a class="chapter" href="#chapter/${c.id}"><span class="number">0${c.order}</span><div><h3>${c.title}</h3><p>${c.description}</p></div><span class="status">↗</span></a>`).join('')}</div>`;
+    `<div class="list">${chapters.map(c=>`<a class="chapter" href="#chapter/${c.id}"><span class="number">0${c.order}</span><div><h3>${c.title}</h3><p>${c.description}</p></div></a>`).join('')}</div>`;
   else if(route.startsWith('chapter/')){
     const c=chapters.find(c=>c.id===route.split('/')[1]);
     app.innerHTML=`<a href="#journey" class="back">← Voltar à jornada</a>`+
@@ -270,7 +270,7 @@ function render(){
       ['☷','Treino personalizado','Reforce o que você aprendeu.'],
       ['♜','Desafios','Confira sua compreensão do jogo.'],
       ['♠','Revisão de mãos','Entenda o básico das suas decisões.']
-    ].map(([s,t,d])=>`<button class="feature" data-pending="${t}"><span class="badge">${s}</span><span class="arrow">↗</span><h3>${t}</h3><p>${d}</p></button>`).join('')}</div>`+
+    ].map(([s,t,d])=>`<button class="feature" data-pending="${t}"><span class="badge">${s}</span><h3>${t}</h3><p>${d}</p></button>`).join('')}</div>`+
     empty('♠','As primeiras decisões estão a caminho.','Quando os treinos estiverem disponíveis, você encontrará aqui seus desafios e a revisão das suas decisões.');
   else if(route==='evolution')app.innerHTML=heading('SUA HISTÓRIA','Sua preparação para a mesa.','Acompanhe os fundamentos que você está aprendendo.')+
     empty('↗','Sua história ainda vai começar.','Você ainda não possui aulas concluídas, treinos ou conquistas. O progresso aparecerá a partir das suas atividades reais.');
