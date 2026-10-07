@@ -64,14 +64,6 @@ const mobileNav=[
 ];
 
 const swipeRoutes=['home','journey','practice','evolution','profile'];
-
-function swipeRootForRoute(route){
-  if(swipeRoutes.includes(route))return route;
-  if(route.startsWith('chapter/'))return 'journey';
-  if(route==='modalities'||route==='welcome')return 'home';
-  return null;
-}
-
 let swipeStartX=0;
 let swipeStartY=0;
 let swipeDeltaX=0;
@@ -251,7 +243,7 @@ function render(){
     location.hash='#login';
     return;
   }
-  const active=route.startsWith('chapter')?'journey':route==='modalities'||route==='welcome'?'home':route;
+  const active=route.startsWith('chapter')?'journey':route;
   const authRoute=route==='login'||route==='create-account';
   document.body.classList.toggle('auth-route',authRoute);
 
@@ -384,8 +376,7 @@ function resetSwipePosition(){
 
 function navigateBySwipe(direction){
   const route=resolveRoute(location.hash);
-  const root=swipeRootForRoute(route);
-  const index=swipeRoutes.indexOf(root);
+  const index=swipeRoutes.indexOf(route);
   if(index<0)return resetSwipePosition();
 
   const nextIndex=index+direction;
@@ -405,7 +396,7 @@ function navigateBySwipe(direction){
 app.addEventListener('touchstart',e=>{
   if(swipeAnimating||e.touches.length!==1)return;
   const route=resolveRoute(location.hash);
-  if(!swipeRootForRoute(route))return;
+  if(!swipeRoutes.includes(route))return;
 
   swipeStartX=e.touches[0].clientX;
   swipeStartY=e.touches[0].clientY;
@@ -417,7 +408,7 @@ app.addEventListener('touchstart',e=>{
 app.addEventListener('touchmove',e=>{
   if(swipeAnimating||e.touches.length!==1)return;
   const route=resolveRoute(location.hash);
-  if(!swipeRootForRoute(route))return;
+  if(!swipeRoutes.includes(route))return;
 
   const dx=e.touches[0].clientX-swipeStartX;
   const dy=e.touches[0].clientY-swipeStartY;
