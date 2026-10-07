@@ -1,6 +1,6 @@
 export const supportedLanguages=['pt-BR','en-US','es-ES'];
 
-const messages={
+export const messages={
   'pt-BR':{
     nav:{home:'Início',journey:'Jornada',practice:'Prática',evolution:'Evolução',profile:'Perfil',homeM:'INÍCIO',journeyM:'APRENDER',practiceM:'PRATICAR',evolutionM:'JOGAR',profileM:'PERFIL'},
     common:{exploreJourney:'Explorar a jornada',backJourney:'Voltar à jornada',continue:'Continuar',back:'Voltar',retry:'Tentar novamente',understood:'Entendi',breadcrumb:'SUA JORNADA COMEÇA AQUI',profileLabel:'Perfil',companion:'POKERINNO · SEU COMPANHEIRO',pageTitle:'StackUp Academy · Pokerinno',pageDescription:'Sua primeira jornada na mesa. Descubra, pratique e evolua com Pokerinno.'},
