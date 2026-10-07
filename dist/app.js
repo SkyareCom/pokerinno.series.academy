@@ -198,9 +198,7 @@ function home(){
     ['modalities','category','Modalidades','Novas mesas. Diferentes possibilidades.'],
     ['practice','school','Prática','Um espaço para suas próximas decisões.'],
     ['evolution','trending_up','Sua evolução','Cada descoberta faz parte da sua história.']
-  ].map(([route,symbol,title,desc])=>`<a class="feature" href="#${route}"><span class="badge">${materialIcon(symbol)}</span><h3>${title}</h3><p>${desc}</p></a>`).join('')}</div>
-  <div class="section-top"><h2>Um passo de cada vez</h2></div>
-  <a class="trail-preview" href="#journey"><span class="trail-number">01</span><div><h3>Descobrir o jogo</h3><p>Aprenda o jogo, pratique o básico e prepare-se para jogar.</p></div></a>`;
+  ].map(([route,symbol,title,desc])=>`<a class="feature" href="#${route}"><span class="badge">${materialIcon(symbol)}</span><h3>${title}</h3><p>${desc}</p></a>`).join('')}</div>`;
 }
 
 async function invokeAuth(method,payload={}){
