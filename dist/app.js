@@ -188,8 +188,7 @@ function createAccount(){
 }
 
 function home(){
-  return `<div class="page-heading"><div><span class="eyebrow">${t('home.eyebrow')}</span></div></div>`+
-  `<section class="hero">
+  return `<section class="hero">
     <img class="hero-image" src="assets/pokerinno-hero.webp" alt="Pokerinno recebe você em uma academia de poker iluminada em dourado">
     <div class="hero-copy">
       <h2>${t('home.hero')}</h2>
