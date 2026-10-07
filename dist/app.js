@@ -242,7 +242,20 @@ async function invokeCreateAccount(payload={}){
   }
 }
 
+function applyStaticTranslations(){
+  document.title=t('common.pageTitle');
+  const description=document.querySelector('meta[name="description"]');
+  if(description)description.setAttribute('content',t('common.pageDescription'));
+  const breadcrumb=document.querySelector('.breadcrumb');
+  if(breadcrumb)breadcrumb.textContent=t('common.breadcrumb');
+  const profileLink=document.querySelector('a.avatar[href="#profile"]');
+  if(profileLink)profileLink.setAttribute('aria-label',t('common.profileLabel'));
+  const companion=document.querySelector('#dialog .eyebrow');
+  if(companion)companion.textContent=t('common.companion');
+}
+
 function render(){
+  applyStaticTranslations();
   const route=resolveRoute(location.hash);
   if(!authenticated&&route!=='login'&&route!=='create-account'){
     location.hash='#login';
