@@ -50,3 +50,20 @@
   color:var(--gold);
   background:rgba(142,116,65,.08);
 }
+
+/* Page swipe: content moves, fixed footer stays put */
+@media(max-width:700px){
+  #app{
+    will-change:transform,opacity;
+    touch-action:pan-y;
+    overflow-x:clip;
+  }
+  .mobile-nav{
+    transform:none!important;
+    transition:none!important;
+  }
+  .mobile-nav a{
+    transform:none!important;
+    transition:color .18s ease!important;
+  }
+}
