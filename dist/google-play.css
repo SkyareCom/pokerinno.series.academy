@@ -229,3 +229,45 @@
   .pokerinno-bubble p{font-size:14px}
   .pokerinno-actions{justify-content:space-between}
 }
+
+
+/* Typography rules: actions and card titles */
+button,
+.primary,
+.quiet,
+.create-account-link,
+.trail-preview a{
+  text-transform:uppercase;
+}
+.feature h3,
+.chapter h3,
+.trail-preview h3,
+.next-app strong,
+.empty h2{
+  text-transform:uppercase;
+}
+
+/* Mobile footer: always five visible items */
+@media(max-width:700px){
+  .mobile-nav{
+    display:grid!important;
+    grid-template-columns:repeat(5,minmax(0,1fr))!important;
+    overflow:visible!important;
+    scroll-snap-type:none!important;
+    touch-action:auto!important;
+    padding-left:4px!important;
+    padding-right:4px!important;
+  }
+  .mobile-nav a{
+    min-width:0!important;
+    width:auto!important;
+    flex:none!important;
+    padding:4px 1px!important;
+    font-size:9px!important;
+    white-space:nowrap;
+    text-transform:uppercase;
+  }
+  .mobile-nav .nav-symbol{
+    font-size:20px;
+  }
+}
