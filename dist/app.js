@@ -55,6 +55,14 @@ const nav=[
   ['profile','♙','Perfil']
 ];
 
+const mobileNav=[
+  ['home','⌂','INÍCIO'],
+  ['journey','▤','APRENDER'],
+  ['practice','♠','PRATICAR'],
+  ['evolution','↗','JOGAR'],
+  ['profile','♙','PERFIL']
+];
+
 const heading=(tag,title,description)=>`<div class="page-heading"><div><span class="eyebrow">${tag}</span><h1>${title}</h1><p>${description}</p></div></div>`;
 const empty=(symbol,title,description)=>`<section class="empty"><div class="empty-symbol">${symbol}</div><h2>${title}</h2><p>${description}</p><a href="#journey" class="primary">Explorar a jornada <span>→</span></a></section>`;
 
@@ -230,7 +238,8 @@ function render(){
   document.body.classList.toggle('auth-route',authRoute);
 
   for(const id of ['navigation','mobile-navigation']){
-    document.getElementById(id).innerHTML=nav.map(([key,symbol,title])=>`<a class="${id==='navigation'?'nav-link ':''}${active===key?'active':''}" ${active===key?'aria-current="page"':''} href="#${key}"><span class="nav-symbol" aria-hidden="true">${symbol}</span>${title}</a>`).join('');
+    const items=id==='mobile-navigation'?mobileNav:nav;
+    document.getElementById(id).innerHTML=items.map(([key,symbol,title])=>`<a class="${id==='navigation'?'nav-link ':''}${active===key?'active':''}" ${active===key?'aria-current="page"':''} href="#${key}"><span class="nav-symbol" aria-hidden="true">${symbol}</span>${title}</a>`).join('');
   }
 
   document.documentElement.classList.toggle('reduced-motion',preferences.reducedMotion);
