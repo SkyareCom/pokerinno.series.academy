@@ -63,6 +63,14 @@ const mobileNav=[
   ['profile','person','PERFIL']
 ];
 
+const swipeRoutes=['home','journey','practice','evolution','profile'];
+let swipeStartX=0;
+let swipeStartY=0;
+let swipeDeltaX=0;
+let swipeLocked=false;
+let swipeAnimating=false;
+let swipeDirection=0;
+
 const materialIcon=(name,extra='')=>`<span class="material-symbols-rounded ${extra}" aria-hidden="true">${name}</span>`;
 
 const heading=(tag,title,description)=>`<div class="page-heading"><div><span class="eyebrow">${tag}</span><h1>${title}</h1><p>${description}</p></div></div>`;
@@ -354,9 +362,98 @@ document.addEventListener('change',e=>{
   }
 });
 
+function resetSwipePosition(){
+  app.style.transition='transform .22s ease, opacity .22s ease';
+  app.style.transform='translateX(0)';
+  app.style.opacity='1';
+  setTimeout(()=>{
+    app.style.transition='';
+    app.style.transform='';
+    app.style.opacity='';
+    swipeAnimating=false;
+  },230);
+}
+
+function navigateBySwipe(direction){
+  const route=resolveRoute(location.hash);
+  const index=swipeRoutes.indexOf(route);
+  if(index<0)return resetSwipePosition();
+
+  const nextIndex=index+direction;
+  if(nextIndex<0||nextIndex>=swipeRoutes.length)return resetSwipePosition();
+
+  swipeAnimating=true;
+  swipeDirection=direction;
+  app.style.transition='transform .16s ease, opacity .16s ease';
+  app.style.transform=`translateX(${direction>0?'-24%':'24%'})`;
+  app.style.opacity='.35';
+
+  setTimeout(()=>{
+    location.hash='#'+swipeRoutes[nextIndex];
+  },165);
+}
+
+app.addEventListener('touchstart',e=>{
+  if(swipeAnimating||e.touches.length!==1)return;
+  const route=resolveRoute(location.hash);
+  if(!swipeRoutes.includes(route))return;
+
+  swipeStartX=e.touches[0].clientX;
+  swipeStartY=e.touches[0].clientY;
+  swipeDeltaX=0;
+  swipeLocked=false;
+  app.style.transition='none';
+},{passive:true});
+
+app.addEventListener('touchmove',e=>{
+  if(swipeAnimating||e.touches.length!==1)return;
+  const route=resolveRoute(location.hash);
+  if(!swipeRoutes.includes(route))return;
+
+  const dx=e.touches[0].clientX-swipeStartX;
+  const dy=e.touches[0].clientY-swipeStartY;
+
+  if(!swipeLocked){
+    if(Math.abs(dx)<12&&Math.abs(dy)<12)return;
+    if(Math.abs(dy)>=Math.abs(dx)){
+      swipeDeltaX=0;
+      return;
+    }
+    swipeLocked=true;
+  }
+
+  if(!swipeLocked)return;
+  e.preventDefault();
+  swipeDeltaX=dx;
+  const resisted=dx*.82;
+  app.style.transform=`translateX(${resisted}px)`;
+  app.style.opacity=String(Math.max(.72,1-Math.abs(dx)/900));
+},{passive:false});
+
+app.addEventListener('touchend',()=>{
+  if(!swipeLocked||swipeAnimating)return;
+  const threshold=Math.min(90,window.innerWidth*.18);
+
+  if(Math.abs(swipeDeltaX)>=threshold){
+    navigateBySwipe(swipeDeltaX<0?1:-1);
+  }else{
+    resetSwipePosition();
+  }
+
+  swipeLocked=false;
+  swipeDeltaX=0;
+},{passive:true});
+
 window.addEventListener('hashchange',()=>{
   render();
   window.scrollTo({top:0,behavior:'instant'});
+
+  if(swipeAnimating){
+    app.style.transition='none';
+    app.style.transform=`translateX(${swipeDirection>0?'18%':'-18%'})`;
+    app.style.opacity='.55';
+    requestAnimationFrame(()=>requestAnimationFrame(resetSwipePosition));
+  }
 });
 
 render();
