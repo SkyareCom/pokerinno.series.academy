@@ -93,7 +93,7 @@ function createAccount(){
 function home(){
   return heading('ACADEMY · A PRIMEIRA DESCOBERTA','Aprenda. Pratique. Jogue.','Entenda o jogo, pratique o básico e chegue à mesa com segurança.')+
   `<section class="hero">
-    <img class="hero-image" src="assets/pokerino-hero.webp" alt="Pokerinno recebe você em uma academia de poker iluminada em dourado">
+    <img class="hero-image" src="assets/pokerinno-hero.webp" alt="Pokerinno recebe você em uma academia de poker iluminada em dourado">
     <div class="hero-copy">
       <span class="eyebrow">SUA PRIMEIRA AVENTURA</span>
       <h2>APRENDER.<br>PRATICAR.<br><em>JOGAR.</em></h2>
