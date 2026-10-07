@@ -6,6 +6,8 @@ val releaseStorePath = providers.environmentVariable("ANDROID_KEYSTORE_PATH")
 val releaseStorePassword = providers.environmentVariable("ANDROID_KEYSTORE_PASSWORD")
 val releaseKeyAlias = providers.environmentVariable("ANDROID_KEY_ALIAS")
 val releaseKeyPassword = providers.environmentVariable("ANDROID_KEY_PASSWORD")
+val playVersionCode = providers.environmentVariable("PLAY_VERSION_CODE").orNull?.toIntOrNull() ?: 1
+val playVersionName = providers.environmentVariable("PLAY_VERSION_NAME").orNull?.takeIf { it.isNotBlank() } ?: "1.0.0"
 
 android {
     namespace = "com.skyare.pokerinno.academy"
@@ -15,8 +17,8 @@ android {
         applicationId = "com.skyare.pokerinno.academy"
         minSdk = 24
         targetSdk = 36
-        versionCode = 1
-        versionName = "1.0.0"
+        versionCode = playVersionCode
+        versionName = playVersionName
     }
 
     sourceSets {
