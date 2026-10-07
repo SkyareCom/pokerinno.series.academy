@@ -145,9 +145,7 @@ dialog.addEventListener('click',e=>{
 function login(){
   return `<section class="login-page">
     <div class="login-brand">
-      <span class="login-spade">♠</span>
-      <span class="eyebrow">STACKUP HOLD’EM</span>
-      <h1>ACADEMY</h1>
+      <div class="pokerinno-logo" role="img" aria-label="POKERINNO ACADEMY"><svg viewBox="0 0 32 38" aria-hidden="true"><path d="M16 1C12 8 1 13 1 23c0 7 8 10 13 5l-3 9h10l-3-9c5 5 13 2 13-5C31 13 20 8 16 1Z"/></svg><div><strong>POKERINNO</strong><span>ACADEMY</span></div></div>
       <p>${t('login.intro')}</p>
     </div>
     <div class="language-switch" aria-label="${t('login.language')}">
@@ -189,7 +187,7 @@ function createAccount(){
 
 function home(){
   return `<section class="hero">
-    <div class="hero-logo" aria-label="Pokerinno Academy"><span class="hero-logo-mark" aria-hidden="true">♠</span><span class="hero-logo-copy"><strong>POKERINNO</strong><span>ACADEMY</span></span></div>
+    <div class="pokerinno-logo" role="img" aria-label="POKERINNO ACADEMY"><svg viewBox="0 0 32 38" aria-hidden="true"><path d="M16 1C12 8 1 13 1 23c0 7 8 10 13 5l-3 9h10l-3-9c5 5 13 2 13-5C31 13 20 8 16 1Z"/></svg><div><strong>POKERINNO</strong><span>ACADEMY</span></div></div>
     <img class="hero-image" src="assets/pokerinno-hero.webp" alt="Pokerinno recebe você em uma academia de poker iluminada em dourado">
     <div class="hero-copy">
       <h2>${t('home.hero')}</h2>
