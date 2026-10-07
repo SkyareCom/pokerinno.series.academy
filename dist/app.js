@@ -163,6 +163,7 @@ function login(){
         <button class="primary login-submit" type="submit">${t('login.stackup')} <span>→</span></button>
       </form>
     </div>
+    <a class="quiet temporary-access" href="index.html?preview=1#home">ACESSO LIVRE AO APP →</a>
     <a class="create-account-link" href="#create-account">${t('login.create')} <span>→</span></a>
   </section>`;
 }
