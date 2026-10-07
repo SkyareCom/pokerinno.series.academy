@@ -80,14 +80,16 @@ const materialIcon=(name,extra='')=>`<span class="material-symbols-rounded ${ext
 const heading=(tag,title,description)=>`<div class="page-heading"><div><span class="eyebrow">${tag}</span><h1>${title}</h1><p>${description}</p></div></div>`;
 const empty=(symbol,title,description)=>`<section class="empty"><div class="empty-symbol">${materialIcon(symbol)}</div><h2>${title}</h2><p>${description}</p><a href="#journey" class="primary">${t('common.exploreJourney')} <span>→</span></a></section>`;
 
-const nextApps=`<section class="next-apps"><span class="eyebrow">DEPOIS DO BÁSICO · A HISTÓRIA CONTINUA</span><h2>Aprender é o começo.</h2><p>O Academy prepara você para participar da mesa. Evolução, especialização e busca pelo domínio continuam nos demais apps StackUp Hold’em.</p><div class="next-grid">${[
-['HEROES','Descubra seu Poker DNA.'],
-['GRINDER EVO','Aprofunde suas decisões em Texas Hold’em.'],
-['REVOLUTION','Explore o jogo em simulações.'],
-['D ACTION','Identifique pontos de melhoria no Omaha.'],
-['WRAPS','Aprofunde suas decisões no Omaha.'],
-['CHIPS UP','Desenvolva a gestão do seu bankroll.']
-].map(([name,desc])=>`<button class="next-app" data-series="${name}"><strong>${name}</strong><span>${desc}</span></button>`).join('')}</div></section>`;
+function nextApps(){
+  return `<section class="next-apps"><span class="eyebrow">${t('series.tag')}</span><h2>${t('series.title')}</h2><p>${t('series.desc')}</p><div class="next-grid">${[
+    ['HEROES',t('series.heroes')],
+    ['GRINDER EVO',t('series.grinder')],
+    ['REVOLUTION',t('series.revolution')],
+    ['D ACTION',t('series.daction')],
+    ['WRAPS',t('series.wraps')],
+    ['CHIPS UP',t('series.chips')]
+  ].map(([name,desc])=>`<button class="next-app" data-series="${name}"><strong>${name}</strong><span>${desc}</span></button>`).join('')}</div></section>`;
+}
 
 function getPokerinnoMessage(){
   return pokerinnoMessages[currentLanguage]||pokerinnoMessages['pt-BR'];
@@ -178,7 +180,7 @@ function createAccount(){
     <div class="login-card">
       <form data-create-account-form>
         <label for="new-email">E-MAIL</label>
-        <input id="new-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="seuemail@exemplo.com" required>
+        <input id="new-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="${t('login.emailPlaceholder')}" required>
         <button class="primary login-submit" type="submit">${t('common.continue')} <span>→</span></button>
       </form>
     </div>
@@ -209,34 +211,34 @@ function home(){
 async function invokeAuth(method,payload={}){
   const adapter=window.StackUpAuthAdapter;
   if(!adapter||typeof adapter.signIn!=='function'){
-    openDialog('Login em integração','A tela está pronta, mas o serviço real de autenticação ainda não está conectado neste repositório. Nenhuma sessão foi simulada.');
+    openDialog(t('auth.integrationTitle'),t('auth.integrationBody'));
     return;
   }
   try{
     const result=await adapter.signIn(method,payload);
     if(result?.ok||result?.user){authenticated=true;location.hash='#home';return}
-    openDialog('Não foi possível entrar',result?.message||'Confira os dados e tente novamente.');
+    openDialog(t('auth.signInError'),result?.message||t('auth.checkData'));
   }catch{
-    openDialog('Não foi possível entrar','O serviço de autenticação não respondeu. Tente novamente.');
+    openDialog(t('auth.signInError'),t('auth.serviceError'));
   }
 }
 
 async function invokeCreateAccount(payload={}){
   const adapter=window.StackUpAuthAdapter;
   if(!adapter||typeof adapter.createAccount!=='function'){
-    openDialog('Conta StackUp em integração','O formulário está pronto, mas a criação real da conta ainda precisa ser conectada ao serviço StackUp.');
+    openDialog(t('auth.accountIntegrationTitle'),t('auth.accountIntegrationBody'));
     return;
   }
   try{
     const result=await adapter.createAccount(payload);
     if(result?.ok){
-      openDialog('Conta criada','Sua conta foi criada. Volte para entrar no Academy.');
+      openDialog(t('auth.accountCreated'),t('auth.accountCreatedBody'));
       location.hash='#login';
       return;
     }
-    openDialog('Não foi possível criar a conta',result?.message||'Confira os dados e tente novamente.');
+    openDialog(t('auth.accountError'),result?.message||t('auth.checkData'));
   }catch{
-    openDialog('Não foi possível criar a conta','O serviço de cadastro não respondeu. Tente novamente.');
+    openDialog(t('auth.accountError'),t('auth.accountServiceError'));
   }
 }
 
@@ -261,8 +263,8 @@ function render(){
   if(route==='create-account'){app.innerHTML=createAccount();return}
 
   if(state.status==='error'){
-    app.innerHTML=heading('SUA JORNADA','Vamos tentar novamente?','Sua navegação continua disponível.')+
-      `<section class="empty"><h2>Não conseguimos carregar os conteúdos</h2><p>${state.error}</p><button class="primary" data-retry>Tentar novamente →</button></section>`;
+    app.innerHTML=heading(t('system.loadTag'),t('system.loadTitle'),t('system.loadDesc'))+
+      `<section class="empty"><h2>${t('system.loadError')}</h2><p>${t('system.loadErrorDesc')}</p><button class="primary" data-retry>${t('system.retry')} →</button></section>`;
     return;
   }
 
@@ -291,7 +293,7 @@ function render(){
     `<section class="empty"><div class="empty-symbol">${materialIcon('person')}</div><h2>${t('profile.hello')}</h2><p>${t('profile.connect')}</p><a class="primary" href="#login">${t('profile.account')} →</a></section>
     <div class="setting"><div><h3>${t('profile.sounds')}</h3><p>${t('profile.soundsDesc')}</p></div><input type="checkbox" id="sound" aria-label="${t('profile.sounds')}" ${preferences.sound?'checked':''}></div>
     <div class="setting"><div><h3>${t('profile.motion')}</h3><p>${t('profile.motionDesc')}</p></div><input type="checkbox" id="reducedMotion" aria-label="${t('profile.motion')}" ${preferences.reducedMotion?'checked':''}></div>
-    <div class="setting"><div><h3>${t('profile.privacy')}</h3><p>${t('profile.privacyDesc')}</p></div><a class="quiet" href="#login">${t('profile.consult')} →</a></div>`+nextApps;
+    <div class="setting"><div><h3>${t('profile.privacy')}</h3><p>${t('profile.privacyDesc')}</p></div><a class="quiet" href="#login">${t('profile.consult')} →</a></div>`+nextApps();
   else if(route==='welcome')app.innerHTML=home();
 
   app.querySelectorAll('img').forEach(img=>img.addEventListener('error',()=>{img.style.display='none'}));
@@ -305,10 +307,10 @@ document.addEventListener('click',async e=>{
   const auth=e.target.closest('[data-auth]');
   const language=e.target.closest('[data-language]');
 
-  if(series)openDialog(series.dataset.series,'Este é um dos próximos caminhos da série StackUp Hold’em. Cada app tem sua própria proposta.');
+  if(series)openDialog(series.dataset.series,t('system.seriesBody'));
   if(pokerinno)openPokerinno();
   if(help)openPokerinno();
-  if(pending)openDialog(pending.dataset.pending,'Este espaço está pronto para receber os treinos. Assim que os desafios estiverem disponíveis, você poderá praticar por aqui.');
+  if(pending)openDialog(pending.dataset.pending,t('system.pendingBody'));
   if(auth)await invokeAuth(auth.dataset.auth);
   if(language){
     currentLanguage=language.dataset.language;
@@ -362,7 +364,7 @@ document.addEventListener('change',e=>{
     preferences[e.target.id]=e.target.checked;
     const saved=savePreferences(storage,preferences);
     document.documentElement.classList.toggle('reduced-motion',preferences.reducedMotion);
-    if(!saved)openDialog('Preferência aplicada','Seu navegador não permitiu salvar este ajuste. Ele permanece ativo durante esta visita.');
+    if(!saved)openDialog(t('system.prefTitle'),t('system.prefBody'));
   }
 });
 
