@@ -32,3 +32,16 @@
   .mobile-nav .nav-symbol.material-symbols-rounded{font-size:23px}
   .feature .badge .material-symbols-rounded{font-size:23px}
 }
+
+.chapter-back-row{
+  display:flex;
+  justify-content:flex-end;
+  margin-bottom:18px;
+}
+.chapter-back-row .back{
+  margin:0;
+  text-align:right;
+  text-transform:uppercase;
+  font-size:12px;
+  letter-spacing:.7px;
+}
