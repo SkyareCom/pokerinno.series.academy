@@ -2,6 +2,15 @@ name: Android AAB
 
 on:
   workflow_dispatch:
+    inputs:
+      version_code:
+        description: "Google Play versionCode"
+        required: true
+        default: "1"
+      version_name:
+        description: "Google Play versionName"
+        required: true
+        default: "1.0.0"
   pull_request:
     branches: [ main ]
     paths:
@@ -40,6 +49,29 @@ jobs:
         with:
           gradle-version: "9.6.0"
 
+      - name: Validate Play signing configuration
+        shell: bash
+        env:
+          ANDROID_KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+        run: |
+          configured=0
+          [ -n "$ANDROID_KEYSTORE_BASE64" ] && configured=$((configured+1))
+          [ -n "$ANDROID_KEYSTORE_PASSWORD" ] && configured=$((configured+1))
+          [ -n "$ANDROID_KEY_ALIAS" ] && configured=$((configured+1))
+          [ -n "$ANDROID_KEY_PASSWORD" ] && configured=$((configured+1))
+          if [ "$configured" -ne 0 ] && [ "$configured" -ne 4 ]; then
+            echo "Signing configuration is incomplete."
+            exit 1
+          fi
+          if [ "$configured" -eq 4 ]; then
+            echo "Play release signing is configured."
+          else
+            echo "Signing secrets are not configured; CI will validate an unsigned release bundle only."
+          fi
+
       - name: Prepare signing when configured
         shell: bash
         env:
@@ -52,6 +84,8 @@ jobs:
 
       - name: Build release bundle
         env:
+          PLAY_VERSION_CODE: ${{ github.event.inputs.version_code || '1' }}
+          PLAY_VERSION_NAME: ${{ github.event.inputs.version_name || '1.0.0' }}
           ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
           ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
           ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
