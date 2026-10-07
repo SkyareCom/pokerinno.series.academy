@@ -182,7 +182,7 @@ function home(){
     ['evolution','↗','Sua evolução','Cada descoberta faz parte da sua história.']
   ].map(([route,symbol,title,desc])=>`<a class="feature" href="#${route}"><span class="badge">${symbol}</span><span class="arrow">↗</span><h3>${title}</h3><p>${desc}</p></a>`).join('')}</div>
   <div class="section-top"><h2>Um passo de cada vez</h2></div>
-  <div class="trail-preview"><span class="trail-number">01</span><div><h3>Descobrir o jogo</h3><p>Aprenda o jogo, pratique o básico e prepare-se para jogar.</p></div><a href="#journey">Ver capítulos →</a></div>`+nextApps;
+  <div class="trail-preview"><span class="trail-number">01</span><div><h3>Descobrir o jogo</h3><p>Aprenda o jogo, pratique o básico e prepare-se para jogar.</p></div><a href="#journey">Ver capítulos →</a></div>`;
 }
 
 async function invokeAuth(method,payload={}){
@@ -246,7 +246,7 @@ function render(){
 
   if(route==='home')app.innerHTML=home();
   else if(route==='journey')app.innerHTML=heading('PRIMEIRA AVENTURA','APRENDER','Aprenda o essencial para acompanhar o jogo e participar da mesa.')+
-    `<div class="list">${chapters.map(c=>`<a class="chapter" href="#chapter/${c.id}"><span class="number">0${c.order}</span><div><h3>${c.title}</h3><p>${c.description}</p></div><span class="status">↗</span></a>`).join('')}</div>`+nextApps;
+    `<div class="list">${chapters.map(c=>`<a class="chapter" href="#chapter/${c.id}"><span class="number">0${c.order}</span><div><h3>${c.title}</h3><p>${c.description}</p></div><span class="status">↗</span></a>`).join('')}</div>`;
   else if(route.startsWith('chapter/')){
     const c=chapters.find(c=>c.id===route.split('/')[1]);
     app.innerHTML=`<a href="#journey" class="back">← Voltar à jornada</a>`+
@@ -264,12 +264,12 @@ function render(){
     ].map(([s,t,d])=>`<button class="feature" data-pending="${t}"><span class="badge">${s}</span><span class="arrow">↗</span><h3>${t}</h3><p>${d}</p></button>`).join('')}</div>`+
     empty('♠','As primeiras decisões estão a caminho.','Quando os treinos estiverem disponíveis, você encontrará aqui seus desafios e a revisão das suas decisões.');
   else if(route==='evolution')app.innerHTML=heading('SUA HISTÓRIA','Sua preparação para a mesa.','Acompanhe os fundamentos que você está aprendendo.')+
-    empty('↗','Sua história ainda vai começar.','Você ainda não possui aulas concluídas, treinos ou conquistas. O progresso aparecerá a partir das suas atividades reais.')+nextApps;
+    empty('↗','Sua história ainda vai começar.','Você ainda não possui aulas concluídas, treinos ou conquistas. O progresso aparecerá a partir das suas atividades reais.');
   else if(route==='profile')app.innerHTML=heading('DO SEU JEITO','Seu espaço no Academy.','Pequenos ajustes para acompanhar a sua jornada.')+
     `<section class="empty"><div class="empty-symbol">♙</div><h2>Olá, explorador.</h2><p>Conecte sua conta StackUp para sincronizar a jornada.</p><a class="primary" href="#login">Acessar minha conta →</a></section>
     <div class="setting"><div><h3>Sons da jornada</h3><p>Preferência preparada para as experiências com áudio.</p></div><input type="checkbox" id="sound" aria-label="Sons da jornada" ${preferences.sound?'checked':''}></div>
     <div class="setting"><div><h3>Reduzir movimentos</h3><p>Uma navegação mais tranquila, com menos animações.</p></div><input type="checkbox" id="reducedMotion" aria-label="Reduzir movimentos" ${preferences.reducedMotion?'checked':''}></div>
-    <div class="setting"><div><h3>Privacidade e conta</h3><p>Conta e sincronização ficam disponíveis após a autenticação.</p></div><a class="quiet" href="#login">Consultar →</a></div>`;
+    <div class="setting"><div><h3>Privacidade e conta</h3><p>Conta e sincronização ficam disponíveis após a autenticação.</p></div><a class="quiet" href="#login">Consultar →</a></div>`+nextApps;
   else if(route==='welcome')app.innerHTML=home();
 
   app.querySelectorAll('img').forEach(img=>img.addEventListener('error',()=>{img.style.display='none'}));
