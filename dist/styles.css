@@ -6,3 +6,29 @@
 .hero-copy h2{font-size:39px;line-height:1.04}.hero-copy .eyebrow{letter-spacing:1.2px;font-size:9px}@media(max-width:700px){.hero-copy h2{font-size:31px}.hero-copy{padding-top:205px}.hero-copy p{font-size:13px}}
 
 .quote-author{display:block;color:var(--gold);font-size:10px;letter-spacing:1.4px;margin-top:10px}
+
+.material-symbols-rounded{
+  font-family:'Material Symbols Rounded';
+  font-weight:500;
+  font-style:normal;
+  font-size:24px;
+  line-height:1;
+  letter-spacing:normal;
+  text-transform:none;
+  display:inline-block;
+  white-space:nowrap;
+  word-wrap:normal;
+  direction:ltr;
+  -webkit-font-feature-settings:'liga';
+  -webkit-font-smoothing:antialiased;
+  font-feature-settings:'liga';
+  font-variation-settings:'FILL' 0,'wght' 500,'GRAD' 0,'opsz' 24;
+}
+.nav-symbol.material-symbols-rounded{font-size:22px;width:24px}
+.feature .badge .material-symbols-rounded{font-size:24px}
+.empty-symbol .material-symbols-rounded{font-size:40px}
+.avatar .material-symbols-rounded{font-size:21px}
+@media(max-width:700px){
+  .mobile-nav .nav-symbol.material-symbols-rounded{font-size:23px}
+  .feature .badge .material-symbols-rounded{font-size:23px}
+}
