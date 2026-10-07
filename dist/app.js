@@ -174,14 +174,14 @@ function home(){
     </div>
     <div class="hero-note">COM POKERINNO, CADA PASSO CONTA.</div>
   </section>
-  <div class="section-top"><h2>Qual será sua próxima descoberta?</h2><span>ESCOLHA SEU CAMINHO</span></div>
+  <div class="section-top"><h2>Escolha sua aventura</h2></div>
   <div class="grid">${[
     ['journey','▤','Sua base','Os primeiros passos para entender o jogo.'],
     ['modalities','✧','Modalidades','Novas mesas. Diferentes possibilidades.'],
     ['practice','♠','Prática','Um espaço para suas próximas decisões.'],
     ['evolution','↗','Sua evolução','Cada descoberta faz parte da sua história.']
   ].map(([route,symbol,title,desc])=>`<a class="feature" href="#${route}"><span class="badge">${symbol}</span><span class="arrow">↗</span><h3>${title}</h3><p>${desc}</p></a>`).join('')}</div>
-  <div class="section-top"><h2>APRENDER</h2><span>UM PASSO DE CADA VEZ</span></div>
+  <div class="section-top"><h2>Um passo de cada vez</h2></div>
   <div class="trail-preview"><span class="trail-number">01</span><div><h3>Descobrir o jogo</h3><p>Aprenda o jogo, pratique o básico e prepare-se para jogar.</p></div><a href="#journey">Ver capítulos →</a></div>`+nextApps;
 }
 
