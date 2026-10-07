@@ -1,3 +1,18 @@
-export const chapters=[['discover','Descobrir o jogo','O primeiro encontro com o universo do poker.'],['rules','Conhecer as regras','Entenda a linguagem e a dinâmica da mesa.'],['decisions','Entender as decisões','Aprenda a observar antes de agir.'],['formats','Explorar modalidades','Encontre novos caminhos para aprender.'],['practice','Preparar-se para a mesa','Pratique o básico e prepare-se para participar da mesa.']].map(([id,title,description],i)=>({id,title,description,order:i+1,lessons:[]}));
-export const emptyAdapter={async load(){return {user:null,chapters,modalities:[],challenges:[],results:[],achievements:[],progress:[]}}};
-export async function loadAcademy(adapter=emptyAdapter){try{return {status:'ready',data:await adapter.load(),error:null}}catch{return {status:'error',data:null,error:'Não foi possível carregar sua jornada.'}}}
+export const chapters=[
+  ['discover','Descobrir o jogo','O primeiro encontro com o universo do poker.'],
+  ['rules','Conhecer as regras','Entenda a linguagem e a dinâmica da mesa.'],
+  ['decisions','Entender as decisões','Aprenda a observar antes de agir.'],
+  ['formats','Explorar modalidades','Encontre novos caminhos para aprender.'],
+  ['practice','Preparar-se para a mesa','Pratique o básico e prepare-se para jogar.']
+].map(([id,title,description],i)=>({id,title,description,order:i+1,lessons:[]}));
+
+export const emptyAdapter={
+  async load(){
+    return {user:null,chapters,modalities:[],challenges:[],results:[],achievements:[],progress:[]};
+  }
+};
+
+export async function loadAcademy(adapter=emptyAdapter){
+  try{return {status:'ready',data:await adapter.load(),error:null}}
+  catch{return {status:'error',data:null,error:'Não foi possível carregar sua jornada.'}}
+}
