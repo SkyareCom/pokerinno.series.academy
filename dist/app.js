@@ -9,6 +9,14 @@ const app=document.querySelector('#app');
 const dialog=document.querySelector('#dialog');
 let state=await loadAcademy(window.StackUpAcademyAdapter);
 let previousFocus;
+const previewMode=new URLSearchParams(location.search).get('preview')==='1';
+let authenticated=previewMode;
+if(!previewMode&&window.StackUpAuthAdapter?.getSession){
+  try{
+    const session=await window.StackUpAuthAdapter.getSession();
+    authenticated=Boolean(session?.user||session?.authenticated);
+  }catch{authenticated=false}
+}
 
 const nav=[
   ['home','⌂','Início'],
@@ -122,7 +130,7 @@ async function invokeAuth(method,payload={}){
   }
   try{
     const result=await adapter.signIn(method,payload);
-    if(result?.ok||result?.user){location.hash='#home';return}
+    if(result?.ok||result?.user){authenticated=true;location.hash='#home';return}
     openDialog('Não foi possível entrar',result?.message||'Confira os dados e tente novamente.');
   }catch{
     openDialog('Não foi possível entrar','O serviço de autenticação não respondeu. Tente novamente.');
@@ -150,6 +158,10 @@ async function invokeCreateAccount(payload={}){
 
 function render(){
   const route=resolveRoute(location.hash);
+  if(!authenticated&&route!=='login'&&route!=='create-account'){
+    location.hash='#login';
+    return;
+  }
   const active=route.startsWith('chapter')?'journey':route;
   const authRoute=route==='login'||route==='create-account';
   document.body.classList.toggle('auth-route',authRoute);
