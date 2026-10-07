@@ -1,12 +1,15 @@
 import {loadAcademy,chapters} from './data.js';
 import {resolveRoute} from './navigation.js';
 import {readPreferences,savePreferences} from './preferences.js';
+import {createTranslator,supportedLanguages} from './i18n.js';
 
 let storage;
 try{storage=localStorage}catch{storage={getItem:()=>null,setItem:()=>{throw Error()}}}
 let preferences=readPreferences(storage);
 let currentLanguage='pt-BR';
 try{currentLanguage=storage.getItem('academy.language')||'pt-BR'}catch{}
+if(!supportedLanguages.includes(currentLanguage))currentLanguage='pt-BR';
+let t=createTranslator(currentLanguage);
 const app=document.querySelector('#app');
 const dialog=document.querySelector('#dialog');
 const pokerinnoDialog=document.querySelector('#pokerinno-dialog');
@@ -47,21 +50,21 @@ const pokerinnoMessages={
   }
 };
 
-const nav=[
-  ['home','home','Início'],
-  ['journey','menu_book','Jornada'],
-  ['practice','school','Prática'],
-  ['evolution','casino','Evolução'],
-  ['profile','person','Perfil']
+const navItems=[
+  ['home','home','home'],
+  ['journey','menu_book','journey'],
+  ['practice','school','practice'],
+  ['evolution','casino','evolution'],
+  ['profile','person','profile']
 ];
 
-const mobileNav=[
-  ['home','home','INÍCIO'],
-  ['journey','menu_book','APRENDER'],
-  ['practice','school','PRATICAR'],
-  ['evolution','casino','JOGAR'],
-  ['profile','person','PERFIL']
-];
+function navFor(mobile=false){
+  return navItems.map(([key,symbol,label])=>[
+    key,
+    symbol,
+    t(`nav.${label}${mobile?'M':''}`)
+  ]);
+}
 
 const swipeRoutes=['home','journey','practice','evolution','profile'];
 let swipeStartX=0;
@@ -74,7 +77,7 @@ let swipeDirection=0;
 const materialIcon=(name,extra='')=>`<span class="material-symbols-rounded ${extra}" aria-hidden="true">${name}</span>`;
 
 const heading=(tag,title,description)=>`<div class="page-heading"><div><span class="eyebrow">${tag}</span><h1>${title}</h1><p>${description}</p></div></div>`;
-const empty=(symbol,title,description)=>`<section class="empty"><div class="empty-symbol">${materialIcon(symbol)}</div><h2>${title}</h2><p>${description}</p><a href="#journey" class="primary">Explorar a jornada <span>→</span></a></section>`;
+const empty=(symbol,title,description)=>`<section class="empty"><div class="empty-symbol">${materialIcon(symbol)}</div><h2>${title}</h2><p>${description}</p><a href="#journey" class="primary">${t('common.exploreJourney')} <span>→</span></a></section>`;
 
 const nextApps=`<section class="next-apps"><span class="eyebrow">DEPOIS DO BÁSICO · A HISTÓRIA CONTINUA</span><h2>Aprender é o começo.</h2><p>O Academy prepara você para participar da mesa. Evolução, especialização e busca pelo domínio continuam nos demais apps StackUp Hold’em.</p><div class="next-grid">${[
 ['HEROES','Descubra seu Poker DNA.'],
@@ -141,63 +144,63 @@ function login(){
       <span class="login-spade">♠</span>
       <span class="eyebrow">STACKUP HOLD’EM</span>
       <h1>ACADEMY</h1>
-      <p>Entre para continuar sua primeira aventura.</p>
+      <p>${t('login.intro')}</p>
     </div>
-    <div class="language-switch" aria-label="Idioma">
+    <div class="language-switch" aria-label="${t('login.language')}">
       <button type="button" class="language ${currentLanguage==='pt-BR'?'active':''}" data-language="pt-BR">PR BR</button>
       <button type="button" class="language ${currentLanguage==='en-US'?'active':''}" data-language="en-US">EN US</button>
       <button type="button" class="language ${currentLanguage==='es-ES'?'active':''}" data-language="es-ES">ES ES</button>
     </div>
     <div class="login-card">
-      <button type="button" class="login-option" data-auth="google"><strong>G</strong><span>Entrar com Google</span><i>→</i></button>
-      <button type="button" class="login-option" data-auth="biometric"><strong>◎</strong><span>Entrar com Biometria</span><i>→</i></button>
-      <div class="login-divider"><span>OU</span></div>
+      <button type="button" class="login-option" data-auth="google"><strong>G</strong><span>${t('login.google')}</span><i>→</i></button>
+      <button type="button" class="login-option" data-auth="biometric"><strong>◎</strong><span>${t('login.biometric')}</span><i>→</i></button>
+      <div class="login-divider"><span>${t('login.or')}</span></div>
       <form data-stackup-form>
         <label for="stackup-id">STACKUP ID</label>
-        <input id="stackup-id" name="stackupId" type="email" inputmode="email" autocomplete="email" placeholder="seuemail@exemplo.com" required>
-        <button class="primary login-submit" type="submit">Entrar com StackUp ID <span>→</span></button>
+        <input id="stackup-id" name="stackupId" type="email" inputmode="email" autocomplete="email" placeholder="${t('login.emailPlaceholder')}" required>
+        <button class="primary login-submit" type="submit">${t('login.stackup')} <span>→</span></button>
       </form>
     </div>
-    <a class="create-account-link" href="#create-account">Criar conta StackUp <span>→</span></a>
+    <a class="create-account-link" href="#create-account">${t('login.create')} <span>→</span></a>
   </section>`;
 }
 
 function createAccount(){
   return `<section class="login-page">
-    <a href="#login" class="back">← Voltar</a>
+    <a href="#login" class="back">← ${t('common.back')}</a>
     <div class="login-brand compact">
       <span class="eyebrow">STACKUP HOLD’EM</span>
-      <h1>Criar conta StackUp</h1>
-      <p>Uma conta para acessar os aplicativos StackUp.</p>
+      <h1>${t('login.createTitle')}</h1>
+      <p>${t('login.createDesc')}</p>
     </div>
     <div class="login-card">
       <form data-create-account-form>
         <label for="new-email">E-MAIL</label>
         <input id="new-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="seuemail@exemplo.com" required>
-        <button class="primary login-submit" type="submit">Continuar <span>→</span></button>
+        <button class="primary login-submit" type="submit">${t('common.continue')} <span>→</span></button>
       </form>
     </div>
   </section>`;
 }
 
 function home(){
-  return `<div class="page-heading"><div><span class="eyebrow">ACADEMY · A PRIMEIRA DESCOBERTA</span></div></div>`+
+  return `<div class="page-heading"><div><span class="eyebrow">${t('home.eyebrow')}</span></div></div>`+
   `<section class="hero">
     <img class="hero-image" src="assets/pokerinno-hero.webp" alt="Pokerinno recebe você em uma academia de poker iluminada em dourado">
     <div class="hero-copy">
-      <h2>APRENDER.<br>PRATICAR.<br><em>JOGAR.</em></h2>
-      <p>“Poker é um jogo que demora minutos para aprender. Mas leva uma vida para dominar.”</p>
+      <h2>${t('home.hero')}</h2>
+      <p>${t('home.quote')}</p>
       <small class="quote-author">— MIKE SEXTON</small>
-      <a href="#journey" class="primary">Começar a aprender <span>→</span></a>
+      <a href="#journey" class="primary">${t('home.cta')} <span>→</span></a>
     </div>
-    <div class="hero-note">COM POKERINNO, CADA PASSO CONTA.</div>
+    <div class="hero-note">${t('home.note')}</div>
   </section>
-  <div class="section-top"><h2>Escolha sua aventura</h2></div>
+  <div class="section-top"><h2>${t('home.section')}</h2></div>
   <div class="grid">${[
-    ['journey','menu_book','Sua base','Os primeiros passos para entender o jogo.'],
-    ['modalities','category','Modalidades','Novas mesas. Diferentes possibilidades.'],
-    ['practice','school','Prática','Um espaço para suas próximas decisões.'],
-    ['evolution','trending_up','Sua evolução','Cada descoberta faz parte da sua história.']
+    ['journey','menu_book',t('home.base'),t('home.baseDesc')],
+    ['modalities','category',t('home.modalities'),t('home.modalitiesDesc')],
+    ['practice','school',t('home.practice'),t('home.practiceDesc')],
+    ['evolution','trending_up',t('home.evolution'),t('home.evolutionDesc')]
   ].map(([route,symbol,title,desc])=>`<a class="feature" href="#${route}"><span class="badge">${materialIcon(symbol)}</span><h3>${title}</h3><p>${desc}</p></a>`).join('')}</div>`;
 }
 
@@ -246,7 +249,7 @@ function render(){
   document.body.classList.toggle('auth-route',authRoute);
 
   for(const id of ['navigation','mobile-navigation']){
-    const items=id==='mobile-navigation'?mobileNav:nav;
+    const items=navFor(id==='mobile-navigation');
     document.getElementById(id).innerHTML=items.map(([key,symbol,title])=>`<a class="${id==='navigation'?'nav-link ':''}${active===key?'active':''}" ${active===key?'aria-current="page"':''} href="#${key}"><span class="nav-symbol material-symbols-rounded" aria-hidden="true">${symbol}</span>${title}</a>`).join('');
   }
 
@@ -262,31 +265,31 @@ function render(){
   }
 
   if(route==='home')app.innerHTML=home();
-  else if(route==='journey')app.innerHTML=heading('PRIMEIRA AVENTURA','APRENDER','Aprenda o essencial para acompanhar o jogo e participar da mesa.')+
-    `<div class="list">${chapters.map(c=>`<a class="chapter" href="#chapter/${c.id}"><span class="number">0${c.order}</span><div><h3>${c.title}</h3><p>${c.description}</p></div></a>`).join('')}</div>`;
+  else if(route==='journey')app.innerHTML=heading(t('journey.tag'),t('journey.title'),t('journey.desc'))+
+    `<div class="list">${chapters.map(c=>`<a class="chapter" href="#chapter/${c.id}"><span class="number">0${c.order}</span><div><h3>${t(`chapters.${c.id}.title`)}</h3><p>${t(`chapters.${c.id}.description`)}</p></div></a>`).join('')}</div>`;
   else if(route.startsWith('chapter/')){
     const c=chapters.find(c=>c.id===route.split('/')[1]);
-    app.innerHTML=`<div class="chapter-back-row"><a href="#journey" class="back">Voltar à jornada</a></div>`+
-      heading(`CAPÍTULO 0${c.order}`,c.title,c.description)+
-      empty('menu_book','Seu próximo capítulo está sendo preparado.','As aulas aparecerão aqui quando o conteúdo da jornada estiver disponível. Seu aprendizado começa com uma base bem construída.');
+    app.innerHTML=`<div class="chapter-back-row"><a href="#journey" class="back">${t('common.backJourney')}</a></div>`+
+      heading(`${t('journey.chapterTag')} 0${c.order}`,t(`chapters.${c.id}.title`),t(`chapters.${c.id}.description`))+
+      empty('menu_book',t('journey.pendingTitle'),t('journey.pendingDesc'));
   }
-  else if(route==='modalities')app.innerHTML=heading('NOVOS CAMINHOS','Um jogo. Muitas possibilidades.','Descubra as diferentes formas de viver o poker.')+
-    empty('category','Novas mesas estão a caminho.','As modalidades e seus percursos serão apresentados aqui quando os conteúdos estiverem disponíveis.');
-  else if(route==='practice')app.innerHTML=heading('DA DESCOBERTA À DECISÃO','Pratique o básico.','Entenda a dinâmica antes de enfrentar a mesa.')+
+  else if(route==='modalities')app.innerHTML=heading(t('modalities.tag'),t('modalities.title'),t('modalities.desc'))+
+    empty('category',t('modalities.pendingTitle'),t('modalities.pendingDesc'));
+  else if(route==='practice')app.innerHTML=heading(t('practice.tag'),t('practice.title'),t('practice.desc'))+
     `<div class="grid">${[
-      ['timer','Treino rápido','Pratique as decisões básicas.'],
-      ['tune','Treino personalizado','Reforce o que você aprendeu.'],
-      ['military_tech','Desafios','Confira sua compreensão do jogo.'],
-      ['playing_cards','Revisão de mãos','Entenda o básico das suas decisões.']
-    ].map(([s,t,d])=>`<button class="feature" data-pending="${t}"><span class="badge">${materialIcon(s)}</span><h3>${t}</h3><p>${d}</p></button>`).join('')}</div>`+
-    empty('playing_cards','As primeiras decisões estão a caminho.','Quando os treinos estiverem disponíveis, você encontrará aqui seus desafios e a revisão das suas decisões.');
-  else if(route==='evolution')app.innerHTML=heading('SUA HISTÓRIA','Sua preparação para a mesa.','Acompanhe os fundamentos que você está aprendendo.')+
-    empty('trending_up','Sua história ainda vai começar.','Você ainda não possui aulas concluídas, treinos ou conquistas. O progresso aparecerá a partir das suas atividades reais.');
-  else if(route==='profile')app.innerHTML=heading('DO SEU JEITO','Seu espaço no Academy.','Pequenos ajustes para acompanhar a sua jornada.')+
-    `<section class="empty"><div class="empty-symbol">${materialIcon('person')}</div><h2>Olá, explorador.</h2><p>Conecte sua conta StackUp para sincronizar a jornada.</p><a class="primary" href="#login">Acessar minha conta →</a></section>
-    <div class="setting"><div><h3>Sons da jornada</h3><p>Preferência preparada para as experiências com áudio.</p></div><input type="checkbox" id="sound" aria-label="Sons da jornada" ${preferences.sound?'checked':''}></div>
-    <div class="setting"><div><h3>Reduzir movimentos</h3><p>Uma navegação mais tranquila, com menos animações.</p></div><input type="checkbox" id="reducedMotion" aria-label="Reduzir movimentos" ${preferences.reducedMotion?'checked':''}></div>
-    <div class="setting"><div><h3>Privacidade e conta</h3><p>Conta e sincronização ficam disponíveis após a autenticação.</p></div><a class="quiet" href="#login">Consultar →</a></div>`+nextApps;
+      ['timer',t('practice.quick'),t('practice.quickDesc')],
+      ['tune',t('practice.custom'),t('practice.customDesc')],
+      ['military_tech',t('practice.challenges'),t('practice.challengesDesc')],
+      ['playing_cards',t('practice.review'),t('practice.reviewDesc')]
+    ].map(([s,title,d])=>`<button class="feature" data-pending="${title}"><span class="badge">${materialIcon(s)}</span><h3>${title}</h3><p>${d}</p></button>`).join('')}</div>`+
+    empty('playing_cards',t('practice.pendingTitle'),t('practice.pendingDesc'));
+  else if(route==='evolution')app.innerHTML=heading(t('evolution.tag'),t('evolution.title'),t('evolution.desc'))+
+    empty('trending_up',t('evolution.pendingTitle'),t('evolution.pendingDesc'));
+  else if(route==='profile')app.innerHTML=heading(t('profile.tag'),t('profile.title'),t('profile.desc'))+
+    `<section class="empty"><div class="empty-symbol">${materialIcon('person')}</div><h2>${t('profile.hello')}</h2><p>${t('profile.connect')}</p><a class="primary" href="#login">${t('profile.account')} →</a></section>
+    <div class="setting"><div><h3>${t('profile.sounds')}</h3><p>${t('profile.soundsDesc')}</p></div><input type="checkbox" id="sound" aria-label="${t('profile.sounds')}" ${preferences.sound?'checked':''}></div>
+    <div class="setting"><div><h3>${t('profile.motion')}</h3><p>${t('profile.motionDesc')}</p></div><input type="checkbox" id="reducedMotion" aria-label="${t('profile.motion')}" ${preferences.reducedMotion?'checked':''}></div>
+    <div class="setting"><div><h3>${t('profile.privacy')}</h3><p>${t('profile.privacyDesc')}</p></div><a class="quiet" href="#login">${t('profile.consult')} →</a></div>`+nextApps;
   else if(route==='welcome')app.innerHTML=home();
 
   app.querySelectorAll('img').forEach(img=>img.addEventListener('error',()=>{img.style.display='none'}));
@@ -307,9 +310,10 @@ document.addEventListener('click',async e=>{
   if(auth)await invokeAuth(auth.dataset.auth);
   if(language){
     currentLanguage=language.dataset.language;
-    app.querySelectorAll('[data-language]').forEach(btn=>btn.classList.toggle('active',btn===language));
+    t=createTranslator(currentLanguage);
     document.documentElement.lang=currentLanguage;
     try{storage.setItem('academy.language',currentLanguage)}catch{}
+    render();
   }
   if(e.target.closest('[data-retry]')){
     state=await loadAcademy(window.StackUpAcademyAdapter);
