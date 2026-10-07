@@ -189,7 +189,7 @@ function createAccount(){
 
 function home(){
   return `<section class="hero">
-    <div class="hero-logo" aria-label="Pokerinno Academy"><strong>POKERINNO</strong><span>ACADEMY</span></div>
+    <div class="hero-logo" aria-label="Pokerinno Academy"><span class="hero-logo-mark" aria-hidden="true">♠</span><span class="hero-logo-copy"><strong>POKERINNO</strong><span>ACADEMY</span></span></div>
     <img class="hero-image" src="assets/pokerinno-hero.webp" alt="Pokerinno recebe você em uma academia de poker iluminada em dourado">
     <div class="hero-copy">
       <h2>${t('home.hero')}</h2>
