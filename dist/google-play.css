@@ -96,3 +96,136 @@
   .mobile-nav::-webkit-scrollbar{display:none}
   .mobile-nav a{min-width:82px;flex:0 0 82px;scroll-snap-align:center}
 }
+
+
+/* Pokerinno coach */
+.pokerinno-coach{
+  position:relative;
+  width:42px;
+  height:42px;
+  padding:0;
+  border:1px solid #8e7441;
+  border-radius:50%;
+  overflow:visible;
+  background:#0b211b;
+  box-shadow:0 0 0 3px rgba(247,199,91,.06);
+}
+.pokerinno-coach img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:70% 42%;
+  border-radius:50%;
+  display:block;
+}
+.pokerinno-pulse{
+  position:absolute;
+  right:-2px;
+  bottom:-2px;
+  width:11px;
+  height:11px;
+  border-radius:50%;
+  background:var(--green);
+  border:2px solid #061714;
+}
+.pokerinno-pulse::after{
+  content:'';
+  position:absolute;
+  inset:-5px;
+  border:1px solid var(--green);
+  border-radius:50%;
+  animation:pokerinnoPulse 1.8s ease-out infinite;
+}
+@keyframes pokerinnoPulse{
+  0%{transform:scale(.65);opacity:.9}
+  75%,100%{transform:scale(1.6);opacity:0}
+}
+.pokerinno-dialog{
+  width:min(92vw,760px);
+  max-width:760px;
+  padding:0;
+  overflow:hidden;
+  background:#071a16;
+  border:1px solid #8e7441;
+}
+.pokerinno-dialog .pokerinno-close{z-index:4}
+.pokerinno-stage{
+  position:relative;
+  min-height:430px;
+  background:#04110f;
+}
+.pokerinno-video{
+  display:none;
+  width:100%;
+  max-height:70vh;
+  background:#000;
+}
+.pokerinno-video.ready{display:block}
+.pokerinno-fallback{
+  min-height:430px;
+  position:relative;
+  overflow:hidden;
+  display:grid;
+  align-items:end;
+}
+.pokerinno-fallback.hidden{display:none}
+.pokerinno-fallback>img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  filter:saturate(.85) brightness(.72);
+  transform:scale(1.03);
+  animation:pokerinnoFloat 7s ease-in-out infinite alternate;
+}
+.pokerinno-fallback::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(0deg,rgba(4,17,15,.98) 0%,rgba(4,17,15,.72) 38%,rgba(4,17,15,.08) 78%);
+}
+.pokerinno-bubble{
+  position:relative;
+  z-index:2;
+  margin:0 24px 24px;
+  max-width:520px;
+  padding:20px 22px;
+  border:1px solid rgba(247,199,91,.55);
+  border-radius:16px 16px 16px 4px;
+  background:rgba(7,26,22,.92);
+  backdrop-filter:blur(12px);
+  animation:pokerinnoBubbleIn .32s ease-out both;
+}
+.pokerinno-bubble h2{font-size:25px;margin:7px 0 9px}
+.pokerinno-bubble p{font-size:15px;line-height:1.55;color:#d2ddd6;margin:0}
+.pokerinno-actions{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:18px;
+  padding:15px 18px;
+  border-top:1px solid var(--line);
+  background:#071a16;
+}
+@keyframes pokerinnoFloat{
+  from{transform:scale(1.03) translate3d(0,0,0)}
+  to{transform:scale(1.08) translate3d(-1%,1%,0)}
+}
+@keyframes pokerinnoBubbleIn{
+  from{opacity:0;transform:translateY(12px) scale(.98)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+.reduced-motion .pokerinno-pulse::after,
+.reduced-motion .pokerinno-fallback>img,
+.reduced-motion .pokerinno-bubble{animation:none!important}
+@media(max-width:700px){
+  .pokerinno-coach{width:38px;height:38px}
+  .pokerinno-dialog{width:calc(100% - 24px)}
+  .pokerinno-stage,.pokerinno-fallback{min-height:65vh}
+  .pokerinno-bubble{margin:0 14px 14px;padding:17px}
+  .pokerinno-bubble h2{font-size:22px}
+  .pokerinno-bubble p{font-size:14px}
+  .pokerinno-actions{justify-content:space-between}
+}
