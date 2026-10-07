@@ -48,23 +48,25 @@ const pokerinnoMessages={
 };
 
 const nav=[
-  ['home','⌂','Início'],
-  ['journey','▤','Jornada'],
-  ['practice','♠','Prática'],
-  ['evolution','↗','Evolução'],
-  ['profile','♙','Perfil']
+  ['home','home','Início'],
+  ['journey','menu_book','Jornada'],
+  ['practice','school','Prática'],
+  ['evolution','casino','Evolução'],
+  ['profile','person','Perfil']
 ];
 
 const mobileNav=[
-  ['home','⌂','INÍCIO'],
-  ['journey','▤','APRENDER'],
-  ['practice','♠','PRATICAR'],
-  ['evolution','↗','JOGAR'],
-  ['profile','♙','PERFIL']
+  ['home','home','INÍCIO'],
+  ['journey','menu_book','APRENDER'],
+  ['practice','school','PRATICAR'],
+  ['evolution','casino','JOGAR'],
+  ['profile','person','PERFIL']
 ];
 
+const materialIcon=(name,extra='')=>`<span class="material-symbols-rounded ${extra}" aria-hidden="true">${name}</span>`;
+
 const heading=(tag,title,description)=>`<div class="page-heading"><div><span class="eyebrow">${tag}</span><h1>${title}</h1><p>${description}</p></div></div>`;
-const empty=(symbol,title,description)=>`<section class="empty"><div class="empty-symbol">${symbol}</div><h2>${title}</h2><p>${description}</p><a href="#journey" class="primary">Explorar a jornada <span>→</span></a></section>`;
+const empty=(symbol,title,description)=>`<section class="empty"><div class="empty-symbol">${materialIcon(symbol)}</div><h2>${title}</h2><p>${description}</p><a href="#journey" class="primary">Explorar a jornada <span>→</span></a></section>`;
 
 const nextApps=`<section class="next-apps"><span class="eyebrow">DEPOIS DO BÁSICO · A HISTÓRIA CONTINUA</span><h2>Aprender é o começo.</h2><p>O Academy prepara você para participar da mesa. Evolução, especialização e busca pelo domínio continuam nos demais apps StackUp Hold’em.</p><div class="next-grid">${[
 ['HEROES','Descubra seu Poker DNA.'],
@@ -184,11 +186,11 @@ function home(){
   </section>
   <div class="section-top"><h2>Escolha sua aventura</h2></div>
   <div class="grid">${[
-    ['journey','▤','Sua base','Os primeiros passos para entender o jogo.'],
-    ['modalities','✧','Modalidades','Novas mesas. Diferentes possibilidades.'],
-    ['practice','♠','Prática','Um espaço para suas próximas decisões.'],
-    ['evolution','↗','Sua evolução','Cada descoberta faz parte da sua história.']
-  ].map(([route,symbol,title,desc])=>`<a class="feature" href="#${route}"><span class="badge">${symbol}</span><h3>${title}</h3><p>${desc}</p></a>`).join('')}</div>
+    ['journey','menu_book','Sua base','Os primeiros passos para entender o jogo.'],
+    ['modalities','category','Modalidades','Novas mesas. Diferentes possibilidades.'],
+    ['practice','school','Prática','Um espaço para suas próximas decisões.'],
+    ['evolution','trending_up','Sua evolução','Cada descoberta faz parte da sua história.']
+  ].map(([route,symbol,title,desc])=>`<a class="feature" href="#${route}"><span class="badge">${materialIcon(symbol)}</span><h3>${title}</h3><p>${desc}</p></a>`).join('')}</div>
   <div class="section-top"><h2>Um passo de cada vez</h2></div>
   <a class="trail-preview" href="#journey"><span class="trail-number">01</span><div><h3>Descobrir o jogo</h3><p>Aprenda o jogo, pratique o básico e prepare-se para jogar.</p></div></a>`;
 }
@@ -239,7 +241,7 @@ function render(){
 
   for(const id of ['navigation','mobile-navigation']){
     const items=id==='mobile-navigation'?mobileNav:nav;
-    document.getElementById(id).innerHTML=items.map(([key,symbol,title])=>`<a class="${id==='navigation'?'nav-link ':''}${active===key?'active':''}" ${active===key?'aria-current="page"':''} href="#${key}"><span class="nav-symbol" aria-hidden="true">${symbol}</span>${title}</a>`).join('');
+    document.getElementById(id).innerHTML=items.map(([key,symbol,title])=>`<a class="${id==='navigation'?'nav-link ':''}${active===key?'active':''}" ${active===key?'aria-current="page"':''} href="#${key}"><span class="nav-symbol material-symbols-rounded" aria-hidden="true">${symbol}</span>${title}</a>`).join('');
   }
 
   document.documentElement.classList.toggle('reduced-motion',preferences.reducedMotion);
@@ -260,22 +262,22 @@ function render(){
     const c=chapters.find(c=>c.id===route.split('/')[1]);
     app.innerHTML=`<a href="#journey" class="back">← Voltar à jornada</a>`+
       heading(`CAPÍTULO 0${c.order}`,c.title,c.description)+
-      empty('▤','Seu próximo capítulo está sendo preparado.','As aulas aparecerão aqui quando o conteúdo da jornada estiver disponível. Seu aprendizado começa com uma base bem construída.');
+      empty('menu_book','Seu próximo capítulo está sendo preparado.','As aulas aparecerão aqui quando o conteúdo da jornada estiver disponível. Seu aprendizado começa com uma base bem construída.');
   }
   else if(route==='modalities')app.innerHTML=heading('NOVOS CAMINHOS','Um jogo. Muitas possibilidades.','Descubra as diferentes formas de viver o poker.')+
-    empty('✧','Novas mesas estão a caminho.','As modalidades e seus percursos serão apresentados aqui quando os conteúdos estiverem disponíveis.');
+    empty('category','Novas mesas estão a caminho.','As modalidades e seus percursos serão apresentados aqui quando os conteúdos estiverem disponíveis.');
   else if(route==='practice')app.innerHTML=heading('DA DESCOBERTA À DECISÃO','Pratique o básico.','Entenda a dinâmica antes de enfrentar a mesa.')+
     `<div class="grid">${[
-      ['◷','Treino rápido','Pratique as decisões básicas.'],
-      ['☷','Treino personalizado','Reforce o que você aprendeu.'],
-      ['♜','Desafios','Confira sua compreensão do jogo.'],
-      ['♠','Revisão de mãos','Entenda o básico das suas decisões.']
-    ].map(([s,t,d])=>`<button class="feature" data-pending="${t}"><span class="badge">${s}</span><h3>${t}</h3><p>${d}</p></button>`).join('')}</div>`+
-    empty('♠','As primeiras decisões estão a caminho.','Quando os treinos estiverem disponíveis, você encontrará aqui seus desafios e a revisão das suas decisões.');
+      ['timer','Treino rápido','Pratique as decisões básicas.'],
+      ['tune','Treino personalizado','Reforce o que você aprendeu.'],
+      ['military_tech','Desafios','Confira sua compreensão do jogo.'],
+      ['playing_cards','Revisão de mãos','Entenda o básico das suas decisões.']
+    ].map(([s,t,d])=>`<button class="feature" data-pending="${t}"><span class="badge">${materialIcon(s)}</span><h3>${t}</h3><p>${d}</p></button>`).join('')}</div>`+
+    empty('playing_cards','As primeiras decisões estão a caminho.','Quando os treinos estiverem disponíveis, você encontrará aqui seus desafios e a revisão das suas decisões.');
   else if(route==='evolution')app.innerHTML=heading('SUA HISTÓRIA','Sua preparação para a mesa.','Acompanhe os fundamentos que você está aprendendo.')+
-    empty('↗','Sua história ainda vai começar.','Você ainda não possui aulas concluídas, treinos ou conquistas. O progresso aparecerá a partir das suas atividades reais.');
+    empty('trending_up','Sua história ainda vai começar.','Você ainda não possui aulas concluídas, treinos ou conquistas. O progresso aparecerá a partir das suas atividades reais.');
   else if(route==='profile')app.innerHTML=heading('DO SEU JEITO','Seu espaço no Academy.','Pequenos ajustes para acompanhar a sua jornada.')+
-    `<section class="empty"><div class="empty-symbol">♙</div><h2>Olá, explorador.</h2><p>Conecte sua conta StackUp para sincronizar a jornada.</p><a class="primary" href="#login">Acessar minha conta →</a></section>
+    `<section class="empty"><div class="empty-symbol">${materialIcon('person')}</div><h2>Olá, explorador.</h2><p>Conecte sua conta StackUp para sincronizar a jornada.</p><a class="primary" href="#login">Acessar minha conta →</a></section>
     <div class="setting"><div><h3>Sons da jornada</h3><p>Preferência preparada para as experiências com áudio.</p></div><input type="checkbox" id="sound" aria-label="Sons da jornada" ${preferences.sound?'checked':''}></div>
     <div class="setting"><div><h3>Reduzir movimentos</h3><p>Uma navegação mais tranquila, com menos animações.</p></div><input type="checkbox" id="reducedMotion" aria-label="Reduzir movimentos" ${preferences.reducedMotion?'checked':''}></div>
     <div class="setting"><div><h3>Privacidade e conta</h3><p>Conta e sincronização ficam disponíveis após a autenticação.</p></div><a class="quiet" href="#login">Consultar →</a></div>`+nextApps;
