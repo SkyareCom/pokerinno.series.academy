@@ -67,3 +67,36 @@
     transition:color .18s ease!important;
   }
 }
+
+
+.hero{position:relative}
+.hero-logo{
+  position:absolute;
+  top:16px;
+  left:16px;
+  z-index:3;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:1px;
+  pointer-events:none;
+  line-height:.9;
+  letter-spacing:.12em;
+  text-shadow:0 1px 10px rgba(0,0,0,.42);
+}
+.hero-logo strong{
+  font-size:13px;
+  font-weight:600;
+  color:var(--gold);
+}
+.hero-logo span{
+  font-size:10px;
+  font-weight:600;
+  color:rgba(255,255,255,.92);
+  letter-spacing:.18em;
+}
+@media(max-width:700px){
+  .hero-logo{top:12px;left:12px}
+  .hero-logo strong{font-size:12px}
+  .hero-logo span{font-size:9px}
+}
