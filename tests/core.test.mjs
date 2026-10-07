@@ -22,6 +22,7 @@ test('integration error remains recoverable',async()=>{
 });
 
 test('routes include the entry flow and recover from invalid deep links',()=>{
+  assert.equal(resolveRoute(''),'login');
   assert.equal(resolveRoute('#invalid'),'home');
   assert.equal(resolveRoute('#login'),'login');
   assert.equal(resolveRoute('#create-account'),'create-account');
