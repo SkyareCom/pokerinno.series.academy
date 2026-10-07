@@ -260,7 +260,7 @@ function render(){
     `<div class="list">${chapters.map(c=>`<a class="chapter" href="#chapter/${c.id}"><span class="number">0${c.order}</span><div><h3>${c.title}</h3><p>${c.description}</p></div></a>`).join('')}</div>`;
   else if(route.startsWith('chapter/')){
     const c=chapters.find(c=>c.id===route.split('/')[1]);
-    app.innerHTML=`<a href="#journey" class="back">← Voltar à jornada</a>`+
+    app.innerHTML=`<div class="chapter-back-row"><a href="#journey" class="back">Voltar à jornada</a></div>`+
       heading(`CAPÍTULO 0${c.order}`,c.title,c.description)+
       empty('menu_book','Seu próximo capítulo está sendo preparado.','As aulas aparecerão aqui quando o conteúdo da jornada estiver disponível. Seu aprendizado começa com uma base bem construída.');
   }
