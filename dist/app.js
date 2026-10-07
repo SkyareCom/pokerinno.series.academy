@@ -5,8 +5,13 @@ import {readPreferences,savePreferences} from './preferences.js';
 let storage;
 try{storage=localStorage}catch{storage={getItem:()=>null,setItem:()=>{throw Error()}}}
 let preferences=readPreferences(storage);
+let currentLanguage='pt-BR';
+try{currentLanguage=storage.getItem('academy.language')||'pt-BR'}catch{}
 const app=document.querySelector('#app');
 const dialog=document.querySelector('#dialog');
+const pokerinnoDialog=document.querySelector('#pokerinno-dialog');
+const pokerinnoVideo=document.querySelector('#pokerinno-video');
+const pokerinnoFallback=document.querySelector('#pokerinno-fallback');
 let state=await loadAcademy(window.StackUpAcademyAdapter);
 let previousFocus;
 const previewMode=new URLSearchParams(location.search).get('preview')==='1';
@@ -17,6 +22,30 @@ if(!previewMode&&window.StackUpAuthAdapter?.getSession){
     authenticated=Boolean(session?.user||session?.authenticated);
   }catch{authenticated=false}
 }
+
+const pokerinnoMessages={
+  'pt-BR':{
+    title:'Olá! Eu sou o Pokerinno.',
+    message:'Vou acompanhar sua primeira aventura no poker. Aqui você aprende o essencial, pratica o básico e chega à mesa entendendo cada passo. Quando precisar, é só me chamar.',
+    replay:'Repetir mensagem',
+    continue:'Continuar',
+    video:'assets/pokerinno-intro-pt-BR.mp4'
+  },
+  'en-US':{
+    title:"Hi! I'm Pokerinno.",
+    message:"I'll guide you through your first poker adventure. Here you'll learn the essentials, practice the basics, and reach the table understanding every step. Call me whenever you need help.",
+    replay:'Replay message',
+    continue:'Continue',
+    video:'assets/pokerinno-intro-en-US.mp4'
+  },
+  'es-ES':{
+    title:'¡Hola! Soy Pokerinno.',
+    message:'Voy a acompañarte en tu primera aventura en el poker. Aquí aprenderás lo esencial, practicarás lo básico y llegarás a la mesa entendiendo cada paso. Cuando me necesites, solo tienes que llamarme.',
+    replay:'Repetir mensaje',
+    continue:'Continuar',
+    video:'assets/pokerinno-intro-es-ES.mp4'
+  }
+};
 
 const nav=[
   ['home','⌂','Início'],
@@ -37,6 +66,41 @@ const nextApps=`<section class="next-apps"><span class="eyebrow">DEPOIS DO BÁSI
 ['WRAPS','Aprofunde suas decisões no Omaha.'],
 ['CHIPS UP','Desenvolva a gestão do seu bankroll.']
 ].map(([name,desc])=>`<button class="next-app" data-series="${name}"><strong>${name}</strong><span>${desc}</span><i>↗</i></button>`).join('')}</div></section>`;
+
+function getPokerinnoMessage(){
+  return pokerinnoMessages[currentLanguage]||pokerinnoMessages['pt-BR'];
+}
+
+function showPokerinnoFallback(){
+  pokerinnoVideo.pause();
+  pokerinnoVideo.classList.remove('ready');
+  pokerinnoFallback.classList.remove('hidden');
+}
+
+function openPokerinno(){
+  const content=getPokerinnoMessage();
+  document.querySelector('#pokerinno-title').textContent=content.title;
+  document.querySelector('#pokerinno-message').textContent=content.message;
+  document.querySelector('[data-pokerinno-replay]').textContent=content.replay;
+  document.querySelector('[data-pokerinno-close]').firstChild.textContent=content.continue+' ';
+  showPokerinnoFallback();
+
+  pokerinnoVideo.src=content.video;
+  pokerinnoVideo.load();
+  pokerinnoDialog.showModal();
+
+  pokerinnoVideo.onloadeddata=()=>{
+    pokerinnoFallback.classList.add('hidden');
+    pokerinnoVideo.classList.add('ready');
+    pokerinnoVideo.play().catch(()=>{});
+  };
+  pokerinnoVideo.onerror=showPokerinnoFallback;
+}
+
+function closePokerinno(){
+  pokerinnoVideo.pause();
+  pokerinnoDialog.close();
+}
 
 function openDialog(title,body){
   previousFocus=document.activeElement;
@@ -62,9 +126,9 @@ function login(){
       <p>Entre para continuar sua primeira aventura.</p>
     </div>
     <div class="language-switch" aria-label="Idioma">
-      <button type="button" class="language active" data-language="pt-BR">PR BR</button>
-      <button type="button" class="language" data-language="en-US">EN US</button>
-      <button type="button" class="language" data-language="es-ES">ES ES</button>
+      <button type="button" class="language ${currentLanguage==='pt-BR'?'active':''}" data-language="pt-BR">PR BR</button>
+      <button type="button" class="language ${currentLanguage==='en-US'?'active':''}" data-language="en-US">EN US</button>
+      <button type="button" class="language ${currentLanguage==='es-ES'?'active':''}" data-language="es-ES">ES ES</button>
     </div>
     <div class="login-card">
       <button type="button" class="login-option" data-auth="google"><strong>G</strong><span>Entrar com Google</span><i>→</i></button>
@@ -214,24 +278,48 @@ function render(){
 
 document.addEventListener('click',async e=>{
   const help=e.target.closest('[data-help]');
+  const pokerinno=e.target.closest('[data-pokerinno]');
   const pending=e.target.closest('[data-pending]');
   const series=e.target.closest('[data-series]');
   const auth=e.target.closest('[data-auth]');
   const language=e.target.closest('[data-language]');
 
   if(series)openDialog(series.dataset.series,'Este é um dos próximos caminhos da série StackUp Hold’em. Cada app tem sua própria proposta.');
-  if(help)openDialog('Oi! Eu sou o Pokerinno.','Vou ajudar você a entender o jogo, praticar o básico e chegar à mesa sabendo o que está acontecendo.');
+  if(pokerinno)openPokerinno();
+  if(help)openPokerinno();
   if(pending)openDialog(pending.dataset.pending,'Este espaço está pronto para receber os treinos. Assim que os desafios estiverem disponíveis, você poderá praticar por aqui.');
   if(auth)await invokeAuth(auth.dataset.auth);
   if(language){
+    currentLanguage=language.dataset.language;
     app.querySelectorAll('[data-language]').forEach(btn=>btn.classList.toggle('active',btn===language));
-    document.documentElement.lang=language.dataset.language;
-    try{storage.setItem('academy.language',language.dataset.language)}catch{}
+    document.documentElement.lang=currentLanguage;
+    try{storage.setItem('academy.language',currentLanguage)}catch{}
   }
   if(e.target.closest('[data-retry]')){
     state=await loadAcademy(window.StackUpAcademyAdapter);
     render();
   }
+});
+
+document.querySelector('.pokerinno-close').addEventListener('click',closePokerinno);
+document.querySelector('[data-pokerinno-close]').addEventListener('click',closePokerinno);
+document.querySelector('[data-pokerinno-replay]').addEventListener('click',()=>{
+  if(pokerinnoVideo.classList.contains('ready')){
+    pokerinnoVideo.currentTime=0;
+    pokerinnoVideo.play().catch(()=>{});
+    return;
+  }
+  const bubble=document.querySelector('.pokerinno-bubble');
+  bubble.style.animation='none';
+  requestAnimationFrame(()=>{
+    bubble.style.animation='';
+  });
+});
+pokerinnoDialog.addEventListener('close',()=>pokerinnoVideo.pause());
+pokerinnoDialog.addEventListener('click',e=>{
+  if(e.target!==pokerinnoDialog)return;
+  const r=pokerinnoDialog.getBoundingClientRect();
+  if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)closePokerinno();
 });
 
 document.addEventListener('submit',async e=>{
