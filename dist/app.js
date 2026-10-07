@@ -163,11 +163,10 @@ function createAccount(){
 }
 
 function home(){
-  return heading('ACADEMY · A PRIMEIRA DESCOBERTA','Aprenda. Pratique. Jogue.','Entenda o jogo, pratique o básico e chegue à mesa com segurança.')+
+  return `<div class="page-heading"><div><span class="eyebrow">ACADEMY · A PRIMEIRA DESCOBERTA</span></div></div>`+
   `<section class="hero">
     <img class="hero-image" src="assets/pokerinno-hero.webp" alt="Pokerinno recebe você em uma academia de poker iluminada em dourado">
     <div class="hero-copy">
-      <span class="eyebrow">SUA PRIMEIRA AVENTURA</span>
       <h2>APRENDER.<br>PRATICAR.<br><em>JOGAR.</em></h2>
       <p>“Poker é um jogo que demora minutos para aprender. Mas leva uma vida para dominar.”</p>
       <small class="quote-author">— MIKE SEXTON</small>
