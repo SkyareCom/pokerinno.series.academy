@@ -24,7 +24,10 @@
     <header>
       <span class="breadcrumb">SUA JORNADA COMEÇA AQUI</span>
       <div class="header-actions">
-        <button class="icon-button" data-help aria-label="Ajuda de Pokerinno">?</button>
+        <button class="pokerinno-coach" data-pokerinno aria-label="Abrir mensagem do Pokerinno">
+          <img src="assets/pokerinno-hero.webp" alt="">
+          <span class="pokerinno-pulse" aria-hidden="true"></span>
+        </button>
         <a href="#profile" class="avatar" aria-label="Perfil">♠</a>
       </div>
     </header>
@@ -32,6 +35,24 @@
     <footer>STACKUP HOLD’EM <span>APRENDER</span></footer>
   </div>
   <nav class="mobile-nav" id="mobile-navigation" aria-label="Navegação principal"></nav>
+  <dialog id="pokerinno-dialog" class="pokerinno-dialog">
+    <button class="close pokerinno-close" aria-label="Fechar">×</button>
+    <div class="pokerinno-stage">
+      <video id="pokerinno-video" class="pokerinno-video" playsinline controls preload="metadata"></video>
+      <div id="pokerinno-fallback" class="pokerinno-fallback">
+        <img src="assets/pokerinno-hero.webp" alt="Pokerinno">
+        <div class="pokerinno-bubble">
+          <span class="eyebrow">POKERINNO · COACH</span>
+          <h2 id="pokerinno-title">Olá!</h2>
+          <p id="pokerinno-message"></p>
+        </div>
+      </div>
+    </div>
+    <div class="pokerinno-actions">
+      <button type="button" class="quiet" data-pokerinno-replay>Repetir mensagem</button>
+      <button type="button" class="primary" data-pokerinno-close>Continuar <span>→</span></button>
+    </div>
+  </dialog>
   <dialog id="dialog">
     <button class="close" aria-label="Fechar">×</button>
     <span class="eyebrow">POKERINNO · SEU COMPANHEIRO</span>
