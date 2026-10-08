@@ -163,6 +163,22 @@ else if(route==='profile/coach')app.innerHTML=`<a href="#profile" class="back">�
 else if(route==='profile/privacy')app.innerHTML=`<a href="#profile" class="back">← VOLTAR</a>`+heading('PERFIL','SOBRE E PRIVACIDADE','Controles de privacidade e dados do Academy.')+`<div class="setting"><div><h3>POLÍTICA DE PRIVACIDADE</h3><p>Documento e ações de conta serão conectados aqui.</p></div></div><div class="setting"><div><h3>DADOS LOCAIS</h3><p>Limpeza de progresso, histórico e preferências será reconectada nesta página.</p></div></div>`;
 else if(route==='welcome')app.innerHTML=home();
 if(route.startsWith('chapter/')||route.startsWith('procedure/'))app.insertAdjacentHTML('beforeend',`<a class="primary reinforce-learning" href="#practice">${t('practice.reinforce')}</a>`);
+if(route==='chapter/floor'){
+ for(const el of [...app.querySelectorAll('h1,h2,h3,h4,.section-title')]){
+  if(el.textContent.trim().toUpperCase()==='STAFF, ETIQUETA E REGRAS DA CASA'){
+   const container=el.closest('.source-group,.source-section,.source-group-header,.source-group-heading');
+   if(container&&container.querySelectorAll('details').length===0)container.remove();
+   else el.remove();
+  }
+ }
+ for(const detail of app.querySelectorAll('details.source-lesson')){
+  const summary=detail.querySelector('summary');
+  if(!summary)continue;
+  for(const label of [...summary.querySelectorAll('span')]){
+   if(label.textContent.trim().toUpperCase()==='APROFUNDAMENTO')label.remove();
+  }
+ }
+}
 standardizeExamples(app);
 standardizeBack(app,route);
 app.querySelectorAll('img').forEach(img=>img.addEventListener('error',()=>{img.style.display='none'}));}
