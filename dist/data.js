@@ -1,6 +1,6 @@
 export const chapters=[
 ['discover','Descobrir o jogo','Primeiro contato com o poker.'],
-['rules','Regras básicas','Estrutura e fluxo de uma mão.'],
+['rules','Conceitos básicos','Estrutura, termos e fluxo de uma mão.'],
 ['betting','Apostas e all-in','Valores, raises e potes.'],
 ['dealing','Erros e correções','Distribuição e cartas incorretas.'],
 ['floor','Floor e conduta','Conflitos, decisões e penalidades.'],
@@ -211,12 +211,16 @@ export const rulesGroups=[
 
 
 export const rulesBasicSections=[
+  {type:'host',eyebrow:'POKERINNO EXPLICA',title:'A LINGUAGEM DO POKER',text:'Antes de avançar para apostas e situações especiais, aprenda os conceitos e palavras que aparecem o tempo todo na mesa.',host:'Quando você entende os termos, começa a acompanhar a mão sem se perder.'},
   {type:'content',title:'RANKING E EMPATES',text:'Reconheça a força das mãos e use kickers quando a categoria for igual.'},
-  {type:'scene',title:'POSIÇÕES E BLINDS',text:'Button, Small Blind e Big Blind definem referências da mesa e ajudam a determinar a ordem da ação.'},
-  {type:'steps',title:'STREETS',items:['Pré-flop','Flop','Turn','River','Showdown']},
+  {type:'scene',title:'POSIÇÕES E BLINDS',text:'Button, Small Blind e Big Blind são referências básicas para posição e ordem de ação.'},
+  {type:'steps',title:'STREETS',items:['PRÉ-FLOP — antes das cartas comunitárias.','FLOP — três cartas comunitárias.','TURN — quarta carta comunitária.','RIVER — quinta carta comunitária.','SHOWDOWN — comparação final das mãos.']},
   {type:'content',title:'AÇÕES BÁSICAS',text:'Check, bet, call, raise e fold formam o vocabulário principal de cada rodada.'},
+  {type:'content',title:'TERMINOLOGIAS ESSENCIAIS',text:'Pote é o total em disputa. Stack é a quantidade de fichas do jogador. Board são as cartas comunitárias. Hole cards são as cartas fechadas do jogador. Dealer conduz a mão. Button marca a posição de referência.'},
+  {type:'content',title:'TERMOS DE APOSTA',text:'Bet é aposta, call é pagar, raise é aumentar, fold é desistir, all-in é colocar todas as fichas disponíveis e action é a sequência de decisões da mão.'},
+  {type:'content',title:'TERMOS DE MESA',text:'Muck é descartar sem mostrar quando permitido. Showdown é a abertura das mãos no final. Pot odds, side pot, ante, blinds e posição serão aprofundados nos capítulos seguintes.'},
   {type:'content',title:'FIM DA MÃO',text:'A mão termina quando todos desistem, exceto um jogador, ou quando ocorre o showdown.'},
-  {type:'summary',title:'ESSENCIAL',items:['Saiba quem age.','Saiba quanto custa continuar.','Reconheça a melhor mão.']}
+  {type:'summary',title:'ESSENCIAL',items:['Reconheça a força das mãos.','Entenda posições e streets.','Aprenda as ações básicas.','Familiarize-se com os principais termos da mesa.']}
 ];
 
 export const bettingSections=[
