@@ -1180,21 +1180,6 @@ input,select,textarea{font-family:inherit;font-size:14px}
 .nav-symbol svg{display:block;width:25px;height:25px}.playing-cards{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:10px 0}.playing-card{position:relative;display:block;flex:0 0 48px;width:48px;height:70px;background:#f6f3e9;border:1px solid #d4cfbd;border-radius:7px;box-shadow:0 3px 7px rgba(0,0,0,.2)}.red-suit{color:#b52739}.black-suit{color:#142c25}.card-corner{position:absolute;top:4px;left:5px;font-size:14px;font-weight:700;line-height:1}.card-corner small{display:block;font-size:12px;line-height:1}.card-pip{position:absolute;inset:0;display:grid;place-items:center;font-size:25px}.card-corner-bottom{top:auto;left:auto;right:5px;bottom:4px;transform:rotate(180deg)}.quiz-card-group{margin:16px 0}.quiz-card-group figcaption,.position-table figcaption{font-size:12px;color:var(--gold);letter-spacing:.6px}.position-table{margin:18px 0}.position-table svg{display:block;width:100%;max-width:480px;margin:12px auto}.table-rail{fill:#263d30;stroke:#927c4b;stroke-width:4}.table-felt{fill:#113c2f;stroke:#366d52;stroke-width:1}.table-center{fill:#73917f;font-size:14px;letter-spacing:2px}.table-seat rect{fill:#0a211a;stroke:#70877a;stroke-width:1.5}.table-seat text{fill:#e5ebdf;font-size:12px}.seat-mentioned rect{stroke:#e8c766;stroke-width:2}.seat-mentioned text{fill:#e8c766}.position-table p{font-size:12px;color:var(--muted);line-height:1.4}.option-cards{margin:3px 0}.quiz-options button:has(.option-cards){display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap}
 .page-actions{display:flex;justify-content:flex-end;align-items:center;width:100%;margin:0 0 16px}.page-actions .app-back{position:static;float:none;display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:88px;margin:0;padding:10px 16px;border:1px solid var(--line);border-radius:9px;background:var(--panel);color:var(--gold);font-size:14px;font-weight:600;line-height:1.2;letter-spacing:.5px}.page-actions .app-back:hover{border-color:var(--gold)}.entry-form>.page-actions{margin-bottom:16px}
 
-/* Practice catalog: same illustrated main-card format as Learn. */
-#app .practice-catalog .list{display:grid;grid-template-columns:1fr;gap:12px}
-#app .practice-catalog .learn-extra-pokerinno{display:grid;grid-template-columns:30% minmax(0,1fr);min-height:124px;align-items:stretch;padding:0;overflow:hidden}
-#app .practice-catalog .learn-extra-host{display:flex;min-width:0;min-height:124px;align-items:flex-end;justify-content:center;overflow:hidden}
-#app .practice-catalog .learn-extra-host .pokerinno-sprite{display:block;width:100%;height:100%;min-height:124px;background-size:contain;background-position:center bottom;background-repeat:no-repeat}
-#app .practice-catalog .learn-extra-copy{min-width:0;align-self:center;padding:16px 14px}
-#app .practice-catalog .learn-extra-copy h3{margin:0 0 8px;font-size:20px;line-height:1.25}
-#app .practice-catalog .learn-extra-copy p{margin:0;font-size:14px;line-height:1.55}
-
-/* Practice and Learn use the exact same card geometry. */
-#app .practice-catalog .list.journey-chapters{display:flex;flex-direction:column;gap:var(--card-gap,24px)}
-#app .practice-catalog .list.journey-chapters>.learn-extra-pokerinno{grid-template-columns:104px minmax(0,1fr) auto;min-height:0}
-#app .practice-catalog .list.journey-chapters>.learn-extra-pokerinno .learn-extra-host{min-height:118px}
-#app .practice-catalog .list.journey-chapters>.learn-extra-pokerinno .pokerinno-sprite{width:100%;height:118px;min-height:118px;background-size:contain;background-position:center bottom}
-
 /* Unified Learn and Practice card title size */
 #app .journey-chapters .learn-extra-copy h3,
 #app .practice-catalog .learn-extra-copy h3{font-size:16px;line-height:1.25;font-weight:600}
@@ -1207,15 +1192,16 @@ input,select,textarea{font-family:inherit;font-size:14px}
 #app .practice-catalog .learn-extra-copy p,
 #app > .learn-extra-pokerinno .learn-extra-copy p{font-size:12px;line-height:1.5;font-weight:400}
 
-/* All seven Learn main cards, including Mathematics and Dictionary, share one standard. */
-#app .journey-chapters > .learn-extra-pokerinno,
-#app > .learn-extra-pokerinno,
-#app .practice-catalog .journey-chapters > .learn-extra-pokerinno{display:grid;grid-template-columns:104px minmax(0,1fr);align-items:stretch;gap:0;padding:0;overflow:hidden}
-#app .journey-chapters > .learn-extra-pokerinno .learn-extra-host,
-#app > .learn-extra-pokerinno .learn-extra-host,
-#app .practice-catalog .journey-chapters > .learn-extra-pokerinno .learn-extra-host{min-height:118px}
-#app .journey-chapters > .learn-extra-pokerinno .learn-extra-copy,
-#app > .learn-extra-pokerinno .learn-extra-copy,
-#app .practice-catalog .journey-chapters > .learn-extra-pokerinno .learn-extra-copy{min-width:0;align-self:center;padding:16px 14px}
+
+/* Canonical main-card geometry: Learn and Practice, no screen-specific overrides. */
+#app .journey-chapters>.learn-extra-pokerinno,
+#app>.learn-extra-pokerinno,
+#app .practice-catalog .journey-chapters>.learn-extra-pokerinno{display:grid;grid-template-columns:30% minmax(0,1fr);align-items:stretch;min-height:0;height:auto;gap:0;padding:0;overflow:hidden}
+#app .journey-chapters>.learn-extra-pokerinno .learn-extra-host,
+#app>.learn-extra-pokerinno .learn-extra-host,
+#app .practice-catalog .journey-chapters>.learn-extra-pokerinno .learn-extra-host{height:122px;min-height:122px;max-height:122px;display:flex;align-items:flex-end;justify-content:center;overflow:hidden}
+#app .learn-extra-pokerinno .learn-extra-host .pokerinno-sprite{width:100%;height:100%;min-height:0;background-size:contain;background-position:center bottom;background-repeat:no-repeat}
+#app .learn-extra-pokerinno .learn-extra-copy{min-width:0;align-self:center;padding:14px}
 #app .learn-extra-pokerinno .learn-extra-copy h3{font-size:16px;line-height:1.25;font-weight:600;margin:0 0 8px}
 #app .learn-extra-pokerinno .learn-extra-copy p{font-size:12px;line-height:1.5;font-weight:400;margin:0}
+#app .practice-catalog .journey-chapters{display:flex;flex-direction:column;gap:var(--card-gap,24px)}
