@@ -279,11 +279,11 @@ export const pokerTermsGroups=[
       ['BOARD','Conjunto de cartas comunitárias abertas na mesa.'],
       ['BURN CARD','Carta descartada pelo dealer antes de abrir uma street comunitária.'],
       ['COMMUNITY CARDS','Cartas comunitárias compartilhadas pelos jogadores.'],
-      ['FLOP','As três primeiras cartas comunitárias.'],
+      ['FLOP','As três primeiras cartas comunitárias abertas juntas. O flop transforma a informação disponível: mãos prontas, draws e texturas passam a existir. A partir dele, cada jogador reavalia a força relativa da própria mão e como o board interage com os ranges envolvidos.'],
       ['HOLE CARDS','Cartas fechadas pertencentes ao jogador.'],
       ['KICKER','Carta de desempate usada quando mãos têm a mesma combinação principal.'],
-      ['RIVER','Quinta e última carta comunitária no Hold’em e Omaha.'],
-      ['TURN','Quarta carta comunitária.'],
+      ['RIVER','Quinta e última carta comunitária no Hold’em e Omaha. Como não haverá novas cartas, toda decisão passa a depender da força final das mãos, dos ranges possíveis e da relação entre valor, blefe, call ou fold.'],
+      ['TURN','Quarta carta comunitária. Ela pode completar draws, criar novos projetos ou mudar a força relativa das mãos. Como resta apenas uma carta por vir, decisões de aposta e call costumam ter consequências maiores sobre o tamanho final do pote.'],
       ['UPCARD','Carta distribuída aberta em modalidades que utilizam cartas expostas.'],
       ['DOWNCARD','Carta distribuída fechada.']
     ]
@@ -291,12 +291,12 @@ export const pokerTermsGroups=[
   {
     title:'AÇÕES E APOSTAS',
     terms:[
-      ['ALL-IN','Colocar todas as fichas disponíveis na mão.'],
-      ['BET','Iniciar uma aposta em uma rodada ainda sem aposta.'],
-      ['CALL','Igualar a aposta necessária para continuar na mão.'],
-      ['CHECK','Passar a ação sem apostar quando não há valor pendente.'],
-      ['FOLD','Desistir da mão.'],
-      ['RAISE','Aumentar uma aposta já existente.'],
+      ['ALL-IN','Colocar todas as fichas disponíveis em jogo naquela mão. O jogador não pode apostar mais, mas continua disputando a parte do pote que conseguiu cobrir. Se outros jogadores tiverem stacks maiores, podem surgir side pots. Um all-in também pode ser menor que o raise mínimo e, nesse caso, nem sempre reabre a ação.'],
+      ['BET','Colocar a primeira aposta de uma street. A aposta pode buscar valor de mãos piores, provocar folds, negar cartas gratuitas ou construir o pote. O tamanho escolhido altera o preço oferecido ao adversário e influencia quais mãos podem continuar.'],
+      ['CALL','Igualar o valor necessário para continuar na mão. Um call mantém o pote aberto sem aumentar a pressão. Pode ser correto para realizar equity, manter blefes adversários ou controlar o tamanho do pote, mas também pode deixar o jogador vulnerável a apostas futuras.'],
+      ['CHECK','Passar a ação sem colocar fichas quando não existe aposta pendente. Mantém o jogador na mão e transfere a decisão ao próximo. Pode ser usado para controlar o pote, induzir uma aposta, proteger um range de check ou simplesmente porque apostar não oferece vantagem suficiente.'],
+      ['FOLD','Abandonar a mão e abrir mão de disputar o pote. As fichas já investidas permanecem no pote. Fold não é simplesmente “perder”: muitas vezes é a decisão que evita investir mais em uma situação desfavorável.'],
+      ['RAISE','Aumentar uma aposta já existente. O raise pode buscar valor, proteção, isolamento ou folds. Ele força os adversários a responder ao novo preço e pode aumentar rapidamente o tamanho do pote; por isso, posição, stack e tamanho do raise mudam bastante suas consequências.'],
       ['RE-RAISE','Novo aumento após um raise.'],
       ['3-BET','Segundo aumento de uma sequência de apostas.'],
       ['4-BET','Terceiro aumento de uma sequência de apostas.'],
@@ -306,7 +306,7 @@ export const pokerTermsGroups=[
       ['LIMP','Entrar no pote pré-flop apenas pagando o big blind.'],
       ['OVERBET','Aposta maior que o tamanho atual do pote.'],
       ['BLOCK BET','Aposta pequena usada para controlar preço ou extrair valor específico.'],
-      ['DONK BET','Aposta feita antes do agressor da street anterior ter chance de agir.'],
+      ['DONK BET','Aposta feita por quem não foi o agressor da street anterior, antes que esse agressor tenha a chance de apostar novamente. Ela muda o fluxo esperado da mão: pode ser usada por valor, proteção ou blefe. Quem enfrenta uma donk bet precisa entender quem representa força, quais mãos podem apostar assim e como responder com call, raise ou fold.'],
       ['CONTINUATION BET (C-BET)','Aposta do agressor anterior na street seguinte.'],
       ['CHECK-RAISE','Dar check e depois aumentar após uma aposta adversária.'],
       ['STRING BET','Aposta ou raise feito em movimentos sucessivos sem anúncio válido.'],
@@ -319,10 +319,10 @@ export const pokerTermsGroups=[
     terms:[
       ['PRE-FLOP','Rodada de ação antes do flop.'],
       ['STREET','Cada etapa de apostas da mão.'],
-      ['SHOWDOWN','Momento em que as mãos são mostradas e comparadas.'],
-      ['MUCK','Descartar cartas sem exibi-las quando permitido.'],
+      ['SHOWDOWN','Momento em que os jogadores ainda ativos ao fim da última rodada apresentam as mãos para definir o vencedor. A melhor combinação válida leva o pote, salvo empate. Procedimentos de exposição podem variar, e muck prematuro pode ter consequências.'],
+      ['MUCK','Descartar a mão sem mostrá-la quando isso é permitido. O descarte pode encerrar o direito de disputar o pote se as cartas deixarem de ser identificáveis. Por isso, no showdown ou em situações contestadas, é importante não liberar as cartas antes de a decisão estar clara.'],
       ['DEAD HAND','Mão que perdeu o direito de disputar o pote.'],
-      ['MISDEAL','Distribuição inválida que pode exigir nova distribuição.'],
+      ['MISDEAL','Erro de distribuição que torna o início da mão inválido segundo a regra aplicada. Pode envolver número incorreto de cartas, distribuição fora da ordem ou outras falhas previstas. Se identificado cedo, a mão pode ser anulada e redistribuída; depois de ação substancial, a solução pode ser diferente.'],
       ['OUT OF TURN','Ação realizada fora da vez correta.'],
       ['SUBSTANTIAL ACTION','Quantidade de ação posterior que pode limitar a reversão de um erro anterior.'],
       ['HEADS-UP','Pote ou jogo disputado entre dois jogadores.'],
@@ -377,12 +377,12 @@ export const pokerTermsGroups=[
   {
     title:'ESTRATÉGIA',
     terms:[
-      ['BLUFF','Aposta feita principalmente para provocar folds de mãos melhores.'],
+      ['BLUFF','Aposta ou raise feito principalmente para fazer mãos melhores desistirem. Um blefe funciona quando representa força de forma coerente e existe chance suficiente de fold. Se for usado contra jogadores ou ranges que quase nunca desistem, perde eficiência.'],
       ['SEMI-BLUFF','Bluff com uma mão que ainda pode melhorar.'],
-      ['VALUE BET','Aposta feita esperando ser paga por mãos piores.'],
+      ['VALUE BET','Aposta feita porque existem mãos piores capazes de pagar. O objetivo não é apenas “ter uma mão forte”, mas escolher um valor que extraia fichas de uma parte suficiente do range adversário sem afastar todas as mãos piores.'],
       ['THIN VALUE','Aposta por valor em situação de vantagem pequena.'],
-      ['RANGE','Conjunto de mãos que um jogador pode ter.'],
-      ['POSITION','Vantagem ou desvantagem gerada pela ordem de ação.'],
+      ['RANGE','Conjunto de mãos possíveis que um jogador pode representar em determinada situação. Em vez de tentar adivinhar uma única mão, o raciocínio por range considera várias combinações compatíveis com posição, ações anteriores, tamanhos de aposta e perfil do jogador.'],
+      ['POSITION','Relação entre sua ordem de ação e a dos adversários. Agir depois permite observar decisões antes de escolher, oferecendo mais informação. Agir antes exige decidir com menos informação e pode tornar controle de pote, blefes e extração de valor mais difíceis.'],
       ['BLOCKER','Carta que reduz combinações possíveis na mão adversária.'],
       ['POLARIZED RANGE','Range concentrado em mãos muito fortes e blefes.'],
       ['MERGED RANGE','Range com mãos de força mais contínua e intermediária.']
@@ -492,7 +492,7 @@ export const pokerExtraTermsGroups=[
   {
     title:'GÍRIAS E PERFIS',
     terms:[
-      ['FISH','Jogador considerado inexperiente ou que comete muitos erros. Termo informal e muitas vezes pejorativo.'],
+      ['FISH','Gíria informal para um jogador considerado menos experiente ou que comete erros frequentes. Não descreve uma estratégia específica e pode ser pejorativa. O importante é identificar comportamentos reais — como pagar demais, jogar mãos fracas ou errar tamanhos de aposta — em vez de simplesmente rotular o adversário.'],
       ['SHARK','Jogador experiente e tecnicamente forte.'],
       ['WHALE','Jogador recreativo que costuma movimentar valores altos.'],
       ['NIT','Jogador extremamente seletivo e conservador.'],
@@ -506,7 +506,7 @@ export const pokerExtraTermsGroups=[
     title:'LINHAS E JOGADAS',
     terms:[
       ['DONK BET','Aposta feita fora de posição contra o agressor da street anterior antes que ele possa agir.'],
-      ['SLOW PLAY','Jogar uma mão forte de forma passiva para esconder força e induzir ações posteriores.'],
+      ['SLOW PLAY','Jogar uma mão muito forte de forma mais passiva do que o normal para esconder sua força e induzir apostas ou raises posteriores. Pode aumentar o valor extraído quando o adversário continua apostando, mas também pode permitir cartas gratuitas que melhoram mãos adversárias ou reduzir o tamanho final do pote.'],
       ['TRAP','Armadilha: linha usada para induzir o adversário a apostar ou aumentar com uma mão pior.'],
       ['CHECK-RAISE','Dar check e depois aumentar após uma aposta adversária.'],
       ['CHECK-CALL','Dar check e depois pagar uma aposta.'],
@@ -579,3 +579,11 @@ export const pokerExtraTermsGroups=[
     ]
   }
 ];
+
+export const editorialPrinciples={
+  audience:'Do primeiro contato ao conhecimento sólido.',
+  rule:'Explicar o que acontece, por que acontece, quais alternativas existem e quais consequências cada decisão pode produzir.',
+  tone:'Linguagem simples, direta e tecnicamente correta.',
+  depth:'Básico na linguagem; profundo no tema.',
+  progression:'Cada conceito deve preparar o próximo.'
+};
