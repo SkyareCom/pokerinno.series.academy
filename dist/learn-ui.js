@@ -1,4 +1,4 @@
-import {t} from './i18n.js?v=cards-no-arrows-20261008';
+import {t} from './i18n.js?v=learn-titles-20261008';
 export const journeyIds=['discover','rules','betting','floor','formats'];
 export const extraCard=(route,mood,title,description,portrait)=>`<a class="learn-extra learn-extra-pokerinno" href="#chapter/${route}"><div class="learn-extra-host">${portrait(mood)}</div><div class="learn-extra-copy"><h3>${t(title)}</h3><p>${t(description)}</p></div></a>`;
 export const staffRoles=()=>'';
