@@ -24,46 +24,17 @@ const sourceLesson=(item,tag='APROFUNDAMENTO')=>item?`<details class="source-les
 /* Betting chapter: merge complete reference lessons into the main reading flow, without expandable cards. */
 /* Progressive betting lessons: structured cards with full original teaching material. */
 const bettingIntegratedLessons=()=>{
- const lessons=[
-  {item:verdeFund.seq,label:'01 · ORDEM DAS AÇÕES',intro:'Entenda quem age primeiro, como a ação circula e quando uma rodada termina.'},
-  {item:verdeRuleSubs.fichas,label:'02 · VALORES E FICHAS',intro:'Relacione stack, buy-in e movimentação das fichas às decisões na mesa.'},
-  {item:verdeRuleSubs.assentos,label:'03 · BUTTON E ASSENTOS',intro:'Aplique as regras de posição, blinds e situações especiais.'}
- ].filter(x=>x.item);
- const seen=new Set();
- return '<div class="betting-learning-path">'+lessons.map(({item,label,intro})=>{
-  const title=item.t?.pt||item.title||'CONCEITOS ESSENCIAIS';
-  const root=document.createElement('div');root.innerHTML=item.html||`<p>${item.lead||item.d?.pt||''}</p>`;
-  for(const el of [...root.querySelectorAll('p,li')]){
-   const key=el.textContent.replace(/\\s+/g,' ').trim().toLocaleLowerCase('pt-BR');
-   if(!key)continue;
-   if(seen.has(key))el.remove();else seen.add(key);
-  }
-  // Normalize imported legacy markup before turning it into cards.
-  for(const strong of [...root.querySelectorAll('strong,b')]){
-   const next=strong.nextSibling;
-   if(next?.nodeType===Node.TEXT_NODE && next.textContent && !/^\\s/.test(next.textContent))next.textContent=' — '+next.textContent;
-  }
-  for(const el of [...root.querySelectorAll('p,li')]){
-   el.normalize();
-   if(el.textContent.trim().length>420 && el.children.length===0){
-    const text=el.textContent.trim();
-    const parts=text.split(/(?<=[.!?])\\s+(?=[A-ZÀ-Ú])/u);
-    if(parts.length>2){el.replaceWith(...parts.reduce((acc,part,i)=>{if(i%3===0)acc.push(document.createElement('p'));acc[acc.length-1].textContent+=(acc[acc.length-1].textContent?' ':'')+part;return acc},[]))}
-   }
-  }
-  const blocks=[];let current=[];let subtitle='';
-  const flush=()=>{if(current.length){blocks.push({subtitle,html:current.join('')});current=[];subtitle=''}};
-  for(const node of [...root.children]){
-   if(/^H[2-4]$/.test(node.tagName)){
-    flush();subtitle=node.textContent.trim();
-   }else if(node.classList.contains('lg')||node.classList.contains('cg')||node.classList.contains('compare')||node.classList.contains('ranking')||node.classList.contains('steps')){
-    flush();blocks.push({subtitle,html:node.outerHTML});subtitle='';
-   }else if(node.tagName==='P' && current.join('').length>650){flush();current.push(node.outerHTML)}else current.push(node.outerHTML);
-  }
-  flush();
-  const cards=blocks.filter(b=>b.html.replace(/<[^>]*>/g,'').trim()).map((b,i)=>`<article class="betting-info-card"><div class="betting-info-index">${String(i+1).padStart(2,'0')}</div>${b.subtitle?`<h4>${b.subtitle}</h4>`:''}<div class="betting-info-content source-body">${b.html}</div></article>`).join('');
-  return `<section class="betting-learning-module"><header class="betting-module-heading"><span class="eyebrow">${label}</span><h3>${title}</h3><p>${intro}</p></header><div class="betting-info-grid">${cards}</div></section>`;
- }).join('')+'</div>';
+ const parse=item=>{const root=document.createElement('div');root.innerHTML=item?.html||'';return [...root.querySelectorAll('.lc')].filter(el=>el.querySelector(':scope > h3')).map(el=>({title:el.querySelector(':scope > h3').textContent.trim(),html:[...el.children].filter(n=>n.tagName!=='H3').map(n=>n.outerHTML).join('')}))};
+ const seq=parse(verdeFund.seq),chips=parse(verdeRuleSubs.fichas),seats=parse(verdeRuleSubs.assentos);
+ const used=new Set();
+ const render=(title,entries)=>{const cards=entries.filter(Boolean).filter(e=>{const k=e.title.toLocaleUpperCase('pt-BR');if(used.has(k))return false;used.add(k);return true}).map(e=>`<article class="betting-info-card"><h4>${e.title}</h4><div class="betting-info-content source-body">${e.html}</div></article>`).join('');return cards?`<section class="betting-learning-module"><h3 class="betting-section-title">${title}</h3><div class="betting-info-grid">${cards}</div></section>`:''};
+ const pick=(arr,...names)=>names.map(name=>arr.find(e=>e.title===name)).filter(Boolean);
+ const more=(arr,names)=>arr.filter(e=>!names.includes(e.title));
+ const intro=pick(seq,'COMO FUNCIONA UMA RODADA DE APOSTAS?','QUEM AGE PRIMEIRO?','QUANDO A RODADA TERMINA?');
+ const actions=pick(seq,'AÇÕES BÁSICAS','BET × RAISE','CHECK','CALL','FOLD','ALL-IN');
+ const raises=pick(seq,'RAISE E AUMENTO MÍNIMO','3-BET','4-BET','SQUEEZE','DONK BET','ALL-IN MENOR QUE O RAISE MÍNIMO');
+ const other=more(seq,['COMO FUNCIONA UMA RODADA DE APOSTAS?','QUEM AGE PRIMEIRO?','QUANDO A RODADA TERMINA?','AÇÕES BÁSICAS','BET × RAISE','CHECK','CALL','FOLD','ALL-IN','RAISE E AUMENTO MÍNIMO','3-BET','4-BET','SQUEEZE','DONK BET','ALL-IN MENOR QUE O RAISE MÍNIMO','RESUMO DA LÓGICA']);
+ return '<div class="betting-learning-path">'+render('01 · COMO AS APOSTAS FUNCIONAM',intro)+render('02 · AÇÕES DO JOGADOR',actions)+render('03 · AUMENTOS E SITUAÇÕES ESPECIAIS',[...raises,...other])+render('04 · STACK, FICHAS E BUY-IN',chips)+render('05 · BUTTON E ASSENTOS',seats)+render('06 · REVISÃO DA LÓGICA',pick(seq,'RESUMO DA LÓGICA'))+'</div>';
 };
 const sourceGroup=(title,items,tag)=>`<section class="source-group"><div class="section-top"><h2>${title}</h2><span>BASE ACADEMY</span></div>${items.filter(Boolean).map(x=>sourceLesson(x,tag)).join('')}</section>`;
 const quote=`<div class="quote">“Poker é um jogo que demora minutos para aprender. Mas leva uma vida para dominar.”<small>— MIKE SEXTON</small></div>`;
