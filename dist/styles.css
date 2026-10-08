@@ -589,3 +589,34 @@ main,#app{
 .editorial-note strong{display:block;color:var(--gold);font-size:11px;letter-spacing:.45px}
 .editorial-note p{margin:5px 0 0;color:var(--muted);font-size:11px;line-height:1.5;white-space:normal}
 .glossary-term p{line-height:1.5}
+
+/* Academy Verde 9 merged content */
+.source-group{margin-top:22px;display:grid;gap:10px}
+.source-lesson,.source-quiz{border:1px solid var(--line);border-radius:12px;background:rgba(10,30,24,.68);overflow:hidden}
+.source-lesson>summary,.source-quiz>summary{cursor:pointer;list-style:none;padding:14px 16px;display:grid;gap:4px}
+.source-lesson>summary::-webkit-details-marker,.source-quiz>summary::-webkit-details-marker{display:none}
+.source-lesson>summary span{font-size:9px;letter-spacing:.7px;color:var(--gold)}
+.source-lesson>summary strong{font-size:13px;color:var(--text)}
+.source-lesson>summary small{font-size:10px;color:var(--muted);line-height:1.35}
+.source-body{padding:0 16px 16px;color:var(--text)}
+.source-body h3,.source-body h4{color:var(--gold);font-size:12px;margin:14px 0 6px}
+.source-body p,.source-body span,.source-body li{font-size:11px;line-height:1.55;white-space:normal}
+.source-body .lg,.source-body .cg,.source-body .compare{display:grid;gap:10px}
+.source-body .lc,.source-body .ch,.source-body .ci,.source-body .ex,.source-body .tip{border:1px solid rgba(247,199,91,.16);border-radius:9px;padding:10px;background:rgba(255,255,255,.018)}
+.source-body .ranking{display:grid;gap:8px}
+.source-body .rrow{border:1px solid rgba(247,199,91,.15);border-radius:9px;padding:9px}
+.source-body .rhead{display:flex;gap:8px;align-items:center}
+.source-body .rname,.source-body .rpos{font-size:11px;color:var(--gold)}
+.source-body .hand{display:flex;gap:4px;flex-wrap:wrap;margin:7px 0}
+.source-body .pc{display:inline-flex;gap:2px;padding:4px 5px;border:1px solid rgba(255,255,255,.18);border-radius:5px;background:#f6f1e7;color:#111;font-weight:600}
+.source-body .pc.red{color:#a32626}
+.source-quiz>summary{font-size:10px;color:var(--gold);letter-spacing:.35px}
+.source-quiz-list{display:grid;gap:8px;padding:0 12px 12px}
+.source-question{border-top:1px solid var(--line);padding:10px 2px}
+.source-question strong{font-size:11px;line-height:1.45}
+.source-question p{font-size:10px;line-height:1.45;margin:5px 0 0;color:var(--muted);white-space:normal}
+.source-bank{margin-top:12px}
+@media(max-width:700px){
+  .source-lesson>summary,.source-quiz>summary{padding:12px 13px}
+  .source-body{padding:0 13px 13px}
+}
