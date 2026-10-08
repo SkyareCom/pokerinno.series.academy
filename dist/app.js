@@ -31,7 +31,7 @@ const bettingIntegratedLessons=()=>{
  const pick=(arr,...names)=>names.map(name=>arr.find(e=>e.title===name)).filter(Boolean);
  const more=(arr,names)=>arr.filter(e=>!names.includes(e.title));
  const intro=pick(seq,'COMO FUNCIONA UMA RODADA DE APOSTAS?','QUEM AGE PRIMEIRO?','QUANDO A RODADA TERMINA?');
- const actions=pick(seq,'AÇÕES BÁSICAS','BET × RAISE','CHECK','CALL','FOLD','ALL-IN');
+ const actions=pick(seq,'BET × RAISE','CHECK','CALL','FOLD','ALL-IN');
  const raises=pick(seq,'RAISE E AUMENTO MÍNIMO','3-BET','4-BET','SQUEEZE','DONK BET','ALL-IN MENOR QUE O RAISE MÍNIMO');
  const other=more(seq,['COMO FUNCIONA UMA RODADA DE APOSTAS?','QUEM AGE PRIMEIRO?','QUANDO A RODADA TERMINA?','AÇÕES BÁSICAS','BET × RAISE','CHECK','CALL','FOLD','ALL-IN','RAISE E AUMENTO MÍNIMO','3-BET','4-BET','SQUEEZE','DONK BET','ALL-IN MENOR QUE O RAISE MÍNIMO','RESUMO DA LÓGICA']);
  return '<div class="betting-learning-path">'+render('01 · COMO AS APOSTAS FUNCIONAM',intro)+render('02 · AÇÕES DO JOGADOR',actions)+render('03 · AUMENTOS E SITUAÇÕES ESPECIAIS',[...raises,...other])+render('04 · STACK, FICHAS E BUY-IN',chips)+render('05 · BUTTON E ASSENTOS',seats)+render('06 · REVISÃO DA LÓGICA',pick(seq,'RESUMO DA LÓGICA'))+'</div>';
