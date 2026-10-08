@@ -1234,3 +1234,6 @@ input,select,textarea{font-family:inherit;font-size:14px}
 #app .journey-chapters+.learn-extra-pokerinno,#app>.learn-extra-pokerinno+.learn-extra-pokerinno,#app .learn-extra-pokerinno+.decision-cycle{margin-top:12px}
 #app .learn-extra-pokerinno .learn-extra-copy{padding:12px}
 #app .learn-extra-pokerinno .learn-extra-copy h3{margin-bottom:12px}
+
+/* Practice theme section headings */
+#app .practice-catalog .source-group>.section-top h2{font-size:16px;line-height:1.25;font-weight:600}
