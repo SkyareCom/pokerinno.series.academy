@@ -1,6 +1,7 @@
 export const chapters=[
 ['discover','Descobrir o jogo','Primeiro contato com o poker.'],
-['rules','Conceitos básicos','Estrutura, termos e fluxo de uma mão.'],
+['rules','Conceitos básicos','Estrutura e fluxo de uma mão.'],
+['terms','Terminologia do poker','Termos e significados usados no jogo.'],
 ['betting','Apostas e all-in','Valores, raises e potes.'],
 ['dealing','Erros e correções','Distribuição e cartas incorretas.'],
 ['floor','Floor e conduta','Conflitos, decisões e penalidades.'],
@@ -249,4 +250,206 @@ export const floorSections=[
   {type:'content',title:'COMPORTAMENTO',text:'Ação fora da vez, exposição intencional, ofensas, ajuda externa e outras condutas inadequadas podem gerar intervenção.'},
   {type:'steps',title:'COMO RESOLVER',items:['Pare a ação.','Não misture cartas nem fichas.','Explique o que aconteceu.','Aguarde a decisão.','Só então retome a mão.']},
   {type:'content',title:'PENALIDADES POSSÍVEIS',text:'Advertência, mão morta, afastamento temporário, perda de mãos ou órbitas, desclassificação ou remoção podem ser aplicados conforme gravidade e regra local.'}
+];
+
+export const pokerTermsGroups=[
+  {
+    title:'MESA E ESTRUTURA',
+    terms:[
+      ['ACTION','A sequência de decisões e apostas de uma mão.'],
+      ['ANTE','Aposta obrigatória colocada antes da mão em determinadas estruturas.'],
+      ['BIG BLIND (BB)','Maior blind obrigatório e referência comum de valor.'],
+      ['BLIND','Aposta obrigatória feita antes da distribuição das cartas.'],
+      ['BUTTON (BTN)','Marcador que identifica a posição nominal do dealer.'],
+      ['DEALER','Pessoa que distribui cartas e conduz o procedimento da mão.'],
+      ['FLOOR','Responsável por decisões de regra e situações excepcionais.'],
+      ['HAND','Uma mão completa, da distribuição ao encerramento.'],
+      ['ORBIT','Uma volta completa do button por todas as posições da mesa.'],
+      ['POT','Total de fichas ou dinheiro em disputa na mão.'],
+      ['RAKE','Taxa cobrada pela casa em determinados jogos.'],
+      ['SEAT','Assento ou posição física do jogador na mesa.'],
+      ['SMALL BLIND (SB)','Menor blind obrigatório, normalmente à esquerda do button.'],
+      ['STACK','Quantidade de fichas que um jogador possui.'],
+      ['TABLE STAKES','Regra que limita o jogador às fichas disponíveis no início da mão.']
+    ]
+  },
+  {
+    title:'CARTAS E BOARD',
+    terms:[
+      ['BOARD','Conjunto de cartas comunitárias abertas na mesa.'],
+      ['BURN CARD','Carta descartada pelo dealer antes de abrir uma street comunitária.'],
+      ['COMMUNITY CARDS','Cartas comunitárias compartilhadas pelos jogadores.'],
+      ['FLOP','As três primeiras cartas comunitárias.'],
+      ['HOLE CARDS','Cartas fechadas pertencentes ao jogador.'],
+      ['KICKER','Carta de desempate usada quando mãos têm a mesma combinação principal.'],
+      ['RIVER','Quinta e última carta comunitária no Hold’em e Omaha.'],
+      ['TURN','Quarta carta comunitária.'],
+      ['UPCARD','Carta distribuída aberta em modalidades que utilizam cartas expostas.'],
+      ['DOWNCARD','Carta distribuída fechada.']
+    ]
+  },
+  {
+    title:'AÇÕES E APOSTAS',
+    terms:[
+      ['ALL-IN','Colocar todas as fichas disponíveis na mão.'],
+      ['BET','Iniciar uma aposta em uma rodada ainda sem aposta.'],
+      ['CALL','Igualar a aposta necessária para continuar na mão.'],
+      ['CHECK','Passar a ação sem apostar quando não há valor pendente.'],
+      ['FOLD','Desistir da mão.'],
+      ['RAISE','Aumentar uma aposta já existente.'],
+      ['RE-RAISE','Novo aumento após um raise.'],
+      ['3-BET','Segundo aumento de uma sequência de apostas.'],
+      ['4-BET','Terceiro aumento de uma sequência de apostas.'],
+      ['MIN-RAISE','Menor aumento completo permitido pela regra.'],
+      ['OPEN','Primeira entrada voluntária no pote por aposta ou raise.'],
+      ['OPEN RAISE','Primeiro raise voluntário pré-flop.'],
+      ['LIMP','Entrar no pote pré-flop apenas pagando o big blind.'],
+      ['OVERBET','Aposta maior que o tamanho atual do pote.'],
+      ['BLOCK BET','Aposta pequena usada para controlar preço ou extrair valor específico.'],
+      ['DONK BET','Aposta feita antes do agressor da street anterior ter chance de agir.'],
+      ['CONTINUATION BET (C-BET)','Aposta do agressor anterior na street seguinte.'],
+      ['CHECK-RAISE','Dar check e depois aumentar após uma aposta adversária.'],
+      ['STRING BET','Aposta ou raise feito em movimentos sucessivos sem anúncio válido.'],
+      ['STRING RAISE','Raise realizado em etapas de forma irregular.'],
+      ['SPLASH THE POT','Jogar fichas diretamente no pote, dificultando a conferência do valor.']
+    ]
+  },
+  {
+    title:'FLUXO DA MÃO',
+    terms:[
+      ['PRE-FLOP','Rodada de ação antes do flop.'],
+      ['STREET','Cada etapa de apostas da mão.'],
+      ['SHOWDOWN','Momento em que as mãos são mostradas e comparadas.'],
+      ['MUCK','Descartar cartas sem exibi-las quando permitido.'],
+      ['DEAD HAND','Mão que perdeu o direito de disputar o pote.'],
+      ['MISDEAL','Distribuição inválida que pode exigir nova distribuição.'],
+      ['OUT OF TURN','Ação realizada fora da vez correta.'],
+      ['SUBSTANTIAL ACTION','Quantidade de ação posterior que pode limitar a reversão de um erro anterior.'],
+      ['HEADS-UP','Pote ou jogo disputado entre dois jogadores.'],
+      ['MULTIWAY','Pote disputado por três ou mais jogadores.'],
+      ['SIDE POT','Pote lateral criado quando jogadores têm stacks diferentes em all-ins.'],
+      ['MAIN POT','Pote principal que inclui o valor coberto por todos os jogadores elegíveis.'],
+      ['CHOP / SPLIT POT','Divisão do pote entre jogadores empatados ou conforme a modalidade.']
+    ]
+  },
+  {
+    title:'POSIÇÕES',
+    terms:[
+      ['EARLY POSITION (EP)','Posições que agem cedo na rodada.'],
+      ['MIDDLE POSITION (MP)','Posições intermediárias da mesa.'],
+      ['LATE POSITION (LP)','Posições que agem mais tarde.'],
+      ['UNDER THE GUN (UTG)','Primeiro jogador a agir pré-flop em mesas com blinds.'],
+      ['HIJACK (HJ)','Posição duas cadeiras antes do button em uma mesa cheia.'],
+      ['CUTOFF (CO)','Posição imediatamente antes do button.'],
+      ['BUTTON (BTN)','Posição do dealer nominal, geralmente uma das últimas a agir pós-flop.'],
+      ['SMALL BLIND (SB)','Posição do blind pequeno.'],
+      ['BIG BLIND (BB)','Posição do blind grande.'],
+      ['IN POSITION (IP)','Agir depois do adversário na street.'],
+      ['OUT OF POSITION (OOP)','Agir antes do adversário na street.']
+    ]
+  },
+  {
+    title:'MÃOS E TEXTURAS',
+    terms:[
+      ['AIR','Mão sem valor de showdown relevante e sem draw forte.'],
+      ['BACKDOOR','Draw que precisa acertar cartas consecutivas em duas streets.'],
+      ['DRAW','Mão que ainda pode completar uma combinação forte.'],
+      ['FLUSH DRAW','Quatro cartas do mesmo naipe com possibilidade de completar flush.'],
+      ['OPEN-ENDED STRAIGHT DRAW','Draw de sequência que pode completar pelas duas pontas.'],
+      ['GUTSHOT','Draw de sequência que precisa de um valor interno específico.'],
+      ['MADE HAND','Mão que já possui uma combinação formada.'],
+      ['NUTS','Melhor mão possível naquela situação.'],
+      ['SECOND NUTS','Segunda melhor mão possível.'],
+      ['OVERPAIR','Par de mão maior que qualquer carta do board.'],
+      ['TOP PAIR','Par formado com a carta mais alta do board.'],
+      ['MIDDLE PAIR','Par formado com uma carta intermediária do board.'],
+      ['BOTTOM PAIR','Par formado com a carta mais baixa do board.'],
+      ['SET','Trinca formada com um pocket pair e uma carta igual no board.'],
+      ['TRIPS','Trinca formada usando uma carta da mão e um par no board.'],
+      ['TWO PAIR','Dois pares distintos.'],
+      ['BOARD PAIRED','Board com pelo menos duas cartas do mesmo valor.'],
+      ['MONOTONE','Board em que as cartas visíveis relevantes são do mesmo naipe.'],
+      ['RAINBOW','Board com naipes diferentes, sem flush draw imediato entre as cartas iniciais.'],
+      ['DRY BOARD','Board com poucas conexões e poucos draws.'],
+      ['WET BOARD','Board conectado, com muitos draws possíveis.']
+    ]
+  },
+  {
+    title:'ESTRATÉGIA E MATEMÁTICA',
+    terms:[
+      ['BLUFF','Aposta feita principalmente para provocar folds de mãos melhores.'],
+      ['SEMI-BLUFF','Bluff com uma mão que ainda pode melhorar.'],
+      ['VALUE BET','Aposta feita esperando ser paga por mãos piores.'],
+      ['THIN VALUE','Aposta por valor em situação de vantagem pequena.'],
+      ['RANGE','Conjunto de mãos que um jogador pode ter.'],
+      ['EQUITY','Parcela estimada do pote correspondente à chance de vitória.'],
+      ['OUT','Carta que pode melhorar a mão para uma combinação desejada.'],
+      ['ODDS','Relação matemática entre resultados possíveis.'],
+      ['POT ODDS','Relação entre o valor a pagar e o tamanho do pote disponível.'],
+      ['IMPLIED ODDS','Valor potencial futuro considerado além do pote atual.'],
+      ['FOLD EQUITY','Valor gerado pela chance de o adversário desistir.'],
+      ['EXPECTED VALUE (EV)','Valor médio esperado de uma decisão no longo prazo.'],
+      ['SPR','Relação entre stack efetivo e tamanho do pote.'],
+      ['EFFECTIVE STACK','Menor stack relevante entre jogadores envolvidos.'],
+      ['POSITION','Vantagem ou desvantagem gerada pela ordem de ação.'],
+      ['BLOCKER','Carta que reduz combinações possíveis na mão adversária.'],
+      ['POLARIZED RANGE','Range concentrado em mãos muito fortes e blefes.'],
+      ['MERGED RANGE','Range com mãos de força mais contínua e intermediária.']
+    ]
+  },
+  {
+    title:'PERFIS E DINÂMICA',
+    terms:[
+      ['TIGHT','Jogador que seleciona poucas mãos para participar.'],
+      ['LOOSE','Jogador que participa de muitas mãos.'],
+      ['AGGRESSIVE','Jogador que aposta e aumenta com frequência.'],
+      ['PASSIVE','Jogador que tende mais a pagar do que apostar ou aumentar.'],
+      ['TAG','Tight-aggressive: seletivo e agressivo.'],
+      ['LAG','Loose-aggressive: amplo e agressivo.'],
+      ['NIT','Jogador extremamente seletivo e conservador.'],
+      ['CALLING STATION','Jogador que paga muitas apostas e desiste pouco.'],
+      ['MANIAC','Jogador excessivamente agressivo e de range muito amplo.'],
+      ['REG','Jogador regular, frequente e geralmente experiente.'],
+      ['RECREATIONAL PLAYER','Jogador que participa principalmente por lazer.'],
+      ['TELL','Comportamento que pode fornecer informação sobre uma mão.'],
+      ['TABLE IMAGE','Percepção que a mesa construiu sobre o estilo de um jogador.']
+    ]
+  },
+  {
+    title:'TORNEIOS E CASH GAME',
+    terms:[
+      ['BUY-IN','Valor necessário para entrar no jogo ou torneio.'],
+      ['REBUY','Nova compra de fichas permitida em certas estruturas.'],
+      ['ADD-ON','Compra adicional de fichas em momento específico do torneio.'],
+      ['RE-ENTRY','Nova entrada no torneio após eliminação, quando permitida.'],
+      ['FREEZEOUT','Torneio sem re-entry após a eliminação.'],
+      ['LATE REGISTRATION','Período em que novas entradas ainda são aceitas após o início.'],
+      ['BLIND LEVEL','Período com valores específicos de blinds e ante.'],
+      ['BUBBLE','Fase imediatamente anterior à zona de premiação.'],
+      ['IN THE MONEY (ITM)','Jogador já garantido na faixa de premiação.'],
+      ['FINAL TABLE','Mesa final de um torneio.'],
+      ['HEADS-UP','Disputa final ou mesa entre dois jogadores.'],
+      ['CHIP LEADER','Jogador com maior stack em determinado momento.'],
+      ['SHORT STACK','Stack pequeno em relação aos blinds ou adversários.'],
+      ['DEEP STACK','Stack grande em relação aos blinds.'],
+      ['CASH GAME','Jogo em que as fichas representam valor monetário direto.'],
+      ['TABLE LIMIT','Limites mínimos e máximos definidos para uma mesa.']
+    ]
+  },
+  {
+    title:'PROCEDIMENTOS E CONDUTA',
+    terms:[
+      ['ANGLE SHOOTING','Conduta que explora ambiguidades sem necessariamente quebrar uma regra explícita.'],
+      ['COLLUSION','Cooperação ilícita entre jogadores para obter vantagem.'],
+      ['CHIP DUMPING','Transferência deliberada de fichas para favorecer outro jogador.'],
+      ['ONE PLAYER TO A HAND','Princípio de que cada jogador deve tomar sozinho as decisões da própria mão.'],
+      ['CLOCK','Pedido para limitar o tempo de decisão de um jogador.'],
+      ['PENALTY','Sanção aplicada por violação de regra ou conduta.'],
+      ['WARNING','Advertência por comportamento ou procedimento inadequado.'],
+      ['DEAD BUTTON','Procedimento em que o button pode permanecer sem jogador para preservar blinds corretamente.'],
+      ['MISSED BLIND','Blind obrigatório não pago por ausência ou mudança de posição.'],
+      ['LIVE CARDS','Mão ainda válida e elegível para disputar o pote.'],
+      ['EXPOSED CARD','Carta revelada acidentalmente ou de forma irregular.']
+    ]
+  }
 ];
