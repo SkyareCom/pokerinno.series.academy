@@ -1194,3 +1194,7 @@ input,select,textarea{font-family:inherit;font-size:14px}
 #app .practice-catalog .list.journey-chapters>.learn-extra-pokerinno{grid-template-columns:104px minmax(0,1fr) auto;min-height:0}
 #app .practice-catalog .list.journey-chapters>.learn-extra-pokerinno .learn-extra-host{min-height:118px}
 #app .practice-catalog .list.journey-chapters>.learn-extra-pokerinno .pokerinno-sprite{width:100%;height:118px;min-height:118px;background-size:contain;background-position:center bottom}
+
+/* Unified Learn and Practice card title size */
+#app .journey-chapters .learn-extra-copy h3,
+#app .practice-catalog .learn-extra-copy h3{font-size:16px;line-height:1.25;font-weight:600}
