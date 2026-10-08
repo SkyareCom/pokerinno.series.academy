@@ -38,14 +38,27 @@ const bettingIntegratedLessons=()=>{
    if(!key)continue;
    if(seen.has(key))el.remove();else seen.add(key);
   }
+  // Normalize imported legacy markup before turning it into cards.
+  for(const strong of [...root.querySelectorAll('strong,b')]){
+   const next=strong.nextSibling;
+   if(next?.nodeType===Node.TEXT_NODE && next.textContent && !/^\\s/.test(next.textContent))next.textContent=' — '+next.textContent;
+  }
+  for(const el of [...root.querySelectorAll('p,li')]){
+   el.normalize();
+   if(el.textContent.trim().length>420 && el.children.length===0){
+    const text=el.textContent.trim();
+    const parts=text.split(/(?<=[.!?])\\s+(?=[A-ZÀ-Ú])/u);
+    if(parts.length>2){el.replaceWith(...parts.reduce((acc,part,i)=>{if(i%3===0)acc.push(document.createElement('p'));acc[acc.length-1].textContent+=(acc[acc.length-1].textContent?' ':'')+part;return acc},[]))}
+   }
+  }
   const blocks=[];let current=[];let subtitle='';
-  const flush=()=>{if(current.length){blocks.push({subtitle,html:current.join('')});current=[]}};
+  const flush=()=>{if(current.length){blocks.push({subtitle,html:current.join('')});current=[];subtitle=''}};
   for(const node of [...root.children]){
    if(/^H[2-4]$/.test(node.tagName)){
     flush();subtitle=node.textContent.trim();
    }else if(node.classList.contains('lg')||node.classList.contains('cg')||node.classList.contains('compare')||node.classList.contains('ranking')||node.classList.contains('steps')){
     flush();blocks.push({subtitle,html:node.outerHTML});subtitle='';
-   }else current.push(node.outerHTML);
+   }else if(node.tagName==='P' && current.join('').length>650){flush();current.push(node.outerHTML)}else current.push(node.outerHTML);
   }
   flush();
   const cards=blocks.filter(b=>b.html.replace(/<[^>]*>/g,'').trim()).map((b,i)=>`<article class="betting-info-card"><div class="betting-info-index">${String(i+1).padStart(2,'0')}</div>${b.subtitle?`<h4>${b.subtitle}</h4>`:''}<div class="betting-info-content source-body">${b.html}</div></article>`).join('');
