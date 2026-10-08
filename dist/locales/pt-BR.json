@@ -8,5 +8,9 @@
   "common.back": "Voltar",
   "common.continue": "Continuar",
   "common.cancel": "Cancelar",
-  "common.loading": "Carregando…"
+  "common.loading": "Carregando…",
+  "terms.quickDescription": "Consulte termos, gírias e apelidos usados na mesa.",
+  "home.hostLabel": "POKERINNO · DESCOBERTA",
+  "home.hostTitle": "ENTENDA UM PASSO DE CADA VEZ",
+  "home.hostText": "Explore conceitos, pratique decisões e leve o aprendizado para a mesa."
 }

@@ -8,5 +8,9 @@
   "common.back": "Back",
   "common.continue": "Continue",
   "common.cancel": "Cancel",
-  "common.loading": "Loading…"
+  "common.loading": "Loading…",
+  "terms.quickDescription": "Look up poker terms, slang and hand nicknames.",
+  "home.hostLabel": "POKERINNO · DISCOVERY",
+  "home.hostTitle": "LEARN ONE STEP AT A TIME",
+  "home.hostText": "Explore concepts, practice decisions and take your learning to the table."
 }
