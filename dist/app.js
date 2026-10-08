@@ -86,9 +86,15 @@ const bettingIntegratedLessons=()=>{
  };
  return '<div class="betting-learning-path">'+sections.map(([number,title,entries])=>{
   const unique=entries.filter(e=>{const key=e.title.toLowerCase();if(seen.has(key))return false;seen.add(key);return true});
-  const procedures=number==='03'?bettingSections.filter(s=>['UMA FICHA GRANDE','STRING BET E STRING RAISE','APOSTA FORA DA VEZ','ALL-IN E POTES LATERAIS'].includes(s.title)):[];
-  const proceduresHtml=procedures.map(s=>card(s.title,'<p>'+s.text+'</p>')).join('');
-  const cards=unique.flatMap(split).join('')+proceduresHtml;
+  const procedure=(name)=>bettingSections.find(s=>s.title===name);
+  const cards=unique.flatMap(entry=>{
+   const base=split(entry);
+   if(entry.title==='ALL-IN'){
+    const side=procedure('ALL-IN E POTES LATERAIS');
+    if(side&&base.length)base[0]=base[0].replace('</div></article>','<p>'+side.text+'</p></div></article>');
+   }
+   return base;
+  }).join('')+(number==='03'?['STRING BET E STRING RAISE','APOSTA FORA DA VEZ'].map(name=>procedure(name)).filter(Boolean).map(s=>card(s.title,'<p>'+s.text+'</p>')).join(''):'')+(number==='04'?(()=>{const chip=procedure('UMA FICHA GRANDE');return chip?card(chip.title,'<p>'+chip.text+'</p>'):''})():'');
   return cards?`<section class="betting-learning-module"><div class="betting-info-grid">${cards}</div></section>`:'';
  }).join('')+'</div>';
 };
