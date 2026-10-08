@@ -33,17 +33,12 @@ export const discoverLessons=[
   {
     id:'types',
     title:'TIPOS DE JOGOS',
-    description:'Conheça formatos e modalidades.',
+    description:'Entenda os formatos principais.',
     blocks:[
-      ['JOGADORES X CASA','Na maior parte das modalidades tradicionais, os jogadores competem entre si e a casa apenas organiza o jogo e cobra sua taxa. Em algumas modalidades de cassino, o jogador compete diretamente contra a casa.'],
-      ['CASH GAME','As fichas representam valor de jogo diretamente, os blinds costumam ser estáveis e o jogador pode entrar ou sair conforme as regras da mesa.'],
-      ['TORNEIO','Os jogadores começam com um stack definido, os blinds aumentam ao longo do tempo e a disputa continua até a definição das colocações.'],
-      ['CASH GAME X TORNEIO','A modalidade pode ser a mesma, mas a estrutura muda. Cash game prioriza fichas com valor direto; torneios priorizam sobrevivência, progressão e colocação.'],
-      ['CARTAS COMUNITÁRIAS','Jogadores combinam cartas próprias com cartas abertas na mesa. Texas Hold’em e Omaha são os principais exemplos.'],
-      ['DRAW','Cada jogador recebe sua própria mão e pode trocar cartas em determinadas etapas. O 5-Card Draw é o exemplo mais conhecido.'],
-      ['STUD','Não há um board comunitário como no Hold’em. Cada jogador recebe cartas próprias, algumas abertas e outras fechadas.'],
-      ['LOWBALL E HIGH-LOW','Algumas variantes premiam a mão mais baixa; outras dividem o pote entre mãos altas e baixas quando os critérios são atendidos.'],
-      ['MIXED GAMES','Várias modalidades são alternadas em uma mesma sessão ou competição. H.O.R.S.E. é um exemplo clássico.']
+      ['JOGADORES X CASA','Na maior parte do poker, os jogadores competem entre si. Em alguns jogos de cassino, a disputa pode ser contra a casa.'],
+      ['CASH GAME','As fichas representam valor de jogo e a sessão não depende de eliminação.'],
+      ['TORNEIO','Os jogadores disputam uma estrutura progressiva até a definição das colocações.'],
+      ['FORMATOS E MODALIDADES','O poker possui diferentes famílias e variantes. Aqui basta reconhecer que elas existem; as regras e características de cada uma serão estudadas nos capítulos de Modalidades.']
     ]
   }
 ];
