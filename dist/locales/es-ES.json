@@ -189,5 +189,7 @@
   "messages.optionDescription.training": "Invitaciones para practicar y avisos sobre tu progreso.",
   "messages.optionDescription.theory": "Invitaciones para repasar conceptos, incluidos temas con errores en los entrenamientos.",
   "messages.optionDescription.forgetting": "Mi aviso al volver después de más de 3 días sin entrar.",
-  "home.quote": "“EL PÓKER ES UN JUEGO QUE TARDAMOS UN MINUTO EN APRENDER, PERO UNA VIDA EN DOMINAR.”"
+  "home.quote": "“EL PÓKER ES UN JUEGO QUE TARDAMOS UN MINUTO EN APRENDER, PERO UNA VIDA EN DOMINAR.”",
+  "home.title": "APRENDER. PRACTICAR. JUGAR.",
+  "home.description": "Aprende a jugar al póker de forma interactiva."
 }
