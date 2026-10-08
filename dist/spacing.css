@@ -196,3 +196,9 @@ body.login-screen #app .entry-form>h2{font-size:16px!important}
 .pokerinno-page.active{background:var(--gold);color:#142017}
 
 .pokerinno-balloons>.pokerinno-balloon-pages{justify-content:flex-end;margin-top:8px}
+
+/* Home adventure cards: individual Pokerinno portraits, aligned titles and complete copy. */
+#app .home-adventure{height:auto;min-height:196px;align-items:flex-start}
+#app .home-adventure-pokerinno{display:block;flex:none;width:72px;height:80px;object-fit:contain;border-radius:12px}
+#app .home-adventure h3{min-height:0;max-height:none;overflow:visible;margin-block:var(--space-3) 0}
+#app .home-adventure p{max-width:100%;white-space:normal;overflow:visible;text-overflow:clip}
