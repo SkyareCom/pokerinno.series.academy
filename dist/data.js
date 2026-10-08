@@ -10,7 +10,11 @@ export const discoverLessons=[
     blocks:[
       ['O QUE É POKER','Poker é uma família de jogos de cartas em que jogadores disputam potes tomando decisões com informação incompleta. Cartas, apostas e leitura da situação se combinam a cada mão.'],
       ['O OBJETIVO','O objetivo imediato é conquistar o pote. Isso pode acontecer mostrando a melhor mão quando há showdown ou fazendo os adversários desistirem antes dele.'],
+      ['INFORMAÇÃO INCOMPLETA','No poker, você nunca conhece todas as cartas e intenções dos adversários. As decisões são tomadas com base no que é visível, no histórico da ação e nas probabilidades.'],
       ['DECISÕES, NÃO APENAS CARTAS','As cartas importam, mas o poker também envolve posição, tamanho das apostas, comportamento dos adversários, risco e recompensa. A mesma mão pode exigir decisões diferentes em situações diferentes.'],
+      ['JOGADORES X CASA','Na maior parte das modalidades tradicionais, os jogadores competem entre si e a casa apenas organiza o jogo e cobra sua taxa. Em modalidades de cassino, como o Poker Caribenho, o jogador pode competir diretamente contra a casa.'],
+      ['A MESA DE POKER','Uma mesa reúne jogadores, posições, fichas, cartas e um dealer. A ordem das ações e a posição ocupada influenciam a quantidade de informação disponível em cada decisão.'],
+      ['DINÂMICA SOCIAL','Poker também envolve convivência à mesa: agir na sua vez, respeitar dealer e jogadores, proteger suas cartas e acompanhar a ação sem interferir nas decisões dos outros.'],
       ['HABILIDADE E VARIÂNCIA','No curto prazo, a distribuição das cartas cria variação nos resultados. Ao longo de muitas decisões, conhecimento, disciplina e qualidade das escolhas ganham importância.']
     ]
   },
@@ -36,7 +40,9 @@ export const discoverLessons=[
       ['STUD','Não há um board comunitário como no Hold’em. Cada jogador recebe cartas próprias, algumas abertas e outras fechadas.'],
       ['LOWBALL E HIGH-LOW','Algumas variantes premiam a mão mais baixa; outras dividem o pote entre mãos altas e baixas quando os critérios são atendidos.'],
       ['MIXED GAMES','Várias modalidades são alternadas em uma mesma sessão ou competição. H.O.R.S.E. é um exemplo clássico.'],
-      ['CASH GAME E TORNEIO','Além da modalidade, o poker pode ser disputado em cash game, com fichas ligadas diretamente ao valor em jogo, ou em torneios, com stacks e estrutura competitiva própria.']
+      ['CASH GAME','As fichas representam valor de jogo diretamente, os blinds costumam ser estáveis e o jogador pode entrar ou sair conforme as regras da mesa.'],
+      ['TORNEIO','Os jogadores começam com um stack definido, os blinds aumentam ao longo do tempo e a disputa continua até a definição das colocações.'],
+      ['CASH GAME X TORNEIO','A modalidade pode ser a mesma, mas a estrutura muda. Cash game prioriza fichas com valor direto; torneios priorizam sobrevivência, progressão e colocação.']
     ]
   }
 ];
