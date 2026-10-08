@@ -8,13 +8,14 @@ export const discoverLessons=[
     title:'INTRODUÇÃO AO POKER',
     description:'Entenda o jogo antes das regras.',
     blocks:[
-      ['O QUE É POKER','Poker é uma família de jogos de cartas em que jogadores disputam potes tomando decisões com informação incompleta. Cartas, apostas e leitura da situação se combinam a cada mão.'],
-      ['O OBJETIVO','O objetivo imediato é conquistar o pote. Isso pode acontecer mostrando a melhor mão quando há showdown ou fazendo os adversários desistirem antes dele.'],
-      ['A MESA DE POKER','Uma mesa reúne jogadores, posições, fichas, cartas e um dealer. A posição ocupada e a ordem das ações influenciam a informação disponível em cada decisão.'],
-      ['INFORMAÇÃO INCOMPLETA','Você nunca conhece todas as cartas e intenções dos adversários. As decisões são tomadas a partir do que está visível, do histórico da ação e das probabilidades.'],
-      ['DECISÕES, NÃO APENAS CARTAS','As cartas importam, mas também contam posição, tamanho das apostas, comportamento dos adversários, risco e recompensa. A mesma mão pode exigir escolhas diferentes.'],
-      ['HABILIDADE E VARIÂNCIA','No curto prazo, a distribuição das cartas provoca variação nos resultados. Ao longo de muitas decisões, conhecimento, disciplina e qualidade das escolhas ganham importância.'],
-      ['DINÂMICA SOCIAL','Poker também envolve convivência à mesa: agir na sua vez, respeitar dealer e jogadores, proteger suas cartas e acompanhar a ação sem interferir nas decisões dos outros.']
+      ['O QUE É POKER','Poker é um jogo de decisões com cartas, apostas e informação incompleta.'],
+      ['OBJETIVO','O objetivo de cada mão é conquistar o pote, no showdown ou fazendo os adversários desistirem.'],
+      ['COMO UMA MÃO ACONTECE','Os jogadores recebem cartas, participam de rodadas de ação e tomam decisões até a mão terminar.'],
+      ['INFORMAÇÃO INCOMPLETA','Você conhece suas cartas e observa a mesa, mas não vê as cartas dos adversários.'],
+      ['DECISÕES IMPORTAM','Cartas, posição, apostas, adversários, risco e recompensa influenciam cada escolha.'],
+      ['HABILIDADE E VARIÂNCIA','Bons resultados não acontecem em toda mão. No longo prazo, decisões melhores fazem diferença.'],
+      ['A MESA DE POKER','Jogadores, posições, fichas, cartas e dealer formam o ambiente onde as decisões acontecem.'],
+      ['DINÂMICA SOCIAL','Agir na sua vez, respeitar a mesa e acompanhar a ação também fazem parte do jogo.']
     ]
   },
   {
@@ -22,12 +23,13 @@ export const discoverLessons=[
     title:'UM POUCO DE HISTÓRIA',
     description:'Veja como o poker evoluiu.',
     blocks:[
-      ['ORIGENS','As origens exatas do poker são debatidas. Jogos de cartas europeus e práticas de aposta do século XIX contribuíram para a formação do jogo que passou a ser conhecido como poker nos Estados Unidos.'],
-      ['EXPANSÃO','Durante o século XIX, o poker se espalhou pelos Estados Unidos e ganhou novas formas de distribuição, apostas e construção de mãos. Draw e Stud se tornaram referências importantes.'],
-      ['TEXAS HOLD’EM','O Texas Hold’em surgiu no Texas e ganhou força em Las Vegas no século XX. A combinação de cartas próprias com cartas comunitárias ajudou a transformar a modalidade em uma das mais populares do mundo.'],
-      ['TORNEIOS','A World Series of Poker começou em 1970 e ajudou a consolidar o poker competitivo e os grandes torneios.'],
-      ['POKER ONLINE','Décadas depois, o poker online ampliou o acesso ao jogo e acelerou sua popularização internacional.'],
-      ['POKER ATUAL','Hoje o poker reúne cash games, torneios e inúmeras variantes, tanto ao vivo quanto online, com comunidades, circuitos e competições em diversos países.']
+      ['ORIGENS','As origens exatas do poker são debatidas e foram influenciadas por diferentes jogos de cartas e apostas.'],
+      ['SÉCULO XIX','O poker ganhou força nos Estados Unidos e começou a consolidar regras, apostas e formas de comparação de mãos.'],
+      ['EVOLUÇÃO DO JOGO','Com o tempo surgiram novas formas de jogar, diferentes estruturas e maneiras de distribuir as cartas.'],
+      ['TEXAS HOLD’EM','O Texas Hold’em ganhou popularidade no século XX e se tornou uma das principais referências do poker moderno.'],
+      ['TORNEIOS','Grandes competições ajudaram a transformar o poker em um jogo de alcance internacional.'],
+      ['POKER ONLINE','A internet ampliou o acesso ao jogo e acelerou sua expansão pelo mundo.'],
+      ['POKER ATUAL','Hoje o poker é jogado ao vivo e online, em cash games, torneios e diferentes variantes.']
     ]
   },
   {
@@ -38,7 +40,7 @@ export const discoverLessons=[
       ['JOGADORES X CASA','Na maior parte do poker, os jogadores competem entre si. Em alguns jogos de cassino, a disputa pode ser contra a casa.'],
       ['CASH GAME','As fichas representam valor de jogo e a sessão não depende de eliminação.'],
       ['TORNEIO','Os jogadores disputam uma estrutura progressiva até a definição das colocações.'],
-      ['FORMATOS E MODALIDADES','O poker possui diferentes famílias e variantes. Aqui basta reconhecer que elas existem; as regras e características de cada uma serão estudadas nos capítulos de Modalidades.']
+      ['FORMATOS E MODALIDADES','Existem diferentes modalidades de poker. As regras de cada uma serão estudadas nos capítulos específicos.']
     ]
   }
 ];
