@@ -1,5 +1,5 @@
 import {saveMessagePreference,trackMessageVisit} from './pokerinno-messages.js?v=pokerinno-balloons-v1';
-import {showPokerinno,messageSettings,closePokerinno} from './pokerinno-balloons.js?v=pokerinno-numbered-v5';
+import {showPokerinno,messageSettings,closePokerinno} from './pokerinno-balloons.js?v=pokerinno-circles-outside-v6';
 import {procedureCards,procedureDetail} from './procedure-content.js?v=cards-no-arrows-20261008';
 import {standardizeBack} from './back-navigation.js?v=cards-no-arrows-20261008';
 import {autoSave,setAutoSave,saveActivities,results,pendingCount} from './progress.js?v=cards-no-arrows-20261008';
