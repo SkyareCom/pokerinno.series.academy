@@ -1205,3 +1205,15 @@ input,select,textarea{font-family:inherit;font-size:14px}
 #app .learn-extra-pokerinno .learn-extra-copy h3{font-size:16px;line-height:1.25;font-weight:600;margin:0 0 8px}
 #app .learn-extra-pokerinno .learn-extra-copy p{font-size:12px;line-height:1.5;font-weight:400;margin:0}
 #app .practice-catalog .journey-chapters{display:flex;flex-direction:column;gap:var(--card-gap,24px)}
+
+/* Fixed 100px main cards across Learn and Practice */
+#app .journey-chapters>.learn-extra-pokerinno,
+#app>.learn-extra-pokerinno,
+#app .practice-catalog .journey-chapters>.learn-extra-pokerinno{height:100px;min-height:100px;max-height:100px;box-sizing:border-box;grid-template-columns:30% minmax(0,1fr)}
+#app .journey-chapters>.learn-extra-pokerinno .learn-extra-host,
+#app>.learn-extra-pokerinno .learn-extra-host,
+#app .practice-catalog .journey-chapters>.learn-extra-pokerinno .learn-extra-host{height:100%;min-height:0;max-height:100%;box-sizing:border-box}
+#app .learn-extra-pokerinno .learn-extra-copy{padding:8px 12px;overflow:hidden}
+#app .learn-extra-pokerinno .learn-extra-copy h3{font-size:16px;line-height:1.2;margin:0 0 5px;font-weight:600}
+#app .learn-extra-pokerinno .learn-extra-copy p{font-size:12px;line-height:1.35;margin:0;font-weight:400}
+#app .learn-extra-pokerinno .learn-extra-host .pokerinno-sprite{height:100%;min-height:0;max-height:100%;background-size:contain;background-position:center bottom}
