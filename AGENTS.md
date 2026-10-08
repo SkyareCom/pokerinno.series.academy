@@ -16,8 +16,13 @@ Esta regra se aplica a toda alteração de interface neste repositório.
 
 # Contrato de espaçamento
 
+- Hierarquia visual atual, autorizada em 08/10/2026: títulos de cards e subcards em MAIÚSCULAS e laranja `#f6a540`. Títulos de página brancos, 20px; títulos primários, 16px; títulos de subcards, textos e metadados, 12px. Ênfase dentro de frases herda o tamanho do texto.
+- Usar somente 12/16/20px fora do rodapé. Login e rodapé congelados continuam com as referências e exceções aprovadas.
+- Cards primários: borda 1px `rgba(246,165,64,.32)`, raio 16px. Subcards: borda 1px `rgba(246,165,64,.18)`, raio 12px. Padding 16px desktop e 12px mobile; intervalos entre estruturas 10px. Cards de navegação têm altura mínima 100px e crescem sem truncar textos; cards de leitura têm altura automática.
+- `npm run visual:audit` percorre todos os textos renderizados, rotas, conteúdos expandidos, estados e questões. O workflow de publicação só publica após os testes e auditorias.
+
 - `dist/spacing.css` é a fonte única dos espaçamentos compartilhados e deve ser carregado depois dos estilos de componentes.
-- Usar `--space-1/2/3/4/6/8` (4/8/12/16/24/32px) em novas estruturas. Cards e listas: 12px; seções: 24px; padding de card: 16px (conteúdo interno mobile: 12px).
+- Usar `--space-1/2/3/4/6/8` (4/8/12/16/24/32px) em novas estruturas. Intervalos compartilhados de cards, listas e seções: `--component-gap` (10px); padding de card: 16px (conteúdo interno mobile: 12px).
 - Parágrafos consecutivos têm uma linha de distância (`--paragraph-gap: 1lh`), além da entrelinha de 1.55. Não inserir `<br>` vazios para espaçar.
 - Números e textos de etapas devem usar colunas separadas; nunca concatenar o número com o texto.
 - Não sobrescrever tracking, word-spacing ou margens compartilhadas em novos componentes. Exceções geométricas (cartas, gráficos e navegação fixa) devem permanecer locais.

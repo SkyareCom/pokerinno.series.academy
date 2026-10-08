@@ -1243,9 +1243,9 @@ input,select,textarea{font-family:inherit;font-size:14px}
 #app .betting-learning-module{display:block!important;width:100%;min-width:0;margin:10px 0 0!important}
 #app .betting-module-heading{display:flex!important;flex-direction:column!important;align-items:flex-start!important;gap:10px!important;margin:0 0 10px!important;padding:0!important;width:100%;min-width:0}
 #app .betting-module-heading>*{display:block!important;position:static!important;width:100%!important;max-width:100%!important;min-width:0!important;margin:0!important;grid-column:auto!important;overflow-wrap:anywhere}
-#app .betting-module-heading .eyebrow{font-size:12px!important;line-height:1.4!important;color:var(--gold)}
-#app .betting-module-heading h3{font-size:16px!important;line-height:1.3!important;font-weight:600!important}
-#app .betting-module-heading p{font-size:12px!important;line-height:1.5!important}
+#app .betting-module-heading .eyebrow{line-height:1.4!important;color:var(--gold)}
+#app .betting-module-heading h3{line-height:1.3!important;font-weight:600!important}
+#app .betting-module-heading p{line-height:1.5!important}
 #app .betting-info-grid{display:flex!important;flex-direction:column!important;gap:10px!important;width:100%;min-width:0}
 #app .betting-info-card{display:block!important;width:100%;min-width:0;box-sizing:border-box;padding:14px;border:1px solid var(--line);border-radius:16px;background:#0b231d}
 #app .betting-info-card .source-body{border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;padding:0!important;margin:0!important}
@@ -1256,16 +1256,16 @@ input,select,textarea{font-family:inherit;font-size:14px}
 
 #app .betting-learning-path .betting-learning-module{margin:0!important;padding:0!important;border:0!important;background:transparent!important}
 #app .betting-learning-path .betting-info-grid{display:flex!important;flex-direction:column!important;gap:10px!important}
-#app .betting-learning-path .betting-info-card{margin:0!important;padding:14px!important;border:1px solid var(--line)!important;border-radius:16px!important;background:#0b231d!important}
-#app .betting-learning-path .betting-info-card h4{font-size:14px!important;line-height:1.4!important;margin:0 0 10px!important;color:var(--gold)!important}
+#app .betting-learning-path .betting-info-card{margin:0!important;padding:var(--ui-card-pad)!important;border:1px solid var(--line)!important;border-radius:16px!important;background:#0b231d!important}
+#app .betting-learning-path .betting-info-card h4{line-height:1.4!important;margin:0 0 10px!important;color:var(--gold)}
 #app .betting-learning-path .betting-info-card .source-body{border:0!important;padding:0!important;margin:0!important;background:transparent!important;box-shadow:none!important}
 #app .betting-learning-path .betting-info-card .source-body .lc,#app .betting-learning-path .betting-info-card .source-body .cg,#app .betting-learning-path .betting-info-card .source-body .ch,#app .betting-learning-path .betting-info-card .source-body .ex{border:0!important;background:transparent!important;padding:0!important;margin:0!important;box-shadow:none!important}
 #app .betting-learning-path .betting-topic-heading{display:flex!important;align-items:center!important;gap:10px!important;margin:0 0 10px!important}
-#app .betting-learning-path .betting-topic-heading h3{font-size:16px!important;line-height:1.4!important;margin:0!important}
+#app .betting-learning-path .betting-topic-heading h3{line-height:1.4!important;margin:0!important}
 
 /* Academy-wide example typography and spacing */
 #app .academy-example{display:block!important;margin:10px 0!important;padding:0!important;border:0!important;background:transparent!important;box-shadow:none!important}
-#app .academy-example-label{display:block!important;margin:0 0 10px!important;font-size:14px!important;font-weight:600!important;line-height:1.4!important;color:var(--text)!important;letter-spacing:normal!important}
+#app .academy-example-label{display:block!important;margin:0 0 10px!important;font-weight:600!important;line-height:1.4!important;color:var(--text)!important;letter-spacing:normal!important}
 #app .academy-example > :last-child{margin-bottom:0!important}
 
 #app .academy-example-label{display:inline!important;margin:0!important;font:inherit!important;font-weight:400!important;color:inherit!important;letter-spacing:inherit!important}
@@ -1285,14 +1285,14 @@ input,select,textarea{font-family:inherit;font-size:14px}
 #app .staff-direct-lessons .staff-complete-card{padding:14px!important}
 #app .staff-direct-lessons .staff-lesson-topic{padding:0!important;margin:0!important;border:0!important;background:transparent!important}
 #app .staff-direct-lessons .staff-lesson-topic+.staff-lesson-topic{margin-top:16px!important}
-#app .staff-direct-lessons .staff-lesson-topic h4{font-size:14px!important;font-weight:600!important;line-height:1.4!important;color:var(--gold)!important;margin:0 0 10px!important}
-#app .staff-direct-lessons .staff-lesson-topic p{font-size:14px!important;font-weight:400!important;line-height:1.6!important;margin:0!important}
+#app .staff-direct-lessons .staff-lesson-topic h4{font-weight:600!important;line-height:1.4!important;color:var(--gold);margin:0 0 10px!important}
+#app .staff-direct-lessons .staff-lesson-topic p{font-weight:400!important;line-height:1.6!important;margin:0!important}
 #app .staff-direct-lessons .staff-lesson-topic p+p{margin-top:14px!important}
 
 /* Staff topic cards follow the same Academy card rhythm. */
 #app .staff-direct-lessons .staff-topic-card{margin:0!important;padding:14px!important}
-#app .staff-direct-lessons .staff-topic-card h4{margin:0 0 10px!important;font-size:14px!important;font-weight:600!important;line-height:1.4!important;color:var(--gold)!important}
-#app .staff-direct-lessons .staff-topic-card .source-body p{font-size:14px!important;font-weight:400!important;line-height:1.6!important;margin:0!important}
+#app .staff-direct-lessons .staff-topic-card h4{margin:0 0 10px!important;font-weight:600!important;line-height:1.4!important;color:var(--gold)}
+#app .staff-direct-lessons .staff-topic-card .source-body p{font-weight:400!important;line-height:1.6!important;margin:0!important}
 #app .staff-direct-lessons .staff-topic-card .source-body p+p{margin-top:14px!important}
 
 /* Bons Modos: Pokerinno-featured card; same vertical rhythm as neighboring lessons. */
@@ -1307,17 +1307,3 @@ input,select,textarea{font-family:inherit;font-size:14px}
 #app .staff-etiquette-feature .source-lesson summary strong{display:block}
 @media(max-width:370px){#app .staff-etiquette-feature{grid-template-columns:70px minmax(0,1fr);gap:10px;padding:12px}#app .staff-etiquette-feature .staff-etiquette-portrait{width:70px}}
 
-/* Unified typography: every card and nested subcard title is white. */
-#app :is(.learn-extra,.source-lesson,.source-group,.source-card,.discover-hero-card,.discover-section,.glossary-term,.practice-catalog,.practice-theme-title,.staff-topic-card,.staff-etiquette-feature,.pokerinno-context,.editorial-note,.secondary-card,.journey-chapters,.betting-review-pokerinno,.house-rules-page) :is(h2,h3,h4,h5,h6,summary strong,.learn-extra-copy>h3,.source-title,.card-title),
-#app :is(.learn-extra,.source-lesson,.source-group,.source-card,.discover-hero-card,.discover-section,.glossary-term,.practice-catalog,.staff-topic-card,.staff-etiquette-feature,.pokerinno-context,.editorial-note,.secondary-card,.journey-chapters,.betting-review-pokerinno,.house-rules-page)>:is(h2,h3,h4,h5,h6),
-#app .practice-theme-title,
-#app .source-body :is(h2,h3,h4,h5,h6),
-#app .source-body :is(summary strong,.source-lesson strong:first-child),
-#app .learn-extra-copy h3{color:#fff!important;-webkit-text-fill-color:#fff!important}
-
-/* Final priority override: titles of cards, expandable cards and nested cards. */
-#app :is(.learn-extra,.source-lesson,.source-group,.source-card,.staff-topic-card,.staff-etiquette-feature,.discover-section,.discover-hero-card,.glossary-term,.practice-catalog,.practice-theme-title,.pokerinno-context,.etiquette-page,.house-rules-page,.journey-chapters,.list,.card,.subcard) :is(h2,h3,h4,h5,h6,summary strong,summary b,.card-title,.source-title,.lesson-title),
-#app :is(.source-lesson,.staff-topic-card,.source-group,.staff-etiquette-feature) :is(summary,summary strong,.source-lesson-title,.source-heading),
-#app :is(.learn-extra-copy,.practice-catalog,.source-body,.staff-direct-lessons,.discover-copy) :is(h2,h3,h4,h5,h6),
-#app .staff-direct-lessons .staff-topic-card .source-body :is(h2,h3,h4,h5,h6),
-#app .learn-extra .learn-extra-copy h3 { color:#ffffff!important; -webkit-text-fill-color:#ffffff!important; }

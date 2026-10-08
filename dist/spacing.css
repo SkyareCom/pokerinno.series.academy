@@ -93,8 +93,8 @@ main{padding-inline:var(--page-gutter)}
 #app .journey-chapters{display:grid;gap:10px!important;row-gap:10px!important;align-content:start}
 #app .journey-chapters>.learn-extra-pokerinno,#app .practice-catalog .journey-chapters>.learn-extra-pokerinno{margin:0!important}
 #app>.learn-extra-pokerinno{margin-block:10px 0!important}
-#app .journey-chapters>.learn-extra-pokerinno,#app>.learn-extra-pokerinno,#app .practice-catalog .journey-chapters>.learn-extra-pokerinno{height:100px!important;min-height:100px!important;max-height:100px!important;box-sizing:border-box!important}
-#app .journey-chapters>.learn-extra-pokerinno .learn-extra-host,#app>.learn-extra-pokerinno .learn-extra-host{height:100%!important;min-height:0!important;max-height:100%!important}
+#app .journey-chapters>.learn-extra-pokerinno,#app>.learn-extra-pokerinno,#app .practice-catalog .journey-chapters>.learn-extra-pokerinno{box-sizing:border-box!important}
+#app .journey-chapters>.learn-extra-pokerinno .learn-extra-host,#app>.learn-extra-pokerinno .learn-extra-host{}
 #app .learn-extra-pokerinno .learn-extra-copy h3{margin:0 0 10px!important}
 
 /* HARD OVERRIDE — unified 10px exterior spacing across all app cards, text and sections. */
@@ -124,15 +124,15 @@ main{padding-inline:var(--page-gutter)}
 #app .betting-info-content> :first-child{margin-top:0}
 #app .betting-info-content :is(p,ul,ol){margin-bottom:10px}
 
-/* Typography contract: 10px footer only; 12/16/20px everywhere else. */
+/* Frozen login typography — preserve the approved computed values. */
 :root{--card-title-size:16px;--card-body-size:12px;--card-label-size:12px}
-html body{font-size:16px}
-body :is(.sidebar,.workspace,header,main,#app,dialog){font-size:16px}
-body :is(.sidebar,.workspace,header,main,#app,dialog) :is(h1,h2,.hero-title,.page-title){font-size:20px!important}
-body :is(.sidebar,.workspace,header,main,#app,dialog) :is(h3,h4,h5,h6,strong,button,summary,.card-title,.chapter-title){font-size:16px!important}
-body :is(.sidebar,.workspace,header,main,#app,dialog) :is(p,li,small,label,input,select,textarea,.eyebrow,.tiny,.breadcrumb,.card-description,.source-body,.source-body *, .source-lesson summary small){font-size:12px!important}
-body :is(.sidebar,.workspace,header,main,#app,dialog) :is(.source-body h1,.source-body h2){font-size:20px!important}
-body :is(.sidebar,.workspace,header,main,#app,dialog) :is(.source-body h3,.source-body h4,.source-body h5,.source-body h6){font-size:16px!important}
+html body.login-screen{font-size:16px}
+body.login-screen :is(.sidebar,.workspace,header,main,#app,dialog){font-size:16px}
+body.login-screen :is(.sidebar,.workspace,header,main,#app,dialog) :is(h1,h2,.hero-title,.page-title){font-size:20px!important}
+body.login-screen :is(.sidebar,.workspace,header,main,#app,dialog) :is(h3,h4,h5,h6,strong,button,summary,.card-title,.chapter-title){font-size:16px!important}
+body.login-screen :is(.sidebar,.workspace,header,main,#app,dialog) :is(p,li,small,label,input,select,textarea,.eyebrow,.tiny,.breadcrumb,.card-description,.source-body,.source-body *, .source-lesson summary small){font-size:12px!important}
+body.login-screen :is(.sidebar,.workspace,header,main,#app,dialog) :is(.source-body h1,.source-body h2){font-size:20px!important}
+body.login-screen :is(.sidebar,.workspace,header,main,#app,dialog) :is(.source-body h3,.source-body h4,.source-body h5,.source-body h6){font-size:16px!important}
 body footer,body footer *,body .mobile-nav .nav-label,body .mobile-nav small,body .mobile-nav span:not(.nav-symbol):not(.nav-icon):not(.icon),body .mobile-nav a{font-size:10px!important}
 /* Five footer items: identical icon boxes and label baseline. */
 body .mobile-nav{align-items:stretch!important}
@@ -142,12 +142,8 @@ body .mobile-nav a>.nav-symbol svg{display:block!important;width:12px!important;
 body .mobile-nav a.active>.nav-symbol{box-shadow:none!important}
 
 
-/* User-approved title color: white for all titles, including cards and subcards. */
-#app :is(h1,h2,h3,h4,h5,h6,.page-title,.hero-title,.section-title,.chapter-heading,.section-heading,.card-title,.chapter-title,.lesson-title,.subcard-title,.sub-card-title),
-#app :is(.source-lesson,.staff-etiquette-feature) > summary > strong,
-#app .staff-etiquette-feature .source-lesson > summary > strong,
-.workspace header :is(h1,h2,h3),
-.sidebar :is(.brand,.series){color:#f4f2e7!important}
+/* Frozen login title colors. */
+body.login-screen #app :is(h1,h2,h3,h4,h5,h6,.page-title,.hero-title,.section-title,.chapter-heading,.section-heading,.card-title,.chapter-title,.lesson-title,.subcard-title,.sub-card-title){color:#f4f2e7!important}
 
 /* Footer sizes: large 25px icons and 10px captions. */
 body .mobile-nav a{font-size:10px!important}
@@ -266,18 +262,74 @@ body.login-screen #app .entry-auth-stackup img{width:32px;height:32px}
 #app .etiquette-page .lc>.cg{margin-block-start:var(--component-gap)}
 #app .etiquette-page .cg>.ch{display:grid;gap:var(--space-2);margin:0!important}
 
-/* Academy content hierarchy — excludes the frozen login and navigation. */
-body:not(.login-screen) #app :is(.chapter,.feature,.stats-panel,.glossary-group,.source-body,.procedure-body) :is(h3,h4){font-size:16px!important;font-weight:600!important;line-height:1.35!important}
-body:not(.login-screen) #app :is(.chapter,.feature,.stats-panel,.glossary-group,.source-body,.procedure-body) :is(p,li){font-size:12px;line-height:var(--reading-line)}
-body:not(.login-screen) #app .staff-direct-lessons :is(.staff-lesson-topic,.staff-topic-card) h4{font-size:16px!important;text-transform:uppercase;color:var(--gold)!important}
-body:not(.login-screen) #app .staff-direct-lessons :is(.staff-lesson-topic,.staff-topic-card) p,
+/* Authoritative Academy hierarchy. Login and the frozen footer are outside this scope. */
+body:not(.login-screen){--ui-title:#f6a540;--ui-card-border:rgba(246,165,64,.32);--ui-subcard-border:rgba(246,165,64,.18);--ui-card-pad:16px}
+body:not(.login-screen) #app{--line:var(--ui-card-border);font-size:12px;color:var(--text,#f4f2e7)}
+body:not(.login-screen) #app *{font-size:12px!important}
+body:not(.login-screen) :is(.sidebar,header,dialog,.pokerinno-balloons),
+body:not(.login-screen) :is(.sidebar,header,dialog,.pokerinno-balloons) *{font-size:12px!important}
+body:not(.login-screen) .sidebar :is(.brand>span:last-child,.spade,.nav-symbol){font-size:20px!important}
+body:not(.login-screen) #app :is(h1,.page-title){font-size:20px!important;color:#f4f2e7!important;text-transform:uppercase;line-height:1.25}
+body:not(.login-screen) #app :is(h2,h3,h4,h5,h6,.card-title,.source-title,.lesson-title),
+body:not(.login-screen) #app .source-lesson>summary>strong,
+body:not(.login-screen) #app .next-app>strong{font-size:16px!important;font-weight:600;color:var(--ui-title)!important;-webkit-text-fill-color:currentColor!important;text-transform:uppercase;line-height:1.3}
+body:not(.login-screen) #app :is(.page-heading,.section-top) h2{color:#f4f2e7!important}
+body:not(.login-screen) #app .source-question>h2{font-size:16px!important;color:#f4f2e7!important;text-transform:none}
+/* Secondary cards carry smaller titles; inline emphasis stays at reading size. */
+body:not(.login-screen) #app :is(.source-body,.discover-compare,.stats-duel,.stats-swot,.decision-steps) :is(h2,h3,h4,h5,h6),
+body:not(.login-screen) #app :is(.glossary-term>strong,.discover-timeline strong,.source-body .ch>strong,.source-body .ci>strong,.source-body .rname){font-size:12px!important;font-weight:600;color:var(--ui-title)!important;-webkit-text-fill-color:currentColor!important;text-transform:uppercase}
+body:not(.login-screen) #app :is(.etiquette-page,.procedure-body)>.lg>.lc>h3{font-size:16px!important}
+body:not(.login-screen) #app .source-lesson .procedure-body .lc>h3{font-size:12px!important}
+body:not(.login-screen) #app :is(p,li,small,label,input,select,textarea){font-size:12px!important;line-height:var(--reading-line)!important;letter-spacing:var(--copy-tracking);word-spacing:normal}
+body:not(.login-screen) #app :is(p,li) :is(strong,b,em,span,a){font-size:inherit!important;line-height:inherit}
+body:not(.login-screen) #app p+p{margin-block-start:var(--paragraph-gap)!important}
 body:not(.login-screen) #app .staff-direct-lessons .staff-topic-card .source-body p{font-size:12px!important;line-height:var(--reading-line)!important}
-body:not(.login-screen) #app .staff-direct-lessons :is(.staff-lesson-topic,.staff-topic-card) p+p{margin-block-start:var(--paragraph-gap)!important}
+body:not(.login-screen) #app .staff-direct-lessons .staff-topic-card .source-body p+p{margin-block-start:var(--paragraph-gap)!important}
+body:not(.login-screen) #app .academy-example-label{font-size:12px!important}
+body:not(.login-screen) #app :is(.quiz-counters,.stats-metrics,.stats-duel,.xp-heading)>:is(article,strong) strong,
+body:not(.login-screen) #app :is(.quiz-counters article>strong,.stats-metrics article>strong,.stats-duel article>strong,.xp-heading>strong,.stats-donut text){font-size:20px!important}
+body:not(.login-screen) #app .card-pip{font-size:20px!important}
+body:not(.login-screen) #app :is(.empty-symbol,.chapter .number,.pokerinno-logo strong){font-size:20px!important}
+body:not(.login-screen) #app :is(.primary,.save-activities){font-size:16px!important}
+body:not(.login-screen) :is(dialog h2,.pokerinno-speech>strong){font-size:16px!important;color:var(--ui-title)!important;text-transform:uppercase}
+body:not(.login-screen) :is(.close,.pokerinno-dismiss){font-size:20px!important}
 
-/* Consistent instructional cards; login, header and frozen footer remain outside scope. */
-body:not(.login-screen) #app :is(.chapter,.feature,.stats-panel,.glossary-group,.source-body,.procedure-body) :is(h3,h4){overflow-wrap:anywhere}
-body:not(.login-screen) #app :is(.source-body,.procedure-body) :is(.lc,.ch,.ci,.ex,.tip,.rrow){min-width:0;box-sizing:border-box}
-body:not(.login-screen) #app :is(.source-body,.procedure-body) :is(.lg,.cg,.compare,.ranking,.steps){min-width:0;gap:var(--space-3)}
-body:not(.login-screen) #app :is(.source-body,.procedure-body) :is(.lc,.ch,.ci,.ex,.tip,.rrow)+:is(.lc,.ch,.ci,.ex,.tip,.rrow){margin-block-start:var(--space-3)}
-body:not(.login-screen) #app :is(.source-body,.procedure-body) :is(h3,h4){text-transform:uppercase}
-@media(max-width:600px){body:not(.login-screen) #app :is(.source-body,.procedure-body) :is(.lg,.cg,.compare,.ranking,.steps)>*{min-width:0;max-width:100%}}
+/* Primary reading surfaces share one border, corner and inset. */
+body:not(.login-screen) #app :is(.chapter,.feature,.source-lesson,.discover-section,.discover-hero-card,.stats-panel,.decision-cycle,.empty,.pokerinno-context,.learn-extra-pokerinno,.staff-etiquette-feature,.next-app,.setting,.hero){border:1px solid var(--ui-card-border);border-radius:16px;box-shadow:none;min-width:0}
+body:not(.login-screen) #app :is(.chapter,.feature,.discover-section,.discover-hero-card,.stats-panel,.decision-cycle,.empty,.next-app,.setting){padding:var(--ui-card-pad);background:#0b231d}
+body:not(.login-screen) #app :is(.learn-extra-pokerinno,.pokerinno-context){gap:0;grid-template-columns:30% minmax(0,1fr)}
+body:not(.login-screen) #app :is(.learn-extra-copy,.pokerinno-context>div:last-child){padding:var(--ui-card-pad);overflow:visible;min-width:0}
+body:not(.login-screen) #app :is(.learn-extra-copy,.pokerinno-context) h3{margin:0 0 var(--component-gap)!important}
+body:not(.login-screen) #app :is(.learn-extra-pokerinno,.chapter:not(.lesson-block),.next-app){height:auto!important;min-height:100px!important;max-height:none!important;overflow:visible}
+body:not(.login-screen) #app .chapter h3{max-height:none;overflow:visible;-webkit-line-clamp:unset}
+body:not(.login-screen) #app .chapter p{display:block;overflow:visible;-webkit-line-clamp:unset}
+body:not(.login-screen) #app :is(.chapter p,.next-app span,.feature p){white-space:normal;text-overflow:clip;overflow:visible}
+body:not(.login-screen) #app .feature{height:auto;min-height:100px;overflow:visible}
+body:not(.login-screen) #app .feature h3{min-height:0;max-height:none;overflow:visible}
+body:not(.login-screen) #app .learn-extra-host{height:auto!important;min-height:98px!important;max-height:none!important;align-self:stretch}
+body:not(.login-screen) #app .learn-extra-host :is(img,.pokerinno-sprite){height:98px!important;min-height:0!important;max-height:98px!important;object-fit:contain;background-size:contain;align-self:center}
+body:not(.login-screen) #app .source-lesson>summary{min-height:100px;padding:var(--ui-card-pad);gap:var(--component-gap)}
+body:not(.login-screen) #app .source-body{padding:0 var(--ui-card-pad) var(--ui-card-pad)}
+body:not(.login-screen) #app :is(.etiquette-page,.betting-info-content).source-body{padding:0}
+body:not(.login-screen) #app .source-body :is(.lc,.ch,.ci,.tip,.rrow){border:1px solid var(--ui-subcard-border);border-radius:12px;padding:12px;background:rgba(255,255,255,.018);box-shadow:none}
+body:not(.login-screen) #app :is(.etiquette-page,.procedure-body)>.lg>.lc{border-color:var(--ui-card-border);border-radius:16px;padding:var(--ui-card-pad)!important}
+body:not(.login-screen) #app .source-lesson .procedure-body>.lg>.lc{border-color:var(--ui-subcard-border);border-radius:12px;padding:12px!important}
+body:not(.login-screen) #app :is(.glossary-term,.discover-compare article,.stats-duel article,.stats-swot article,.decision-steps li){border:1px solid var(--ui-subcard-border);border-radius:12px;padding:12px;background:rgba(255,255,255,.018);box-shadow:none}
+body:not(.login-screen) #app .setting{min-height:84px;margin-block:var(--component-gap);gap:var(--component-gap)}
+body:not(.login-screen) #app .setting h3{margin:0}
+body:not(.login-screen) #app .setting input{flex:none}
+body:not(.login-screen) #app .next-apps{border:0;padding:0;background:transparent}
+body:not(.login-screen) #app .next-grid{margin:0;gap:var(--component-gap)}
+
+/* One structural rhythm, with a full reading line between consecutive paragraphs. */
+body:not(.login-screen) #app :is(.list,.grid,.journey-chapters,.source-group,.stats-dashboard,.quiz-player,.discover-page,.glossary-list,.decision-steps,.level-list,.betting-learning-path,.betting-info-grid,.source-body .lg,.source-body .cg,.source-body .compare,.source-body .ranking){gap:var(--component-gap)!important}
+body:not(.login-screen) #app :is(.discover-page,.betting-learning-path,.betting-info-grid,.source-group,.source-body .lg,.source-body .cg)>*{margin-block:0!important}
+body:not(.login-screen) #app .betting-learning-module{margin:0}
+body:not(.login-screen) #app>:not(.page-actions)+:is(.discover-page,.betting-learning-path,.etiquette-page,.source-body,.decision-cycle,.pokerinno-context,.section-top,.source-group,.list,.journey-chapters){margin-block-start:var(--component-gap)!important}
+body:not(.login-screen) #app :is(h2,h3,h4,h5,h6)+:is(p,ul,ol,.glossary-list,.discover-steps,.discover-compare,.discover-timeline){margin-block-start:var(--component-gap)!important}
+body:not(.login-screen) #app :is(.source-body,.glossary-group) :is(h2,h3,h4,h5,h6){margin-inline:0!important}
+body:not(.login-screen) #app :is(.primary,.quiz-options button,.quiz-controls button,.stats-filters button,.app-back,.save-activities){min-height:44px;border-radius:9px;max-width:100%;white-space:normal;overflow-wrap:anywhere}
+body:not(.login-screen) #app :is(.quiz-controls,.stats-filters,.entry-languages){gap:var(--component-gap)}
+body:not(.login-screen) #app :is(h1,h2,h3,h4,h5,h6,p,li,.stats-module,.setting){overflow-wrap:anywhere}
+@media(max-width:800px){body:not(.login-screen){--ui-card-pad:12px}}
+
