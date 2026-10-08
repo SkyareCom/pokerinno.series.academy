@@ -265,3 +265,11 @@ body.login-screen #app .entry-auth-stackup img{width:32px;height:32px}
 #app .etiquette-page .lc>p+p{margin-block-start:var(--paragraph-gap)!important}
 #app .etiquette-page .lc>.cg{margin-block-start:var(--component-gap)}
 #app .etiquette-page .cg>.ch{display:grid;gap:var(--space-2);margin:0!important}
+
+/* Academy content hierarchy — excludes the frozen login and navigation. */
+body:not(.login-screen) #app :is(.chapter,.feature,.stats-panel,.glossary-group,.source-body,.procedure-body) :is(h3,h4){font-size:16px!important;font-weight:600!important;line-height:1.35!important}
+body:not(.login-screen) #app :is(.chapter,.feature,.stats-panel,.glossary-group,.source-body,.procedure-body) :is(p,li){font-size:12px;line-height:var(--reading-line)}
+body:not(.login-screen) #app .staff-direct-lessons :is(.staff-lesson-topic,.staff-topic-card) h4{font-size:16px!important;text-transform:uppercase;color:var(--gold)!important}
+body:not(.login-screen) #app .staff-direct-lessons :is(.staff-lesson-topic,.staff-topic-card) p,
+body:not(.login-screen) #app .staff-direct-lessons .staff-topic-card .source-body p{font-size:12px!important;line-height:var(--reading-line)!important}
+body:not(.login-screen) #app .staff-direct-lessons :is(.staff-lesson-topic,.staff-topic-card) p+p{margin-block-start:var(--paragraph-gap)!important}
