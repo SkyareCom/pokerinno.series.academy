@@ -48,7 +48,7 @@ const bettingIntegratedLessons=()=>{
      blocks.push(card(term,'<p>'+description+'</p>'));
     }
    }else if(node.classList.contains('ex')){
-    flush();blocks.push(card('EXEMPLO · '+entry.title,node.innerHTML));
+    part.push('<div class="betting-inline-example"><strong>EXEMPLO</strong>'+node.innerHTML+'</div>');
    }else if(node.tagName==='P'){
     if(part.join('').length>440)flush();part.push(node.outerHTML);
    }else{
