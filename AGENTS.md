@@ -31,3 +31,14 @@ Esta regra se aplica a toda alteração de interface neste repositório.
 - Preservar ícones em caixas de 25px (caracteres com font-size 25px e SVG com width/height 25px) e textos de 10px.
 - Regras globais de tipografia, espaçamento, temas ou refatorações não podem alterar o rodapé. Em particular, seletores de texto de 10px devem excluir .nav-symbol para não reduzir os ícones.
 - Antes de entregar alterações de interface, verificar que o rodapé continua com cinco ícones de 25px e legendas de 10px. Não reinterpretar nem redesenhar os ícones para padronizar outros componentes.
+
+# Tela de login congelada — autorização explícita obrigatória
+
+- A tela de login atual está aprovada e CONGELADA por instrução do usuário em 08/10/2026.
+- Referência aprovada: commit `83f90d205c2fea1039e89c881614f0e6741312e8` da branch `feat/pokerinno-frontend`.
+- Não alterar estrutura, imagens, logos, ícones, textos, fontes, tamanhos, pesos, cores, bordas, dimensões, espaçamentos, alinhamento ou comportamento da tela de login sem pedido explícito do usuário especificamente para essa tela.
+- Preservar a imagem e a marca Pokerinno, o título “Sua jornada no poker começa aqui.” em 16px, os idiomas PT-BR/EN-US/ES-ES, os três botões de acesso, o cadastro, o formulário StackUp ID e o acesso à prévia.
+- Preservar o Google G oficial colorido, a impressão digital da biometria e o mini logo StackUp com o fundo externo transparente; preservar as caixas dos ícones em 32px e seu alinhamento atual.
+- Arquivos de referência: `dist/login.js`, as regras de login de `dist/styles.css` e `dist/spacing.css`, `dist/assets/google-g-official.png` e `dist/assets/stackup-logo-transparent.png`.
+- Alterações globais de tipografia, temas, espaçamento, imagens, componentes ou refatorações não podem modificar a tela de login. Manter os estilos dessas alterações fora do escopo de `body.login-screen` quando necessário.
+- Antes de entregar alterações de interface em outras telas, verificar que o login mantém a aparência e o comportamento da referência aprovada nos três idiomas e nos layouts responsivos.
