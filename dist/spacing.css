@@ -277,7 +277,7 @@ body:not(.login-screen) #app :is(.page-heading,.section-top) h2{color:#f4f2e7!im
 body:not(.login-screen) #app .source-question>h2{font-size:16px!important;color:#f4f2e7!important;text-transform:none}
 /* Secondary cards carry smaller titles; inline emphasis stays at reading size. */
 body:not(.login-screen) #app :is(.source-body,.discover-compare,.stats-duel,.stats-swot,.decision-steps) :is(h2,h3,h4,h5,h6),
-body:not(.login-screen) #app :is(.glossary-term>strong,.discover-timeline strong,.source-body .ch>strong,.source-body .ci>strong,.source-body .rname){font-size:12px!important;font-weight:600;color:var(--ui-title)!important;-webkit-text-fill-color:currentColor!important;text-transform:uppercase}
+body:not(.login-screen) #app :is(.glossary-term>strong,.discover-timeline strong,.source-body .ch>strong,.source-body .ci>strong,.source-body .rname,.quiz-counters article>span,.stats-metrics article>span){font-size:12px!important;font-weight:600;color:var(--ui-title)!important;-webkit-text-fill-color:currentColor!important;text-transform:uppercase}
 body:not(.login-screen) #app :is(.etiquette-page,.procedure-body)>.lg>.lc>h3{font-size:16px!important}
 body:not(.login-screen) #app .source-lesson .procedure-body .lc>h3{font-size:12px!important}
 body:not(.login-screen) #app :is(p,li,small,label,input,select,textarea){font-size:12px!important;line-height:var(--reading-line)!important;letter-spacing:var(--copy-tracking);word-spacing:normal}
@@ -322,7 +322,7 @@ body:not(.login-screen) #app .next-apps{border:0;padding:0;background:transparen
 body:not(.login-screen) #app .next-grid{margin:0;gap:var(--component-gap)}
 
 /* One structural rhythm, with a full reading line between consecutive paragraphs. */
-body:not(.login-screen) #app :is(.list,.grid,.journey-chapters,.source-group,.stats-dashboard,.quiz-player,.discover-page,.glossary-list,.decision-steps,.level-list,.betting-learning-path,.betting-info-grid,.source-body .lg,.source-body .cg,.source-body .compare,.source-body .ranking){gap:var(--component-gap)!important}
+body:not(.login-screen) #app :is(.list,.grid,.journey-chapters,.source-group,.stats-dashboard,.quiz-player,.discover-page,.glossary-list,.decision-steps,.level-list,.betting-learning-path,.betting-info-grid,.source-body .lg,.source-body .cg,.source-body .compare,.source-body .ranking,.source-body .steps,.stats-metrics,.quiz-counters,.stats-swot,.stats-duel,.training-session-metrics,.discover-compare,.discover-steps,.discover-timeline,.quiz-options){gap:var(--component-gap)!important}
 body:not(.login-screen) #app :is(.discover-page,.betting-learning-path,.betting-info-grid,.source-group,.source-body .lg,.source-body .cg)>*{margin-block:0!important}
 body:not(.login-screen) #app .betting-learning-module{margin:0}
 body:not(.login-screen) #app>:not(.page-actions)+:is(.discover-page,.betting-learning-path,.etiquette-page,.source-body,.decision-cycle,.pokerinno-context,.section-top,.source-group,.list,.journey-chapters){margin-block-start:var(--component-gap)!important}

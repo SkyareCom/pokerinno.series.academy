@@ -24,12 +24,12 @@ async function inspect(page,label){
    if(['hidden','clip'].includes(s.overflowY)&&e.clientHeight>0&&e.scrollHeight>e.clientHeight+2)bad('clipped-text',e,'height');
   }
   for(const e of root.querySelectorAll('h1,.page-title'))if(visible(e)&&getComputedStyle(e).fontSize!=='20px')bad('page-title-size',e,getComputedStyle(e).fontSize);
-  for(const e of root.querySelectorAll('h2,h3,h4,h5,h6,.source-lesson>summary>strong,.glossary-term>strong,.next-app>strong,.editorial-note>strong,.discover-timeline strong,.source-body .ch>strong,.source-body .ci>strong,.source-body .rname')){
+  for(const e of root.querySelectorAll('h2,h3,h4,h5,h6,.source-lesson>summary>strong,.glossary-term>strong,.next-app>strong,.editorial-note>strong,.discover-timeline strong,.source-body .ch>strong,.source-body .ci>strong,.source-body .rname,.quiz-counters article>span,.stats-metrics article>span')){
    if(!visible(e)||e.closest('.page-heading,.section-top')||e.matches('.source-question>h2'))continue;
    const s=getComputedStyle(e);
    if(s.color!=='rgb(246, 165, 64)')bad('title-color',e,s.color);
    if(s.textTransform!=='uppercase')bad('title-case',e,s.textTransform);
-   const nested=e.closest('.source-body,.discover-compare,.stats-duel,.stats-swot,.decision-steps')||e.matches('.glossary-term>strong,.discover-timeline strong');
+   const nested=e.closest('.source-body,.discover-compare,.stats-duel,.stats-swot,.decision-steps')||e.matches('.glossary-term>strong,.discover-timeline strong,.quiz-counters article>span,.stats-metrics article>span');
    const direct=e.matches(':is(.etiquette-page,.procedure-body)>.lg>.lc>h3')&&!e.closest('.source-lesson');
    const expected=nested&&!direct?'12px':'16px';
    if(s.fontSize!==expected)bad('card-title-size',e,s.fontSize+' / '+expected);
@@ -64,7 +64,7 @@ async function inspect(page,label){
    const direct=e.matches(':is(.etiquette-page,.procedure-body)>.lg>.lc')&&!e.closest('.source-lesson');
    geometry(e,direct?'16px':'12px',direct?'rgba(246, 165, 64, 0.32)':'rgba(246, 165, 64, 0.18)',direct?inset:'12px');
   }
-  for(const e of root.querySelectorAll('.list,.grid,.journey-chapters,.source-group,.stats-dashboard,.quiz-player,.discover-page,.glossary-list,.decision-steps,.level-list,.betting-learning-path,.betting-info-grid,.source-body .lg,.source-body .cg,.source-body .compare,.source-body .ranking'))if(visible(e)){
+  for(const e of root.querySelectorAll('.list,.grid,.journey-chapters,.source-group,.stats-dashboard,.quiz-player,.discover-page,.glossary-list,.decision-steps,.level-list,.betting-learning-path,.betting-info-grid,.source-body .lg,.source-body .cg,.source-body .compare,.source-body .ranking,.source-body .steps,.stats-metrics,.quiz-counters,.stats-swot,.stats-duel,.training-session-metrics,.discover-compare,.discover-steps,.discover-timeline,.quiz-options'))if(visible(e)){
    const s=getComputedStyle(e);if(s.rowGap!=='10px'||s.columnGap!=='10px')bad('structural-gap',e,s.rowGap+' / '+s.columnGap);
   }
   const nav=[...document.querySelectorAll('.mobile-nav>a')];
