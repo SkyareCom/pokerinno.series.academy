@@ -13,39 +13,23 @@ permissions:
 
 concurrency:
   group: pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Upload Pages artifact
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+      - name: Upload site from dist
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist
-          name: academy-preview-${{ github.run_id }}-${{ github.run_attempt }}
-
-      - name: Wait for Pages artifact metadata
-        env:
-          GH_TOKEN: ${{ github.token }}
-          ARTIFACT_NAME: academy-preview-${{ github.run_id }}-${{ github.run_attempt }}
-        run: |
-          for attempt in $(seq 1 20); do
-            count=$(curl --fail --silent --show-error \
-              -H "Authorization: Bearer $GH_TOKEN" \
-              "$GITHUB_API_URL/repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID/artifacts" \
-              | jq --arg name "$ARTIFACT_NAME" '[.artifacts[] | select(.name == $name)] | length')
-            if [ "$count" = "1" ]; then exit 0; fi
-            sleep 3
-          done
-          echo "Pages artifact metadata was not available in time."
-          exit 1
-
-      - name: Deploy Pages
+      - name: Deploy GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-        with:
-          artifact_name: academy-preview-${{ github.run_id }}-${{ github.run_attempt }}
