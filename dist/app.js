@@ -24,17 +24,47 @@ const sourceLesson=(item,tag='APROFUNDAMENTO')=>item?`<details class="source-les
 /* Betting chapter: merge complete reference lessons into the main reading flow, without expandable cards. */
 /* Progressive betting lessons: structured cards with full original teaching material. */
 const bettingIntegratedLessons=()=>{
- const parse=item=>{const root=document.createElement('div');root.innerHTML=item?.html||'';return [...root.querySelectorAll('.lc')].filter(el=>el.querySelector(':scope > h3')).map(el=>({title:el.querySelector(':scope > h3').textContent.trim(),html:[...el.children].filter(n=>n.tagName!=='H3').map(n=>n.outerHTML).join('')}))};
+ const parse=item=>{const root=document.createElement('div');root.innerHTML=item?.html||'';return [...root.querySelectorAll('.lc')].filter(el=>el.querySelector(':scope > h3')).map(el=>({title:el.querySelector(':scope > h3').textContent.trim(),nodes:[...el.children].filter(n=>n.tagName!=='H3')}))};
  const seq=parse(verdeFund.seq),chips=parse(verdeRuleSubs.fichas),seats=parse(verdeRuleSubs.assentos);
- const used=new Set();
- const render=(title,entries)=>{const cards=entries.filter(Boolean).filter(e=>{const k=e.title.toLocaleUpperCase('pt-BR');if(used.has(k))return false;used.add(k);return true}).map(e=>`<article class="betting-info-card"><h4>${e.title}</h4><div class="betting-info-content source-body">${e.html}</div></article>`).join('');return cards?`<section class="betting-learning-module"><h3 class="betting-section-title">${title}</h3><div class="betting-info-grid">${cards}</div></section>`:''};
  const pick=(arr,...names)=>names.map(name=>arr.find(e=>e.title===name)).filter(Boolean);
- const more=(arr,names)=>arr.filter(e=>!names.includes(e.title));
- const intro=pick(seq,'COMO FUNCIONA UMA RODADA DE APOSTAS?','QUEM AGE PRIMEIRO?','QUANDO A RODADA TERMINA?');
- const actions=pick(seq,'BET × RAISE','CHECK','CALL','FOLD','ALL-IN');
- const raises=pick(seq,'RAISE E AUMENTO MÍNIMO','3-BET','4-BET','SQUEEZE','DONK BET','ALL-IN MENOR QUE O RAISE MÍNIMO');
- const other=more(seq,['COMO FUNCIONA UMA RODADA DE APOSTAS?','QUEM AGE PRIMEIRO?','QUANDO A RODADA TERMINA?','AÇÕES BÁSICAS','BET × RAISE','CHECK','CALL','FOLD','ALL-IN','RAISE E AUMENTO MÍNIMO','3-BET','4-BET','SQUEEZE','DONK BET','ALL-IN MENOR QUE O RAISE MÍNIMO','RESUMO DA LÓGICA']);
- return '<div class="betting-learning-path">'+render('01 · COMO AS APOSTAS FUNCIONAM',intro)+render('02 · AÇÕES DO JOGADOR',actions)+render('03 · AUMENTOS E SITUAÇÕES ESPECIAIS',[...raises,...other])+render('04 · STACK, FICHAS E BUY-IN',chips)+render('05 · BUTTON E ASSENTOS',seats)+render('06 · REVISÃO DA LÓGICA',pick(seq,'RESUMO DA LÓGICA'))+'</div>';
+ const sections=[
+ ['01','COMO FUNCIONA UMA RODADA',pick(seq,'COMO FUNCIONA UMA RODADA DE APOSTAS?','QUEM AGE PRIMEIRO?','QUANDO A RODADA TERMINA?')],
+ ['02','AÇÕES DO JOGADOR',pick(seq,'BET × RAISE','CHECK','CALL','FOLD','ALL-IN')],
+ ['03','AUMENTOS E REGRAS DE APOSTAS',pick(seq,'RAISE E AUMENTO MÍNIMO','3-BET','4-BET','SQUEEZE','DONK BET','ALL-IN MENOR QUE O RAISE MÍNIMO')],
+ ['04','STACK, FICHAS E BUY-IN',chips],
+ ['05','BUTTON E ASSENTOS',seats],
+ ['06','REVISÃO DA LÓGICA',pick(seq,'RESUMO DA LÓGICA')]
+ ];
+ const seen=new Set();
+ const card=(title,html)=>`<article class="betting-info-card"><h4>${title}</h4><div class="betting-info-content source-body">${html}</div></article>`;
+ const split=entry=>{
+  const blocks=[];let part=[];let n=0;
+  const flush=()=>{if(part.length){blocks.push(card(n?entry.title+' · CONTINUAÇÃO':entry.title,part.join('')));part=[];n++}};
+  for(const node of entry.nodes){
+   if(node.classList.contains('cg')){
+    flush();for(const child of [...node.children]){
+     const term=child.querySelector('strong,b')?.textContent.trim()||entry.title;
+     const definition=[...child.children].filter(e=>e.tagName!=='STRONG'&&e.tagName!=='B').map(e=>e.outerHTML).join('');
+     blocks.push(card(term,definition||child.innerHTML));
+    }
+   }else if(node.classList.contains('ex')){
+    flush();blocks.push(card('EXEMPLO · '+entry.title,node.innerHTML));
+   }else if(node.classList.contains('lg')){
+    flush();for(const child of [...node.querySelectorAll('.lc')]){
+     const heading=child.querySelector('h3,h4')?.textContent.trim()||entry.title;
+     blocks.push(card(heading,[...child.children].filter(e=>!/^H[34]$/.test(e.tagName)).map(e=>e.outerHTML).join('')));
+    }
+   }else if(node.tagName==='P'){
+    if(part.join('').length>440)flush();part.push(node.outerHTML);
+   }else{flush();blocks.push(card(entry.title,node.outerHTML))}
+  }
+  flush();return blocks;
+ };
+ return '<div class="betting-learning-path">'+sections.map(([number,title,entries])=>{
+  const unique=entries.filter(e=>{const key=e.title.toLowerCase();if(seen.has(key))return false;seen.add(key);return true});
+  const cards=unique.flatMap(split).join('');
+  return cards?`<section class="betting-learning-module"><header class="betting-topic-heading"><span>${number}</span><h3>${title}</h3></header><div class="betting-info-grid">${cards}</div></section>`:'';
+ }).join('')+'</div>';
 };
 const sourceGroup=(title,items,tag)=>`<section class="source-group"><div class="section-top"><h2>${title}</h2><span>BASE ACADEMY</span></div>${items.filter(Boolean).map(x=>sourceLesson(x,tag)).join('')}</section>`;
 const quote=`<div class="quote">“Poker é um jogo que demora minutos para aprender. Mas leva uma vida para dominar.”<small>— MIKE SEXTON</small></div>`;
