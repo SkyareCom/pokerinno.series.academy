@@ -1,6 +1,6 @@
 {
-  "nav.home": "Início",
-  "nav.profile": "Perfil",
+  "nav.home": "HOME",
+  "nav.profile": "PERFIL",
   "auth.google": "Entrar com Google",
   "auth.biometric": "Entrar com Biometria",
   "auth.stackup": "Entrar com StackUp ID",
@@ -199,5 +199,22 @@
   "home.cards.play.title": "JOGAR.",
   "home.cards.play.description": "Decisões e treino.",
   "home.cards.dashboard.title": "DASHBOARD.",
-  "home.cards.dashboard.description": "Progresso e evolução."
+  "home.cards.dashboard.description": "Progresso e evolução.",
+  "nav.learn": "APRENDER",
+  "nav.practice": "PRATICAR",
+  "nav.play": "JOGAR",
+  "nav.dashboard": "DASH",
+  "play.label": "PREPARE-SE PARA A MESA",
+  "play.description": "Pratique o básico e comece a jogar.",
+  "play.recognizeTitle": "RECONHEÇA A SITUAÇÃO",
+  "play.recognizeText": "Identifique rapidamente cartas, posição, ação e objetivo da mão.",
+  "play.decideTitle": "TOME UMA DECISÃO",
+  "play.decideText": "Escolha a ação que faz mais sentido com as informações disponíveis.",
+  "play.reviewTitle": "REVISE O RACIOCÍNIO",
+  "play.reviewText": "Compare sua escolha com os conceitos aprendidos e entenda o motivo da decisão.",
+  "play.repeatTitle": "REPITA",
+  "play.repeatText": "Treinar situações semelhantes ajuda a transformar conhecimento em hábito.",
+  "play.practiceNow": "PRATICAR AGORA",
+  "play.training": "TREINOS",
+  "play.goPractice": "IR PARA PRATICAR"
 }

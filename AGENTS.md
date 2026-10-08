@@ -27,7 +27,8 @@ Esta regra se aplica a toda alteração de interface neste repositório.
 
 - O rodapé atual está aprovado e CONGELADO por instrução do usuário em 08/10/2026.
 - Não alterar o rodapé em tarefas futuras sem pedido explícito do usuário especificamente para o rodapé.
-- Preservar os cinco itens, nesta ordem: HOME, APRENDER, PRATICAR, STATS, PERFIL; preservar seus destinos, ícones atuais, cores, destaque ativo, alinhamento, espaçamento e posição fixa.
+- Preservar os cinco itens, nesta ordem: HOME, APRENDER, PRATICAR, JOGAR, DASH; preservar seus destinos, ícones atuais, cores, destaque ativo, alinhamento, espaçamento e posição fixa.
+- Atualização explicitamente autorizada em 08/10/2026: JOGAR acessa `#play`, DASH acessa `#evolution` e PERFIL fica apenas no canto superior, com ícone de usuário. O rodapé continua congelado após essa atualização.
 - Preservar ícones em caixas de 25px (caracteres com font-size 25px e SVG com width/height 25px) e textos de 10px.
 - Regras globais de tipografia, espaçamento, temas ou refatorações não podem alterar o rodapé. Em particular, seletores de texto de 10px devem excluir .nav-symbol para não reduzir os ícones.
 - Antes de entregar alterações de interface, verificar que o rodapé continua com cinco ícones de 25px e legendas de 10px. Não reinterpretar nem redesenhar os ícones para padronizar outros componentes.

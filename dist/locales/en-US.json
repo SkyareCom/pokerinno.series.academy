@@ -1,6 +1,6 @@
 {
-  "nav.home": "Home",
-  "nav.profile": "Profile",
+  "nav.home": "HOME",
+  "nav.profile": "PROFILE",
   "auth.google": "Sign in with Google",
   "auth.biometric": "Sign in with Biometrics",
   "auth.stackup": "Sign in with StackUp ID",
@@ -199,5 +199,22 @@
   "home.cards.play.title": "PLAY.",
   "home.cards.play.description": "Decisions and training.",
   "home.cards.dashboard.title": "DASHBOARD.",
-  "home.cards.dashboard.description": "Progress and development."
+  "home.cards.dashboard.description": "Progress and development.",
+  "nav.learn": "LEARN",
+  "nav.practice": "PRACTICE",
+  "nav.play": "PLAY",
+  "nav.dashboard": "DASH",
+  "play.label": "GET READY FOR THE TABLE",
+  "play.description": "Practice the basics and start playing.",
+  "play.recognizeTitle": "RECOGNIZE THE SITUATION",
+  "play.recognizeText": "Quickly identify the cards, position, action and goal of the hand.",
+  "play.decideTitle": "MAKE A DECISION",
+  "play.decideText": "Choose the action that makes the most sense with the available information.",
+  "play.reviewTitle": "REVIEW YOUR REASONING",
+  "play.reviewText": "Compare your choice with the concepts you learned and understand the reason for the decision.",
+  "play.repeatTitle": "REPEAT",
+  "play.repeatText": "Training in similar situations helps turn knowledge into habit.",
+  "play.practiceNow": "PRACTICE NOW",
+  "play.training": "TRAINING",
+  "play.goPractice": "GO TO PRACTICE"
 }
