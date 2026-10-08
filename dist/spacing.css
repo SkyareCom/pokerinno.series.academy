@@ -273,3 +273,11 @@ body:not(.login-screen) #app .staff-direct-lessons :is(.staff-lesson-topic,.staf
 body:not(.login-screen) #app .staff-direct-lessons :is(.staff-lesson-topic,.staff-topic-card) p,
 body:not(.login-screen) #app .staff-direct-lessons .staff-topic-card .source-body p{font-size:12px!important;line-height:var(--reading-line)!important}
 body:not(.login-screen) #app .staff-direct-lessons :is(.staff-lesson-topic,.staff-topic-card) p+p{margin-block-start:var(--paragraph-gap)!important}
+
+/* Consistent instructional cards; login, header and frozen footer remain outside scope. */
+body:not(.login-screen) #app :is(.chapter,.feature,.stats-panel,.glossary-group,.source-body,.procedure-body) :is(h3,h4){overflow-wrap:anywhere}
+body:not(.login-screen) #app :is(.source-body,.procedure-body) :is(.lc,.ch,.ci,.ex,.tip,.rrow){min-width:0;box-sizing:border-box}
+body:not(.login-screen) #app :is(.source-body,.procedure-body) :is(.lg,.cg,.compare,.ranking,.steps){min-width:0;gap:var(--space-3)}
+body:not(.login-screen) #app :is(.source-body,.procedure-body) :is(.lc,.ch,.ci,.ex,.tip,.rrow)+:is(.lc,.ch,.ci,.ex,.tip,.rrow){margin-block-start:var(--space-3)}
+body:not(.login-screen) #app :is(.source-body,.procedure-body) :is(h3,h4){text-transform:uppercase}
+@media(max-width:600px){body:not(.login-screen) #app :is(.source-body,.procedure-body) :is(.lg,.cg,.compare,.ranking,.steps)>*{min-width:0;max-width:100%}}
