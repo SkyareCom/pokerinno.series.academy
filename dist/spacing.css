@@ -194,3 +194,5 @@ body.login-screen #app .entry-form>h2{font-size:16px!important}
 .pokerinno-balloon-pages{display:flex;align-items:center;gap:4px}
 .pokerinno-page{display:grid;place-items:center;flex:0 0 24px;width:24px;height:24px;border:1px solid var(--gold);border-radius:50%;padding:0;background:transparent;color:#f4f2e7;font-size:12px;line-height:1}
 .pokerinno-page.active{background:var(--gold);color:#142017}
+
+.pokerinno-balloons>.pokerinno-balloon-pages{justify-content:flex-end;margin-top:8px}
