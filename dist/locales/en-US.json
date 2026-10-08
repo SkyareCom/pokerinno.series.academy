@@ -153,5 +153,6 @@
   "visual.seats": "SEATS",
   "visual.positionNote": "Seat map: mentioned positions are highlighted. This diagram does not indicate the answer or action order.",
   "visual.street": "Which betting round do the board cards below represent?",
-  "visual.texture": "What is the texture of the board below?"
+  "visual.texture": "What is the texture of the board below?",
+  "ui.back": "BACK"
 }

@@ -153,5 +153,6 @@
   "visual.seats": "ASSENTOS",
   "visual.positionNote": "Mapa dos assentos: as posições citadas estão destacadas. O diagrama não indica a resposta nem a ordem de ação.",
   "visual.street": "Em qual rodada de apostas estão as cartas do board abaixo?",
-  "visual.texture": "Como se chama a textura do board abaixo?"
+  "visual.texture": "Como se chama a textura do board abaixo?",
+  "ui.back": "VOLTAR"
 }
