@@ -1,28 +1,13 @@
-import {t} from './i18n.js?v=practice-modules-20261008';
+import {t} from './i18n.js?v=stats-20261008';
+import {results,record,percent} from './progress.js';
 const escape=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const activities=new Map();let nextId=0;
-export function sourceQuiz(questions){
- const id=String(nextId++);activities.set(id,questions);
- return `<details class="source-quiz" data-quiz="${id}"><summary>${t('quiz.title')} · ${questions.length}</summary><p class="quiz-progress" aria-live="polite">${t('quiz.progress')}: 0 / ${questions.length}</p><div class="source-quiz-list">${questions.map((q,i)=>{
- const items=q.type==='sequence'?[...(q.items||q.answer)].reverse():q.options||[];
- return `<section class="source-question" data-question="${i}"><strong>${String(i+1).padStart(2,'0')} · ${escape(q.prompt||q.question)}</strong>${q.visual?.cards?`<p>${q.visual.cards.map(escape).join(' ')}</p>`:''}${q.type==='sequence'?`<p>${t('quiz.sequence')}</p>`:''}<div class="quiz-options">${items.map((item,j)=>`<button type="button" data-quiz-option="${j}" aria-pressed="false">${escape(item)}</button>`).join('')}</div><p class="quiz-selection"></p><div class="quiz-feedback" role="status" hidden></div><button type="button" class="quiz-reset" data-quiz-reset hidden>${t('quiz.reset')}</button></section>`;
- }).join('')}</div></details>`;
-}
-document.addEventListener('click',event=>{
- const button=event.target.closest('[data-quiz-option],[data-quiz-reset]');if(!button)return;
- const section=button.closest('[data-question]'),quiz=button.closest('[data-quiz]');if(!quiz)return;
- const q=activities.get(quiz.dataset.quiz)?.[Number(section.dataset.question)];if(!q)return;
- const options=[...section.querySelectorAll('[data-quiz-option]')],feedback=section.querySelector('.quiz-feedback'),selection=section.querySelector('.quiz-selection'),reset=section.querySelector('[data-quiz-reset]');
- if(button.hasAttribute('data-quiz-reset')){options.forEach(b=>{b.disabled=false;b.setAttribute('aria-pressed','false')});delete section.dataset.selection;delete section.dataset.answered;selection.textContent='';feedback.hidden=true;feedback.textContent='';reset.hidden=true;}
- else{
- if(section.dataset.answered)return;
- const items=q.type==='sequence'?[...(q.items||q.answer)].reverse():q.options||[];
- let answer;
- if(q.type==='sequence'){
- const selected=JSON.parse(section.dataset.selection||'[]');selected.push(Number(button.dataset.quizOption));section.dataset.selection=JSON.stringify(selected);button.disabled=true;button.setAttribute('aria-pressed','true');selection.textContent=selected.map(i=>items[i]).join(' → ');if(selected.length<items.length)return;answer=selected.map(i=>items[i]);
- }else{answer=items[Number(button.dataset.quizOption)];button.setAttribute('aria-pressed','true')}
- const correct=JSON.stringify(answer)===JSON.stringify(q.answer);section.dataset.answered='true';options.forEach(b=>b.disabled=true);
- feedback.innerHTML=`<strong>${t(correct?'quiz.correct':'quiz.incorrect')}</strong><p><b>${t('quiz.answer')}:</b> ${escape(Array.isArray(q.answer)?q.answer.join(' → '):q.answer)}</p><p><b>${t('quiz.why')}:</b> ${escape(q.analysis||q.why||'')}</p>`;feedback.hidden=false;reset.hidden=false;
- }
- quiz.querySelector('.quiz-progress').textContent=`${t('quiz.progress')}: ${quiz.querySelectorAll('[data-answered]').length} / ${activities.get(quiz.dataset.quiz).length}`;
-});
+let session;
+export function sourceQuiz(questions,module='practice',theme='decisions'){session={questions,module,theme,index:0,answers:new Map(),selected:[],saved:true};return `<section class="quiz-player">${view()}</section>`}
+function view(){const s=session,q=s.questions[s.index],answered=s.answers.get(s.index),items=q.type==='sequence'?[...(q.items||q.answer)].reverse():q.options||[];const latest=new Map(results().filter(x=>x.module===s.module).map(x=>[x.question,x]));const done=latest.size,correct=[...latest.values()].filter(x=>x.correct).length;
+return `<div class="quiz-counters">${[[t('stats.correct'),correct,percent(correct,done)],[t('stats.done'),done,percent(done,s.questions.length)],[t('stats.total'),s.questions.length,100]].map(([label,n,p])=>`<article><span>${label}</span><strong>${n}</strong><small>${p}%</small></article>`).join('')}</div><div class="source-question"><span class="eyebrow">${s.index+1} / ${s.questions.length}</span><h2>${escape(q.prompt||q.question)}</h2>${q.visual?.cards?`<p class="quiz-cards">${q.visual.cards.map(escape).join(' ')}</p>`:''}${q.type==='sequence'?`<p>${t('quiz.sequence')}</p>`:''}<div class="quiz-options">${items.map((item,i)=>`<button type="button" data-quiz-option="${i}" ${answered||s.selected.includes(i)?'disabled':''}>${escape(item)}</button>`).join('')}</div>${s.selected.length?`<p>${s.selected.map(i=>escape(items[i])).join(' → ')}</p>`:''}${answered?`<div class="quiz-feedback" role="status"><strong>${t(answered.correct?'quiz.correct':'quiz.incorrect')}</strong><p>${t('quiz.answer')}: ${escape(Array.isArray(q.answer)?q.answer.join(' → '):q.answer)}</p><p>${escape(q.analysis||q.why||'')}</p></div>`:''}</div>${!s.saved?`<p role="status">${t('stats.unsaved')}</p>`:''}<div class="quiz-controls"><button data-quiz-exit>${t('stats.exit')}</button><button data-quiz-review ${s.index===0?'disabled':''}>${t('stats.review')}</button><button data-quiz-next>${t(s.index===s.questions.length-1?'stats.finish':'stats.next')}</button></div>`}
+function refresh(){const player=document.querySelector('.quiz-player');if(player)player.innerHTML=view()}
+document.addEventListener('click',event=>{const button=event.target.closest('[data-quiz-option],[data-quiz-exit],[data-quiz-review],[data-quiz-next]');if(!button||!button.closest('.quiz-player')||!session)return;const s=session;
+if(button.hasAttribute('data-quiz-exit')){session=null;location.hash='practice';return}
+if(button.hasAttribute('data-quiz-review')){if(s.index>0)s.index--;s.selected=[];refresh();return}
+if(button.hasAttribute('data-quiz-next')){if(s.index===s.questions.length-1){session=null;location.hash='evolution';return}s.index++;s.selected=[];refresh();return}
+if(s.answers.has(s.index))return;const q=s.questions[s.index],items=q.type==='sequence'?[...(q.items||q.answer)].reverse():q.options||[];const index=Number(button.dataset.quizOption);if(s.selected.includes(index))return;let answer=items[index];if(q.type==='sequence'){s.selected.push(index);if(s.selected.length<items.length){refresh();return}answer=s.selected.map(i=>items[i])}const correct=JSON.stringify(answer)===JSON.stringify(q.answer);s.answers.set(s.index,{correct});s.saved=record({module:s.module,theme:s.theme,question:String(q.id||s.index),correct});refresh();});
