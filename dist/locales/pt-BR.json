@@ -160,5 +160,15 @@
   "procedure.flop": "Outros erros, como flop com duas cartas ou aberto antes de terminar a ação pré-flop, também exigem interrupção. Jogadores não escolhem quais cartas ficam no board nem retiram cartas extras por consenso: o procedimento oficial preserva a aleatoriedade.",
   "procedure.deck": "Uma carta de outro baralho ou elemento estranho no deck também exige paralisação para conferir a integridade do baralho antes de continuar.",
   "procedure.authority": "A regra da casa e a decisão do responsável prevalecem; o dealer não deve improvisar uma correção importante.",
-  "procedure.summary": "Embaralhamento, misdeal e irregularidades: entenda como preparar as cartas e corrigir erros."
+  "procedure.summary": "Embaralhamento, misdeal e irregularidades: entenda como preparar as cartas e corrigir erros.",
+  "messages.title": "MENSAGENS DO POKERINNO",
+  "messages.welcomeTitle": "BOAS-VINDAS",
+  "messages.welcome": "Olá! Sua jornada no poker começa aqui. Aprenda no seu ritmo e pratique para transformar conhecimento em decisões.",
+  "messages.trainingTitle": "NOTIFICAÇÕES DE TREINOS",
+  "messages.start": "Seu próximo passo é praticar. Escolha uma atividade e comece seu treino.",
+  "messages.progress": "Você já registrou {count} respostas em atividades. Continue praticando para evoluir.",
+  "messages.unsaved": "Você tem {count} respostas ainda não salvas. Salve suas atividades para preservar seu progresso.",
+  "messages.practice": "IR PARA PRÁTICA",
+  "messages.save": "SALVAR ATIVIDADES",
+  "messages.close": "FECHAR"
 }
