@@ -1294,3 +1294,15 @@ input,select,textarea{font-family:inherit;font-size:14px}
 #app .staff-direct-lessons .staff-topic-card h4{margin:0 0 10px!important;font-size:14px!important;font-weight:600!important;line-height:1.4!important;color:var(--gold)!important}
 #app .staff-direct-lessons .staff-topic-card .source-body p{font-size:14px!important;font-weight:400!important;line-height:1.6!important;margin:0!important}
 #app .staff-direct-lessons .staff-topic-card .source-body p+p{margin-top:14px!important}
+
+/* Bons Modos: Pokerinno-featured card; same vertical rhythm as neighboring lessons. */
+#app .staff-extra-lessons{display:flex;flex-direction:column;gap:10px;margin:10px 0}
+#app .staff-extra-lessons .source-lesson{margin:0!important}
+#app .staff-etiquette-feature{display:grid;grid-template-columns:84px minmax(0,1fr);align-items:center;gap:12px;padding:12px 14px;border:1px solid var(--gold, #b9a16d);border-radius:16px;background:#08241e;min-width:0}
+#app .staff-etiquette-feature .staff-etiquette-portrait{width:84px;min-height:94px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+#app .staff-etiquette-feature .pokerinno-sprite{display:block;transform:scale(.8);transform-origin:center}
+#app .staff-etiquette-feature .staff-etiquette-lesson{min-width:0}
+#app .staff-etiquette-feature .source-lesson{border:0!important;background:transparent!important;padding:0!important;box-shadow:none!important}
+#app .staff-etiquette-feature .source-lesson summary{padding:0!important}
+#app .staff-etiquette-feature .source-lesson summary strong{display:block}
+@media(max-width:370px){#app .staff-etiquette-feature{grid-template-columns:70px minmax(0,1fr);gap:10px;padding:12px}#app .staff-etiquette-feature .staff-etiquette-portrait{width:70px}}
