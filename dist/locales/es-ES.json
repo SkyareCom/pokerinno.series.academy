@@ -46,5 +46,13 @@
   "decisions.example": "PRUEBA EL CICLO",
   "decisions.exampleText": "En el flop, alguien apuesta y te toca actuar. ¿Cuál es el primer paso?",
   "decisions.answer": "VER EL RAZONAMIENTO",
-  "decisions.answerText": "Observa antes de pulsar. Compara el importe a pagar con el bote, considera tu posibilidad de mejorar y lo que puede representar el rival. Pagar mantiene tu mano pero cuesta fichas; retirarte evita más gastos pero abandona el bote; subir invierte más y cambia la presión. Sin cartas, stacks y contexto completo, no hay una única respuesta."
+  "decisions.answerText": "Observa antes de pulsar. Compara el importe a pagar con el bote, considera tu posibilidad de mejorar y lo que puede representar el rival. Pagar mantiene tu mano pero cuesta fichas; retirarte evita más gastos pero abandona el bote; subir invierte más y cambia la presión. Sin cartas, stacks y contexto completo, no hay una única respuesta.",
+  "quiz.title": "COMPRUEBA TU COMPRENSIÓN",
+  "quiz.correct": "¡CORRECTO!",
+  "quiz.incorrect": "REVISA TU ELECCIÓN.",
+  "quiz.answer": "RESPUESTA",
+  "quiz.why": "POR QUÉ",
+  "quiz.reset": "INTENTAR DE NUEVO",
+  "quiz.sequence": "Selecciona los elementos en el orden solicitado.",
+  "quiz.progress": "ACTIVIDADES RESPONDIDAS"
 }

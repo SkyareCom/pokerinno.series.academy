@@ -1,5 +1,6 @@
-import {journeyIds,extraCard,staffRoles,decisionCycle} from './learn-ui.js?v=learn-five-20261008';
-import {t} from './i18n.js?v=learn-five-20261008';
+import {sourceQuiz} from './source-quiz.js?v=interactive-20261008';
+import {journeyIds,extraCard,staffRoles,decisionCycle} from './learn-ui.js?v=cycle-clean-20261008';
+import {t} from './i18n.js?v=interactive-20261008';
 import {enablePageSwipe} from './swipe.js';
 import {loginPage} from './login.js';
 import {loadAcademy,chapters,discoverLessons,discoverSections,rulesSections,rulesGroups,rulesBasicSections,bettingSections,dealingSections,floorSections,pokerTermsGroups,pokerExtraTermsGroups,mathTermsGroups} from './data.js?v=learn-five-20261008';import {academyVerde9} from './academy-verde9-content.js';import {legacyAcademy} from './legacy-academy-data.js';import {legacyProfile} from './legacy-profile-data.js';import {resolveRoute} from './navigation.js';import {readPreferences,savePreferences} from './preferences.js';
@@ -14,7 +15,6 @@ const verdeFund=Object.fromEntries((academyVerde9.FUND||[]).map(x=>[x.id,x]));
 const verdeMods=academyVerde9.MOD||[];
 const verdePrat=Object.fromEntries((academyVerde9.PRAT||[]).map(x=>[x.id,x]));
 const verdeRuleSubs=Object.fromEntries(((verdeFund.rules&&verdeFund.rules.sub)||[]).map(x=>[x.id,x]));
-const sourceQuiz=q=>`<details class="source-quiz"><summary>TESTE SEU ENTENDIMENTO · ${q.length} QUESTÕES</summary><div class="source-quiz-list">${q.map((item,i)=>`<div class="source-question"><strong>${String(i+1).padStart(2,'0')} · ${item.prompt||item.question||'QUESTÃO'}</strong>${item.options?`<p>Opções: ${item.options.join(' · ')}</p>`:''}<p><b>RESPOSTA:</b> ${Array.isArray(item.answer)?item.answer.join(' → '):(item.answer||'—')}</p>${item.analysis||item.why?`<p><b>POR QUÊ:</b> ${item.analysis||item.why}</p>`:''}</div>`).join('')}</div></details>`;
 const sourceLesson=(item,tag='APROFUNDAMENTO')=>item?`<details class="source-lesson"><summary>${tag?`<span>${tag}</span>`:''}<strong>${item.t?.pt||item.title||'CONTEÚDO'}</strong><small>${item.d?.pt||item.lead||''}</small></summary><div class="source-body">${item.html||`<p>${item.lead||item.d?.pt||''}</p>`}${item.quiz?.length?sourceQuiz(item.quiz):''}</div></details>`:'';
 const sourceGroup=(title,items,tag)=>`<section class="source-group"><div class="section-top"><h2>${title}</h2><span>BASE ACADEMY</span></div>${items.filter(Boolean).map(x=>sourceLesson(x,tag)).join('')}</section>`;
 const quote=`<div class="quote">“Poker é um jogo que demora minutos para aprender. Mas leva uma vida para dominar.”<small>— MIKE SEXTON</small></div>`;

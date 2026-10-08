@@ -46,5 +46,13 @@
   "decisions.example": "EXPERIMENTE O CICLO",
   "decisions.exampleText": "No flop, alguém aposta e a ação chega a você. Qual é o primeiro passo?",
   "decisions.answer": "VER O RACIOCÍNIO",
-  "decisions.answerText": "Observe antes de clicar. Compare o valor a pagar com o pote, considere seu potencial de melhora e o que o adversário pode representar. Pagar mantém você na mão, mas custa fichas; desistir evita novos gastos, mas abandona o pote; aumentar investe mais e muda a pressão. Sem cartas, stacks e contexto completos, não existe uma resposta única."
+  "decisions.answerText": "Observe antes de clicar. Compare o valor a pagar com o pote, considere seu potencial de melhora e o que o adversário pode representar. Pagar mantém você na mão, mas custa fichas; desistir evita novos gastos, mas abandona o pote; aumentar investe mais e muda a pressão. Sem cartas, stacks e contexto completos, não existe uma resposta única.",
+  "quiz.title": "TESTE SEU ENTENDIMENTO",
+  "quiz.correct": "ACERTOU!",
+  "quiz.incorrect": "REVEJA SUA ESCOLHA.",
+  "quiz.answer": "RESPOSTA",
+  "quiz.why": "POR QUÊ",
+  "quiz.reset": "TENTAR NOVAMENTE",
+  "quiz.sequence": "Selecione os itens na ordem pedida.",
+  "quiz.progress": "ATIVIDADES RESPONDIDAS"
 }

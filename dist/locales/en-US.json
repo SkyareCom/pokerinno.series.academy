@@ -46,5 +46,13 @@
   "decisions.example": "TRY THE CYCLE",
   "decisions.exampleText": "On the flop, someone bets and action reaches you. What is the first step?",
   "decisions.answer": "SEE THE REASONING",
-  "decisions.answerText": "Observe before clicking. Compare the call amount with the pot, consider your potential to improve and what the opponent may represent. Calling keeps you in the hand but costs chips; folding avoids more spending but gives up the pot; raising invests more and changes the pressure. Without cards, stacks and full context, there is no single answer."
+  "decisions.answerText": "Observe before clicking. Compare the call amount with the pot, consider your potential to improve and what the opponent may represent. Calling keeps you in the hand but costs chips; folding avoids more spending but gives up the pot; raising invests more and changes the pressure. Without cards, stacks and full context, there is no single answer.",
+  "quiz.title": "CHECK YOUR UNDERSTANDING",
+  "quiz.correct": "CORRECT!",
+  "quiz.incorrect": "REVIEW YOUR CHOICE.",
+  "quiz.answer": "ANSWER",
+  "quiz.why": "WHY",
+  "quiz.reset": "TRY AGAIN",
+  "quiz.sequence": "Select the items in the requested order.",
+  "quiz.progress": "ACTIVITIES ANSWERED"
 }
