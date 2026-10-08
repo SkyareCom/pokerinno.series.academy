@@ -232,7 +232,7 @@ body.login-screen #app .entry-auth-stackup img{width:32px;height:32px}
 #app .streets-lesson .lc>h3+p{margin-block-start:var(--component-gap)!important}
 #app .streets-lesson .lc>p+p{margin-block-start:var(--paragraph-gap)!important}
 #app .streets-lesson .cg{grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--component-gap)!important}
-#app .streets-lesson .ch{display:grid;gap:var(--space-2);padding:var(--space-3)!important}
+#app .streets-lesson .ch{display:grid;gap:var(--space-2);margin:0!important;padding:var(--space-3)!important}
 #app .streets-lesson .street-visual{width:100%;max-width:440px;margin:var(--component-gap) auto 0}
 #app .streets-lesson .street-scene{position:relative;isolation:isolate;display:grid;justify-items:center;gap:var(--space-4);padding:var(--space-4) var(--space-2) 0;border-radius:16px;overflow:hidden}
 #app .streets-lesson .street-felt{position:absolute;z-index:-1;inset:0 0 22px;border:3px solid #927c4b;border-top:0;border-radius:0 0 45% 45%;background:#113c2f}
