@@ -123,3 +123,15 @@ main{padding-inline:var(--page-gutter)}
 #app .betting-info-content.source-body{padding:0;color:var(--text)}
 #app .betting-info-content> :first-child{margin-top:0}
 #app .betting-info-content :is(p,ul,ol){margin-bottom:10px}
+
+/* Typography contract: 10px footer only; 12/16/20px everywhere else. */
+:root{--card-title-size:16px;--card-body-size:12px;--card-label-size:12px}
+html body{font-size:16px}
+body :is(.sidebar,.workspace,header,main,#app,dialog){font-size:16px}
+body :is(.sidebar,.workspace,header,main,#app,dialog) :is(h1,h2,.hero-title,.page-title){font-size:20px!important}
+body :is(.sidebar,.workspace,header,main,#app,dialog) :is(h3,h4,h5,h6,strong,button,summary,.card-title,.chapter-title){font-size:16px!important}
+body :is(.sidebar,.workspace,header,main,#app,dialog) :is(p,li,small,label,input,select,textarea,.eyebrow,.tiny,.breadcrumb,.card-description,.source-body,.source-body *, .source-lesson summary small){font-size:12px!important}
+body :is(.sidebar,.workspace,header,main,#app,dialog) :is(.source-body h1,.source-body h2){font-size:20px!important}
+body :is(.sidebar,.workspace,header,main,#app,dialog) :is(.source-body h3,.source-body h4,.source-body h5,.source-body h6){font-size:16px!important}
+body footer,body footer *,body .mobile-nav .nav-label,body .mobile-nav small,body .mobile-nav span:not(.nav-icon):not(.icon),body .mobile-nav a{font-size:10px!important}
+body .mobile-nav :is(svg,i,.nav-icon,.icon){font-size:20px!important}
