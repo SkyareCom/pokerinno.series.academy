@@ -44,3 +44,16 @@ export const discoverLessons=[
     ]
   }
 ];
+
+export const discoverSections=[
+  {type:'host',eyebrow:'POKERINNO APRESENTA',title:'ANTES DAS REGRAS',text:'Antes de decorar regras, entenda o que está acontecendo na mesa e por que cada decisão importa.',host:'Primeiro você entende o jogo. Depois aprende a jogá-lo.'},
+  {type:'content',title:'O QUE É POKER',text:'Poker é um jogo de cartas, apostas e decisões. Os jogadores disputam potes usando informação incompleta, leitura da situação e escolhas estratégicas.'},
+  {type:'content',title:'QUAL É O OBJETIVO',text:'Em cada mão, o objetivo é conquistar o pote. Isso pode acontecer mostrando a melhor mão no final ou fazendo os adversários desistirem antes disso.',host:'Você não precisa vencer sempre com a melhor mão. Precisa tomar decisões melhores.'},
+  {type:'steps',title:'COMO UMA MÃO ACONTECE',items:['Os jogadores recebem cartas.','A primeira rodada de ações começa.','Novas cartas podem aparecer na mesa.','Os jogadores voltam a decidir.','A mão termina com desistência geral ou showdown.']},
+  {type:'scene',title:'A MESA DE POKER',text:'Jogadores, dealer, posições, fichas, cartas e pote formam o ambiente do jogo. A posição e a ordem das ações mudam a quantidade de informação disponível para cada decisão.'},
+  {type:'content',title:'INFORMAÇÃO INCOMPLETA',text:'Você conhece suas cartas, vê o que está na mesa e acompanha as apostas. Mas não conhece as cartas dos adversários. Por isso, cada decisão é tomada com informação parcial.'},
+  {type:'compare',title:'JOGADORES X CASA',leftTitle:'POKER TRADICIONAL',leftText:'Os jogadores competem entre si. A casa organiza a mesa e aplica as regras.',rightTitle:'JOGOS DE CASSINO',rightText:'Em alguns formatos específicos, o jogador pode competir diretamente contra a casa.'},
+  {type:'compare',title:'CASH GAME X TORNEIO',leftTitle:'CASH GAME',leftText:'As fichas representam valor direto e a sessão não depende de eliminação.',rightTitle:'TORNEIO',rightText:'Os jogadores começam com um stack e avançam até a definição das colocações.',host:'É o mesmo universo, mas com ritmos e objetivos bem diferentes.'},
+  {type:'timeline',title:'UM POUCO DE HISTÓRIA',items:[['ORIGENS','As origens exatas do poker são debatidas e receberam influência de diferentes jogos de cartas e apostas.'],['SÉCULO XIX','O jogo ganhou força nos Estados Unidos e começou a consolidar regras e formas de comparação de mãos.'],['POKER MODERNO','Novas variantes, torneios e o Texas Hold’em ajudaram a popularizar o poker.'],['ERA ONLINE','A internet ampliou o acesso e transformou o poker em uma atividade global.']]},
+  {type:'summary',title:'O QUE VOCÊ JÁ ENTENDE',items:['Poker é um jogo de decisões.','O objetivo é conquistar o pote.','Informação incompleta faz parte do jogo.','Cash game e torneio têm estruturas diferentes.','O poker evoluiu e hoje possui diversas formas de jogo.'],host:'Agora as regras vão fazer muito mais sentido.'}
+];
