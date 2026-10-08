@@ -97,7 +97,20 @@ const bettingIntegratedLessons=()=>{
   return cards?`<section class="betting-learning-module"><div class="betting-info-grid">${cards}</div></section>`:'';
  }).join('')+'</div>';
 };
-const staffDirectLessons=items=>'<div class="betting-learning-path staff-direct-lessons">'+items.filter(Boolean).map(item=>'<section class="betting-learning-module"><div class="betting-info-grid"><article class="betting-info-card"><div class="betting-info-content source-body">'+(item.html||'<p>'+(item.lead||item.d?.pt||'')+'</p>')+'</div></article></div></section>').join('')+'</div>';
+const staffDirectLessons=items=>{
+ const cards=items.filter(Boolean).flatMap(item=>{
+  const root=document.createElement('div');root.innerHTML=item.html||'';
+  const lessons=[...root.querySelectorAll('.lc')];
+  return lessons.map(lesson=>{
+   const heading=lesson.querySelector(':scope > h3');
+   const title=heading?.textContent.trim()||'';
+   if(title.toUpperCase()==='FUNÇÕES DO STAFF')return '';
+   const body=[...lesson.children].filter(el=>el!==heading).map(el=>el.outerHTML).join('');
+   return '<article class="betting-info-card staff-topic-card">'+(title?'<h4>'+title+'</h4>':'')+'<div class="betting-info-content source-body">'+body+'</div></article>';
+  }).filter(Boolean);
+ });
+ return '<div class="betting-learning-path staff-direct-lessons"><section class="betting-learning-module"><div class="betting-info-grid">'+cards.join('')+'</div></section></div>';
+};
 const sourceGroup=(title,items,tag)=>`<section class="source-group"><div class="section-top"><h2>${title}</h2><span>BASE ACADEMY</span></div>${items.filter(Boolean).map(x=>sourceLesson(x,tag)).join('')}</section>`;
 const quote=`<div class="quote">“Poker é um jogo que demora minutos para aprender. Mas leva uma vida para dominar.”<small>— MIKE SEXTON</small></div>`;
 const migratedList=(section,prefix,tag)=>heading(tag,section.title,section.description)+`<div class="list">${section.items.map((item,i)=>`<a class="chapter" href="#${prefix}/${i}"><span class="number">${String(i+1).padStart(2,'0')}</span><div><h3>${String(item[0]).toUpperCase()}</h3><p>${item[1]}</p></div></a>`).join('')}</div>`;
