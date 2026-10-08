@@ -47,3 +47,20 @@
 /* Marca comum da série POKERINNO. */
 .pokerinno-logo{position:absolute;top:22px;left:24px;z-index:3;display:flex;align-items:center;gap:9px;color:#f3d897;pointer-events:none;text-shadow:0 2px 9px #0009}.pokerinno-logo svg{width:25px;height:30px;fill:currentColor;flex:none}.pokerinno-logo>div{display:flex;flex-direction:column;align-items:flex-start}.pokerinno-logo strong{font-family:Georgia,serif;font-weight:600;font-size:21px;line-height:1.1;letter-spacing:1.3px}.pokerinno-logo span{font-family:var(--font);font-size:10px;font-weight:600;line-height:1.5;letter-spacing:3px;color:var(--green)}.hero .hero-copy{padding-top:90px}.entry-art>.pokerinno-logo{bottom:auto;top:20px;left:20px;width:auto;padding:0;background:none}.entry-art>.pokerinno-logo>div{position:static;width:auto;padding:0;background:none}.entry-art .pokerinno-logo span{margin:0;font-size:10px}.entry-art .pokerinno-logo strong{font-size:21px}
 @media(max-width:700px){.pokerinno-logo{top:16px;left:18px;gap:7px}.pokerinno-logo strong{font-size:18px}.pokerinno-logo svg{width:22px;height:27px}.pokerinno-logo span{font-size:9px;letter-spacing:2.5px}.hero .hero-copy{padding-top:230px}.grinder-hero .hero-copy{padding-top:155px}.entry-art>.pokerinno-logo{top:16px;left:18px}.entry-art .pokerinno-logo strong{font-size:18px}}
+
+
+/* Uppercase rule: buttons and card titles */
+button,
+.primary,
+.quiet,
+.create-account-link,
+.entry-buttons button,
+.entry-form form button,
+.feature h3,
+.chapter h3,
+.next-app strong,
+.trail-preview h3,
+.training-card h3,
+.card h3{
+  text-transform:uppercase;
+}
