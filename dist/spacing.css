@@ -202,3 +202,11 @@ body.login-screen #app .entry-form>h2{font-size:16px!important}
 #app .home-adventure-pokerinno{display:block;flex:none;width:72px;height:80px;object-fit:contain;border-radius:12px}
 #app .home-adventure h3{min-height:0;max-height:none;overflow:visible;margin-block:var(--space-3) 0}
 #app .home-adventure p{max-width:100%;white-space:normal;overflow:visible;text-overflow:clip}
+
+/* Login provider marks; keep the existing button labels and alignment. */
+body.login-screen #app .entry-buttons .entry-auth-icon{display:grid;place-items:center;flex:0 0 32px;width:32px;height:32px;line-height:1;color:var(--gold)}
+body.login-screen #app .entry-auth-icon img{display:block;max-width:100%;object-fit:contain}
+body.login-screen #app .entry-auth-google{background:#fff;border:1px solid #747775;border-radius:50%}
+body.login-screen #app .entry-auth-google img{width:20px;height:20px}
+body.login-screen #app .entry-auth-biometric svg{display:block;width:28px;height:28px}
+body.login-screen #app .entry-auth-stackup img{width:32px;height:32px}

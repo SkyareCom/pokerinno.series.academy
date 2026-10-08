@@ -9,7 +9,7 @@ import {sourceQuiz} from './source-quiz.js?v=cards-no-arrows-20261008';
 import {journeyIds,extraCard,staffRoles,decisionCycle} from './learn-ui.js?v=staff-removed-a5275e59';
 import {t} from './i18n.js?v=home-pokerinno-cards-v1';
 import {enablePageSwipe} from './swipe.js';
-import {loginPage} from './login.js?v=cards-no-arrows-20261008';
+import {loginPage} from './login.js?v=login-icons-v1';
 import {loadAcademy,chapters,discoverLessons,discoverSections,rulesSections,rulesGroups,rulesBasicSections,bettingSections,dealingSections,floorSections,pokerTermsGroups,pokerExtraTermsGroups,mathTermsGroups} from './data.js?v=learn-five-20261008';import {academyVerde9} from './academy-verde9-content.js?v=remove-floor-3e63f900';import {legacyAcademy} from './legacy-academy-data.js';import {legacyProfile} from './legacy-profile-data.js';import {resolveRoute} from './navigation.js?v=cards-no-arrows-20261008';import {readPreferences,savePreferences} from './preferences.js';
 let storage;try{storage=localStorage}catch{storage={getItem:()=>null,setItem:()=>{throw Error()}}}let preferences=readPreferences(storage);const app=document.querySelector('#app'),dialog=document.querySelector('#dialog');let state=await loadAcademy(window.StackUpAcademyAdapter);let previousFocus;
 const nav=[['home','⌂','HOME'],['journey','▤','APRENDER'],['practice','♠','PRATICAR'],['evolution','<svg viewBox="0 0 25 25" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v19h19"/><path d="M7 17v-5m5 5V8m5 9V4"/><path d="m5 9 5-4 5 1 6-4"/></svg>','STATS'],['profile','♙','PERFIL']];
