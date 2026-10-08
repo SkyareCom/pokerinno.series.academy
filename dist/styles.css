@@ -1137,3 +1137,23 @@ input,select,textarea{font-family:inherit;font-size:14px}
 
 .pokerinno-sprite{max-height:140px}
 .discover-hero-card{margin-bottom:14px}
+
+/* Continuous decisions: a readable loop, one choice at a time. */
+.decision-cycle{margin-top:18px;padding:16px;border:1px solid #435b45;border-radius:14px;background:#0b231d}
+.decision-cycle-heading{display:grid;grid-template-columns:28% minmax(0,1fr);align-items:center;gap:12px}
+.decision-cycle-heading h2{font-size:20px;line-height:1.2;margin-top:5px}
+.decision-cycle-heading .pokerinno-sprite{width:100%;max-height:110px}
+.decision-intro{font-size:14px;line-height:1.45;color:var(--muted);margin-top:12px}
+.decision-steps{list-style:none;padding:0;margin:14px 0;display:grid;gap:9px}
+.decision-steps li{position:relative;display:grid;grid-template-columns:28px minmax(0,1fr);gap:10px;padding:10px;border:1px solid var(--line);border-radius:10px}
+.decision-steps li:not(:last-child)::after{content:'↓';position:absolute;bottom:-12px;left:20px;color:var(--gold);font-size:12px;background:var(--panel);z-index:1}
+.decision-step-number{height:28px;display:grid;place-items:center;border:1px solid #796638;border-radius:50%;font-size:14px;color:var(--gold)}
+.decision-steps h3,.staff-role h4{font-size:14px;line-height:1.25;color:var(--gold)}
+.decision-steps p{font-size:12px;line-height:1.4;color:var(--muted);margin-top:4px}
+.decision-example{border-top:1px solid var(--line);padding-top:12px}
+.decision-example summary{cursor:pointer;font-size:14px;color:var(--gold);padding:8px 0}
+.decision-example p,.staff-role p{font-size:14px;line-height:1.5;color:var(--muted);margin:6px 0 12px}
+.staff-roles{margin-bottom:14px}
+.staff-role{padding:12px 0;border-top:1px solid var(--line)}
+.staff-role:last-child{padding-bottom:0}
+@media(max-width:800px){.decision-cycle{padding:12px}.decision-cycle-heading{gap:10px}.decision-cycle-heading h2{font-size:20px}}

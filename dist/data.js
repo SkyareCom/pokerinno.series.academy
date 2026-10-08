@@ -1,14 +1,14 @@
 export const chapters=[
-['discover','Descobrir o jogo','Primeiro contato com o poker.'],
-['rules','Conceitos básicos','Estrutura e fluxo de uma mão.'],
-['betting','Apostas e all-in','Valores, raises e potes.'],
+['discover','A ESSÊNCIA','Primeiro contato com o poker.'],
+['rules','AS REGRAS','Estrutura e fluxo de uma mão.'],
+['betting','AS APOSTAS','Valores, raises e potes.'],
 ['math','Matemática do poker','Odds, equity, outs e valor esperado.'],
 ['dealing','Erros e correções','Distribuição e cartas incorretas.'],
-['floor','Floor e conduta','Conflitos, decisões e penalidades.'],
+['floor','O STAFF','Diretor, floor, dealer e conduta na mesa.'],
 ['decisions','Entender as decisões','Observe, decida e aja.'],
-['formats','Explorar modalidades','Conheça outras modalidades.'],
+['formats','AS MODALIDADES','Conheça outras modalidades.'],
 ['practice','Preparar-se para a mesa','Pratique o básico e comece a jogar.']
-].map(([id,title,description],i)=>({id,title,description,order:i+1,lessons:[]}));
+].map(([id,title,description],i)=>({id,title,description,order:({discover:1,rules:2,betting:3,floor:4,formats:5})[id]||0,lessons:[]}));
 export const emptyAdapter={async load(){return {user:null,chapters,modalities:[],challenges:[],results:[],achievements:[],progress:[]}}};
 export async function loadAcademy(adapter=emptyAdapter){try{return {status:'ready',data:await adapter.load(),error:null}}catch{return {status:'error',data:null,error:'Não foi possível carregar sua jornada.'}}}
 
