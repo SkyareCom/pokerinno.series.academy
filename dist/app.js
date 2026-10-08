@@ -44,19 +44,17 @@ const bettingIntegratedLessons=()=>{
    if(node.classList.contains('cg')){
     flush();for(const child of [...node.children]){
      const term=child.querySelector('strong,b')?.textContent.trim()||entry.title;
-     const definition=[...child.children].filter(e=>e.tagName!=='STRONG'&&e.tagName!=='B').map(e=>e.outerHTML).join('');
-     blocks.push(card(term,definition||child.innerHTML));
+     const description=[...child.childNodes].filter(x=>!(x.nodeType===1&&['STRONG','B'].includes(x.tagName))).map(x=>x.nodeType===3?x.textContent:x.outerHTML).join('').trim();
+     blocks.push(card(term,'<p>'+description+'</p>'));
     }
    }else if(node.classList.contains('ex')){
     flush();blocks.push(card('EXEMPLO · '+entry.title,node.innerHTML));
-   }else if(node.classList.contains('lg')){
-    flush();for(const child of [...node.querySelectorAll('.lc')]){
-     const heading=child.querySelector('h3,h4')?.textContent.trim()||entry.title;
-     blocks.push(card(heading,[...child.children].filter(e=>!/^H[34]$/.test(e.tagName)).map(e=>e.outerHTML).join('')));
-    }
    }else if(node.tagName==='P'){
     if(part.join('').length>440)flush();part.push(node.outerHTML);
-   }else{flush();blocks.push(card(entry.title,node.outerHTML))}
+   }else{
+    flush();const content=node.classList.contains('lc')?[...node.children].filter(x=>!/^H[34]$/.test(x.tagName)).map(x=>x.outerHTML).join(''):node.outerHTML;
+    blocks.push(card(entry.title,content));
+   }
   }
   flush();return blocks;
  };
