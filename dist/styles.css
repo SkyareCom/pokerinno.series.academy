@@ -1314,3 +1314,10 @@ input,select,textarea{font-family:inherit;font-size:14px}
 #app .source-body :is(h2,h3,h4,h5,h6),
 #app .source-body :is(summary strong,.source-lesson strong:first-child),
 #app .learn-extra-copy h3{color:#fff!important;-webkit-text-fill-color:#fff!important}
+
+/* Final priority override: titles of cards, expandable cards and nested cards. */
+#app :is(.learn-extra,.source-lesson,.source-group,.source-card,.staff-topic-card,.staff-etiquette-feature,.discover-section,.discover-hero-card,.glossary-term,.practice-catalog,.practice-theme-title,.pokerinno-context,.etiquette-page,.house-rules-page,.journey-chapters,.list,.card,.subcard) :is(h2,h3,h4,h5,h6,summary strong,summary b,.card-title,.source-title,.lesson-title),
+#app :is(.source-lesson,.staff-topic-card,.source-group,.staff-etiquette-feature) :is(summary,summary strong,.source-lesson-title,.source-heading),
+#app :is(.learn-extra-copy,.practice-catalog,.source-body,.staff-direct-lessons,.discover-copy) :is(h2,h3,h4,h5,h6),
+#app .staff-direct-lessons .staff-topic-card .source-body :is(h2,h3,h4,h5,h6),
+#app .learn-extra .learn-extra-copy h3 { color:#ffffff!important; -webkit-text-fill-color:#ffffff!important; }
