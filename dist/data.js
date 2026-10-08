@@ -488,3 +488,95 @@ export const mathTermsGroups=[
     ]
   }
 ];
+
+export const pokerExtraTermsGroups=[
+  {
+    title:'GÍRIAS E PERFIS',
+    terms:[
+      ['FISH','Jogador considerado inexperiente ou que comete muitos erros. Termo informal e muitas vezes pejorativo.'],
+      ['SHARK','Jogador experiente e tecnicamente forte.'],
+      ['WHALE','Jogador recreativo que costuma movimentar valores altos.'],
+      ['NIT','Jogador extremamente seletivo e conservador.'],
+      ['MANIAC','Jogador muito agressivo e de range bastante amplo.'],
+      ['CALLING STATION','Jogador que paga muitas apostas e desiste pouco.'],
+      ['GRINDER','Jogador de grande volume que busca resultado consistente.'],
+      ['REG','Jogador regular e frequente em determinado jogo ou limite.']
+    ]
+  },
+  {
+    title:'LINHAS E JOGADAS',
+    terms:[
+      ['DONK BET','Aposta feita fora de posição contra o agressor da street anterior antes que ele possa agir.'],
+      ['SLOW PLAY','Jogar uma mão forte de forma passiva para esconder força e induzir ações posteriores.'],
+      ['TRAP','Armadilha: linha usada para induzir o adversário a apostar ou aumentar com uma mão pior.'],
+      ['CHECK-RAISE','Dar check e depois aumentar após uma aposta adversária.'],
+      ['CHECK-CALL','Dar check e depois pagar uma aposta.'],
+      ['CHECK-FOLD','Dar check e desistir diante de uma aposta.'],
+      ['BET-FOLD','Apostar e desistir se receber um raise.'],
+      ['FLOAT','Pagar uma aposta, frequentemente no flop, com intenção de disputar o pote em street posterior.'],
+      ['PROBE BET','Aposta feita após o agressor anterior deixar de apostar na street precedente.'],
+      ['DELAYED C-BET','Continuation bet feita uma street depois de optar por check na primeira oportunidade.'],
+      ['BARREL','Apostar em streets sucessivas.'],
+      ['DOUBLE BARREL','Apostar flop e turn em sequência.'],
+      ['TRIPLE BARREL','Apostar flop, turn e river em sequência.'],
+      ['LEAD','Apostar primeiro em uma street.'],
+      ['STAB','Aposta oportunista feita quando os adversários demonstram fraqueza.'],
+      ['BLOCK BET','Aposta pequena usada para controlar preço ou extrair valor específico.'],
+      ['OVERBET','Aposta maior que o tamanho atual do pote.'],
+      ['C-BET','Continuation bet: aposta do agressor anterior na street seguinte.']
+    ]
+  },
+  {
+    title:'SITUAÇÕES E RESULTADOS',
+    terms:[
+      ['BAD BEAT','Derrota de uma mão muito favorita após cartas improváveis.'],
+      ['COOLER','Confronto entre mãos muito fortes em que a perda é difícil de evitar.'],
+      ['SUCKOUT','Virada improvável de uma mão que estava atrás.'],
+      ['RIVERED','Ser superado por uma carta decisiva no river.'],
+      ['CRACKED','Quando uma mão premium acaba derrotada.'],
+      ['HERO CALL','Call difícil feito acreditando que o adversário está blefando.'],
+      ['HERO FOLD','Fold difícil de uma mão forte diante de ação que indica força superior.'],
+      ['SNAP CALL','Call feito quase imediatamente.'],
+      ['SNAP FOLD','Fold feito quase imediatamente.'],
+      ['TANK','Usar bastante tempo para tomar uma decisão.'],
+      ['SLOWROLL','Demorar sem necessidade para mostrar uma mão claramente vencedora no showdown.']
+    ]
+  },
+  {
+    title:'APELIDOS DE MÃOS',
+    terms:[
+      ['AA — POCKET ROCKETS / BULLETS','Apelidos tradicionais do par de ases.'],
+      ['KK — COWBOYS','Apelido tradicional do par de reis.'],
+      ['QQ — LADIES','Apelido tradicional do par de damas.'],
+      ['JJ — HOOKS','Apelido tradicional do par de valetes.'],
+      ['88 — SNOWMEN','Apelido do par de oito.'],
+      ['22 — DUCKS / DEUCES','Apelidos do par de dois.'],
+      ['AK — BIG SLICK','Apelido clássico de Ás-Rei.'],
+      ['KJ — KOJAK','Apelido tradicional de Rei-Valete.'],
+      ['T2 — DOYLE BRUNSON','Mão historicamente associada a Doyle Brunson.'],
+      ['72 — THE HAMMER','Apelido clássico de 7-2, especialmente offsuit.'],
+      ['93 — CHUCK NORRIS','Apelido usado em comunidades brasileiras para 9-3.'],
+      ['95 — DOLLY PARTON','Referência ao “9 to 5”.']
+    ]
+  },
+  {
+    title:'NOTAÇÃO E ABREVIAÇÕES',
+    terms:[
+      ['s','Suited: cartas do mesmo naipe, como AKs.'],
+      ['o','Offsuit: cartas de naipes diferentes, como AKo.'],
+      ['PP','Pocket pair.'],
+      ['SC','Suited connectors.'],
+      ['RFI','Raise First In.'],
+      ['VPIP','Frequência de entrada voluntária no pote.'],
+      ['PFR','Frequência de raise pré-flop.'],
+      ['WTSD','Went to Showdown.'],
+      ['W$SD','Won Money at Showdown.'],
+      ['AF','Aggression Factor.'],
+      ['MTT','Multi-Table Tournament.'],
+      ['SNG','Sit & Go.'],
+      ['PKO','Progressive Knockout.'],
+      ['KO','Knockout.'],
+      ['ITM','In The Money.']
+    ]
+  }
+];
