@@ -311,8 +311,8 @@ export const pokerTermsGroups=[
       ['FOLD','Abandonar a mão e abrir mão de disputar o pote. As fichas já investidas permanecem no pote. Fold não é simplesmente “perder”: muitas vezes é a decisão que evita investir mais em uma situação desfavorável.'],
       ['RAISE','Aumentar uma aposta já existente. O raise pode buscar valor, proteção, isolamento ou folds. Ele força os adversários a responder ao novo preço e pode aumentar rapidamente o tamanho do pote; por isso, posição, stack e tamanho do raise mudam bastante suas consequências.'],
       ['RE-RAISE','Novo aumento após um raise.'],
-      ['3-BET','Segundo aumento de uma sequência de apostas.'],
-      ['4-BET','Terceiro aumento de uma sequência de apostas.'],
+      ['3-BET','Re-raise sobre um raise anterior. No pré-flop, a sequência típica é: blind, open raise e então 3-bet. Pode ser usada por valor, blefe ou isolamento. Seu tamanho altera o pote, o SPR e as decisões das streets seguintes.'],
+      ['4-BET','Novo aumento sobre uma 3-bet. No pré-flop, costuma representar ranges mais fortes ou blefes selecionados. Como o pote cresce rapidamente, stacks efetivos e possibilidade de all-in passam a ser decisivos.'],
       ['MIN-RAISE','Menor aumento completo permitido pela regra.'],
       ['OPEN','Primeira entrada voluntária no pote por aposta ou raise.'],
       ['OPEN RAISE','Primeiro raise voluntário pré-flop.'],
@@ -392,6 +392,7 @@ export const pokerTermsGroups=[
     terms:[
       ['BLUFF','Aposta ou raise feito principalmente para fazer mãos melhores desistirem. Um blefe funciona quando representa força de forma coerente e existe chance suficiente de fold. Se for usado contra jogadores ou ranges que quase nunca desistem, perde eficiência.'],
       ['SEMI-BLUFF','Bluff com uma mão que ainda pode melhorar.'],
+      ['SQUEEZE','Re-raise pré-flop feito depois de um raise e de pelo menos um call. A jogada pressiona o raiser original e também os callers. Pode ser usada por valor ou blefe, mas depende de posição, stacks, tamanho do raise e perfil dos adversários.'],
       ['VALUE BET','Aposta feita porque existem mãos piores capazes de pagar. O objetivo não é apenas “ter uma mão forte”, mas escolher um valor que extraia fichas de uma parte suficiente do range adversário sem afastar todas as mãos piores.'],
       ['THIN VALUE','Aposta por valor em situação de vantagem pequena.'],
       ['RANGE','Conjunto de mãos possíveis que um jogador pode representar em determinada situação. Em vez de tentar adivinhar uma única mão, o raciocínio por range considera várias combinações compatíveis com posição, ações anteriores, tamanhos de aposta e perfil do jogador.'],
@@ -414,6 +415,9 @@ export const pokerTermsGroups=[
       ['CALLING STATION','Jogador que paga muitas apostas e desiste pouco.'],
       ['MANIAC','Jogador excessivamente agressivo e de range muito amplo.'],
       ['REG','Jogador regular, frequente e geralmente experiente.'],
+      ['REC / RECREATIONAL','Abreviação de recreational player: jogador recreativo, normalmente participa principalmente por lazer e pode ter menor volume ou estudo técnico. É uma descrição de perfil, não uma medida automática de habilidade.'],
+      ['REG / REGULAR','Jogador regular de determinado jogo, limite ou circuito. Em geral possui maior volume e familiaridade com o ambiente, mas “reg” não significa necessariamente profissional ou vencedor.'],
+      ['PRO / PROFESSIONAL','Jogador profissional: pessoa que trata o poker como atividade profissional ou fonte relevante de renda. O termo descreve relação com a atividade, não garante nível técnico ou resultado.'],
       ['RECREATIONAL PLAYER','Jogador que participa principalmente por lazer.'],
       ['TELL','Comportamento que pode fornecer informação sobre uma mão.'],
       ['TABLE IMAGE','Percepção que a mesa construiu sobre o estilo de um jogador.']
@@ -422,22 +426,27 @@ export const pokerTermsGroups=[
   {
     title:'TORNEIOS E CASH GAME',
     terms:[
-      ['BUY-IN','Valor necessário para entrar no jogo ou torneio.'],
-      ['REBUY','Nova compra de fichas permitida em certas estruturas.'],
-      ['ADD-ON','Compra adicional de fichas em momento específico do torneio.'],
-      ['RE-ENTRY','Nova entrada no torneio após eliminação, quando permitida.'],
-      ['FREEZEOUT','Torneio sem re-entry após a eliminação.'],
-      ['LATE REGISTRATION','Período em que novas entradas ainda são aceitas após o início.'],
-      ['BLIND LEVEL','Período com valores específicos de blinds e ante.'],
-      ['BUBBLE','Fase imediatamente anterior à zona de premiação.'],
-      ['IN THE MONEY (ITM)','Jogador já garantido na faixa de premiação.'],
-      ['FINAL TABLE','Mesa final de um torneio.'],
-      ['HEADS-UP','Disputa final ou mesa entre dois jogadores.'],
-      ['CHIP LEADER','Jogador com maior stack em determinado momento.'],
-      ['SHORT STACK','Stack pequeno em relação aos blinds ou adversários.'],
-      ['DEEP STACK','Stack grande em relação aos blinds.'],
-      ['CASH GAME','Jogo em que as fichas representam valor monetário direto.'],
-      ['TABLE LIMIT','Limites mínimos e máximos definidos para uma mesa.']
+      ['BUY-IN','Valor necessário para entrar em um jogo ou torneio. Em torneios, normalmente inclui a parcela destinada à premiação e a taxa da organização.'],
+      ['MTT — MULTI-TABLE TOURNAMENT','Torneio disputado em várias mesas ao mesmo tempo. Conforme jogadores são eliminados, as mesas são balanceadas e consolidadas até restar a mesa final.'],
+      ['ICM — INDEPENDENT CHIP MODEL','Modelo usado em torneios para estimar o valor monetário relativo dos stacks considerando fichas e estrutura de premiação. Perto da bolha ou de grandes saltos de prêmio, uma ficha perdida pode custar mais do que uma ficha ganha acrescenta em valor.'],
+      ['BUBBLE / BOLHA','Fase imediatamente anterior à entrada na premiação ou a outro corte relevante, como mesa final. A pressão de eliminação muda bastante a estratégia porque stacks médios e curtos podem evitar riscos que aceitariam em outras fases.'],
+      ['FIELD','Conjunto total de participantes de um torneio. Field pequeno, médio ou grande altera duração, variância, quantidade de mesas e caminho necessário até as premiações finais.'],
+      ['HIGH ROLLER','Torneio ou evento com buy-in significativamente mais alto que o padrão da série ou circuito. O termo descreve principalmente o nível de entrada, não necessariamente a habilidade individual dos participantes.'],
+      ['TURBO','Estrutura de torneio com níveis de blinds mais curtos que o padrão. Os stacks perdem profundidade mais rápido, aumentando a frequência de decisões pré-flop e situações de all-in.'],
+      ['HYPER-TURBO / HIGH TURBO','Estrutura ainda mais rápida que um turbo. “Hyper-turbo” é o termo mais comum. Os níveis sobem muito depressa e a relação entre stack e blinds cai rapidamente, exigindo decisões mais comprimidas.'],
+      ['REBUY','Compra adicional de fichas permitida em determinada fase sem necessariamente exigir eliminação, conforme a estrutura do evento. Regras de quantidade, valor e momento variam por torneio.'],
+      ['RE-ENTRY / REENTRY','Nova entrada no torneio após eliminação, criando uma nova participação. Diferente do rebuy, normalmente a entrada anterior terminou e o jogador volta como uma nova inscrição.'],
+      ['ADD-ON','Compra adicional de fichas oferecida em momento específico, normalmente ao fim do período de rebuy. Pode estar disponível mesmo para jogadores que ainda possuem fichas.'],
+      ['FREEZEOUT','Formato em que cada jogador possui uma única entrada. Após perder todas as fichas, está eliminado e não pode fazer re-entry.'],
+      ['LATE REGISTRATION','Período em que novas entradas ainda são aceitas depois do início do torneio. Entrar tarde reduz o tempo de jogo inicial e pode significar começar com menos big blinds.'],
+      ['BLIND LEVEL','Período durante o qual blinds e, quando aplicável, antes permanecem em valores definidos. Ao fim do nível, os valores aumentam conforme a estrutura.'],
+      ['IN THE MONEY (ITM)','Situação em que o jogador já garantiu uma colocação premiada. Estar ITM não significa necessariamente ter lucro, pois isso depende do valor do buy-in e da premiação recebida.'],
+      ['FINAL TABLE','Última mesa de um torneio, formada quando restam apenas jogadores suficientes para uma mesa. Os saltos de premiação tendem a tornar ICM ainda mais importante.'],
+      ['CHIP LEADER','Jogador com o maior stack em determinado momento. Um stack grande pode aumentar a capacidade de pressionar adversários, especialmente em fases sensíveis a ICM.'],
+      ['SHORT STACK','Stack pequeno em relação aos blinds. Quanto menor o número de big blinds, menor a margem para jogar várias streets e maior a importância das decisões pré-flop.'],
+      ['DEEP STACK','Stack grande em relação aos blinds. A profundidade cria mais espaço para decisões pós-flop e amplia o impacto de posição, tamanhos de aposta e ranges.'],
+      ['CASH GAME','Jogo em que as fichas representam valor monetário direto. Diferentemente de torneios, não existe escalada obrigatória de blinds nem premiação por colocação.'],
+      ['TABLE LIMIT','Limites mínimos e máximos definidos para uma mesa, incluindo blinds, buy-in e outras regras de entrada.']
     ]
   },
   {
@@ -512,7 +521,7 @@ export const pokerExtraTermsGroups=[
       ['MANIAC','Jogador muito agressivo e de range bastante amplo.'],
       ['CALLING STATION','Jogador que paga muitas apostas e desiste pouco.'],
       ['GRINDER','Jogador de grande volume que busca resultado consistente.'],
-      ['REG','Jogador regular e frequente em determinado jogo ou limite.']
+      ['REG','Abreviação de regular: jogador frequente em determinado jogo, limite ou circuito. Costuma conhecer bem a dinâmica local e acumular volume, mas ser reg não significa automaticamente ser profissional.']
     ]
   },
   {
