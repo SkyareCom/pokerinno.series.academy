@@ -1288,3 +1288,9 @@ input,select,textarea{font-family:inherit;font-size:14px}
 #app .staff-direct-lessons .staff-lesson-topic h4{font-size:14px!important;font-weight:600!important;line-height:1.4!important;color:var(--gold)!important;margin:0 0 10px!important}
 #app .staff-direct-lessons .staff-lesson-topic p{font-size:14px!important;font-weight:400!important;line-height:1.6!important;margin:0!important}
 #app .staff-direct-lessons .staff-lesson-topic p+p{margin-top:14px!important}
+
+/* Staff topic cards follow the same Academy card rhythm. */
+#app .staff-direct-lessons .staff-topic-card{margin:0!important;padding:14px!important}
+#app .staff-direct-lessons .staff-topic-card h4{margin:0 0 10px!important;font-size:14px!important;font-weight:600!important;line-height:1.4!important;color:var(--gold)!important}
+#app .staff-direct-lessons .staff-topic-card .source-body p{font-size:14px!important;font-weight:400!important;line-height:1.6!important;margin:0!important}
+#app .staff-direct-lessons .staff-topic-card .source-body p+p{margin-top:14px!important}
