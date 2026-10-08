@@ -61,7 +61,7 @@ const bettingIntegratedLessons=()=>{
  return '<div class="betting-learning-path">'+sections.map(([number,title,entries])=>{
   const unique=entries.filter(e=>{const key=e.title.toLowerCase();if(seen.has(key))return false;seen.add(key);return true});
   const cards=unique.flatMap(split).join('');
-  return cards?`<section class="betting-learning-module"><header class="betting-topic-heading"><span>${number}</span><h3>${title}</h3></header><div class="betting-info-grid">${cards}</div></section>`:'';
+  return cards?`<section class="betting-learning-module"><div class="betting-info-grid">${cards}</div></section>`:'';
  }).join('')+'</div>';
 };
 const sourceGroup=(title,items,tag)=>`<section class="source-group"><div class="section-top"><h2>${title}</h2><span>BASE ACADEMY</span></div>${items.filter(Boolean).map(x=>sourceLesson(x,tag)).join('')}</section>`;
