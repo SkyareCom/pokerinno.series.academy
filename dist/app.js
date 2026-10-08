@@ -104,7 +104,7 @@ const staffDirectLessons=items=>{
    const heading=lesson.querySelector(':scope > h3');
    const title=heading?.textContent.trim()||'';
    const body=[...lesson.children].filter(el=>el!==heading).map(el=>el.outerHTML).join('');
-   if(!body.trim())return '';
+   if(!body.trim()||title.toUpperCase().replace(/[?!]/g,'').trim()==='QUANDO CHAMAR O FLOOR')return '';
    return '<article class="betting-info-card staff-topic-card">'+(title&&title.toUpperCase()!=='FUNÇÕES DO STAFF'?'<h4>'+title+'</h4>':'')+'<div class="betting-info-content source-body">'+body+'</div></article>';
   }).filter(Boolean);
  });
