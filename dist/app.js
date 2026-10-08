@@ -22,22 +22,35 @@ const verdePrat=Object.fromEntries((academyVerde9.PRAT||[]).map(x=>[x.id,x]));
 const verdeRuleSubs=Object.fromEntries(((verdeFund.rules&&verdeFund.rules.sub)||[]).map(x=>[x.id,x]));
 const sourceLesson=(item,tag='APROFUNDAMENTO')=>item?`<details class="source-lesson"><summary>${tag?`<span>${tag}</span>`:''}<strong>${item.t?.pt||item.title||'CONTEÚDO'}</strong><small>${item.d?.pt||item.lead||''}</small></summary><div class="source-body">${item.html||`<p>${item.lead||item.d?.pt||''}</p>`}</div></details>`:'';
 /* Betting chapter: merge complete reference lessons into the main reading flow, without expandable cards. */
+/* Progressive betting lessons: structured cards with full original teaching material. */
 const bettingIntegratedLessons=()=>{
-  const lessons=[verdeFund.seq,verdeRuleSubs.fichas,verdeRuleSubs.assentos].filter(Boolean);
-  const seen=new Set();
-  return lessons.map(item=>{
-    const title=item.t?.pt||item.title||'';
-    const raw=item.html||`<p>${item.lead||item.d?.pt||''}</p>`;
-    const wrapper=document.createElement('div');wrapper.innerHTML=raw;
-    // Keep the most informative occurrence of repeated paragraphs; retain complementary explanations.
-    for(const el of [...wrapper.querySelectorAll('p,li')]){
-      const key=el.textContent.replace(/\\s+/g,' ').trim().toLocaleLowerCase('pt-BR');
-      if(!key)continue;
-      if(seen.has(key)){el.remove();continue}
-      seen.add(key);
-    }
-    return `<section class="discover-section betting-integrated-lesson"><h3>${title}</h3><div class="betting-integrated-body">${wrapper.innerHTML}</div></section>`;
-  }).join('');
+ const lessons=[
+  {item:verdeFund.seq,label:'01 · ORDEM DAS AÇÕES',intro:'Entenda quem age primeiro, como a ação circula e quando uma rodada termina.'},
+  {item:verdeRuleSubs.fichas,label:'02 · VALORES E FICHAS',intro:'Relacione stack, buy-in e movimentação das fichas às decisões na mesa.'},
+  {item:verdeRuleSubs.assentos,label:'03 · BUTTON E ASSENTOS',intro:'Aplique as regras de posição, blinds e situações especiais.'}
+ ].filter(x=>x.item);
+ const seen=new Set();
+ return '<div class="betting-learning-path">'+lessons.map(({item,label,intro})=>{
+  const title=item.t?.pt||item.title||'CONCEITOS ESSENCIAIS';
+  const root=document.createElement('div');root.innerHTML=item.html||`<p>${item.lead||item.d?.pt||''}</p>`;
+  for(const el of [...root.querySelectorAll('p,li')]){
+   const key=el.textContent.replace(/\\s+/g,' ').trim().toLocaleLowerCase('pt-BR');
+   if(!key)continue;
+   if(seen.has(key))el.remove();else seen.add(key);
+  }
+  const blocks=[];let current=[];let subtitle='';
+  const flush=()=>{if(current.length){blocks.push({subtitle,html:current.join('')});current=[]}};
+  for(const node of [...root.children]){
+   if(/^H[2-4]$/.test(node.tagName)){
+    flush();subtitle=node.textContent.trim();
+   }else if(node.classList.contains('lg')||node.classList.contains('cg')||node.classList.contains('compare')||node.classList.contains('ranking')||node.classList.contains('steps')){
+    flush();blocks.push({subtitle,html:node.outerHTML});subtitle='';
+   }else current.push(node.outerHTML);
+  }
+  flush();
+  const cards=blocks.filter(b=>b.html.replace(/<[^>]*>/g,'').trim()).map((b,i)=>`<article class="betting-info-card"><div class="betting-info-index">${String(i+1).padStart(2,'0')}</div>${b.subtitle?`<h4>${b.subtitle}</h4>`:''}<div class="betting-info-content source-body">${b.html}</div></article>`).join('');
+  return `<section class="betting-learning-module"><header class="betting-module-heading"><span class="eyebrow">${label}</span><h3>${title}</h3><p>${intro}</p></header><div class="betting-info-grid">${cards}</div></section>`;
+ }).join('')+'</div>';
 };
 const sourceGroup=(title,items,tag)=>`<section class="source-group"><div class="section-top"><h2>${title}</h2><span>BASE ACADEMY</span></div>${items.filter(Boolean).map(x=>sourceLesson(x,tag)).join('')}</section>`;
 const quote=`<div class="quote">“Poker é um jogo que demora minutos para aprender. Mas leva uma vida para dominar.”<small>— MIKE SEXTON</small></div>`;
