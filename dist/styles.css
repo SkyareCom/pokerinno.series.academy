@@ -1072,13 +1072,38 @@ main,#app{
 /* Approved typography scale: 10 footer · 12 · 14 · 20 · 25 · 40 */
 footer,
 .mobile-nav{
-  font-size:10px;
+  font-size:12px;
 }
 footer *,
 .mobile-nav *{
-  font-size:10px;
+  font-size:12px;
 }
 
 /* Character image visibility fix */
 .pokerinno-context-art .pokerinno-sprite,.learn-extra-host .pokerinno-sprite{width:100%;height:100%;min-height:122px;flex:1 1 auto;background-image:url("./assets/pokerinno-contexts.webp");background-repeat:no-repeat;background-size:500% 300%;}
 .pokerinno-context-art,.learn-extra-host{display:flex;align-items:stretch;overflow:hidden;}
+
+/* Final typography contract */
+footer, footer *, .mobile-nav, .mobile-nav *{
+  font-size:10px !important;
+}
+
+/* Guaranteed Pokerinno image fallback — visible in every contextual card */
+.pokerinno-sprite{
+  display:block !important;
+  width:100% !important;
+  height:100% !important;
+  min-width:72px !important;
+  min-height:104px !important;
+  background-image:url("./assets/pokerino-hero.webp") !important;
+  background-repeat:no-repeat !important;
+  background-size:cover !important;
+  background-position:center center !important;
+  opacity:1 !important;
+}
+.pokerinno-host,
+.pokerinno-context-art,
+.learn-extra-host{
+  min-height:104px !important;
+  overflow:hidden !important;
+}
