@@ -188,3 +188,9 @@ body.login-screen #app .entry-form>h2{font-size:16px!important}
 .pokerinno-speech .primary{padding:8px 10px;min-height:36px}
 .pokerinno-speech-controls{margin-top:8px}
 .pokerinno-speech-controls>button{grid-column:2;grid-row:1;justify-self:end}
+
+/* Numbered balloon navigation inside the speech area. */
+.pokerinno-speech-actions{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.pokerinno-balloon-pages{display:flex;align-items:center;gap:4px}
+.pokerinno-page{display:grid;place-items:center;flex:0 0 24px;width:24px;height:24px;border:1px solid var(--gold);border-radius:50%;padding:0;background:transparent;color:#f4f2e7;font-size:12px;line-height:1}
+.pokerinno-page.active{background:var(--gold);color:#142017}
