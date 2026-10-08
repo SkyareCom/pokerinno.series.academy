@@ -185,3 +185,291 @@ main{position:relative}
     line-height:1.5;
   }
 }
+
+
+/* Visual consistency audit — global layout/card system */
+html,body{
+  width:100%;
+  max-width:100%;
+  overflow-x:hidden;
+}
+.workspace,main,#app,
+.grid,.list,.next-grid,.next-apps,
+.page-heading,.section-top,.setting,.empty{
+  min-width:0;
+  max-width:100%;
+}
+.workspace{
+  width:calc(100% - 244px);
+}
+main,#app{
+  width:100%;
+}
+.grid{
+  grid-template-columns:repeat(4,minmax(0,1fr));
+}
+.next-grid{
+  grid-template-columns:repeat(3,minmax(0,1fr));
+}
+
+/* Equivalent feature cards share the same geometry */
+.feature{
+  width:100%;
+  min-width:0;
+  min-height:176px;
+  height:176px;
+  padding:18px;
+  overflow:hidden;
+}
+.feature .badge{
+  flex:0 0 auto;
+  width:38px;
+  height:38px;
+  margin-bottom:14px;
+}
+.feature .arrow{
+  right:16px;
+  top:20px;
+}
+.feature h3{
+  width:100%;
+  min-height:2.4em;
+  max-height:2.4em;
+  line-height:1.2;
+  overflow:hidden;
+  margin:0;
+}
+.feature p{
+  width:100%;
+  margin-top:7px;
+  line-height:1.35;
+}
+
+/* List/navigation cards share one compact rhythm */
+.chapter:not(.lesson-block){
+  width:100%;
+  min-height:84px;
+  padding:17px 18px;
+  gap:14px;
+}
+.chapter:not(.lesson-block) .number{
+  flex:0 0 42px;
+  width:42px;
+}
+.chapter:not(.lesson-block)>div{
+  display:flex;
+  min-width:0;
+  flex:1 1 auto;
+  flex-direction:column;
+  justify-content:center;
+}
+.chapter:not(.lesson-block) h3{
+  line-height:1.2;
+  margin:0;
+}
+.chapter:not(.lesson-block) p{
+  margin-top:5px;
+  line-height:1.35;
+}
+
+/* Lesson cards grow with content and never clip copy */
+.lesson-block{
+  width:100%;
+  min-height:0;
+  height:auto;
+  align-items:flex-start;
+  padding:18px;
+  gap:14px;
+}
+.lesson-block .number{
+  flex:0 0 42px;
+  width:42px;
+}
+.lesson-block>div{
+  min-width:0;
+  flex:1 1 auto;
+}
+.lesson-block h3{
+  line-height:1.2;
+}
+.lesson-block p{
+  width:100%;
+  white-space:normal;
+  overflow:visible;
+  text-overflow:clip;
+  overflow-wrap:anywhere;
+  word-break:normal;
+}
+
+/* Secondary cards */
+.next-app{
+  width:100%;
+  min-width:0;
+  min-height:78px;
+  height:78px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:14px 32px 14px 15px;
+  overflow:hidden;
+}
+.next-app span{
+  width:100%;
+}
+.empty{
+  overflow:hidden;
+}
+.setting>div{
+  min-width:0;
+  flex:1 1 auto;
+}
+
+/* Headings must remain inside viewport */
+.page-heading>div{
+  min-width:0;
+  max-width:100%;
+}
+.page-heading h1,
+.page-heading p,
+.section-top h2{
+  max-width:100%;
+  overflow-wrap:anywhere;
+}
+.page-heading p{
+  line-height:1.4;
+}
+
+/* Tablet */
+@media(max-width:1100px){
+  .workspace{
+    width:calc(100% - 205px);
+  }
+  .grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+}
+
+/* Mobile */
+@media(max-width:700px){
+  .workspace{
+    width:100%;
+    max-width:100%;
+  }
+  main{
+    width:100%;
+    max-width:100%;
+    padding-left:18px;
+    padding-right:18px;
+    overflow-x:hidden;
+  }
+  #app{
+    width:100%;
+    max-width:100%;
+    overflow-x:hidden;
+  }
+  .page-heading{
+    width:100%;
+    align-items:flex-end;
+  }
+  .grid{
+    width:100%;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:10px;
+  }
+  .feature{
+    min-height:160px;
+    height:160px;
+    padding:14px;
+  }
+  .feature .badge{
+    width:38px;
+    height:38px;
+    margin-bottom:12px;
+  }
+  .feature .arrow{
+    top:18px;
+    right:13px;
+  }
+  .feature h3{
+    font-size:15px;
+    min-height:2.4em;
+    max-height:2.4em;
+    line-height:1.2;
+  }
+  .feature p{
+    font-size:11px;
+    margin-top:6px;
+    line-height:1.3;
+  }
+  .chapter:not(.lesson-block){
+    min-height:76px;
+    padding:14px 12px;
+    gap:9px;
+  }
+  .chapter:not(.lesson-block) .number{
+    flex-basis:34px;
+    width:34px;
+    font-size:20px;
+  }
+  .chapter:not(.lesson-block) h3{
+    font-size:15px;
+  }
+  .chapter:not(.lesson-block) p{
+    font-size:11px;
+    margin-top:4px;
+  }
+  .chapter:not(.lesson-block) .status{
+    flex:0 0 18px;
+    width:18px;
+    max-width:18px;
+    text-align:center;
+  }
+  .lesson-block{
+    padding:16px 13px;
+    gap:10px;
+  }
+  .lesson-block .number{
+    flex-basis:34px;
+    width:34px;
+    font-size:20px;
+  }
+  .lesson-block h3{
+    font-size:15px;
+  }
+  .lesson-block p{
+    font-size:12px;
+    line-height:1.5;
+  }
+  .next-grid{
+    grid-template-columns:1fr;
+  }
+  .next-app{
+    min-height:72px;
+    height:72px;
+  }
+  .setting{
+    min-width:0;
+  }
+}
+
+/* Narrow phones keep two-column action cards without overflow */
+@media(max-width:390px){
+  main{
+    padding-left:14px;
+    padding-right:14px;
+  }
+  .grid{
+    gap:8px;
+  }
+  .feature{
+    min-height:154px;
+    height:154px;
+    padding:12px;
+  }
+  .feature h3{
+    font-size:14px;
+  }
+  .feature p{
+    font-size:10px;
+  }
+}
