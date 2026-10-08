@@ -154,5 +154,10 @@
   "visual.positionNote": "Seat map: mentioned positions are highlighted. This diagram does not indicate the answer or action order.",
   "visual.street": "Which betting round do the board cards below represent?",
   "visual.texture": "What is the texture of the board below?",
-  "ui.back": "BACK"
+  "ui.back": "BACK",
+  "learn.procedures": "CASES AND PROCEDURES",
+  "procedure.quantity": "Correcting an incorrect number of cards also depends on being able to identify the cards reliably; the Floor determines the procedure.",
+  "procedure.flop": "Other errors, such as a two-card flop or a flop opened before preflop action ends, also require a pause. Players do not choose which cards remain on the board or remove extra cards by agreement: the official procedure preserves randomness.",
+  "procedure.deck": "A card from another deck or a foreign object also requires stopping to check deck integrity before continuing.",
+  "procedure.authority": "House rules and the responsible official’s decision prevail; the dealer should not improvise an important correction."
 }

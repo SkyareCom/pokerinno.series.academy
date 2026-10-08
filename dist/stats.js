@@ -1,8 +1,8 @@
-import {accuracyDonut,comparisonBars,xpLine} from './stats-charts.js?v=back-buttons-20261008';
+import {accuracyDonut,comparisonBars,xpLine} from './stats-charts.js?v=procedures-direct-20261008';
 import {xpSummary,dailyRanking,pokerLevels} from './xp.js';
-import {t} from './i18n.js?v=back-buttons-20261008';
-import {results,percent,savedResults,pendingCount,autoSave} from './progress.js?v=back-buttons-20261008';
-import {practiceModules} from './practice-modules.js?v=back-buttons-20261008';
+import {t} from './i18n.js?v=procedures-direct-20261008';
+import {results,percent,savedResults,pendingCount,autoSave} from './progress.js?v=procedures-direct-20261008';
+import {practiceModules} from './practice-modules.js?v=procedures-direct-20261008';
 let filter='all';
 const score=rows=>percent(rows.filter(x=>x.correct).length,rows.length);
 export function statsDashboard(){const all=results(),rows=filter==='week'?all.filter(x=>x.at>=Date.now()-7*86400000):all;const xp=xpSummary(all),ranking=dailyRanking(all);const correct=rows.filter(x=>x.correct).length,latest=new Map(rows.map(x=>[x.module+'/'+x.question,x])),total=practiceModules.reduce((n,m)=>n+m.quiz.length,0);const half=Math.floor(rows.length/2),before=rows.slice(0,half),after=rows.slice(half);const topics=['rules','staff','formats','terms','math','decisions'].map(theme=>({theme,rows:rows.filter(x=>x.theme===theme),total:practiceModules.filter(x=>x.theme===theme).reduce((n,m)=>n+m.quiz.length,0)}));const tested=topics.filter(x=>x.rows.length),strong=[...tested].sort((a,b)=>score(b.rows)-score(a.rows)),weak=[...tested].sort((a,b)=>score(a.rows)-score(b.rows));

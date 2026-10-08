@@ -1,3 +1,3 @@
-import {t} from './i18n.js?v=back-buttons-20261008';
-export function backTarget(route){if(route.startsWith('profile/'))return '#profile';if(route.startsWith('chapter/'))return '#journey';if(route.startsWith('practice-module/')||route.startsWith('practice-tool/')||route==='practice-bank')return '#practice';return null}
+import {t} from './i18n.js?v=procedures-direct-20261008';
+export function backTarget(route){if(route.startsWith('procedure/'))return '#chapter/rules';if(route.startsWith('profile/'))return '#profile';if(route.startsWith('chapter/'))return '#journey';if(route.startsWith('practice-module/')||route.startsWith('practice-tool/')||route==='practice-bank')return '#practice';return null}
 export function standardizeBack(app,route){const existing=app.querySelector('.back'),target=backTarget(route)||existing?.getAttribute('href');app.querySelectorAll('.back').forEach(link=>link.remove());if(target)app.insertAdjacentHTML('afterbegin',`<div class="page-actions"><a class="back app-back" href="${target}">${t('ui.back')}</a></div>`)}

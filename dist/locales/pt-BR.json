@@ -154,5 +154,10 @@
   "visual.positionNote": "Mapa dos assentos: as posições citadas estão destacadas. O diagrama não indica a resposta nem a ordem de ação.",
   "visual.street": "Em qual rodada de apostas estão as cartas do board abaixo?",
   "visual.texture": "Como se chama a textura do board abaixo?",
-  "ui.back": "VOLTAR"
+  "ui.back": "VOLTAR",
+  "learn.procedures": "CASOS E PROCEDIMENTOS",
+  "procedure.quantity": "A possibilidade de corrigir uma quantidade incorreta de cartas também depende de conseguir identificar as cartas com segurança; quem define o procedimento é o Floor.",
+  "procedure.flop": "Outros erros, como flop com duas cartas ou aberto antes de terminar a ação pré-flop, também exigem interrupção. Jogadores não escolhem quais cartas ficam no board nem retiram cartas extras por consenso: o procedimento oficial preserva a aleatoriedade.",
+  "procedure.deck": "Uma carta de outro baralho ou elemento estranho no deck também exige paralisação para conferir a integridade do baralho antes de continuar.",
+  "procedure.authority": "A regra da casa e a decisão do responsável prevalecem; o dealer não deve improvisar uma correção importante."
 }

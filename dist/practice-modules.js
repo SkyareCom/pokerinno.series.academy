@@ -1,6 +1,6 @@
 import {academyVerde9} from './academy-verde9-content.js';
-import {t} from './i18n.js?v=back-buttons-20261008';
-import {sourceQuiz} from './source-quiz.js?v=back-buttons-20261008';
+import {t} from './i18n.js?v=procedures-direct-20261008';
+import {sourceQuiz} from './source-quiz.js?v=procedures-direct-20261008';
 const fund=academyVerde9.FUND||[],rules=fund.find(x=>x.id==='rules')?.sub||[];
 const pick=ids=>fund.filter(x=>ids.includes(x.id));
 export const practiceThemes=[
