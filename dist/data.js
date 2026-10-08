@@ -1,4 +1,13 @@
-export const chapters=[['discover','Descobrir o jogo','Primeiro contato com o poker.'],['rules','Conhecer as regras','Regras, termos e dinâmica.'],['decisions','Entender as decisões','Observe, decida e aja.'],['formats','Explorar modalidades','Conheça outras modalidades.'],['practice','Preparar-se para a mesa','Pratique o básico e comece a jogar.']].map(([id,title,description],i)=>({id,title,description,order:i+1,lessons:[]}));
+export const chapters=[
+['discover','Descobrir o jogo','Primeiro contato com o poker.'],
+['rules','Regras básicas','Estrutura e fluxo de uma mão.'],
+['betting','Apostas e all-in','Valores, raises e potes.'],
+['dealing','Erros e correções','Distribuição e cartas incorretas.'],
+['floor','Floor e conduta','Conflitos, decisões e penalidades.'],
+['decisions','Entender as decisões','Observe, decida e aja.'],
+['formats','Explorar modalidades','Conheça outras modalidades.'],
+['practice','Preparar-se para a mesa','Pratique o básico e comece a jogar.']
+].map(([id,title,description],i)=>({id,title,description,order:i+1,lessons:[]}));
 export const emptyAdapter={async load(){return {user:null,chapters,modalities:[],challenges:[],results:[],achievements:[],progress:[]}}};
 export async function loadAcademy(adapter=emptyAdapter){try{return {status:'ready',data:await adapter.load(),error:null}}catch{return {status:'error',data:null,error:'Não foi possível carregar sua jornada.'}}}
 
@@ -200,3 +209,40 @@ export const rulesGroups=[
   }
 ];
 
+
+export const rulesBasicSections=[
+  {type:'content',title:'RANKING E EMPATES',text:'Reconheça a força das mãos e use kickers quando a categoria for igual.'},
+  {type:'scene',title:'POSIÇÕES E BLINDS',text:'Button, Small Blind e Big Blind definem referências da mesa e ajudam a determinar a ordem da ação.'},
+  {type:'steps',title:'STREETS',items:['Pré-flop','Flop','Turn','River','Showdown']},
+  {type:'content',title:'AÇÕES BÁSICAS',text:'Check, bet, call, raise e fold formam o vocabulário principal de cada rodada.'},
+  {type:'content',title:'FIM DA MÃO',text:'A mão termina quando todos desistem, exceto um jogador, ou quando ocorre o showdown.'},
+  {type:'summary',title:'ESSENCIAL',items:['Saiba quem age.','Saiba quanto custa continuar.','Reconheça a melhor mão.']}
+];
+
+export const bettingSections=[
+  {type:'content',title:'APOSTA MÍNIMA',text:'A aposta inicial deve respeitar o mínimo previsto pela estrutura do jogo.'},
+  {type:'content',title:'RAISE MÍNIMO',text:'Um aumento completo precisa respeitar o tamanho mínimo definido pelo último aumento válido.'},
+  {type:'content',title:'ALL-IN CURTO',text:'Um all-in abaixo do raise mínimo pode ser válido sem necessariamente reabrir a ação para quem já agiu.'},
+  {type:'content',title:'AÇÃO REABERTA OU BLOQUEADA',text:'Quando houver dúvida se um all-in reabre a ação, dealer ou floor deve confirmar antes da próxima decisão.'},
+  {type:'content',title:'FICHA GRANDE E STRING BET',text:'Uma única ficha grande ou fichas colocadas em etapas podem ter interpretação específica. Anunciar a ação evita dúvida.'},
+  {type:'content',title:'SIDE POTS',text:'Stacks diferentes podem gerar pote principal e potes laterais entre jogadores elegíveis.'}
+];
+
+export const dealingSections=[
+  {type:'content',title:'PRÉ-FLOP INCORRETO',text:'Cartas faltando, extras, expostas ou distribuídas fora da ordem podem exigir correção ou misdeal.'},
+  {type:'content',title:'FLOP INCORRETO',text:'Flop prematuro, com número errado de cartas ou retirado incorretamente exige interrupção imediata da ação.'},
+  {type:'content',title:'TURN E RIVER PREMATUROS',text:'Uma carta aberta antes da conclusão da street anterior deve ser tratada pelo procedimento da regra local.'},
+  {type:'content',title:'CARTAS A MAIS',text:'Cartas extras no board não devem ser removidas por escolha dos jogadores. Dealer e floor aplicam a correção prevista.'},
+  {type:'content',title:'CARTA ESTRANHA OU DUPLICADA',text:'Uma carta impossível, de outro baralho ou duplicada de forma irregular exige paralisação e verificação.'},
+  {type:'summary',title:'REGRA PRÁTICA',items:['Pare a ação.','Preserve cartas e fichas.','Chame o dealer ou floor antes de continuar.']}
+];
+
+export const floorSections=[
+  {type:'host',eyebrow:'POKERINNO ORIENTA',title:'QUANDO CHAMAR O FLOOR',text:'Chame o floor quando houver dúvida real sobre regra, valor, ordem, cartas ou comportamento.',host:'Quanto menos a mesa mexer em cartas e fichas, mais fácil será resolver.'},
+  {type:'content',title:'APOSTAS CONTESTADAS',text:'Dúvidas sobre call, raise, all-in, ação reaberta ou valor apostado podem exigir decisão do floor.'},
+  {type:'content',title:'ERROS DE DISTRIBUIÇÃO',text:'Flop, turn ou river incorretos, mão com cartas a mais ou situação de misdeal podem exigir intervenção.'},
+  {type:'content',title:'POTE OU SHOWDOWN',text:'Pote incorreto, side pot, mão possivelmente morta ou leitura contestada devem ser resolvidos antes de mover as fichas.'},
+  {type:'content',title:'COMPORTAMENTO',text:'Ação fora da vez, exposição intencional, ofensas, ajuda externa e outras condutas inadequadas podem gerar intervenção.'},
+  {type:'steps',title:'COMO RESOLVER',items:['Pare a ação.','Não misture cartas nem fichas.','Explique o que aconteceu.','Aguarde a decisão.','Só então retome a mão.']},
+  {type:'content',title:'PENALIDADES POSSÍVEIS',text:'Advertência, mão morta, afastamento temporário, perda de mãos ou órbitas, desclassificação ou remoção podem ser aplicados conforme gravidade e regra local.'}
+];
