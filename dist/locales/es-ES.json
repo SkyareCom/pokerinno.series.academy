@@ -191,5 +191,13 @@
   "messages.optionDescription.forgetting": "Mi aviso al volver después de más de 3 días sin entrar.",
   "home.quote": "“EL PÓKER ES UN JUEGO QUE TARDAMOS UN MINUTO EN APRENDER, PERO UNA VIDA EN DOMINAR.”",
   "home.title": "APRENDER. PRACTICAR. JUGAR.",
-  "home.description": "Aprende a jugar al póker de forma interactiva."
+  "home.description": "Aprende a jugar al póker de forma interactiva.",
+  "home.cards.learn.title": "APRENDER.",
+  "home.cards.learn.description": "Fundamentos del juego.",
+  "home.cards.practice.title": "PRACTICAR.",
+  "home.cards.practice.description": "Principales modalidades.",
+  "home.cards.play.title": "JUGAR.",
+  "home.cards.play.description": "Decisiones y entrenamiento.",
+  "home.cards.dashboard.title": "DASHBOARD.",
+  "home.cards.dashboard.description": "Progreso y evolución."
 }
