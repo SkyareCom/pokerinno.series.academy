@@ -1253,3 +1253,12 @@ input,select,textarea{font-family:inherit;font-size:14px}
 #app .betting-info-card :is(p,li){font-size:14px;line-height:1.55;overflow-wrap:anywhere}
 #app .betting-info-card :is(strong,b){margin-right:.25em}
 #app .betting-info-card h4{font-size:14px;line-height:1.35;margin:0 0 10px}
+
+#app .betting-learning-path .betting-learning-module{margin:0!important;padding:0!important;border:0!important;background:transparent!important}
+#app .betting-learning-path .betting-info-grid{display:flex!important;flex-direction:column!important;gap:10px!important}
+#app .betting-learning-path .betting-info-card{margin:0!important;padding:14px!important;border:1px solid var(--line)!important;border-radius:16px!important;background:#0b231d!important}
+#app .betting-learning-path .betting-info-card h4{font-size:14px!important;line-height:1.4!important;margin:0 0 10px!important;color:var(--gold)!important}
+#app .betting-learning-path .betting-info-card .source-body{border:0!important;padding:0!important;margin:0!important;background:transparent!important;box-shadow:none!important}
+#app .betting-learning-path .betting-info-card .source-body .lc,#app .betting-learning-path .betting-info-card .source-body .cg,#app .betting-learning-path .betting-info-card .source-body .ch,#app .betting-learning-path .betting-info-card .source-body .ex{border:0!important;background:transparent!important;padding:0!important;margin:0!important;box-shadow:none!important}
+#app .betting-learning-path .betting-topic-heading{display:flex!important;align-items:center!important;gap:10px!important;margin:0 0 10px!important}
+#app .betting-learning-path .betting-topic-heading h3{font-size:16px!important;line-height:1.4!important;margin:0!important}
