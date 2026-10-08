@@ -8,7 +8,7 @@ export function resolveRoute(hash){
   if(aliases[key])return aliases[key];
   if(/^base\/\d+$/.test(key))return 'chapter/rules';
   if(/^modality\/\d+$/.test(key))return 'chapter/formats';
-    if(/^discover\///.test(key))return 'chapter/discover';
+  if(/^discover\//.test(key))return 'chapter/discover';
   if(routes.includes(key)||/^(?:chapter\/(discover|rules|betting|dealing|floor|decisions|formats|practice)|practice-tool\/\d+|profile\/(access|language|history|plans|coach|privacy))$/.test(key))return key;
   return 'home';
 }
