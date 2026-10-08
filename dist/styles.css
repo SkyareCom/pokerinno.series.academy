@@ -1276,3 +1276,6 @@ input,select,textarea{font-family:inherit;font-size:14px}
 #app .betting-review-pokerinno{margin-top:10px;margin-bottom:10px}
 #app .betting-review-pokerinno .pokerinno-context{margin:0!important}
 #app .betting-review-pokerinno .pokerinno-context p{line-height:1.6}
+
+/* Remove the redundant introductory staff roles card even if an older component renders it. */
+#app .staff-roles{display:none!important}
