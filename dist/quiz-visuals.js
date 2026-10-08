@@ -1,4 +1,4 @@
-import {t} from './i18n.js?v=procedures-direct-20261008';
+import {t} from './i18n.js?v=procedures-unified-20261008';
 const cardPattern='(?:10|[2-9AJQKT])\\s*[♠♥♦♣]\\uFE0F?';
 const cardRegex=()=>new RegExp(cardPattern,'g');
 const runRegex=()=>new RegExp(`${cardPattern}(?:[\\s,·]+${cardPattern})*`,'g');

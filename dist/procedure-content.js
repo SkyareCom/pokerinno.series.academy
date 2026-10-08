@@ -1,4 +1,4 @@
-import {t} from './i18n.js?v=procedures-direct-20261008';
+import {t} from './i18n.js?v=procedures-unified-20261008';
 import {academyVerde9} from './academy-verde9-content.js';
 import {dealingSections} from './data.js?v=learn-five-20261008';
 const originals=academyVerde9.FUND.find(x=>x.id==='rules').sub;
@@ -15,5 +15,5 @@ export const procedures=originals.filter(x=>['emb','mis','irr'].includes(x.id)).
  }
  return {...item,html};
 });
-export function procedureCards(){return `<div class="section-top"><h2>${t('learn.procedures')}</h2></div><div class="list procedure-cards">${procedures.map((item,i)=>`<a class="chapter" href="#procedure/${item.id}"><span class="number">${String(i+1).padStart(2,'0')}</span><div><h3>${item.t.pt.toUpperCase()}</h3><p>${item.d.pt}</p></div></a>`).join('')}</div>`}
+export function procedureCards(){return `<details class="source-lesson procedure-cards"><summary><strong>${t('learn.procedures')}</strong><small>${t('procedure.summary')}</small></summary><div class="source-body procedure-body">${procedures.map(item=>`<section><h2>${item.t.pt.toUpperCase()}</h2>${item.html}</section>`).join('')}</div></details>`}
 export function procedureDetail(id){const item=procedures.find(x=>x.id===id);if(!item)return procedureCards();return `<div class="page-heading"><div><span class="eyebrow">${t('learn.procedures')}</span><h1>${item.t.pt.toUpperCase()}</h1><p>${item.d.pt}</p></div></div><div class="source-body procedure-body">${item.html}</div>`}

@@ -155,9 +155,10 @@
   "visual.street": "¿Qué ronda de apuestas representan las cartas del board de abajo?",
   "visual.texture": "¿Cómo se llama la textura del board de abajo?",
   "ui.back": "VOLVER",
-  "learn.procedures": "CASOS Y PROCEDIMIENTOS",
+  "learn.procedures": "PROCEDIMIENTOS CON LAS CARTAS",
   "procedure.quantity": "La posibilidad de corregir una cantidad incorrecta de cartas también depende de poder identificar las cartas con seguridad; el Floor determina el procedimiento.",
   "procedure.flop": "Otros errores, como un flop de dos cartas o abierto antes de terminar la acción preflop, también exigen detenerse. Los jugadores no eligen qué cartas quedan en el board ni retiran cartas extra por consenso: el procedimiento oficial preserva la aleatoriedad.",
   "procedure.deck": "Una carta de otro mazo o un objeto extraño también exige detenerse para comprobar la integridad del mazo antes de continuar.",
-  "procedure.authority": "Prevalecen las reglas de la casa y la decisión del responsable; el dealer no debe improvisar una corrección importante."
+  "procedure.authority": "Prevalecen las reglas de la casa y la decisión del responsable; el dealer no debe improvisar una corrección importante.",
+  "procedure.summary": "Barajado, misdeal e irregularidades: comprende cómo preparar las cartas y corregir errores."
 }
