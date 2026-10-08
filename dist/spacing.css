@@ -134,7 +134,13 @@ body :is(.sidebar,.workspace,header,main,#app,dialog) :is(p,li,small,label,input
 body :is(.sidebar,.workspace,header,main,#app,dialog) :is(.source-body h1,.source-body h2){font-size:20px!important}
 body :is(.sidebar,.workspace,header,main,#app,dialog) :is(.source-body h3,.source-body h4,.source-body h5,.source-body h6){font-size:16px!important}
 body footer,body footer *,body .mobile-nav .nav-label,body .mobile-nav small,body .mobile-nav span:not(.nav-icon):not(.icon),body .mobile-nav a{font-size:10px!important}
-body .mobile-nav :is(svg,i,.nav-icon,.icon){font-size:12px!important;width:12px;height:12px}
+/* Five footer items: identical icon boxes and label baseline. */
+body .mobile-nav{align-items:stretch!important}
+body .mobile-nav a{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:flex-start!important;gap:5px!important;font-size:10px!important;line-height:14px!important}
+body .mobile-nav a>.nav-symbol{display:flex!important;align-items:center!important;justify-content:center!important;flex:0 0 12px!important;width:12px!important;height:12px!important;min-width:12px!important;min-height:12px!important;margin:0 auto!important;font-size:12px!important;line-height:12px!important}
+body .mobile-nav a>.nav-symbol svg{display:block!important;width:12px!important;height:12px!important;max-width:12px!important;max-height:12px!important;flex:none!important}
+body .mobile-nav a.active>.nav-symbol{box-shadow:none!important}
+
 
 /* User-approved title color: white for all titles, including cards and subcards. */
 #app :is(h1,h2,h3,h4,h5,h6,.page-title,.hero-title,.section-title,.chapter-heading,.section-heading,.card-title,.chapter-title,.lesson-title,.subcard-title,.sub-card-title),
