@@ -135,3 +135,9 @@ body :is(.sidebar,.workspace,header,main,#app,dialog) :is(.source-body h1,.sourc
 body :is(.sidebar,.workspace,header,main,#app,dialog) :is(.source-body h3,.source-body h4,.source-body h5,.source-body h6){font-size:16px!important}
 body footer,body footer *,body .mobile-nav .nav-label,body .mobile-nav small,body .mobile-nav span:not(.nav-icon):not(.icon),body .mobile-nav a{font-size:10px!important}
 body .mobile-nav :is(svg,i,.nav-icon,.icon){font-size:20px!important}
+
+/* Card headings: consistent Academy yellow across all sections. */
+#app :is(.chapter,.source-lesson,.discover-section,.discover-hero-card,.betting-info-card,.staff-topic-card,.staff-etiquette-feature,.learn-extra,.learn-extra-pokerinno,.glossary-term,.pokerinno-context,.card,.lesson-card,.topic-card) :is(h2,h3,h4,h5,h6),
+#app :is(.chapter,.source-lesson,.discover-section,.discover-hero-card,.betting-info-card,.staff-topic-card,.staff-etiquette-feature,.learn-extra,.learn-extra-pokerinno,.glossary-term,.pokerinno-context,.card,.lesson-card,.topic-card) :is(.card-title,.chapter-title,.lesson-title),
+#app .source-lesson > summary > strong,
+#app .staff-etiquette-feature summary > strong{color:var(--gold,#f7c75b)!important}
