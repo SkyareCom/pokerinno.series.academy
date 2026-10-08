@@ -48,12 +48,16 @@ const bettingIntegratedLessons=()=>{
     }
    }else if(node.classList.contains('ex')){
     const example=node.cloneNode(true);
-    const first=example.firstElementChild;
-    if(first&&/^(P|STRONG|B)$/.test(first.tagName)){
-     const lead=first.querySelector('strong,b')||(/^STRONG$|^B$/.test(first.tagName)?first:null);
-     if(lead&&/^EXEMPLO\\s*:/i.test(lead.textContent.trim()))lead.remove();
+    const walker=document.createTreeWalker(example,NodeFilter.SHOW_TEXT);
+    let textNode;
+    while((textNode=walker.nextNode())){
+     if(!textNode.textContent.trim())continue;
+     textNode.textContent=textNode.textContent.replace(/^\\s*(?:EXEMPLO|EXEMPLOS|EX\\.)\\s*[:：–—-]?\\s*/i,'');
+     break;
     }
-    parts.push('<div class="betting-inline-example"><strong>EXEMPLO:</strong> '+example.innerHTML+'</div>');
+    for(const el of [...example.querySelectorAll('strong,b')])if(!el.textContent.trim())el.remove();
+    parts.push('<div class="betting-inline-example"><span class="betting-example-label">EXEMPLO</span><div class="betting-example-text">'+example.innerHTML+'</div></div>');
+   }
    }else{
     parts.push(node.outerHTML);
    }
