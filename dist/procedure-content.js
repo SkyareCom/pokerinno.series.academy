@@ -1,4 +1,4 @@
-import {t} from './i18n.js?v=procedures-unified-20261008';
+import {t} from './i18n.js?v=cards-no-arrows-20261008';
 import {academyVerde9} from './academy-verde9-content.js';
 import {dealingSections} from './data.js?v=learn-five-20261008';
 const originals=academyVerde9.FUND.find(x=>x.id==='rules').sub;

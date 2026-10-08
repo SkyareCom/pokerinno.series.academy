@@ -51,3 +51,10 @@ body{line-height:var(--reading-line);letter-spacing:var(--copy-tracking);word-sp
 main{padding-inline:var(--page-gutter)}
 .mobile-nav a{letter-spacing:.025em;word-spacing:normal}
 @media(max-width:800px){:root{--page-gutter:16px}#app .source-body{padding-inline:var(--space-3)}#app .source-body :is(.lc,.ch,.ci,.ex,.tip,.rrow){padding:var(--space-3)}}
+
+/* Cards use their full surface as the affordance; no decorative arrows. */
+#app .learn-extra-pokerinno{grid-template-columns:30% minmax(0,1fr)}
+#app :is(.arrow,.learn-extra-arrow){display:none}
+#app summary{list-style:none}
+#app summary::marker{content:''}
+#app summary::-webkit-details-marker{display:none}
