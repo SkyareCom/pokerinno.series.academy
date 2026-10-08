@@ -1084,9 +1084,7 @@ footer *,
 .pokerinno-context-art,.learn-extra-host{display:flex;align-items:stretch;overflow:hidden;}
 
 /* Final typography contract */
-footer, footer *, .mobile-nav, .mobile-nav *{
-  font-size:10px !important;
-}
+
 
 /* Guaranteed Pokerinno image fallback — visible in every contextual card */
 .pokerinno-sprite{
@@ -1106,4 +1104,17 @@ footer, footer *, .mobile-nav, .mobile-nav *{
 .learn-extra-host{
   min-height:104px !important;
   overflow:hidden !important;
+}
+
+/* Footer: text 10px only; navigation icons intentionally larger */
+footer{
+  font-size:10px !important;
+}
+.mobile-nav a{
+  font-size:10px !important;
+}
+.mobile-nav .nav-symbol{
+  font-size:25px !important;
+  width:auto !important;
+  line-height:1 !important;
 }
