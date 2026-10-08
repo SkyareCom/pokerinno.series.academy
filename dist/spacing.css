@@ -67,3 +67,12 @@ main{padding-inline:var(--page-gutter)}
 #app :is(.chapter,.feature,.stats-panel,.glossary-group) :is(p,ul,ol)+:is(h3,h4){margin-block-start:var(--space-6)}
 #app :is(.chapter,.feature,.stats-panel,.glossary-group) :is(button,.primary){max-width:100%}
 #app :is(.list,.grid,.source-group,.stats-dashboard,.quiz-player)>*{min-width:0}
+
+/* Unified internal card rhythm: headings, descriptions and action rows. */
+#app :is(.chapter,.feature,.stats-panel,.glossary-group,.source-body,.procedure-body) :is(h2,h3,h4)+:is(.list,.grid,.steps,.lg,.cg,.compare,.ranking){margin-block-start:var(--space-3)}
+#app :is(.chapter,.feature,.stats-panel,.glossary-group,.source-body,.procedure-body) :is(.list,.grid,.steps,.lg,.cg,.compare,.ranking)+:is(h2,h3,h4){margin-block-start:var(--space-6)}
+#app :is(.chapter,.feature,.stats-panel,.glossary-group,.source-body,.procedure-body) :is(p,ul,ol)+:is(.primary,.quiet,button){margin-block-start:var(--space-4)}
+#app :is(.chapter,.feature,.stats-panel,.glossary-group,.source-body,.procedure-body) :is(button,.primary,.quiet)+:is(p,ul,ol){margin-block-start:var(--space-3)}
+#app :is(.source-body,.procedure-body) :is(.lc,.ch,.ci,.ex,.tip,.rrow) :is(h3,h4){margin-block:0 var(--space-2);line-height:1.35}
+#app :is(.source-body,.procedure-body) :is(.lc,.ch,.ci,.ex,.tip,.rrow) :is(h3,h4)+p{margin-block-start:var(--space-2)}
+#app :is(.chapter,.feature,.stats-panel,.glossary-group,.source-body,.procedure-body) :is(p,li){overflow-wrap:anywhere}
