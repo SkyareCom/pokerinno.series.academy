@@ -136,15 +136,13 @@ body :is(.sidebar,.workspace,header,main,#app,dialog) :is(.source-body h3,.sourc
 body footer,body footer *,body .mobile-nav .nav-label,body .mobile-nav small,body .mobile-nav span:not(.nav-icon):not(.icon),body .mobile-nav a{font-size:10px!important}
 body .mobile-nav :is(svg,i,.nav-icon,.icon){font-size:20px!important}
 
-/* Card headings: consistent Academy yellow across all sections. */
-#app :is(.chapter,.source-lesson,.discover-section,.discover-hero-card,.betting-info-card,.staff-topic-card,.staff-etiquette-feature,.learn-extra,.learn-extra-pokerinno,.glossary-term,.pokerinno-context,.card,.lesson-card,.topic-card) :is(h2,h3,h4,h5,h6),
-#app :is(.chapter,.source-lesson,.discover-section,.discover-hero-card,.betting-info-card,.staff-topic-card,.staff-etiquette-feature,.learn-extra,.learn-extra-pokerinno,.glossary-term,.pokerinno-context,.card,.lesson-card,.topic-card) :is(.card-title,.chapter-title,.lesson-title),
-#app .source-lesson > summary > strong,
-#app .staff-etiquette-feature summary > strong{color:var(--gold,#f7c75b)!important}
-
-/* Main titles and section headings: Academy yellow, preserving typography scale. */
-#app :is(h1,h2,.page-title,.hero-title,.section-title,.chapter-heading,.section-heading),
-#app :is(.discover-copy,.discover-page,.betting-learning-module,.source-group,.journey-heading,.page-heading) :is(h1,h2,h3),
-main > :is(h1,h2),
-.workspace header :is(h1,h2,h3),
-.sidebar :is(.brand,.series){color:var(--gold,#f7c75b)!important}
+/* Scoped heading hierarchy: page headings white, card titles yellow, nested subcard titles white. */
+#app :is(h1,.page-title,.hero-title,.section-title,.chapter-heading,.section-heading),
+#app > :is(h2,h3),
+#app .page-heading > :is(h1,h2,h3),
+#app .source-group > :is(h2,h3),
+#app .betting-learning-module > :is(h2,h3){color:#f4f2e7!important}
+#app :is(.chapter,.source-lesson,.discover-section,.discover-hero-card,.betting-info-card,.staff-topic-card,.staff-etiquette-feature,.learn-extra,.learn-extra-pokerinno,.glossary-term,.pokerinno-context,.card,.lesson-card,.topic-card) > :is(h2,h3,h4,h5,h6,.card-title,.chapter-title,.lesson-title),
+#app :is(.chapter,.source-lesson,.discover-section,.discover-hero-card,.betting-info-card,.staff-topic-card,.staff-etiquette-feature,.learn-extra,.learn-extra-pokerinno,.glossary-term,.pokerinno-context,.card,.lesson-card,.topic-card) > :is(header,summary) > :is(h2,h3,h4,h5,h6,strong,.card-title,.chapter-title,.lesson-title),
+#app .staff-etiquette-feature .source-lesson > summary > strong{color:var(--gold,#f7c75b)!important}
+#app :is(.source-body,.betting-info-content,.cg,.staff-lesson-topic,.subcard,.sub-card,.nested-card) :is(h3,h4,h5,h6,.subcard-title,.sub-card-title){color:#f4f2e7!important}
