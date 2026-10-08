@@ -216,5 +216,13 @@
   "play.repeatText": "Training in similar situations helps turn knowledge into habit.",
   "play.practiceNow": "PRACTICE NOW",
   "play.training": "TRAINING",
-  "play.goPractice": "GO TO PRACTICE"
+  "play.goPractice": "GO TO PRACTICE",
+  "streets.hero": "HERO",
+  "streets.boardCount": "BOARD · {count} CARDS",
+  "streets.emptyBoard": "No community cards revealed.",
+  "streets.tableLabel": "{street}: hero with two hole cards and {count} community cards.",
+  "streets.preflop": "PRE-FLOP",
+  "streets.flop": "FLOP",
+  "streets.turn": "TURN",
+  "streets.river": "RIVER"
 }

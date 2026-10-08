@@ -223,3 +223,32 @@ body.login-screen #app .entry-auth-stackup img{width:32px;height:32px}
 #app .source-body .pb>.s-hj{--seat-x:88.04%;--seat-y:62.36%}
 #app .source-body .pb>.s-co{--seat-x:73.51%;--seat-y:82.36%}
 #app .source-body .pb>.dbtn{position:absolute;left:58%;top:74%;transform:translate(-50%,-50%);display:grid;place-items:center;width:24px;height:24px;border:1px solid var(--gold);border-radius:50%;background:var(--gold);color:#142017;font-size:12px!important;font-weight:600;line-height:1}
+
+/* Streets: consistent reading rhythm and a cropped table for the same example hand. */
+#app .streets-lesson .lg{gap:var(--component-gap)!important}
+#app .streets-lesson .lc{margin:0!important;padding:var(--space-3)!important}
+#app .streets-lesson .lc>h3{margin:0!important;line-height:1.3!important}
+#app .streets-lesson .lc>p{margin:0!important;line-height:var(--reading-line)!important}
+#app .streets-lesson .lc>h3+p{margin-block-start:var(--component-gap)!important}
+#app .streets-lesson .lc>p+p{margin-block-start:var(--paragraph-gap)!important}
+#app .streets-lesson .cg{grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--component-gap)!important}
+#app .streets-lesson .ch{display:grid;gap:var(--space-2);padding:var(--space-3)!important}
+#app .streets-lesson .street-visual{width:100%;max-width:440px;margin:var(--component-gap) auto 0}
+#app .streets-lesson .street-scene{position:relative;isolation:isolate;display:grid;justify-items:center;gap:var(--space-4);padding:var(--space-4) var(--space-2) 0;border-radius:16px;overflow:hidden}
+#app .streets-lesson .street-felt{position:absolute;z-index:-1;inset:0 0 22px;border:3px solid #927c4b;border-top:0;border-radius:0 0 45% 45%;background:#113c2f}
+#app .streets-lesson .street-board{display:grid;justify-items:center;gap:var(--space-2);width:100%;min-width:0}
+#app .streets-lesson .street-label{font-size:12px!important;font-weight:600;line-height:1.4;text-align:center;color:var(--text,#f4f2e7)}
+#app .streets-lesson :is(.street-board-cards,.street-hero-cards){display:grid;justify-content:center;align-items:center;gap:var(--space-1);min-height:62px;width:100%}
+#app .streets-lesson .street-board-cards{grid-template-columns:repeat(var(--board-count),minmax(0,42px))}
+#app .streets-lesson .street-board-cards:has(.street-empty-board){grid-template-columns:minmax(0,1fr)}
+#app .streets-lesson .street-hero-cards{grid-template-columns:repeat(2,42px)}
+#app .streets-lesson .street-visual .playing-card{width:100%;height:62px;min-width:0;box-shadow:none}
+#app .streets-lesson .street-visual .card-corner{font-size:12px!important;line-height:1!important;font-weight:600}
+#app .streets-lesson .street-visual .card-corner small{font-size:12px!important;line-height:1!important}
+#app .streets-lesson .street-visual .card-pip{font-size:20px!important;line-height:1!important}
+#app .streets-lesson .street-visual .street-card-new{border:2px solid var(--gold)}
+#app .streets-lesson .street-empty-board{font-size:12px!important;line-height:var(--reading-line);text-align:center;color:var(--muted);max-width:200px}
+#app .streets-lesson .street-hero{display:grid;justify-items:center;gap:var(--space-2)}
+#app .streets-lesson .street-hero-seat{display:flex;align-items:center;gap:var(--space-2);padding:var(--space-1) var(--space-2);min-height:44px;border:1px solid var(--line);border-radius:9px;background:#0a211a}
+#app .streets-lesson .street-hero-seat img{display:block;width:32px;height:36px;object-fit:cover;border-radius:6px}
+#app .streets-lesson .street-hero-seat strong{font-size:12px!important;font-weight:600;line-height:1.4}

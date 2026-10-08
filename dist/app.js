@@ -1,3 +1,4 @@
+import {decorateStreetLesson} from './street-visuals.js?v=streets-table-v1';
 import {saveMessagePreference,trackMessageVisit} from './pokerinno-messages.js?v=pokerinno-balloons-v1';
 import {showPokerinno,messageSettings,closePokerinno} from './pokerinno-balloons.js?v=pokerinno-circles-outside-v6';
 import {procedureCards,procedureDetail} from './procedure-content.js?v=cards-no-arrows-20261008';
@@ -7,7 +8,7 @@ import {statsDashboard} from './stats.js?v=cards-no-arrows-20261008';
 import {practiceCatalog,practiceModule} from './practice-modules.js?v=practice-no-theme-headings';
 import {sourceQuiz} from './source-quiz.js?v=cards-no-arrows-20261008';
 import {journeyIds,extraCard,staffRoles,decisionCycle} from './learn-ui.js?v=staff-removed-a5275e59';
-import {t} from './i18n.js?v=footer-play-dash-v1';
+import {t} from './i18n.js?v=streets-table-v1';
 import {enablePageSwipe} from './swipe.js';
 import {loginPage} from './login.js?v=login-icons-v1';
 import {loadAcademy,chapters,discoverLessons,discoverSections,rulesSections,rulesGroups,rulesBasicSections,bettingSections,dealingSections,floorSections,pokerTermsGroups,pokerExtraTermsGroups,mathTermsGroups} from './data.js?v=learn-five-20261008';import {academyVerde9} from './academy-verde9-content.js?v=remove-floor-3e63f900';import {legacyAcademy} from './legacy-academy-data.js';import {legacyProfile} from './legacy-profile-data.js';import {resolveRoute} from './navigation.js?v=cards-no-arrows-20261008';import {readPreferences,savePreferences} from './preferences.js';
@@ -22,7 +23,7 @@ const verdeFund=Object.fromEntries((academyVerde9.FUND||[]).map(x=>[x.id,x]));
 const verdeMods=academyVerde9.MOD||[];
 const verdePrat=Object.fromEntries((academyVerde9.PRAT||[]).map(x=>[x.id,x]));
 const verdeRuleSubs=Object.fromEntries(((verdeFund.rules&&verdeFund.rules.sub)||[]).map(x=>[x.id,x]));
-const sourceLesson=(item,tag='APROFUNDAMENTO')=>item?`<details class="source-lesson"><summary>${tag?`<span>${tag}</span>`:''}<strong>${item.t?.pt||item.title||'CONTEÚDO'}</strong><small>${item.d?.pt||item.lead||''}</small></summary><div class="source-body">${item.html||`<p>${item.lead||item.d?.pt||''}</p>`}</div></details>`:'';
+const sourceLesson=(item,tag='APROFUNDAMENTO')=>item?`<details class="source-lesson"><summary>${tag?`<span>${tag}</span>`:''}<strong>${item.t?.pt||item.title||'CONTEÚDO'}</strong><small>${item.d?.pt||item.lead||''}</small></summary><div class="source-body${item.id==='streets'?' streets-lesson':''}">${item.id==='streets'?decorateStreetLesson(item.html||''):(item.html||`<p>${item.lead||item.d?.pt||''}</p>`)}</div></details>`:'';
 /* Betting chapter: merge complete reference lessons into the main reading flow, without expandable cards. */
 /* Progressive betting lessons: structured cards with full original teaching material. */
 // One example presentation across every Academy chapter and practice view.

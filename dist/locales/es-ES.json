@@ -216,5 +216,13 @@
   "play.repeatText": "Entrenar situaciones similares ayuda a convertir el conocimiento en hábito.",
   "play.practiceNow": "PRACTICAR AHORA",
   "play.training": "ENTRENAMIENTOS",
-  "play.goPractice": "IR A PRACTICAR"
+  "play.goPractice": "IR A PRACTICAR",
+  "streets.hero": "HÉROE",
+  "streets.boardCount": "BOARD · {count} CARTAS",
+  "streets.emptyBoard": "Ninguna carta comunitaria descubierta.",
+  "streets.tableLabel": "{street}: héroe con dos cartas propias y {count} cartas comunitarias.",
+  "streets.preflop": "PREFLOP",
+  "streets.flop": "FLOP",
+  "streets.turn": "TURN",
+  "streets.river": "RIVER"
 }
