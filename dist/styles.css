@@ -1198,3 +1198,11 @@ input,select,textarea{font-family:inherit;font-size:14px}
 /* Unified Learn and Practice card title size */
 #app .journey-chapters .learn-extra-copy h3,
 #app .practice-catalog .learn-extra-copy h3{font-size:16px;line-height:1.25;font-weight:600}
+
+/* Main cards typography: Learn and Practice */
+#app .journey-chapters .learn-extra-copy h3,
+#app .practice-catalog .learn-extra-copy h3,
+#app > .learn-extra-pokerinno .learn-extra-copy h3{font-size:16px;line-height:1.25;font-weight:600}
+#app .journey-chapters .learn-extra-copy p,
+#app .practice-catalog .learn-extra-copy p,
+#app > .learn-extra-pokerinno .learn-extra-copy p{font-size:12px;line-height:1.5;font-weight:400}
