@@ -1,2 +1,2 @@
 export const routes=['home','journey','base','modalities','practice','evolution','profile','welcome'];
-export function resolveRoute(hash){const key=hash.replace(/^#\/?/,'');return routes.includes(key)||/^(?:chapter\/(discover|rules|decisions|formats|practice)|base\/\d+|modality\/\d+|practice-tool\/\d+|profile\/(access|language|history|plans|coach|privacy))$/.test(key)?key:'home'}
+export function resolveRoute(hash){const key=hash.replace(/^#\/?/,'');return routes.includes(key)||/^(?:chapter\/(discover|rules|decisions|formats|practice)|base\/\d+|modality\/\d+|practice-tool\/\d+|profile\/(access|language|history|plans|coach|privacy)|discover\/(intro|history|types))$/.test(key)?key:'home'}
