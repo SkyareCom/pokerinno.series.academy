@@ -249,6 +249,7 @@ main,#app{
 .chapter:not(.lesson-block){
   width:100%;
   min-height:84px;
+  height:84px;
   padding:17px 18px;
   gap:14px;
 }
@@ -266,6 +267,8 @@ main,#app{
 .chapter:not(.lesson-block) h3{
   line-height:1.2;
   margin:0;
+  max-height:2.4em;
+  overflow:hidden;
 }
 .chapter:not(.lesson-block) p{
   margin-top:5px;
@@ -319,6 +322,9 @@ main,#app{
 .empty{
   overflow:hidden;
 }
+.setting{
+  min-height:72px;
+}
 .setting>div{
   min-width:0;
   flex:1 1 auto;
@@ -360,6 +366,7 @@ main,#app{
     max-width:100%;
     padding-left:18px;
     padding-right:18px;
+    padding-bottom:112px;
     overflow-x:hidden;
   }
   #app{
@@ -403,6 +410,7 @@ main,#app{
   }
   .chapter:not(.lesson-block){
     min-height:76px;
+    height:76px;
     padding:14px 12px;
     gap:9px;
   }
@@ -449,6 +457,7 @@ main,#app{
   }
   .setting{
     min-width:0;
+    min-height:68px;
   }
 }
 
