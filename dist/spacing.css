@@ -76,3 +76,15 @@ main{padding-inline:var(--page-gutter)}
 #app :is(.source-body,.procedure-body) :is(.lc,.ch,.ci,.ex,.tip,.rrow) :is(h3,h4){margin-block:0 var(--space-2);line-height:1.35}
 #app :is(.source-body,.procedure-body) :is(.lc,.ch,.ci,.ex,.tip,.rrow) :is(h3,h4)+p{margin-block-start:var(--space-2)}
 #app :is(.chapter,.feature,.stats-panel,.glossary-group,.source-body,.procedure-body) :is(p,li){overflow-wrap:anywhere}
+
+/* Global spacing contract: 10px between cards and between cards and adjacent text. */
+:root{--card-gap:10px;--component-gap:10px}
+#app :is(.list,.grid,.source-group,.stats-dashboard,.quiz-player,.glossary-list,.decision-steps,.level-list,.journey-chapters,.practice-catalog .list){gap:var(--component-gap);row-gap:var(--component-gap);column-gap:var(--component-gap)}
+#app :is(.list,.grid,.source-group,.journey-chapters,.practice-catalog,.learn-extra-pokerinno,.chapter,.feature,.stats-panel,.glossary-group,.decision-cycle)+:is(.list,.grid,.source-group,.journey-chapters,.practice-catalog,.learn-extra-pokerinno,.chapter,.feature,.stats-panel,.glossary-group,.decision-cycle,p,h2,h3,h4){margin-block-start:10px}
+#app :is(p,h2,h3,h4)+:is(.list,.grid,.source-group,.journey-chapters,.practice-catalog,.learn-extra-pokerinno,.chapter,.feature,.stats-panel,.glossary-group,.decision-cycle){margin-block-start:10px}
+#app .practice-catalog .source-group{gap:10px;margin-top:10px}
+#app .section-top{margin-block:10px;gap:10px}
+#app .learn-extra-pokerinno .learn-extra-copy{padding:10px}
+#app .learn-extra-pokerinno .learn-extra-copy h3{margin-block:0 10px}
+#app .learn-extra-pokerinno .learn-extra-copy p{margin:0}
+#app .journey-chapters+.learn-extra-pokerinno,#app>.learn-extra-pokerinno+.learn-extra-pokerinno,#app .learn-extra-pokerinno+.decision-cycle{margin-top:10px}
