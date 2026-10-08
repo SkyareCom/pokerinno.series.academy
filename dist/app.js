@@ -7,7 +7,7 @@ import {statsDashboard} from './stats.js?v=cards-no-arrows-20261008';
 import {practiceCatalog,practiceModule} from './practice-modules.js?v=practice-no-theme-headings';
 import {sourceQuiz} from './source-quiz.js?v=cards-no-arrows-20261008';
 import {journeyIds,extraCard,staffRoles,decisionCycle} from './learn-ui.js?v=staff-removed-a5275e59';
-import {t} from './i18n.js?v=pokerinno-balloons-v1';
+import {t} from './i18n.js?v=quote-one-minute-v2';
 import {enablePageSwipe} from './swipe.js';
 import {loginPage} from './login.js?v=cards-no-arrows-20261008';
 import {loadAcademy,chapters,discoverLessons,discoverSections,rulesSections,rulesGroups,rulesBasicSections,bettingSections,dealingSections,floorSections,pokerTermsGroups,pokerExtraTermsGroups,mathTermsGroups} from './data.js?v=learn-five-20261008';import {academyVerde9} from './academy-verde9-content.js?v=remove-floor-3e63f900';import {legacyAcademy} from './legacy-academy-data.js';import {legacyProfile} from './legacy-profile-data.js';import {resolveRoute} from './navigation.js?v=cards-no-arrows-20261008';import {readPreferences,savePreferences} from './preferences.js';
@@ -113,7 +113,7 @@ const staffDirectLessons=items=>{
  return '<div class="betting-learning-path staff-direct-lessons"><section class="betting-learning-module"><div class="betting-info-grid">'+cards.join('')+'</div></section></div>';
 };
 const sourceGroup=(title,items,tag)=>`<section class="source-group"><div class="section-top"><h2>${title}</h2><span>BASE ACADEMY</span></div>${items.filter(Boolean).map(x=>sourceLesson(x,tag)).join('')}</section>`;
-const quote=`<div class="quote">“POKER É UM JOGO QUE DEMORAMOS UM MINUTO PARA APRENDER, MAS UMA VIDA PARA DOMINAR.”<small>— MIKE SEXTON</small></div>`;
+const quote=`<div class="quote">${t('home.quote')}<small>— MIKE SEXTON</small></div>`;
 const migratedList=(section,prefix,tag)=>heading(tag,section.title,section.description)+`<div class="list">${section.items.map((item,i)=>`<a class="chapter" href="#${prefix}/${i}"><span class="number">${String(i+1).padStart(2,'0')}</span><div><h3>${String(item[0]).toUpperCase()}</h3><p>${item[1]}</p></div></a>`).join('')}</div>`;
 const migratedDetail=(section,index,back,tag)=>{const item=section.items[index];if(!item)return empty('▤','Conteúdo não encontrado.','Volte para a etapa anterior e escolha outro conteúdo.');return `<a href="#${back}" class="back">← VOLTAR</a>`+heading(tag,String(item[0]).toUpperCase(),item[1])+`<section class="empty"><div class="empty-symbol">▤</div><h2>${String(item[0]).toUpperCase()}</h2><p>${item[1]}</p></section>`};
 const secondaryContent=blocks=>`<div class="list secondary-content">${blocks.map(([title,body],i)=>`<section class="chapter lesson-block"><span class="number">${String(i+1).padStart(2,'0')}</span><div><h3>${title}</h3><p>${body}</p></div></section>`).join('')}</div>`;
