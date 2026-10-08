@@ -74,3 +74,30 @@ button,
 
 /* Global one-line card descriptions */
 .feature p,.chapter p,.next-app span,.training-card p,.card p{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;}
+
+/* Journey internal back button */
+main{position:relative}
+.back-journey{
+  position:absolute;
+  top:32px;
+  right:48px;
+  margin:0;
+  padding:8px 12px;
+  border:1px solid rgba(247,199,91,.28);
+  border-radius:8px;
+  background:transparent;
+  color:var(--gold);
+  font-size:10px;
+  letter-spacing:.7px;
+  z-index:2;
+}
+.back-journey:hover{border-color:rgba(247,199,91,.55)}
+@media(max-width:1100px){.back-journey{top:28px;right:28px}}
+@media(max-width:700px){
+  .back-journey{
+    top:24px;
+    right:18px;
+    padding:7px 9px;
+    font-size:9px;
+  }
+}
