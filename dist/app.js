@@ -32,7 +32,7 @@ const standardizeExamples=root=>{
   while((node=walker.nextNode())){
    if(!node.textContent.trim())continue;
    const original=node.textContent;
-   const cleaned=original.replace(/^\\s*(?:EXEMPLOS?|EX\\.)\\s*[:：–—-]?\\s*/i,'');
+   const cleaned=original.replace(/^\s*(?:EXEMPLOS?|EX\.)\s*[:：–—-]?\s*/i,'');
    if(cleaned!==original){node.textContent=cleaned;const parent=node.parentElement;if(parent&&['STRONG','B','SPAN'].includes(parent.tagName)&&!parent.textContent.trim())parent.remove()}
    break;
   }
@@ -73,12 +73,11 @@ const bettingIntegratedLessons=()=>{
     let textNode;
     while((textNode=walker.nextNode())){
      if(!textNode.textContent.trim())continue;
-     textNode.textContent=textNode.textContent.replace(/^\\s*(?:EXEMPLO|EXEMPLOS|EX\\.)\\s*[:：–—-]?\\s*/i,'');
+     textNode.textContent=textNode.textContent.replace(/^\s*(?:EXEMPLO|EXEMPLOS|EX\.)\s*[:：–—-]?\s*/i,'');
      break;
     }
     for(const el of [...example.querySelectorAll('strong,b')])if(!el.textContent.trim())el.remove();
     parts.push('<div class="betting-inline-example">'+example.innerHTML+'</div>');
-   }
    }else{
     parts.push(node.outerHTML);
    }
