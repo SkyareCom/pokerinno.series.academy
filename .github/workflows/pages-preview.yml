@@ -21,6 +21,33 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify unit tests and language keys
+        run: |
+          npm test
+          npm run i18n:audit
+      - name: Install audit browser
+        run: |
+          npm install --no-save playwright@1.62.1
+          npx playwright install --with-deps chromium
+      - name: Audit all rendered content
+        env:
+          ACADEMY_AUDIT_URL: http://127.0.0.1:8765
+          VISUAL_AUDIT_MODE: baseline
+        run: |
+          python3 -m http.server 8765 --directory dist > /tmp/academy-audit-server.log 2>&1 &
+          npm run visual:audit
+      - name: Save visual audit evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: academy-visual-audit
+          path: reports/visual
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
       - name: Upload site from dist
