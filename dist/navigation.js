@@ -6,8 +6,10 @@ export function resolveRoute(hash){
     modalities:'chapter/formats'
   };
   if(aliases[key])return aliases[key];
-  const baseMatch=key.match(/^base\/(\d+)$/);
-  if(baseMatch)return 'rule/'+baseMatch[1];
-  if(routes.includes(key)||/^(?:chapter\/(discover|rules|decisions|formats|practice)|discover\/(intro|history|types)|rule\/\d+|modality\/\d+|practice-tool\/\d+|profile\/(access|language|history|plans|coach|privacy))$/.test(key))return key;
+  if(/^base\/\d+$/.test(key))return 'chapter/rules';
+  if(/^modality\/\d+$/.test(key))return 'chapter/formats';
+  if(/^rule\/\d+$/.test(key))return 'chapter/rules';
+  if(/^discover\//.test(key))return 'chapter/discover';
+  if(routes.includes(key)||/^(?:chapter\/(discover|rules|decisions|formats|practice)|practice-tool\/\d+|profile\/(access|language|history|plans|coach|privacy))$/.test(key))return key;
   return 'home';
 }
