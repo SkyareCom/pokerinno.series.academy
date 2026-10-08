@@ -87,7 +87,7 @@ const bettingIntegratedLessons=()=>{
  return '<div class="betting-learning-path">'+sections.map(([number,title,entries])=>{
   const unique=entries.filter(e=>{const key=e.title.toLowerCase();if(seen.has(key))return false;seen.add(key);return true});
   const procedures=number==='03'?bettingSections.filter(s=>['UMA FICHA GRANDE','STRING BET E STRING RAISE','APOSTA FORA DA VEZ','ALL-IN E POTES LATERAIS'].includes(s.title)):[];
-  const proceduresHtml=procedures.length?card('PROCEDIMENTOS COM AS CARTAS',procedures.map(s=>'<div class="betting-procedure-item"><h5>'+s.title+'</h5><p>'+s.text+'</p></div>').join('')):'';
+  const proceduresHtml=procedures.map(s=>card(s.title,'<p>'+s.text+'</p>')).join('');
   const cards=unique.flatMap(split).join('')+proceduresHtml;
   return cards?`<section class="betting-learning-module"><div class="betting-info-grid">${cards}</div></section>`:'';
  }).join('')+'</div>';
