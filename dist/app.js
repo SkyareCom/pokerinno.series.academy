@@ -23,6 +23,27 @@ const verdeRuleSubs=Object.fromEntries(((verdeFund.rules&&verdeFund.rules.sub)||
 const sourceLesson=(item,tag='APROFUNDAMENTO')=>item?`<details class="source-lesson"><summary>${tag?`<span>${tag}</span>`:''}<strong>${item.t?.pt||item.title||'CONTEÚDO'}</strong><small>${item.d?.pt||item.lead||''}</small></summary><div class="source-body">${item.html||`<p>${item.lead||item.d?.pt||''}</p>`}</div></details>`:'';
 /* Betting chapter: merge complete reference lessons into the main reading flow, without expandable cards. */
 /* Progressive betting lessons: structured cards with full original teaching material. */
+// One example presentation across every Academy chapter and practice view.
+const standardizeExamples=root=>{
+ for(const example of root.querySelectorAll('.ex,.betting-inline-example')){
+  if(example.dataset.exampleStandardized==='true')continue;
+  const walker=document.createTreeWalker(example,NodeFilter.SHOW_TEXT);
+  let node;
+  while((node=walker.nextNode())){
+   if(!node.textContent.trim())continue;
+   const original=node.textContent;
+   const cleaned=original.replace(/^\\s*(?:EXEMPLOS?|EX\\.)\\s*[:：–—-]?\\s*/i,'');
+   if(cleaned!==original){node.textContent=cleaned;const parent=node.parentElement;if(parent&&['STRONG','B','SPAN'].includes(parent.tagName)&&!parent.textContent.trim())parent.remove()}
+   break;
+  }
+  for(const child of [...example.children]){
+   if(child.classList.contains('betting-example-label'))child.remove();
+   else if(['STRONG','B'].includes(child.tagName)&&/^EXEMPLOS?\\s*:?$/i.test(child.textContent.trim()))child.remove();
+  }
+  const label=document.createElement('strong');label.className='academy-example-label';label.textContent='EXEMPLO';example.prepend(label);
+  example.classList.add('academy-example');example.dataset.exampleStandardized='true';
+ }
+};
 const bettingIntegratedLessons=()=>{
  const parse=item=>{const root=document.createElement('div');root.innerHTML=item?.html||'';return [...root.querySelectorAll('.lc')].filter(el=>el.querySelector(':scope > h3')).map(el=>({title:el.querySelector(':scope > h3').textContent.trim(),nodes:[...el.children].filter(n=>n.tagName!=='H3')}))};
  const seq=parse(verdeFund.seq),chips=parse(verdeRuleSubs.fichas),seats=parse(verdeRuleSubs.assentos);
@@ -123,6 +144,7 @@ else if(route==='profile/coach')app.innerHTML=`<a href="#profile" class="back">�
 else if(route==='profile/privacy')app.innerHTML=`<a href="#profile" class="back">← VOLTAR</a>`+heading('PERFIL','SOBRE E PRIVACIDADE','Controles de privacidade e dados do Academy.')+`<div class="setting"><div><h3>POLÍTICA DE PRIVACIDADE</h3><p>Documento e ações de conta serão conectados aqui.</p></div></div><div class="setting"><div><h3>DADOS LOCAIS</h3><p>Limpeza de progresso, histórico e preferências será reconectada nesta página.</p></div></div>`;
 else if(route==='welcome')app.innerHTML=home();
 if(route.startsWith('chapter/')||route.startsWith('procedure/'))app.insertAdjacentHTML('beforeend',`<a class="primary reinforce-learning" href="#practice">${t('practice.reinforce')}</a>`);
+standardizeExamples(app);
 standardizeBack(app,route);
 app.querySelectorAll('img').forEach(img=>img.addEventListener('error',()=>{img.style.display='none'}));}
 document.addEventListener('click',async e=>{if(e.target.closest('[data-save-activities]')){if(saveActivities())window.dispatchEvent(new CustomEvent('academy:activities-saved'));else openDialog(t('training.saveFailed'),t('stats.unsaved'));return}const langBtn=e.target.closest('[data-profile-lang]');if(langBtn){try{localStorage.setItem('stackup.locale',langBtn.dataset.profileLang)}catch{}location.reload();return}const help=e.target.closest('[data-help]'),pending=e.target.closest('[data-pending]'),practiceRoute=e.target.closest('[data-practice-route]');const series=e.target.closest('[data-series]');if(series)openDialog(series.dataset.series,'Este é um dos próximos caminhos da série StackUp Hold’em. Cada app tem sua própria proposta. O acesso será conectado quando esse app estiver disponível nesta jornada.');if(help)openDialog('Oi! Eu sou o Pokerinno.','Vou ajudar você a entender o jogo, praticar o básico e chegar à mesa sabendo o que está acontecendo. O Academy prepara o iniciante; a especialização e a busca pelo domínio continuam nos demais apps da série StackUp Hold’em.');if(practiceRoute){location.hash=practiceRoute.dataset.practiceRoute;return}if(pending)openDialog(pending.dataset.pending,'Este espaço está pronto para receber os treinos. Assim que os desafios estiverem disponíveis, você poderá praticar por aqui.');if(e.target.closest('[data-login]'))location.hash='login';if(e.target.closest('[data-retry]')){state=await loadAcademy(window.StackUpAcademyAdapter);render()}});
