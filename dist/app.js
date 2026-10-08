@@ -7,7 +7,7 @@ import {statsDashboard} from './stats.js?v=cards-no-arrows-20261008';
 import {practiceCatalog,practiceModule} from './practice-modules.js?v=practice-no-theme-headings';
 import {sourceQuiz} from './source-quiz.js?v=cards-no-arrows-20261008';
 import {journeyIds,extraCard,staffRoles,decisionCycle} from './learn-ui.js?v=staff-removed-a5275e59';
-import {t} from './i18n.js?v=quote-one-minute-v2';
+import {t} from './i18n.js?v=quote-one-minute-v3';
 import {enablePageSwipe} from './swipe.js';
 import {loginPage} from './login.js?v=cards-no-arrows-20261008';
 import {loadAcademy,chapters,discoverLessons,discoverSections,rulesSections,rulesGroups,rulesBasicSections,bettingSections,dealingSections,floorSections,pokerTermsGroups,pokerExtraTermsGroups,mathTermsGroups} from './data.js?v=learn-five-20261008';import {academyVerde9} from './academy-verde9-content.js?v=remove-floor-3e63f900';import {legacyAcademy} from './legacy-academy-data.js';import {legacyProfile} from './legacy-profile-data.js';import {resolveRoute} from './navigation.js?v=cards-no-arrows-20261008';import {readPreferences,savePreferences} from './preferences.js';
