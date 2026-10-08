@@ -3,6 +3,7 @@ export const chapters=[
 ['rules','Conceitos básicos','Estrutura e fluxo de uma mão.'],
 ['terms','Terminologia do poker','Termos e significados usados no jogo.'],
 ['betting','Apostas e all-in','Valores, raises e potes.'],
+['math','Matemática do poker','Odds, equity, outs e valor esperado.'],
 ['dealing','Erros e correções','Distribuição e cartas incorretas.'],
 ['floor','Floor e conduta','Conflitos, decisões e penalidades.'],
 ['decisions','Entender as decisões','Observe, decida e aja.'],
@@ -375,22 +376,13 @@ export const pokerTermsGroups=[
     ]
   },
   {
-    title:'ESTRATÉGIA E MATEMÁTICA',
+    title:'ESTRATÉGIA',
     terms:[
       ['BLUFF','Aposta feita principalmente para provocar folds de mãos melhores.'],
       ['SEMI-BLUFF','Bluff com uma mão que ainda pode melhorar.'],
       ['VALUE BET','Aposta feita esperando ser paga por mãos piores.'],
       ['THIN VALUE','Aposta por valor em situação de vantagem pequena.'],
       ['RANGE','Conjunto de mãos que um jogador pode ter.'],
-      ['EQUITY','Parcela estimada do pote correspondente à chance de vitória.'],
-      ['OUT','Carta que pode melhorar a mão para uma combinação desejada.'],
-      ['ODDS','Relação matemática entre resultados possíveis.'],
-      ['POT ODDS','Relação entre o valor a pagar e o tamanho do pote disponível.'],
-      ['IMPLIED ODDS','Valor potencial futuro considerado além do pote atual.'],
-      ['FOLD EQUITY','Valor gerado pela chance de o adversário desistir.'],
-      ['EXPECTED VALUE (EV)','Valor médio esperado de uma decisão no longo prazo.'],
-      ['SPR','Relação entre stack efetivo e tamanho do pote.'],
-      ['EFFECTIVE STACK','Menor stack relevante entre jogadores envolvidos.'],
       ['POSITION','Vantagem ou desvantagem gerada pela ordem de ação.'],
       ['BLOCKER','Carta que reduz combinações possíveis na mão adversária.'],
       ['POLARIZED RANGE','Range concentrado em mãos muito fortes e blefes.'],
@@ -450,6 +442,49 @@ export const pokerTermsGroups=[
       ['MISSED BLIND','Blind obrigatório não pago por ausência ou mudança de posição.'],
       ['LIVE CARDS','Mão ainda válida e elegível para disputar o pote.'],
       ['EXPOSED CARD','Carta revelada acidentalmente ou de forma irregular.']
+    ]
+  }
+];
+
+export const mathTermsGroups=[
+  {
+    title:'PROBABILIDADES E CARTAS',
+    terms:[
+      ['OUT','Carta que pode melhorar sua mão para a combinação desejada.'],
+      ['OUTS','Quantidade de cartas ainda disponíveis que podem melhorar sua mão.'],
+      ['ODDS','Relação matemática entre a chance de um evento acontecer e não acontecer.'],
+      ['PROBABILIDADE','Chance percentual de um evento ocorrer.'],
+      ['COMBO','Uma combinação específica de cartas possíveis.'],
+      ['COMBINATÓRIA','Contagem das combinações possíveis dentro de um conjunto de cartas.']
+    ]
+  },
+  {
+    title:'EQUITY E VALOR',
+    terms:[
+      ['EQUITY','Parcela estimada do pote correspondente à chance de vitória de uma mão ou range.'],
+      ['FOLD EQUITY','Valor gerado pela possibilidade de o adversário desistir.'],
+      ['EXPECTED VALUE (EV)','Valor médio esperado de uma decisão no longo prazo.'],
+      ['BREAK-EVEN','Ponto em que uma decisão não ganha nem perde valor esperado.'],
+      ['RISK / REWARD','Relação entre o valor arriscado e o ganho potencial.']
+    ]
+  },
+  {
+    title:'POTE E APOSTAS',
+    terms:[
+      ['POT ODDS','Relação entre o valor necessário para pagar e o tamanho do pote disponível.'],
+      ['IMPLIED ODDS','Valor potencial futuro que pode ser ganho se a mão melhorar.'],
+      ['REVERSE IMPLIED ODDS','Risco de melhorar a mão e ainda perder um pote maior.'],
+      ['SPR','Stack-to-Pot Ratio: relação entre stack efetivo e tamanho do pote.'],
+      ['EFFECTIVE STACK','Menor stack relevante entre os jogadores envolvidos em uma mão.']
+    ]
+  },
+  {
+    title:'REFERÊNCIAS RÁPIDAS',
+    terms:[
+      ['REGRA DO 2','Estimativa rápida: com uma carta por vir, multiplique os outs por aproximadamente 2 para obter uma porcentagem aproximada.'],
+      ['REGRA DO 4','Estimativa rápida: com duas cartas por vir, multiplique os outs por aproximadamente 4 para obter uma porcentagem aproximada.'],
+      ['PERCENTUAL DE CALL','Percentual do pote que você precisa investir para continuar na mão.'],
+      ['FREQUÊNCIA','Percentual de vezes em que uma ação, mão ou evento ocorre.']
     ]
   }
 ];
