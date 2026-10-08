@@ -1206,3 +1206,16 @@ input,select,textarea{font-family:inherit;font-size:14px}
 #app .journey-chapters .learn-extra-copy p,
 #app .practice-catalog .learn-extra-copy p,
 #app > .learn-extra-pokerinno .learn-extra-copy p{font-size:12px;line-height:1.5;font-weight:400}
+
+/* All seven Learn main cards, including Mathematics and Dictionary, share one standard. */
+#app .journey-chapters > .learn-extra-pokerinno,
+#app > .learn-extra-pokerinno,
+#app .practice-catalog .journey-chapters > .learn-extra-pokerinno{display:grid;grid-template-columns:104px minmax(0,1fr);align-items:stretch;gap:0;padding:0;overflow:hidden}
+#app .journey-chapters > .learn-extra-pokerinno .learn-extra-host,
+#app > .learn-extra-pokerinno .learn-extra-host,
+#app .practice-catalog .journey-chapters > .learn-extra-pokerinno .learn-extra-host{min-height:118px}
+#app .journey-chapters > .learn-extra-pokerinno .learn-extra-copy,
+#app > .learn-extra-pokerinno .learn-extra-copy,
+#app .practice-catalog .journey-chapters > .learn-extra-pokerinno .learn-extra-copy{min-width:0;align-self:center;padding:16px 14px}
+#app .learn-extra-pokerinno .learn-extra-copy h3{font-size:16px;line-height:1.25;font-weight:600;margin:0 0 8px}
+#app .learn-extra-pokerinno .learn-extra-copy p{font-size:12px;line-height:1.5;font-weight:400;margin:0}
