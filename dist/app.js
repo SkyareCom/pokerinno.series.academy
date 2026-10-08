@@ -38,24 +38,27 @@ const bettingIntegratedLessons=()=>{
  const seen=new Set();
  const card=(title,html)=>`<article class="betting-info-card"><h4>${title}</h4><div class="betting-info-content source-body">${html}</div></article>`;
  const split=entry=>{
-  const cards=[];
-  const parts=[];
-  const flush=()=>{if(parts.length){cards.push(card(entry.title,parts.join('')));parts.length=0}};
+  const parts=[];const actionCards=[];
   for(const node of entry.nodes){
    if(node.classList.contains('cg')){
-    flush();
     for(const child of [...node.children]){
      const term=child.querySelector('strong,b')?.textContent.trim()||entry.title;
      const description=[...child.childNodes].filter(x=>!(x.nodeType===1&&['STRONG','B'].includes(x.tagName))).map(x=>x.nodeType===3?x.textContent:x.outerHTML).join('').trim();
-     cards.push(card(term,'<p>'+description+'</p>'));
+     actionCards.push(card(term,'<p>'+description+'</p>'));
     }
    }else if(node.classList.contains('ex')){
-    parts.push('<div class="betting-inline-example">'+node.innerHTML+'</div>');
+    const example=node.cloneNode(true);
+    const first=example.firstElementChild;
+    if(first&&/^(P|STRONG|B)$/.test(first.tagName)){
+     const lead=first.querySelector('strong,b')||(/^STRONG$|^B$/.test(first.tagName)?first:null);
+     if(lead&&/^EXEMPLO\\s*:/i.test(lead.textContent.trim()))lead.remove();
+    }
+    parts.push('<div class="betting-inline-example"><strong>EXEMPLO:</strong> '+example.innerHTML+'</div>');
    }else{
     parts.push(node.outerHTML);
    }
   }
-  flush();return cards;
+  return [...(parts.length?[card(entry.title,parts.join(''))]:[]),...actionCards];
  };
  return '<div class="betting-learning-path">'+sections.map(([number,title,entries])=>{
   const unique=entries.filter(e=>{const key=e.title.toLowerCase();if(seen.has(key))return false;seen.add(key);return true});
