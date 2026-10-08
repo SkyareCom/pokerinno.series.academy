@@ -96,3 +96,17 @@ main{padding-inline:var(--page-gutter)}
 #app .journey-chapters>.learn-extra-pokerinno,#app>.learn-extra-pokerinno,#app .practice-catalog .journey-chapters>.learn-extra-pokerinno{height:100px!important;min-height:100px!important;max-height:100px!important;box-sizing:border-box!important}
 #app .journey-chapters>.learn-extra-pokerinno .learn-extra-host,#app>.learn-extra-pokerinno .learn-extra-host{height:100%!important;min-height:0!important;max-height:100%!important}
 #app .learn-extra-pokerinno .learn-extra-copy h3{margin:0 0 10px!important}
+
+/* HARD OVERRIDE — unified 10px exterior spacing across all app cards, text and sections. */
+:root{--card-gap:10px!important;--component-gap:10px!important}
+#app :is(.list,.grid,.journey-chapters,.source-group,.practice-catalog .journey-chapters,.practice-catalog .list,.stats-dashboard,.quiz-player,.glossary-list,.decision-steps,.level-list){gap:10px!important;row-gap:10px!important;column-gap:10px!important}
+#app :is(.list,.grid,.journey-chapters,.source-group,.practice-catalog .journey-chapters,.practice-catalog .list)>:is(.learn-extra,.learn-extra-pokerinno,.chapter,.feature,.source-group,.glossary-group,.stats-panel){margin:0!important}
+#app .journey-chapters>.learn-extra-pokerinno{margin:0!important}
+#app :is(.page-heading,.section-top){gap:10px!important;margin-block:10px!important}
+#app :is(.list,.grid,.journey-chapters,.source-group,.learn-extra-pokerinno,.chapter,.feature,.stats-panel,.glossary-group,.decision-cycle,.page-heading,.section-top)+:is(.list,.grid,.journey-chapters,.source-group,.learn-extra-pokerinno,.chapter,.feature,.stats-panel,.glossary-group,.decision-cycle,.page-heading,.section-top,p,h2,h3,h4){margin-block-start:10px!important}
+#app :is(p,h2,h3,h4)+:is(.list,.grid,.journey-chapters,.source-group,.learn-extra-pokerinno,.chapter,.feature,.stats-panel,.glossary-group,.decision-cycle){margin-block-start:10px!important}
+#app>.learn-extra-pokerinno{margin-top:10px!important;margin-bottom:0!important}
+#app .learn-extra-pokerinno .learn-extra-copy h3{margin:0 0 10px!important}
+#app .learn-extra-pokerinno .learn-extra-copy p{margin:0!important}
+#app .practice-catalog .source-group{margin-top:10px!important;gap:10px!important}
+#app .practice-catalog .source-group>.section-top{margin:0 0 10px!important}
