@@ -3,6 +3,7 @@
   "scripts": {
     "test": "node --test tests/*.mjs",
     "i18n:audit": "node scripts/audit-i18n.mjs",
-    "i18n:audit:strict": "node scripts/audit-i18n.mjs --strict"
+    "i18n:audit:strict": "node scripts/audit-i18n.mjs --strict",
+    "spacing:audit": "node scripts/audit-spacing.cjs"
   }
 }

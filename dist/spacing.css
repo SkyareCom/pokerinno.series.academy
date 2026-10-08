@@ -1,0 +1,53 @@
+/* Shared spacing contract. Keep this stylesheet after component styles. */
+:root{--space-1:4px;--space-2:8px;--space-3:12px;--space-4:16px;--space-6:24px;--space-8:32px;--reading-line:1.55;--paragraph-gap:1lh;--copy-tracking:.015em;--title-tracking:.025em;--page-gutter:48px}
+body{line-height:var(--reading-line);letter-spacing:var(--copy-tracking);word-spacing:normal}
+#app :is(p,li,small,label,input,select,textarea){letter-spacing:var(--copy-tracking);word-spacing:normal;line-height:var(--reading-line)}
+#app :is(h1,h2,h3,h4,h5,h6){letter-spacing:var(--title-tracking);word-spacing:normal;line-height:1.25}
+#app :is(.eyebrow,.tiny){letter-spacing:.08em;line-height:1.4}
+#app p{margin-block:0}
+/* A full line between paragraphs, including imported course content. */
+#app p+p{margin-block-start:var(--paragraph-gap)}
+#app :is(h1,h2,h3,h4,h5,h6)+:is(p,ul,ol){margin-block-start:var(--space-2)}
+#app :is(p,ul,ol)+:is(h2,h3,h4,h5,h6){margin-block-start:var(--space-6)}
+#app :is(ul,ol){padding-inline-start:var(--space-6)}
+#app li+li{margin-block-start:var(--space-2)}
+#app :is(.list,.grid,.source-group,.stats-dashboard,.quiz-player,.glossary-list,.decision-steps,.level-list){gap:var(--space-3)}
+#app .page-heading{margin-block-end:var(--space-6);gap:var(--space-4)}
+#app .page-heading h1{margin-block-start:var(--space-2)}
+#app .section-top{margin-block:var(--space-6) var(--space-3);gap:var(--space-3)}
+#app>.page-actions{margin-block-end:var(--space-4)}
+#app>.source-group{margin-block-start:var(--space-4)}
+#app>:is(.hero,.discover-hero-card,.pokerinno-context,.staff-roles){margin-block-end:var(--space-4)}
+#app>:is(.list,.grid,.source-group,.stats-dashboard,.quiz-player)+:is(.list,.grid,.source-group,.decision-cycle,.pokerinno-context){margin-block-start:var(--space-4)}
+#app :is(.chapter,.feature,.stats-panel,.glossary-group,.decision-cycle){padding:var(--space-4)}
+#app .chapter{gap:var(--space-4)}
+#app :is(.feature,.chapter,.pokerinno-context,.learn-extra-copy,.staff-role,.decision-steps) :is(h2,h3,h4)+p{margin-block-start:var(--space-2)}
+#app .source-lesson>summary{padding:var(--space-3) var(--space-4);gap:var(--space-2)}
+#app .source-body{padding:0 var(--space-4) var(--space-4)}
+#app .source-body :is(.lg,.cg,.compare,.ranking,.steps){display:grid;gap:var(--space-3)}
+#app .source-body :is(.lc,.ch,.ci,.ex,.tip,.rrow){padding:var(--space-4)}
+#app .source-body :is(.lc,.ch,.ci,.ex,.tip,.rrow)+:is(.lc,.ch,.ci,.ex,.tip,.rrow){margin-block-start:var(--space-3)}
+#app .source-body :is(.lg,.cg,.compare,.ranking)>*{margin-block:0}
+#app .source-body :is(h3,h4){margin-block:0 var(--space-2)}
+#app .source-body :is(p,ul,ol)+:is(h3,h4){margin-block-start:var(--space-6)}
+#app .source-body :is(ul,ol){margin-block:var(--space-2) 0}
+#app .source-body .step{display:grid;grid-template-columns:2.5em minmax(0,1fr);gap:var(--space-3);align-items:start}
+#app .source-body .step .n{color:var(--gold);font-variant-numeric:tabular-nums;line-height:var(--reading-line)}
+#app .procedure-body>section+section{margin-block-start:var(--space-6)}
+#app .procedure-body>section>h2{margin-block:var(--space-4) var(--space-3)}
+#app .glossary-term{padding:var(--space-3)}
+#app .glossary-term p{margin-block-start:var(--space-2)}
+#app .decision-steps{margin-block:var(--space-4);padding:0}
+#app .decision-steps li{margin:0;padding:var(--space-3);gap:var(--space-3)}
+#app .quiz-options{gap:var(--space-2);margin-block-start:var(--space-4)}
+#app .quiz-controls{gap:var(--space-2)}
+#app :is(.quiz-feedback,.quiz-card-group,.position-table,.stats-line,.level-meter){margin-block:var(--space-4)}
+#app :is(.reinforce-learning,.save-activities){margin-block:var(--space-6) var(--space-2)}
+#app :is(p,.source-group,.list,.grid)+:is(.primary,button){margin-block-start:var(--space-4)}
+#app :is(.stats-topic,.stats-module,.stats-history,.training-session,.staff-role){padding-block:var(--space-3)}
+#app :is(.stats-metrics,.quiz-counters,.stats-swot,.stats-duel,.training-session-metrics){gap:var(--space-3)}
+#app .stats-panel h2{margin-block-end:var(--space-3)}
+#app :is(.stats-module,.stats-history,.training-session summary){gap:var(--space-3)}
+main{padding-inline:var(--page-gutter)}
+.mobile-nav a{letter-spacing:.025em;word-spacing:normal}
+@media(max-width:800px){:root{--page-gutter:16px}#app .source-body{padding-inline:var(--space-3)}#app .source-body :is(.lc,.ch,.ci,.ex,.tip,.rrow){padding:var(--space-3)}}

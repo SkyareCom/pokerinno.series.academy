@@ -13,3 +13,12 @@ Esta regra se aplica a toda alteração de interface neste repositório.
 - Usar `npm run i18n:audit:strict` ao concluir a migração do texto legado. Não declarar o app totalmente traduzido enquanto a varredura apontar candidatos legados.
 - Revisar legibilidade e transbordamento nos três idiomas. Não ocultar controles para acomodar traduções.
 - Não substituir autenticação ou motores existentes. Não alterar main nem publicar Railway.
+
+# Contrato de espaçamento
+
+- `dist/spacing.css` é a fonte única dos espaçamentos compartilhados e deve ser carregado depois dos estilos de componentes.
+- Usar `--space-1/2/3/4/6/8` (4/8/12/16/24/32px) em novas estruturas. Cards e listas: 12px; seções: 24px; padding de card: 16px (conteúdo interno mobile: 12px).
+- Parágrafos consecutivos têm uma linha de distância (`--paragraph-gap: 1lh`), além da entrelinha de 1.55. Não inserir `<br>` vazios para espaçar.
+- Números e textos de etapas devem usar colunas separadas; nunca concatenar o número com o texto.
+- Não sobrescrever tracking, word-spacing ou margens compartilhadas em novos componentes. Exceções geométricas (cartas, gráficos e navegação fixa) devem permanecer locais.
+- Executar `npm test` e a auditoria de espaçamento mobile antes de publicar mudanças de layout.
