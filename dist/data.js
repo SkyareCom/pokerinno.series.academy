@@ -82,32 +82,68 @@ export const rulesGroups=[
     description:'Mãos, posições, blinds, pote e streets.',
     sections:[
       {type:'host',eyebrow:'POKERINNO EXPLICA',title:'COMO UMA MÃO GANHA FORMA',text:'Antes da primeira decisão, a mesa já tem posições, apostas obrigatórias e uma ordem definida. Entender essa estrutura evita que o jogo pareça aleatório.',host:'Olhe primeiro para a estrutura. Depois, para as cartas.'},
-      {type:'content',title:'RANKING DE MÃOS',text:'As combinações seguem uma ordem de força: carta alta, par, dois pares, trinca, sequência, flush, full house, quadra, straight flush e royal flush. Em empates, entram os critérios de desempate da própria combinação.'},
-      {type:'content',title:'EMPATES E KICKERS',text:'Quando dois jogadores têm a mesma categoria de mão, cartas de desempate podem decidir o pote. Se as cinco melhores cartas forem idênticas para ambos, o pote é dividido.'},
-      {type:'scene',title:'POSIÇÕES NA MESA',text:'Button, Small Blind, Big Blind e demais posições determinam a ordem da ação. Jogar mais tarde na rodada normalmente oferece mais informação sobre o que os outros fizeram.'},
-      {type:'content',title:'BUTTON E BLINDS',text:'O Button marca a posição de referência da mão. À esquerda dele ficam Small Blind e Big Blind, que colocam apostas obrigatórias antes das cartas serem jogadas.'},
-      {type:'compare',title:'BLINDS E ANTE',leftTitle:'BLINDS',leftText:'Small Blind e Big Blind criam o pote inicial e obrigam a ação a começar.',rightTitle:'ANTE',rightText:'Algumas estruturas adicionam uma contribuição obrigatória antes da mão, feita por todos ou por uma posição específica.'},
-      {type:'content',title:'O POTE',text:'O pote reúne todas as fichas apostadas na mão. Seu tamanho muda a cada ação e é uma das referências para avaliar risco e recompensa.'},
-      {type:'steps',title:'AS STREETS',items:['PRÉ-FLOP — decisões com as cartas iniciais.','FLOP — três cartas comunitárias são reveladas.','TURN — a quarta carta comunitária aparece.','RIVER — a quinta e última carta comunitária é revelada.','SHOWDOWN — se ainda houver mais de um jogador, as mãos são comparadas.']},
-      {type:'content',title:'QUANDO A MÃO TERMINA ANTES',text:'A mão pode terminar antes do showdown se todos os adversários desistirem. Nesse caso, o último jogador restante recebe o pote sem precisar comparar cartas.'}
+      {type:'content',title:'RANKING DE MÃOS',text:'As combinações seguem uma ordem de força: carta alta, par, dois pares, trinca, sequência, flush, full house, quadra, straight flush e royal flush.'},
+      {type:'content',title:'EMPATES E KICKERS',text:'Quando dois jogadores têm a mesma categoria de mão, cartas de desempate podem decidir o pote. Se as cinco melhores cartas forem idênticas, o pote é dividido.'},
+      {type:'scene',title:'POSIÇÕES NA MESA',text:'Button, Small Blind, Big Blind e demais posições determinam a ordem da ação e quanta informação cada jogador possui antes de agir.'},
+      {type:'content',title:'BUTTON E BLINDS',text:'O Button marca a posição de referência. À esquerda ficam Small Blind e Big Blind, que colocam apostas obrigatórias antes da ação começar.'},
+      {type:'compare',title:'BLINDS E ANTE',leftTitle:'BLINDS',leftText:'Small Blind e Big Blind criam o pote inicial e obrigam a ação.',rightTitle:'ANTE',rightText:'Algumas estruturas adicionam uma contribuição obrigatória antes da mão, feita por todos ou por uma posição específica.'},
+      {type:'content',title:'O POTE',text:'O pote reúne as fichas apostadas. Seu tamanho muda ao longo da mão e influencia decisões de risco e recompensa.'},
+      {type:'steps',title:'AS STREETS',items:['PRÉ-FLOP — decisões com as cartas iniciais.','FLOP — três cartas comunitárias são reveladas.','TURN — a quarta carta comunitária aparece.','RIVER — a quinta carta comunitária é revelada.','SHOWDOWN — se houver mais de um jogador, as mãos são comparadas.']},
+      {type:'content',title:'QUANDO A MÃO TERMINA ANTES',text:'Se todos os adversários desistirem, o último jogador restante recebe o pote sem precisar mostrar a mão, salvo exigência específica da regra local.'}
+    ]
+  },
+  {
+    id:'betting',
+    title:'APOSTAS E ALL-IN',
+    description:'Valores mínimos, raises, all-ins e potes laterais.',
+    sections:[
+      {type:'host',eyebrow:'POKERINNO EXPLICA',title:'QUANTO É UMA APOSTA VÁLIDA?',text:'Aposta e aumento têm valores mínimos. Um all-in menor que o mínimo pode mudar quem ainda pode aumentar.',host:'Não olhe apenas para o total. Compare com a aposta anterior e com o tamanho do último aumento válido.'},
+      {type:'content',title:'APOSTA MÍNIMA',text:'Em jogos no-limit e pot-limit, a primeira aposta de uma rodada normalmente deve ser pelo menos o valor do big blind vigente, salvo regra específica da estrutura.'},
+      {type:'content',title:'RAISE MÍNIMO',text:'Um raise completo normalmente precisa aumentar pelo menos o mesmo valor do último aumento completo. O valor exato depende da sequência de apostas da rodada.'},
+      {type:'content',title:'ALL-IN ABAIXO DO RAISE MÍNIMO',text:'Um jogador pode ir all-in por menos que um raise mínimo completo. Esse aumento pode ser válido como all-in, mas não necessariamente reabre a ação para quem já agiu.'},
+      {type:'content',title:'AÇÃO NÃO REABERTA',text:'Se o all-in não constitui um aumento completo, jogadores que já completaram sua ação podem ficar impedidos de aumentar novamente. Eles normalmente podem apenas pagar ou desistir, conforme a regra aplicada.'},
+      {type:'content',title:'MÚLTIPLOS ALL-INS CURTOS',text:'Mais de um all-in curto pode, em algumas regras, somar aumentos suficientes para reabrir a ação. Esse é um caso típico para confirmação do dealer ou floor.'},
+      {type:'content',title:'ALL-IN MAIOR QUE O MÍNIMO',text:'Se o valor do all-in representa um aumento completo, a ação é reaberta normalmente para os jogadores ainda ativos.'},
+      {type:'content',title:'APOSTA COM UMA FICHA GRANDE',text:'Sem anúncio verbal, colocar uma única ficha de valor maior diante de uma aposta pode ser interpretado apenas como call em muitas regras ao vivo.'},
+      {type:'content',title:'APOSTA DE VALOR INCORRETO',text:'Se um jogador coloca fichas em quantidade insuficiente ou excessiva, o dealer deve interromper a ação antes que outros jogadores ajam e aplicar a interpretação prevista pela regra local.'},
+      {type:'content',title:'STRING BET E STRING RAISE',text:'Colocar fichas em várias etapas sem declarar previamente a intenção pode invalidar parte do aumento. Anunciar o valor antes de mover as fichas evita dúvida.'},
+      {type:'content',title:'POTE PRINCIPAL E SIDE POTS',text:'Quando stacks são diferentes, cada jogador só disputa o valor que conseguiu cobrir. O excedente forma um ou mais side pots entre os jogadores elegíveis.'},
+      {type:'content',title:'APOSTA FORA DA VEZ',text:'Uma aposta feita fora da vez pode ser vinculante ou não dependendo de como a ação anterior se modifica. O floor pode ser chamado quando a situação altera decisões posteriores.'}
     ]
   },
   {
     id:'actions',
     title:'AÇÕES E FLUXO',
-    description:'Ordem, apostas e decisões em cada rodada.',
+    description:'Ordem, decisões e fechamento de cada rodada.',
     sections:[
-      {type:'host',eyebrow:'POKERINNO EXPLICA',title:'ACOMPANHE A AÇÃO',text:'Grande parte dos erros de iniciante acontece por perder a ordem da mão. Primeiro descubra quem age, qual foi a última ação e quanto custa continuar.',host:'Antes de pensar na sua jogada, descubra exatamente onde a ação está.'},
       {type:'steps',title:'ORDEM DA AÇÃO',items:['Identifique a street atual.','Veja quem deve agir primeiro.','Acompanhe cada ação até chegar em você.','Confirme o valor atual da aposta.','A rodada termina quando todos os jogadores ativos completam a ação necessária.']},
-      {type:'content',title:'CHECK',text:'Check passa a ação sem colocar fichas adicionais. Só é possível quando não existe uma aposta pendente para igualar.'},
-      {type:'content',title:'BET',text:'Bet inicia uma aposta em uma rodada em que ninguém apostou ainda. Os adversários passam a escolher entre pagar, aumentar ou desistir.'},
-      {type:'content',title:'CALL',text:'Call iguala o valor da aposta atual para permanecer na mão.'},
-      {type:'content',title:'RAISE',text:'Raise aumenta uma aposta existente. Depois de um raise, os jogadores ainda ativos precisam responder ao novo valor.'},
-      {type:'content',title:'FOLD',text:'Fold abandona a mão. O jogador perde qualquer valor já colocado no pote e deixa de participar das ações seguintes.'},
-      {type:'content',title:'ALL-IN',text:'All-in acontece quando o jogador coloca todas as fichas disponíveis. Ele continua elegível ao pote correspondente ao valor que conseguiu cobrir.'},
-      {type:'content',title:'QUANDO HÁ MAIS DE UM ALL-IN',text:'Se jogadores têm stacks diferentes, podem surgir pote principal e side pots. Cada jogador disputa apenas os potes para os quais contribuiu.'},
-      {type:'content',title:'AÇÃO FORA DA VEZ',text:'Agir antes da sua vez pode interferir na mão e gerar penalidades ou decisões específicas conforme a regra aplicada. O correto é esperar a ação chegar até você.'},
-      {type:'content',title:'SHOWDOWN',text:'Quando a última rodada termina com dois ou mais jogadores, as mãos são comparadas. A melhor mão válida recebe o pote, ou ele é dividido em caso de empate.'}
+      {type:'content',title:'CHECK',text:'Check passa a ação sem apostar quando não existe valor pendente para igualar.'},
+      {type:'content',title:'BET',text:'Bet inicia uma aposta em uma rodada na qual ninguém apostou ainda.'},
+      {type:'content',title:'CALL',text:'Call iguala o valor necessário para permanecer na mão.'},
+      {type:'content',title:'RAISE',text:'Raise aumenta uma aposta existente e cria um novo valor a ser respondido pelos jogadores ainda ativos.'},
+      {type:'content',title:'FOLD',text:'Fold abandona a mão. O jogador perde o direito ao pote e qualquer valor já investido permanece nele.'},
+      {type:'content',title:'ALL-IN',text:'All-in coloca todas as fichas disponíveis do jogador em risco naquela mão.'},
+      {type:'content',title:'AÇÃO FORA DA VEZ',text:'Agir antes da sua vez pode influenciar outros jogadores e gerar correção ou penalidade. O correto é aguardar a ação chegar.'},
+      {type:'content',title:'AÇÃO SUBSTANCIAL',text:'Depois que uma quantidade suficiente de ações posteriores ocorre, alguns erros anteriores podem deixar de ser totalmente reversíveis. Esse é outro cenário comum para decisão do floor.'},
+      {type:'content',title:'SHOWDOWN',text:'Ao final da última rodada, as mãos elegíveis são comparadas. A melhor mão válida leva o pote ou ele é dividido em caso de empate.'}
+    ]
+  },
+  {
+    id:'dealing',
+    title:'ERROS DE DISTRIBUIÇÃO',
+    description:'Pré-flop, flop, turn, river e cartas incorretas.',
+    sections:[
+      {type:'host',eyebrow:'POKERINNO EXPLICA',title:'QUANDO AS CARTAS SAEM ERRADO',text:'Nem todo erro de distribuição tem a mesma solução. O momento em que ele é percebido muda completamente o procedimento.',host:'Quanto mais cedo o erro é identificado, mais simples costuma ser a correção.'},
+      {type:'content',title:'PRÉ-FLOP DISTRIBUÍDO ERRADO',text:'Cartas faltando, cartas extras, ordem incorreta ou exposição indevida no início podem resultar em misdeal se o erro estiver dentro dos critérios previstos pela regra. Se ação substancial já ocorreu, a solução pode ser diferente.'},
+      {type:'content',title:'JOGADOR SEM CARTAS OU COM CARTAS A MAIS',text:'Se um jogador recebe número incorreto de cartas, a mão pode ser declarada morta ou a distribuição pode ser corrigida, dependendo do momento em que o problema é percebido e da regra usada.'},
+      {type:'content',title:'CARTA EXPOSTA NO PRÉ-FLOP',text:'Uma carta exposta pelo dealer pode ser substituída conforme o procedimento da modalidade. Exposição causada pelo próprio jogador costuma ter tratamento diferente.'},
+      {type:'content',title:'FLOP COM NÚMERO ERRADO DE CARTAS',text:'Um flop com duas, quatro ou mais cartas é uma irregularidade. O dealer deve parar a ação imediatamente e chamar o floor quando a correção não for óbvia.'},
+      {type:'content',title:'FLOP ERRADO',text:'Se o flop foi retirado do baralho de maneira incorreta ou antes da hora, o procedimento busca preservar ao máximo a aleatoriedade restante. A solução varia conforme a regra adotada.'},
+      {type:'content',title:'TURN PREMATURO',text:'Se o turn é aberto antes de todos completarem a ação do flop, a carta não deve simplesmente permanecer em jogo. O floor pode determinar sua retirada temporária e a reconstrução correta da sequência.'},
+      {type:'content',title:'RIVER PREMATURO',text:'O mesmo princípio se aplica ao river aberto antes da hora: interromper a mão, preservar as cartas e seguir o procedimento previsto para restaurar a ordem correta.'},
+      {type:'content',title:'TURN OU RIVER INCORRETO',text:'Quando uma carta comunitária é revelada de forma errada, a correção procura preservar as cartas que ainda deveriam estar aleatórias e evitar escolher manualmente um resultado.'},
+      {type:'content',title:'CARTAS A MAIS NO BOARD',text:'Se aparecem cartas comunitárias extras, ninguém deve escolher qual retirar. O dealer e o floor aplicam o procedimento definido para reconstruir o board.'},
+      {type:'content',title:'BARALHO CONTAMINADO OU CARTA ESTRANHA',text:'Se surge uma carta incompatível com o baralho em uso, duplicada de forma impossível ou pertencente a outro deck, a mão deve ser interrompida para investigação do floor.'}
     ]
   },
   {
@@ -116,35 +152,50 @@ export const rulesGroups=[
     description:'Cartas, fichas, dealer, floor e situações especiais.',
     sections:[
       {type:'content',title:'PROTEÇÃO DAS CARTAS',text:'O jogador é responsável por manter suas cartas identificáveis e protegidas. Cartas recolhidas acidentalmente podem ser consideradas mortas dependendo da situação.'},
-      {type:'content',title:'MUCK',text:'Muck é descartar as cartas sem mostrá-las quando isso é permitido. Depois que uma mão é descartada e não pode mais ser identificada com segurança, normalmente não volta ao jogo.'},
-      {type:'content',title:'AÇÃO VERBAL',text:'Declarações claras como call, raise ou fold podem ser vinculantes. Evite frases ambíguas para não criar dúvida sobre sua intenção.'},
-      {type:'content',title:'MOVIMENTO DE FICHAS',text:'A forma de colocar fichas no pote pode representar uma ação. Em muitas regras, colocar uma ficha grande sem anunciar raise pode ser interpretado apenas como call.'},
-      {type:'content',title:'STRING BET',text:'Colocar fichas em várias etapas sem declarar corretamente a intenção pode ser considerado string bet. O ideal é anunciar a ação ou colocar o valor de uma só vez.'},
-      {type:'scene',title:'DEALER',text:'O dealer distribui cartas, conduz a ordem da ação, organiza o pote e comunica situações da mão. Ele não decide estratégia e não deve favorecer nenhum jogador.'},
-      {type:'scene',title:'FLOOR',text:'O floor é chamado quando há dúvida, disputa ou situação fora do procedimento comum. Sua função é interpretar as regras e preservar a integridade do jogo.'},
-      {type:'content',title:'MISDEAL',text:'Misdeal é uma distribuição inválida detectada dentro dos critérios previstos pela regra. A mão pode ser cancelada e redistribuída.'},
-      {type:'content',title:'CARTA EXPOSTA',text:'Se uma carta é exposta acidentalmente, o procedimento depende do momento e da modalidade. O dealer deve ser chamado para aplicar a regra correta.'},
-      {type:'content',title:'DEAD HAND',text:'Uma mão pode ser declarada morta em situações específicas, como descarte irreversível, ação irregular grave ou descumprimento de procedimentos definidos.'},
-      {type:'content',title:'SIDE POT',text:'Quando um jogador está all-in por menos fichas que os demais, valores adicionais formam potes laterais. Nem todos os jogadores participam de todos os potes.'}
+      {type:'content',title:'MUCK',text:'Muck é descartar as cartas sem mostrá-las quando permitido. Depois que uma mão não pode mais ser identificada com segurança, normalmente ela não retorna ao jogo.'},
+      {type:'content',title:'AÇÃO VERBAL',text:'Declarações claras como call, raise ou fold podem ser vinculantes. Frases ambíguas devem ser evitadas.'},
+      {type:'content',title:'MOVIMENTO DE FICHAS',text:'A forma de colocar fichas no pote também comunica uma ação. O jogador deve anunciar a intenção quando houver possibilidade de interpretação.'},
+      {type:'scene',title:'DEALER',text:'O dealer distribui cartas, acompanha a ordem, organiza o pote e chama o floor quando surge uma situação que exige decisão.'},
+      {type:'scene',title:'FLOOR',text:'O floor interpreta regras, resolve disputas, corrige irregularidades e pode aplicar penalidades. A decisão pode considerar a regra escrita, a sequência da ação e a integridade do jogo.'},
+      {type:'content',title:'DEAD HAND',text:'Uma mão pode ser declarada morta em situações específicas, como descarte irreversível, cartas não recuperáveis ou determinadas violações de procedimento.'},
+      {type:'content',title:'SIDE POT',text:'Valores que excedem o all-in de um jogador formam potes laterais separados. A elegibilidade deve ser controlada corretamente.'}
+    ]
+  },
+  {
+    id:'floor',
+    title:'QUANDO CHAMAR O FLOOR',
+    description:'Conflitos, erros, decisões e formas de resolver.',
+    sections:[
+      {type:'host',eyebrow:'POKERINNO ORIENTA',title:'PARE A AÇÃO E CHAME O FLOOR',text:'Quando há dúvida real sobre regra, valor, ordem ou integridade da mão, continuar jogando pode tornar a correção mais difícil.',host:'Não tente resolver uma disputa importante discutindo na mesa. Preserve as cartas e chame o floor.'},
+      {type:'content',title:'APOSTA CONTESTADA',text:'Chame o floor quando jogadores discordam sobre o valor anunciado, quantidade de fichas, se houve call ou raise, ou se a ação reabriu.'},
+      {type:'content',title:'AÇÃO FORA DA VEZ COM IMPACTO',text:'Se alguém age fora da vez e jogadores posteriores reagem, o floor pode precisar decidir quais ações permanecem válidas.'},
+      {type:'content',title:'DÚVIDA SOBRE ALL-IN MÍNIMO',text:'Quando um all-in é menor que o raise mínimo e há dúvida se a ação foi reaberta, o floor deve confirmar quem ainda pode aumentar.'},
+      {type:'content',title:'ERRO NO BOARD',text:'Flop, turn ou river incorretos, prematuros ou com cartas extras devem ser interrompidos antes que novas decisões sejam tomadas.'},
+      {type:'content',title:'MÃO POSSIVELMENTE MORTA',text:'Se há discussão sobre muck, cartas misturadas, cartas recolhidas ou número incorreto de cartas, preserve tudo que ainda puder ser identificado e chame o floor.'},
+      {type:'content',title:'POTE OU SIDE POT INCORRETO',text:'Se valores foram colocados no pote errado ou jogadores não concordam sobre elegibilidade, pare a distribuição do pote até a conferência.'},
+      {type:'content',title:'SHOWDOWN CONTESTADO',text:'Quando existe dúvida sobre leitura da mão, ordem de exposição ou direito ao pote, o dealer deve manter as cartas e pedir decisão antes de empurrar as fichas.'},
+      {type:'content',title:'COMPORTAMENTO INADEQUADO',text:'Ofensas, ameaças, colaboração indevida, exposição intencional de cartas, atraso deliberado ou qualquer comportamento que afete a integridade do jogo pode exigir intervenção.'},
+      {type:'steps',title:'COMO RESOLVER UMA SITUAÇÃO',items:['Pare a ação assim que o problema for percebido.','Não misture cartas nem mova fichas desnecessariamente.','Explique ao dealer exatamente o que aconteceu.','Mantenha as versões dos jogadores separadas quando houver discordância.','Chame o floor quando a solução não for puramente mecânica.','Aplique a decisão e só então retome a mão.']},
+      {type:'content',title:'REGRA DA CASA PREVALECE',text:'Procedimentos podem variar entre cassinos, clubes e torneios. Em jogo ao vivo, a decisão final pertence à autoridade responsável pela mesa conforme as regras vigentes no evento.'}
     ]
   },
   {
     id:'etiquette',
-    title:'ETIQUETA',
-    description:'Comportamento, ritmo e convivência na mesa.',
+    title:'ETIQUETA E PENALIDADES',
+    description:'Comportamento, infrações e consequências possíveis.',
     sections:[
-      {type:'host',eyebrow:'POKERINNO LEMBRA',title:'JOGAR BEM TAMBÉM É SABER SE COMPORTAR',text:'Etiqueta não substitui regra, mas evita confusão, protege a integridade da mão e melhora a experiência de todos.',host:'Uma mesa organizada ajuda todo mundo a pensar melhor.'},
-      {type:'content',title:'AJA NA SUA VEZ',text:'Espere a ação chegar até você antes de falar, apostar, mostrar cartas ou abandonar a mão.'},
-      {type:'content',title:'ACOMPANHE A MÃO',text:'Preste atenção às apostas e ao andamento da rodada. Fazer a mesa repetir constantemente a ação deixa o jogo lento e aumenta o risco de erro.'},
-      {type:'content',title:'PROTEJA SUAS CARTAS',text:'Mantenha suas cartas próximas e claramente sob seu controle. Um protetor de cartas pode ajudar em mesas ao vivo.'},
-      {type:'content',title:'NÃO MOSTRE CARTAS DURANTE A AÇÃO',text:'Expor cartas enquanto outros jogadores ainda tomam decisões pode fornecer informação indevida e alterar o comportamento da mesa.'},
-      {type:'content',title:'NÃO COMENTE UMA MÃO EM ANDAMENTO',text:'Evite analisar, sugerir ações, falar sobre possíveis mãos ou reagir de forma que revele informação enquanto a mão ainda estiver ativa.'},
-      {type:'content',title:'ONE PLAYER TO A HAND',text:'Cada jogador deve tomar suas próprias decisões. Não peça nem ofereça ajuda estratégica durante uma mão em andamento.'},
-      {type:'content',title:'SEJA CLARO AO APOSTAR',text:'Declare sua ação com clareza e coloque fichas de maneira organizada. Isso reduz interpretações e conflitos.'},
-      {type:'content',title:'RITMO DE JOGO',text:'Pensar faz parte do poker, mas atrasos desnecessários prejudicam a mesa. Tome seu tempo quando a decisão exigir, sem transformar ações simples em demora constante.'},
-      {type:'content',title:'RESPEITO',text:'Respeite adversários, dealer e equipe mesmo após perder uma mão. Ofensas, intimidação e comportamento abusivo não fazem parte de uma boa experiência de jogo.'},
-      {type:'content',title:'CELULAR E DISTRAÇÕES',text:'O uso de celular pode ter restrições durante uma mão ou torneio. Siga as regras locais e evite distrações que atrasem sua ação.'},
-      {type:'summary',title:'REGRAS DE CONVIVÊNCIA',items:['Espere sua vez.','Acompanhe a ação.','Proteja suas cartas.','Não revele informação.','Não interfira na decisão de outros jogadores.','Seja claro com fichas e palavras.','Respeite jogadores e equipe.'],host:'Boa etiqueta não é detalhe: ela mantém o jogo claro, justo e agradável.'}
+      {type:'host',eyebrow:'POKERINNO LEMBRA',title:'COMPORTAMENTO TAMBÉM TEM REGRA',text:'Etiqueta protege o ritmo e a convivência. Quando o comportamento afeta a integridade do jogo, pode deixar de ser apenas etiqueta e virar infração.',host:'Respeito e clareza evitam boa parte dos problemas de mesa.'},
+      {type:'content',title:'AJA NA SUA VEZ',text:'Ações antecipadas podem fornecer informação e alterar decisões. Reincidência pode gerar advertência ou penalidade.'},
+      {type:'content',title:'NÃO MOSTRE CARTAS DURANTE A AÇÃO',text:'Expor cartas enquanto outros ainda decidem pode prejudicar a mão e, se intencional ou recorrente, pode levar a penalidades.'},
+      {type:'content',title:'NÃO COMENTE A MÃO',text:'Não sugira ações, revele leituras ou indique o que um jogador deveria fazer enquanto a mão está em andamento.'},
+      {type:'content',title:'ONE PLAYER TO A HAND',text:'Cada jogador deve tomar suas próprias decisões. Ajuda externa durante a mão não é permitida.'},
+      {type:'content',title:'LINGUAGEM ABUSIVA OU AMEAÇAS',text:'Ofensas, intimidação e ameaças podem levar a advertência, afastamento temporário ou remoção do jogo, conforme gravidade e regra local.'},
+      {type:'content',title:'ATRASO DELIBERADO',text:'Demorar sem necessidade de forma repetida pode ser tratado como conduta inadequada e receber intervenção do floor.'},
+      {type:'content',title:'COLUSÃO E CHIP DUMPING',text:'Combinar ações, transferir fichas intencionalmente ou cooperar para prejudicar outros jogadores compromete a integridade do jogo e pode levar à desclassificação ou expulsão.'},
+      {type:'content',title:'USO INDEVIDO DE DISPOSITIVOS',text:'Celulares, fones e outros dispositivos podem ter restrições durante mãos ou torneios. O uso proibido pode resultar em advertência ou penalidade.'},
+      {type:'content',title:'PUNIÇÕES POSSÍVEIS',text:'Dependendo da regra e da gravidade, podem existir aviso verbal, advertência formal, mão morta, perda de órbitas ou mãos, afastamento temporário, desclassificação ou remoção do local.'},
+      {type:'content',title:'PENALIDADE NÃO MUDA O RESULTADO AUTOMATICAMENTE',text:'Uma penalidade disciplinar e a resolução técnica de uma mão são coisas diferentes. O floor pode corrigir a mão e aplicar uma penalidade separadamente.'},
+      {type:'summary',title:'REGRA PRÁTICA',items:['Pare quando houver dúvida.','Não altere cartas ou fichas antes da decisão.','Explique o fato, não a opinião.','Deixe dealer e floor aplicarem o procedimento.','Aceite que regras locais podem variar.'],host:'Resolver bem uma irregularidade é preservar o jogo, não vencer uma discussão.'}
     ]
   }
 ];
