@@ -809,3 +809,75 @@ main,#app{
   .chapter{gap:10px}
   .chapter .number{flex-basis:34px;width:34px;font-size:17px}
 }
+
+/* Terminology host */
+.terms-host-card{
+  position:relative;
+  display:grid;
+  grid-template-columns:112px minmax(0,1fr);
+  gap:16px;
+  align-items:stretch;
+  margin:0 0 16px;
+  border:1px solid rgba(247,199,91,.55);
+  border-radius:16px;
+  background:
+    radial-gradient(circle at 12% 20%,rgba(247,199,91,.10),transparent 34%),
+    linear-gradient(135deg,#123329 0%,#0a211b 68%);
+  overflow:hidden;
+  box-shadow:none;
+}
+.terms-host-art{
+  min-height:150px;
+  background:rgba(247,199,91,.05);
+  border-right:1px solid rgba(247,199,91,.22);
+}
+.terms-host-art img{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+}
+.terms-host-copy{
+  min-width:0;
+  padding:18px 18px 18px 0;
+  align-self:center;
+}
+.terms-host-copy>span{
+  display:block;
+  margin-bottom:7px;
+  color:var(--gold);
+  font-size:9px;
+  font-weight:600;
+  letter-spacing:1.25px;
+}
+.terms-host-copy h2{
+  margin:0;
+  color:var(--text);
+  font-size:18px;
+  line-height:1.15;
+  font-weight:600;
+}
+.terms-host-copy p{
+  margin:8px 0 10px;
+  color:var(--muted);
+  font-size:11px;
+  line-height:1.55;
+  font-weight:400;
+  white-space:normal;
+}
+.terms-host-copy strong{
+  display:inline-block;
+  color:var(--gold);
+  font-size:10px;
+  line-height:1.35;
+  font-weight:600;
+  letter-spacing:.25px;
+}
+@media(max-width:700px){
+  .terms-host-card{grid-template-columns:88px minmax(0,1fr);gap:12px;border-radius:14px}
+  .terms-host-art{min-height:138px}
+  .terms-host-copy{padding:14px 14px 14px 0}
+  .terms-host-copy h2{font-size:15px}
+  .terms-host-copy p{font-size:10.5px;line-height:1.5}
+}
