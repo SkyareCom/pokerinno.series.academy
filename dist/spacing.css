@@ -133,7 +133,7 @@ body :is(.sidebar,.workspace,header,main,#app,dialog) :is(h3,h4,h5,h6,strong,but
 body :is(.sidebar,.workspace,header,main,#app,dialog) :is(p,li,small,label,input,select,textarea,.eyebrow,.tiny,.breadcrumb,.card-description,.source-body,.source-body *, .source-lesson summary small){font-size:12px!important}
 body :is(.sidebar,.workspace,header,main,#app,dialog) :is(.source-body h1,.source-body h2){font-size:20px!important}
 body :is(.sidebar,.workspace,header,main,#app,dialog) :is(.source-body h3,.source-body h4,.source-body h5,.source-body h6){font-size:16px!important}
-body footer,body footer *,body .mobile-nav .nav-label,body .mobile-nav small,body .mobile-nav span:not(.nav-icon):not(.icon),body .mobile-nav a{font-size:10px!important}
+body footer,body footer *,body .mobile-nav .nav-label,body .mobile-nav small,body .mobile-nav span:not(.nav-symbol):not(.nav-icon):not(.icon),body .mobile-nav a{font-size:10px!important}
 /* Five footer items: identical icon boxes and label baseline. */
 body .mobile-nav{align-items:stretch!important}
 body .mobile-nav a{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:flex-start!important;gap:5px!important;font-size:10px!important;line-height:14px!important}
