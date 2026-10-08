@@ -1239,7 +1239,7 @@ input,select,textarea{font-family:inherit;font-size:14px}
 #app .practice-catalog .source-group>.section-top h2{font-size:16px;line-height:1.25;font-weight:600}
 
 /* Betting lesson layout: stacked headers, one card boundary per topic. */
-#app .betting-learning-path{display:flex!important;flex-direction:column!important;gap:10px!important;padding-bottom:110px}
+#app .betting-learning-path{display:flex!important;flex-direction:column!important;gap:10px!important;padding-bottom:0!important}
 #app .betting-learning-module{display:block!important;width:100%;min-width:0;margin:10px 0 0!important}
 #app .betting-module-heading{display:flex!important;flex-direction:column!important;align-items:flex-start!important;gap:10px!important;margin:0 0 10px!important;padding:0!important;width:100%;min-width:0}
 #app .betting-module-heading>*{display:block!important;position:static!important;width:100%!important;max-width:100%!important;min-width:0!important;margin:0!important;grid-column:auto!important;overflow-wrap:anywhere}
