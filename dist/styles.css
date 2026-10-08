@@ -71,3 +71,6 @@ button,
 #navigation a{
   text-transform:uppercase;
 }
+
+/* Global one-line card descriptions */
+.feature p,.chapter p,.next-app span,.training-card p,.card p{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;}
