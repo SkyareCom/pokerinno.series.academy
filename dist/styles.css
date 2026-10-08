@@ -1262,3 +1262,8 @@ input,select,textarea{font-family:inherit;font-size:14px}
 #app .betting-learning-path .betting-info-card .source-body .lc,#app .betting-learning-path .betting-info-card .source-body .cg,#app .betting-learning-path .betting-info-card .source-body .ch,#app .betting-learning-path .betting-info-card .source-body .ex{border:0!important;background:transparent!important;padding:0!important;margin:0!important;box-shadow:none!important}
 #app .betting-learning-path .betting-topic-heading{display:flex!important;align-items:center!important;gap:10px!important;margin:0 0 10px!important}
 #app .betting-learning-path .betting-topic-heading h3{font-size:16px!important;line-height:1.4!important;margin:0!important}
+
+/* Academy-wide example typography and spacing */
+#app .academy-example{display:block!important;margin:10px 0!important;padding:0!important;border:0!important;background:transparent!important;box-shadow:none!important}
+#app .academy-example-label{display:block!important;margin:0 0 10px!important;font-size:14px!important;font-weight:600!important;line-height:1.4!important;color:var(--text)!important;letter-spacing:normal!important}
+#app .academy-example > :last-child{margin-bottom:0!important}
