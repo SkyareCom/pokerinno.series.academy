@@ -224,5 +224,7 @@
   "streets.preflop": "PRE-FLOP",
   "streets.flop": "FLOP",
   "streets.turn": "TURN",
-  "streets.river": "RIVER"
+  "streets.river": "RIVER",
+  "staff.etiquette.title": "ETIQUETTE",
+  "staff.etiquette.description": "Etiquette, game pace and respect for table rules."
 }

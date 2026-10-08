@@ -224,5 +224,7 @@
   "streets.preflop": "PREFLOP",
   "streets.flop": "FLOP",
   "streets.turn": "TURN",
-  "streets.river": "RIVER"
+  "streets.river": "RIVER",
+  "staff.etiquette.title": "BUENOS MODALES",
+  "staff.etiquette.description": "Etiqueta, ritmo de juego y respeto a las reglas de la mesa."
 }

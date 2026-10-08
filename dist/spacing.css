@@ -252,3 +252,16 @@ body.login-screen #app .entry-auth-stackup img{width:32px;height:32px}
 #app .streets-lesson .street-hero-seat{display:flex;align-items:center;gap:var(--space-2);padding:var(--space-1) var(--space-2);min-height:44px;border:1px solid var(--line);border-radius:9px;background:#0a211a}
 #app .streets-lesson .street-hero-seat img{display:block;width:32px;height:36px;object-fit:cover;border-radius:6px}
 #app .streets-lesson .street-hero-seat strong{font-size:12px!important;font-weight:600;line-height:1.4}
+
+/* Bons Modos opens a full reading page; its entry card keeps the app's Pokerinno style. */
+#app .staff-etiquette-feature .staff-etiquette-lesson h3{margin:0;font-size:16px;line-height:1.3}
+#app .staff-etiquette-feature .staff-etiquette-lesson h3+p{margin-block-start:var(--component-gap)}
+#app .etiquette-page.source-body{padding:0;min-width:0}
+#app .etiquette-page .lg{gap:var(--component-gap)!important}
+#app .etiquette-page .lc{margin:0!important;padding:var(--space-3)!important}
+#app .etiquette-page .lc>h3{margin:0!important;line-height:1.3!important}
+#app .etiquette-page .lc>p{margin:0!important;line-height:var(--reading-line)!important}
+#app .etiquette-page .lc>h3+p{margin-block-start:var(--component-gap)!important}
+#app .etiquette-page .lc>p+p{margin-block-start:var(--paragraph-gap)!important}
+#app .etiquette-page .lc>.cg{margin-block-start:var(--component-gap)}
+#app .etiquette-page .cg>.ch{display:grid;gap:var(--space-2);margin:0!important}
