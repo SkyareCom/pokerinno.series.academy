@@ -189,5 +189,7 @@
   "messages.optionDescription.training": "Invitations to practice and updates about your progress.",
   "messages.optionDescription.theory": "Invitations to review concepts, including topics with practice mistakes.",
   "messages.optionDescription.forgetting": "My reminder when you return after more than 3 days away.",
-  "home.quote": "“POKER IS A GAME THAT TAKES US ONE MINUTE TO LEARN, BUT A LIFETIME TO MASTER.”"
+  "home.quote": "“POKER IS A GAME THAT TAKES US ONE MINUTE TO LEARN, BUT A LIFETIME TO MASTER.”",
+  "home.title": "LEARN. PRACTICE. PLAY.",
+  "home.description": "Learn to play poker interactively."
 }
