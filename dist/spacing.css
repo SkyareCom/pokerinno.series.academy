@@ -177,3 +177,14 @@ body.login-screen #app .entry-form>h2{font-size:16px!important}
 @keyframes pokerinno-greet{from{transform:translateY(8px) rotate(-3deg)}to{transform:none}}
 @media(max-width:800px){.pokerinno-balloons{top:calc(73px + env(safe-area-inset-top,0px));max-height:calc(100dvh - 165px)}}
 @media(prefers-reduced-motion:reduce){.pokerinno-balloons,.pokerinno-speech,.pokerinno-speaker{animation:none}}
+
+/* Compact speech area and upper-left message heading. */
+.pokerinno-balloons{padding:12px}
+.pokerinno-message-heading{display:flex;align-items:center;max-width:calc(100% - 32px);min-height:32px;margin:0 0 8px;line-height:1.35;font-size:12px;text-align:left}
+.pokerinno-speech-row{grid-template-columns:60px minmax(0,1fr);gap:10px}
+.pokerinno-speaker{width:60px;height:80px}
+.pokerinno-speech{padding:10px}
+.pokerinno-speech p{margin:8px 0;line-height:1.4}
+.pokerinno-speech .primary{padding:8px 10px;min-height:36px}
+.pokerinno-speech-controls{margin-top:8px}
+.pokerinno-speech-controls>button{grid-column:2;grid-row:1;justify-self:end}
