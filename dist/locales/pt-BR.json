@@ -191,5 +191,13 @@
   "messages.optionDescription.forgetting": "Meu aviso ao retornar após mais de 3 dias sem acessar.",
   "home.quote": "“POKER É UM JOGO QUE LEVAMOS UM MINUTO PARA APRENDER, MAS UMA VIDA PARA DOMINAR.”",
   "home.title": "APRENDER. PRATICAR. JOGAR.",
-  "home.description": "Aprenda a jogar poker de forma interativa."
+  "home.description": "Aprenda a jogar poker de forma interativa.",
+  "home.cards.learn.title": "APRENDER.",
+  "home.cards.learn.description": "Fundamentos do jogo.",
+  "home.cards.practice.title": "PRATICAR.",
+  "home.cards.practice.description": "Principais modalidades.",
+  "home.cards.play.title": "JOGAR.",
+  "home.cards.play.description": "Decisões e treino.",
+  "home.cards.dashboard.title": "DASHBOARD.",
+  "home.cards.dashboard.description": "Progresso e evolução."
 }
