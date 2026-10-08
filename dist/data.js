@@ -273,6 +273,7 @@ export const pokerTermsGroups=[
       ['ANTE','Aposta obrigatória colocada antes da mão em determinadas estruturas.'],
       ['BIG BLIND (BB)','Maior blind obrigatório e referência comum de valor.'],
       ['BLIND','Aposta obrigatória feita antes da distribuição das cartas.'],
+      ['BLINDS','Conjunto formado pelos blinds obrigatórios, normalmente Small Blind e Big Blind. Eles criam o pote inicial e organizam a ação pré-flop.'],
       ['BUTTON (BTN)','Marcador que identifica a posição nominal do dealer.'],
       ['DEALER','Pessoa que distribui cartas e conduz o procedimento da mão.'],
       ['FLOOR','Responsável por decisões de regra e situações excepcionais.'],
@@ -358,7 +359,8 @@ export const pokerTermsGroups=[
       ['SMALL BLIND (SB)','Posição do blind pequeno.'],
       ['BIG BLIND (BB)','Posição do blind grande.'],
       ['IN POSITION (IP)','Agir depois do adversário na street.'],
-      ['OUT OF POSITION (OOP)','Agir antes do adversário na street.']
+      ['OUT OF POSITION (OOP)','Agir antes do adversário na street.'],
+      ['BLIND WAR','Confronto entre Small Blind e Big Blind quando a ação chega limpa até os blinds. Os ranges tendem a ser mais amplos porque restam poucos jogadores disputando o pote.']
     ]
   },
   {
@@ -366,9 +368,12 @@ export const pokerTermsGroups=[
     terms:[
       ['AIR','Mão sem valor de showdown relevante e sem draw forte.'],
       ['BACKDOOR','Draw que precisa acertar cartas consecutivas em duas streets.'],
+      ['DRAWING DEAD','Situação em que nenhuma carta restante pode fazer sua mão vencer a mão adversária. Mesmo havendo cartas por vir, sua chance de vitória é 0%.'],
+      ['FLIP / COIN FLIP','Confronto em que as equities das mãos estão próximas de 50% para cada lado. Um exemplo comum pré-flop é um par contra duas overcards, como 88 contra AK.'],
       ['DRAW','Mão que ainda pode completar uma combinação forte.'],
       ['FLUSH DRAW','Quatro cartas do mesmo naipe com possibilidade de completar flush.'],
       ['OPEN-ENDED STRAIGHT DRAW','Draw de sequência que pode completar pelas duas pontas.'],
+      ['OESD — OPEN-ENDED STRAIGHT DRAW','Abreviação de open-ended straight draw: projeto de sequência aberto nas duas pontas. Exemplo: 6-7-8-9 pode completar com 5 ou T.'],
       ['GUTSHOT','Draw de sequência que precisa de um valor interno específico.'],
       ['MADE HAND','Mão que já possui uma combinação formada.'],
       ['NUTS','Melhor mão possível naquela situação.'],
@@ -398,6 +403,7 @@ export const pokerTermsGroups=[
       ['RANGE','Conjunto de mãos possíveis que um jogador pode representar em determinada situação. Em vez de tentar adivinhar uma única mão, o raciocínio por range considera várias combinações compatíveis com posição, ações anteriores, tamanhos de aposta e perfil do jogador.'],
       ['POSITION','Relação entre sua ordem de ação e a dos adversários. Agir depois permite observar decisões antes de escolher, oferecendo mais informação. Agir antes exige decidir com menos informação e pode tornar controle de pote, blefes e extração de valor mais difíceis.'],
       ['BLOCKER','Carta que reduz combinações possíveis na mão adversária.'],
+      ['EXPLOIT','Ajuste estratégico feito para aproveitar uma tendência ou erro recorrente do adversário. Só faz sentido quando existe informação confiável de que ele se desvia de forma previsível.'],
       ['POLARIZED RANGE','Range concentrado em mãos muito fortes e blefes.'],
       ['MERGED RANGE','Range com mãos de força mais contínua e intermediária.']
     ]
@@ -553,11 +559,16 @@ export const pokerExtraTermsGroups=[
       ['BAD BEAT','Derrota de uma mão muito favorita após cartas improváveis.'],
       ['COOLER','Confronto entre mãos muito fortes em que a perda é difícil de evitar.'],
       ['SUCKOUT','Virada improvável de uma mão que estava atrás.'],
+      ['RUNOUT','Conjunto das cartas que completam o board a partir de determinado ponto. Exemplo: o runout turn-river descreve as duas últimas cartas comunitárias.'],
+      ['FREEROLL','Pode significar uma situação em que um jogador não pode mais perder o pote principal e ainda possui outs para ganhar sozinho; também é usado para torneios sem buy-in, dependendo do contexto.'],
       ['RIVERED','Ser superado por uma carta decisiva no river.'],
       ['CRACKED','Quando uma mão premium acaba derrotada.'],
       ['HERO CALL','Call difícil feito acreditando que o adversário está blefando.'],
+      ['BLUFF CATCHER','Mão que normalmente perde para as apostas de valor do adversário, mas vence seus blefes. A decisão de pagar depende principalmente da frequência de blefe e das pot odds.'],
       ['HERO FOLD','Fold difícil de uma mão forte diante de ação que indica força superior.'],
       ['SNAP CALL','Call feito quase imediatamente.'],
+      ['INSTANT CALL','Sinônimo de snap call: call realizado praticamente de imediato. O timing pode indicar uma decisão clara, mas não prova sozinho força ou fraqueza.'],
+      ['SNAP SHOVE / SNAP JAM','All-in feito imediatamente. Shove e jam são gírias para colocar todas as fichas em jogo; snap indica que a decisão foi tomada sem demora perceptível.'],
       ['SNAP FOLD','Fold feito quase imediatamente.'],
       ['TANK','Usar bastante tempo para tomar uma decisão.'],
       ['SLOWROLL','Demorar sem necessidade para mostrar uma mão claramente vencedora no showdown.']
