@@ -188,5 +188,6 @@
   "messages.optionDescription.welcome": "My greeting when you enter Academy.",
   "messages.optionDescription.training": "Invitations to practice and updates about your progress.",
   "messages.optionDescription.theory": "Invitations to review concepts, including topics with practice mistakes.",
-  "messages.optionDescription.forgetting": "My reminder when you return after more than 3 days away."
+  "messages.optionDescription.forgetting": "My reminder when you return after more than 3 days away.",
+  "home.quote": "“POKER IS A GAME THAT TAKES US ONE MINUTE TO LEARN, BUT A LIFETIME TO MASTER.”"
 }
