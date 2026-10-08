@@ -1,4 +1,4 @@
-import {t} from './i18n.js?v=interactive-20261008';
+import {t} from './i18n.js?v=practice-modules-20261008';
 const escape=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const activities=new Map();let nextId=0;
 export function sourceQuiz(questions){

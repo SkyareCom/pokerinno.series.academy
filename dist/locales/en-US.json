@@ -54,5 +54,17 @@
   "quiz.why": "WHY",
   "quiz.reset": "TRY AGAIN",
   "quiz.sequence": "Select the items in the requested order.",
-  "quiz.progress": "ACTIVITIES ANSWERED"
+  "quiz.progress": "ACTIVITIES ANSWERED",
+  "practice.label": "PRACTICE",
+  "practice.title": "PRACTICE BY TOPIC",
+  "practice.description": "Choose a topic and module to answer activities from the Academy collection.",
+  "practice.rules": "THE RULES",
+  "practice.staff": "THE STAFF",
+  "practice.formats": "POKER VARIANTS",
+  "practice.terms": "POKER TERMINOLOGY",
+  "practice.math": "POKER MATHEMATICS",
+  "practice.decisions": "DECISIONS AND SITUATIONS",
+  "practice.situations": "GAME SITUATIONS",
+  "practice.activities": "ACTIVITIES",
+  "practice.back": "BACK TO TOPICS"
 }

@@ -54,5 +54,17 @@
   "quiz.why": "POR QUÊ",
   "quiz.reset": "TENTAR NOVAMENTE",
   "quiz.sequence": "Selecione os itens na ordem pedida.",
-  "quiz.progress": "ATIVIDADES RESPONDIDAS"
+  "quiz.progress": "ATIVIDADES RESPONDIDAS",
+  "practice.label": "PRATICAR",
+  "practice.title": "PRATIQUE POR TEMA",
+  "practice.description": "Escolha um tema e um módulo para responder às atividades da base Academy.",
+  "practice.rules": "AS REGRAS",
+  "practice.staff": "O STAFF",
+  "practice.formats": "AS MODALIDADES",
+  "practice.terms": "TERMINOLOGIA DO POKER",
+  "practice.math": "MATEMÁTICA DO POKER",
+  "practice.decisions": "DECISÕES E SITUAÇÕES",
+  "practice.situations": "SITUAÇÕES DE JOGO",
+  "practice.activities": "ATIVIDADES",
+  "practice.back": "VOLTAR AOS TEMAS"
 }
