@@ -577,3 +577,15 @@ main,#app{
   .learn-extra h3{font-size:14px}
   .learn-extra p{font-size:10px}
 }
+
+/* Editorial depth */
+.editorial-note{
+  margin:0 0 14px;
+  padding:14px 16px;
+  border-left:3px solid var(--gold);
+  background:rgba(247,199,91,.055);
+  border-radius:0 10px 10px 0;
+}
+.editorial-note strong{display:block;color:var(--gold);font-size:11px;letter-spacing:.45px}
+.editorial-note p{margin:5px 0 0;color:var(--muted);font-size:11px;line-height:1.5;white-space:normal}
+.glossary-term p{line-height:1.5}
