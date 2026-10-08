@@ -141,3 +141,10 @@ body .mobile-nav :is(svg,i,.nav-icon,.icon){font-size:20px!important}
 #app :is(.chapter,.source-lesson,.discover-section,.discover-hero-card,.betting-info-card,.staff-topic-card,.staff-etiquette-feature,.learn-extra,.learn-extra-pokerinno,.glossary-term,.pokerinno-context,.card,.lesson-card,.topic-card) :is(.card-title,.chapter-title,.lesson-title),
 #app .source-lesson > summary > strong,
 #app .staff-etiquette-feature summary > strong{color:var(--gold,#f7c75b)!important}
+
+/* Main titles and section headings: Academy yellow, preserving typography scale. */
+#app :is(h1,h2,.page-title,.hero-title,.section-title,.chapter-heading,.section-heading),
+#app :is(.discover-copy,.discover-page,.betting-learning-module,.source-group,.journey-heading,.page-heading) :is(h1,h2,h3),
+main > :is(h1,h2),
+.workspace header :is(h1,h2,h3),
+.sidebar :is(.brand,.series){color:var(--gold,#f7c75b)!important}
