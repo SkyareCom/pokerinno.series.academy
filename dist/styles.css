@@ -525,3 +525,12 @@ main,#app{
   .pokerinno-host p{font-size:11px}
   .discover-compare{grid-template-columns:1fr}
 }
+
+/* Poker glossary */
+.glossary-page{gap:14px}
+.glossary-group{padding:16px}
+.glossary-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.glossary-term{border:1px solid var(--line);border-radius:10px;background:#102a22;padding:11px 12px;min-width:0}
+.glossary-term strong{display:block;color:var(--gold);font-size:11px;letter-spacing:.35px;line-height:1.2}
+.glossary-term p{margin:5px 0 0;color:var(--muted);font-size:11px;line-height:1.4;white-space:normal;overflow:visible;text-overflow:clip}
+@media(max-width:700px){.glossary-list{grid-template-columns:1fr}.glossary-group{padding:14px}}
