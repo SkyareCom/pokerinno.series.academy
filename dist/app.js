@@ -38,25 +38,24 @@ const bettingIntegratedLessons=()=>{
  const seen=new Set();
  const card=(title,html)=>`<article class="betting-info-card"><h4>${title}</h4><div class="betting-info-content source-body">${html}</div></article>`;
  const split=entry=>{
-  const blocks=[];let part=[];let n=0;
-  const flush=()=>{if(part.length){blocks.push(card(n?entry.title+' · CONTINUAÇÃO':entry.title,part.join('')));part=[];n++}};
+  const cards=[];
+  const parts=[];
+  const flush=()=>{if(parts.length){cards.push(card(entry.title,parts.join('')));parts.length=0}};
   for(const node of entry.nodes){
    if(node.classList.contains('cg')){
-    flush();for(const child of [...node.children]){
+    flush();
+    for(const child of [...node.children]){
      const term=child.querySelector('strong,b')?.textContent.trim()||entry.title;
      const description=[...child.childNodes].filter(x=>!(x.nodeType===1&&['STRONG','B'].includes(x.tagName))).map(x=>x.nodeType===3?x.textContent:x.outerHTML).join('').trim();
-     blocks.push(card(term,'<p>'+description+'</p>'));
+     cards.push(card(term,'<p>'+description+'</p>'));
     }
    }else if(node.classList.contains('ex')){
-    part.push('<div class="betting-inline-example"><strong>EXEMPLO</strong>'+node.innerHTML+'</div>');
-   }else if(node.tagName==='P'){
-    if(part.join('').length>440)flush();part.push(node.outerHTML);
+    parts.push('<div class="betting-inline-example">'+node.innerHTML+'</div>');
    }else{
-    flush();const content=node.classList.contains('lc')?[...node.children].filter(x=>!/^H[34]$/.test(x.tagName)).map(x=>x.outerHTML).join(''):node.outerHTML;
-    blocks.push(card(entry.title,content));
+    parts.push(node.outerHTML);
    }
   }
-  flush();return blocks;
+  flush();return cards;
  };
  return '<div class="betting-learning-path">'+sections.map(([number,title,entries])=>{
   const unique=entries.filter(e=>{const key=e.title.toLowerCase();if(seen.has(key))return false;seen.add(key);return true});
