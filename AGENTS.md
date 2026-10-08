@@ -22,3 +22,12 @@ Esta regra se aplica a toda alteração de interface neste repositório.
 - Números e textos de etapas devem usar colunas separadas; nunca concatenar o número com o texto.
 - Não sobrescrever tracking, word-spacing ou margens compartilhadas em novos componentes. Exceções geométricas (cartas, gráficos e navegação fixa) devem permanecer locais.
 - Executar `npm test` e a auditoria de espaçamento mobile antes de publicar mudanças de layout.
+
+# Rodapé congelado — autorização explícita obrigatória
+
+- O rodapé atual está aprovado e CONGELADO por instrução do usuário em 08/10/2026.
+- Não alterar o rodapé em tarefas futuras sem pedido explícito do usuário especificamente para o rodapé.
+- Preservar os cinco itens, nesta ordem: HOME, APRENDER, PRATICAR, STATS, PERFIL; preservar seus destinos, ícones atuais, cores, destaque ativo, alinhamento, espaçamento e posição fixa.
+- Preservar ícones em caixas de 25px (caracteres com font-size 25px e SVG com width/height 25px) e textos de 10px.
+- Regras globais de tipografia, espaçamento, temas ou refatorações não podem alterar o rodapé. Em particular, seletores de texto de 10px devem excluir .nav-symbol para não reduzir os ícones.
+- Antes de entregar alterações de interface, verificar que o rodapé continua com cinco ícones de 25px e legendas de 10px. Não reinterpretar nem redesenhar os ícones para padronizar outros componentes.
