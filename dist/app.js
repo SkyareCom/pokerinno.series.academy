@@ -1,6 +1,6 @@
 import {enablePageSwipe} from './swipe.js';
 import {loginPage} from './login.js';
-import {loadAcademy,chapters,discoverLessons,discoverSections} from './data.js';import {legacyAcademy} from './legacy-academy-data.js';import {legacyProfile} from './legacy-profile-data.js';import {resolveRoute} from './navigation.js';import {readPreferences,savePreferences} from './preferences.js';
+import {loadAcademy,chapters,discoverLessons,discoverSections,rulesSections} from './data.js';import {legacyAcademy} from './legacy-academy-data.js';import {legacyProfile} from './legacy-profile-data.js';import {resolveRoute} from './navigation.js';import {readPreferences,savePreferences} from './preferences.js';
 let storage;try{storage=localStorage}catch{storage={getItem:()=>null,setItem:()=>{throw Error()}}}let preferences=readPreferences(storage);const app=document.querySelector('#app'),dialog=document.querySelector('#dialog');let state=await loadAcademy(window.StackUpAcademyAdapter);let previousFocus;
 const nav=[['home','⌂','HOME'],['journey','▤','APRENDER'],['practice','♠','PRATICAR'],['evolution','↗','JOGAR'],['profile','♙','PERFIL']];
 const heading=(tag,title,description)=>`<div class="page-heading"><div><span class="eyebrow">${tag}</span><h1>${title}</h1><p>${description}</p></div><span class="chapter-tag"></span></div>`;
@@ -26,11 +26,7 @@ function render(){if(!location.hash||location.hash==='#login'){loginPage(app,'AC
 if(state.status==='error'){app.innerHTML=heading('SUA JORNADA','Vamos tentar novamente?','Sua navegação continua disponível.')+`<section class="empty"><h2>Não conseguimos carregar os conteúdos</h2><p>${state.error}</p><button class="primary" data-retry>TENTAR NOVAMENTE →</button></section>`;return}
 if(route==='home')app.innerHTML=home();
 else if(route==='journey')app.innerHTML=heading('PRIMEIRA AVENTURA','APRENDER','Aprenda o essencial para acompanhar o jogo e participar da mesa.')+`<div class="list">${chapters.map(c=>`<a class="chapter" href="#chapter/${c.id}"><span class="number">0${c.order}</span><div><h3>${String(c.title).toUpperCase()}</h3><p>${c.description}</p></div><span class="status">↗</span></a>`).join('')}</div>`;
-else if(route==='chapter/rules'){const c=chapters.find(c=>c.id==='rules');app.innerHTML=`<a href="#journey" class="back back-journey">← VOLTAR À JORNADA</a>`+heading('CAPÍTULO 02',c.title,c.description)+secondaryContent([
-['COMO A MÃO SE ORGANIZA','Cartas, posições, blinds e rodadas de ação criam a estrutura básica de uma mão.'],
-['ORDEM E AÇÃO','Cada jogador age na sua vez e escolhe entre as ações permitidas pela situação.'],
-['REGRAS EVITAM CONFUSÃO','Conhecer termos, procedimentos e etiqueta ajuda a acompanhar a mesa com segurança.']
-])+`<div class="section-top"><h2>CONTEÚDOS</h2><span>REGRAS</span></div>`+secondaryContent(legacyAcademy.base.items.map(item=>[String(item[0]).toUpperCase(),item[1]]))}
+else if(route==='chapter/rules'){const c=chapters.find(c=>c.id==='rules');app.innerHTML=`<a href="#journey" class="back back-journey">← VOLTAR À JORNADA</a>`+heading('CAPÍTULO 02',c.title,'Entenda a estrutura, a ordem e os procedimentos de uma mão.')+`<div class="discover-page">${rulesSections.map(discoverSection).join('')}</div>`}
 else if(route==='chapter/discover'){const c=chapters.find(c=>c.id==='discover');app.innerHTML=`<a href="#journey" class="back back-journey">← VOLTAR À JORNADA</a>`+heading('CAPÍTULO 01',c.title,'Entenda o jogo antes de entrar nas regras.')+`<div class="discover-page">${discoverSections.map(discoverSection).join('')}</div>`}
 else if(route==='chapter/decisions'){const c=chapters.find(c=>c.id==='decisions');app.innerHTML=`<a href="#journey" class="back back-journey">← VOLTAR À JORNADA</a>`+heading('CAPÍTULO 03',c.title,c.description)+secondaryContent([
 ['OBSERVE ANTES DE AGIR','Antes de decidir, identifique posição, ação anterior, tamanho do pote e jogadores envolvidos.'],
