@@ -102,9 +102,11 @@ async function loginStyles(page){return page.evaluate(()=>[...document.querySele
      const total=Number((await page.locator('.source-question>.eyebrow').innerText()).match(/\/\s*(\d+)/)[1]);
      if(locale==='pt-BR'&&width===393)report.questions+=total;
      for(let i=0;i<total;i++){
-      if(i){await page.locator('[data-quiz-next]').click({force:true});await inspect(page,locale+'/'+width+'/'+route+'/question/'+(i+1));}
+      if(i){await page.locator('[data-quiz-next]').press('Enter');await inspect(page,locale+'/'+width+'/'+route+'/question/'+(i+1));}
       report.questionViews++;
-      do{await page.locator('[data-quiz-option]:enabled').first().click(i?{force:true}:{});}while(await page.locator('[data-quiz-option]:enabled').count());
+      const current=await page.locator('.source-question>.eyebrow').innerText();
+      if(!current.startsWith((i+1)+' /')||!await page.locator('[data-quiz-option]:enabled').count())throw new Error('Quiz traversal '+locale+'/'+width+'/'+route+'/'+(i+1)+': '+current+'; '+await page.locator('.quiz-player').innerText());
+      do{const option=page.locator('[data-quiz-option]:enabled').first();if(i)await option.press('Enter');else await option.click();}while(await page.locator('[data-quiz-option]:enabled').count());
       await inspect(page,locale+'/'+width+'/'+route+'/feedback/'+(i+1));
      }
      console.log('Audited '+locale+'/'+width+'/'+route+': '+total+' questions and feedback');
