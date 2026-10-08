@@ -1,11 +1,11 @@
 export const legacyProfile={
   items:[
-    ['access','DADOS DE ACESSO','Forma de acesso, nome, e-mail e sessão.'],
+    ['access','DADOS DE ACESSO','Acesso, e-mail e sessão.'],
     ['language','IDIOMA','PT-BR, EN-US e ES-ES.'],
-    ['history','SALVAMENTO DOS TREINOS','Controle do salvamento automático do histórico.'],
-    ['plans','PLANOS','Plano atual e opções preparadas do Academy.'],
-    ['coach','ACADEMY COACH','Configuração de contato e consentimento do Coach.'],
-    ['privacy','SOBRE E PRIVACIDADE','Privacidade, dados locais e exclusão de conta.']
+    ['history','SALVAMENTO DOS TREINOS','Salvamento automático do histórico.'],
+    ['plans','PLANOS','Plano atual e opções.'],
+    ['coach','ACADEMY COACH','Contato e consentimento do Coach.'],
+    ['privacy','SOBRE E PRIVACIDADE','Privacidade, dados e conta.']
   ],
   plans:[
     {id:'free',name:'FREE',price:'R$ 0',period:'SEM PRAZO',benefits:['Ranking de mãos, Streets e Blinds e Ante','5 questões fixas por tema','Histórico de treinos']},
