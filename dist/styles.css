@@ -1157,3 +1157,11 @@ input,select,textarea{font-family:inherit;font-size:14px}
 .staff-role{padding:12px 0;border-top:1px solid var(--line)}
 .staff-role:last-child{padding-bottom:0}
 @media(max-width:800px){.decision-cycle{padding:12px}.decision-cycle-heading{gap:10px}.decision-cycle-heading h2{font-size:20px}}
+
+/* Card titles stay uppercase in every route and supported language. */
+#app :is(h2,h3,h4,h5,h6),
+#app .source-lesson>summary strong,
+#app .glossary-term>strong,
+#app .next-app>strong{
+  text-transform:uppercase;
+}
