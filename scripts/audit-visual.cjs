@@ -27,7 +27,7 @@ async function inspect(page,label){
   for(const e of root.querySelectorAll('h2,h3,h4,h5,h6,.source-lesson>summary>strong,.glossary-term>strong,.next-app>strong,.editorial-note>strong,.discover-timeline strong,.source-body .ch>strong,.source-body .ci>strong,.source-body .rname,.quiz-counters article>span,.stats-metrics article>span')){
    if(!visible(e)||e.closest('.page-heading,.section-top')||e.matches('.source-question>h2'))continue;
    const s=getComputedStyle(e);
-   if(s.color!=='rgb(246, 165, 64)')bad('title-color',e,s.color);
+   if(s.color!=='rgb(244, 242, 231)')bad('title-color',e,s.color);
    if(s.textTransform!=='uppercase')bad('title-case',e,s.textTransform);
    const nested=e.closest('.source-body,.discover-compare,.stats-duel,.stats-swot,.decision-steps')||e.matches('.glossary-term>strong,.discover-timeline strong,.quiz-counters article>span,.stats-metrics article>span');
    const direct=e.matches(':is(.etiquette-page,.procedure-body)>.lg>.lc>h3')&&!e.closest('.source-lesson');

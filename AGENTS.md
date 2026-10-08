@@ -16,7 +16,7 @@ Esta regra se aplica a toda alteração de interface neste repositório.
 
 # Contrato de espaçamento
 
-- Hierarquia visual atual, autorizada em 08/10/2026: títulos de cards e subcards em MAIÚSCULAS e laranja `#f6a540`. Títulos de página brancos, 20px; títulos primários, 16px; títulos de subcards, textos e metadados, 12px. Ênfase dentro de frases herda o tamanho do texto.
+- Hierarquia visual atual, autorizada em 08/10/2026: títulos de cards e subcards em MAIÚSCULAS e branco `#f4f2e7`. Títulos de página brancos, 20px; títulos primários, 16px; títulos de subcards, textos e metadados, 12px. Ênfase dentro de frases herda o tamanho do texto.
 - Usar somente 12/16/20px fora do rodapé. Login e rodapé congelados continuam com as referências e exceções aprovadas.
 - Cards primários: borda 1px `rgba(246,165,64,.32)`, raio 16px. Subcards: borda 1px `rgba(246,165,64,.18)`, raio 12px. Padding 16px desktop e 12px mobile; intervalos entre estruturas 10px. Cards de navegação têm altura mínima 100px e crescem sem truncar textos; cards de leitura têm altura automática.
 - `npm run visual:audit` percorre todos os textos renderizados, rotas, conteúdos expandidos, estados e questões. O workflow de publicação só publica após os testes e auditorias.
