@@ -620,3 +620,192 @@ main,#app{
   .source-lesson>summary,.source-quiz>summary{padding:12px 13px}
   .source-body{padding:0 13px 13px}
 }
+
+/* Unified system cards */
+:root{
+  --card-radius:12px;
+  --card-pad:16px;
+  --card-gap:12px;
+  --card-title-size:14px;
+  --card-body-size:11px;
+  --card-label-size:9px;
+  --card-bg:#0b231d;
+}
+
+/* Estrutura visual comum */
+.chapter,
+.source-lesson,
+.discover-section,
+.glossary-term{
+  box-sizing:border-box;
+  width:100%;
+  min-width:0;
+  border:1px solid var(--line);
+  border-radius:var(--card-radius);
+  background:var(--card-bg);
+  color:var(--text);
+  box-shadow:none;
+}
+
+/* Cards de capítulos */
+.chapter{
+  min-height:76px;
+  padding:var(--card-pad);
+  gap:var(--card-gap);
+  align-items:center;
+}
+.chapter>div{min-width:0}
+.chapter .number{
+  flex:0 0 38px;
+  width:38px;
+  font-size:18px;
+  line-height:1;
+  font-weight:400;
+  color:var(--gold);
+}
+.chapter h3{
+  margin:0;
+  font-size:var(--card-title-size);
+  line-height:1.25;
+  font-weight:600;
+  letter-spacing:.25px;
+}
+.chapter p{
+  margin:5px 0 0;
+  font-size:var(--card-body-size);
+  line-height:1.4;
+  font-weight:400;
+  color:var(--muted);
+  white-space:normal;
+  overflow:visible;
+  text-overflow:clip;
+}
+.chapter .status{
+  flex:0 0 auto;
+  margin-left:auto;
+  font-size:12px;
+  color:var(--gold);
+}
+
+/* Cards de conteúdo expansível */
+.source-group{
+  gap:12px;
+}
+.source-lesson{
+  min-height:76px;
+}
+.source-lesson>summary{
+  min-height:76px;
+  padding:var(--card-pad);
+  gap:5px;
+  align-content:center;
+}
+.source-lesson>summary span{
+  margin:0;
+  font-size:var(--card-label-size);
+  line-height:1.2;
+  font-weight:600;
+  letter-spacing:.65px;
+  color:var(--gold);
+}
+.source-lesson>summary strong{
+  display:block;
+  margin:0;
+  font-size:var(--card-title-size);
+  line-height:1.25;
+  font-weight:600;
+  letter-spacing:.25px;
+  color:var(--text);
+}
+.source-lesson>summary small{
+  display:block;
+  margin:0;
+  font-size:var(--card-body-size);
+  line-height:1.4;
+  font-weight:400;
+  color:var(--muted);
+  white-space:normal;
+}
+.source-body{
+  padding:0 var(--card-pad) var(--card-pad);
+}
+.source-body h3,
+.source-body h4{
+  font-size:var(--card-title-size);
+  line-height:1.3;
+  font-weight:600;
+}
+.source-body p,
+.source-body span,
+.source-body li{
+  font-size:var(--card-body-size);
+  line-height:1.5;
+  font-weight:400;
+}
+
+/* Cards editoriais de conteúdo */
+.discover-section{
+  padding:var(--card-pad);
+}
+.discover-section h3,
+.discover-section h4{
+  font-size:var(--card-title-size);
+  line-height:1.3;
+  font-weight:600;
+}
+.discover-section>p,
+.discover-step p,
+.discover-compare p,
+.discover-timeline p,
+.discover-summary li{
+  font-size:var(--card-body-size);
+  line-height:1.5;
+  font-weight:400;
+}
+
+/* Glossário segue a mesma família visual */
+.glossary-term{
+  padding:var(--card-pad);
+}
+.glossary-term strong{
+  font-size:var(--card-title-size);
+  line-height:1.25;
+  font-weight:600;
+  letter-spacing:.25px;
+  color:var(--text);
+}
+.glossary-term p{
+  margin:5px 0 0;
+  font-size:var(--card-body-size);
+  line-height:1.5;
+  font-weight:400;
+  color:var(--muted);
+}
+
+/* Cards internos herdados do Academy */
+.source-body .lc,
+.source-body .ch,
+.source-body .ci,
+.source-body .ex,
+.source-body .tip,
+.source-body .rrow{
+  border-radius:var(--card-radius);
+  background:rgba(255,255,255,.018);
+  box-shadow:none;
+}
+.source-body .lc,
+.source-body .ch,
+.source-body .ci,
+.source-body .ex,
+.source-body .tip{
+  padding:var(--card-pad);
+}
+
+@media(max-width:700px){
+  :root{--card-pad:14px}
+  .chapter,
+  .source-lesson,
+  .source-lesson>summary{min-height:72px}
+  .chapter{gap:10px}
+  .chapter .number{flex-basis:34px;width:34px;font-size:17px}
+}
