@@ -40,7 +40,7 @@ const standardizeExamples=root=>{
    if(child.classList.contains('betting-example-label'))child.remove();
    else if(['STRONG','B'].includes(child.tagName)&&/^EXEMPLOS?\\s*:?$/i.test(child.textContent.trim()))child.remove();
   }
-  const label=document.createElement('strong');label.className='academy-example-label';label.textContent='EXEMPLO';example.prepend(label);
+  const label=document.createElement('span');label.className='academy-example-label';label.textContent='Exemplo: ';const first=example.firstElementChild;if(first&&first.tagName==='P')first.prepend(label);else example.prepend(label);
   example.classList.add('academy-example');example.dataset.exampleStandardized='true';
  }
 };
@@ -77,7 +77,7 @@ const bettingIntegratedLessons=()=>{
      break;
     }
     for(const el of [...example.querySelectorAll('strong,b')])if(!el.textContent.trim())el.remove();
-    parts.push('<div class="betting-inline-example"><span class="betting-example-label">EXEMPLO</span><div class="betting-example-text">'+example.innerHTML+'</div></div>');
+    parts.push('<div class="betting-inline-example">'+example.innerHTML+'</div>');
    }
    }else{
     parts.push(node.outerHTML);
