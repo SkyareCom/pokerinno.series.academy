@@ -156,3 +156,20 @@ body .mobile-nav a>.nav-symbol svg{width:25px!important;height:25px!important;ma
 
 /* Entry journey heading. */
 body.login-screen #app .entry-form>h2{font-size:16px!important}
+
+/* Pokerinno speaks in animated balloons; footer rules remain unchanged. */
+.pokerinno-balloons{position:fixed;z-index:20;top:calc(96px + env(safe-area-inset-top,0px));right:16px;width:min(390px,calc(100vw - 32px));max-height:calc(100dvh - 190px);overflow:auto;padding:24px 12px 12px;border:1px solid var(--gold);border-radius:16px;background:#09231df5;color:#f4f2e7;animation:pokerinno-arrive .3s ease-out}
+.pokerinno-dismiss{position:absolute;right:6px;top:3px;min-width:32px;min-height:32px;border:0;background:none;color:inherit;font-size:20px}
+.pokerinno-speech-row{display:grid;grid-template-columns:76px minmax(0,1fr);gap:12px;align-items:end}
+.pokerinno-speaker{display:block;width:76px;height:100px;object-fit:cover;border-radius:12px;animation:pokerinno-greet .5s ease-out}
+.pokerinno-speech{position:relative;min-width:0;padding:12px;border:1px solid var(--gold);border-radius:16px 16px 16px 4px;background:#18392e;animation:pokerinno-arrive .3s ease-out}
+.pokerinno-speech:before{content:'';position:absolute;left:-7px;bottom:18px;width:12px;height:12px;transform:rotate(45deg);background:#18392e;border-left:1px solid var(--gold);border-bottom:1px solid var(--gold)}
+.pokerinno-speech strong{font-size:16px;font-weight:600}.pokerinno-speech p{font-size:12px;line-height:1.55;margin:10px 0;overflow-wrap:anywhere}
+.pokerinno-speech .primary{max-width:100%;font-size:12px;min-height:40px;padding:10px;gap:8px}
+.pokerinno-speech-controls{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:12px;font-size:12px}
+.pokerinno-speech-controls .quiet,.pokerinno-balloons>.quiet{font-size:12px;min-height:32px}.pokerinno-balloons>p{font-size:12px;margin:10px 0}
+.pokerinno-message-settings{margin-block:16px}.pokerinno-message-settings .setting>div{min-width:0}.pokerinno-message-settings input{flex-shrink:0}
+@keyframes pokerinno-arrive{from{opacity:0;transform:translateY(-8px) scale(.97)}to{opacity:1;transform:none}}
+@keyframes pokerinno-greet{from{transform:translateY(8px) rotate(-3deg)}to{transform:none}}
+@media(max-width:800px){.pokerinno-balloons{top:calc(73px + env(safe-area-inset-top,0px));max-height:calc(100dvh - 165px)}}
+@media(prefers-reduced-motion:reduce){.pokerinno-balloons,.pokerinno-speech,.pokerinno-speaker{animation:none}}
