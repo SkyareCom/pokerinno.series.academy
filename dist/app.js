@@ -97,7 +97,7 @@ const bettingIntegratedLessons=()=>{
   return cards?`<section class="betting-learning-module"><div class="betting-info-grid">${cards}</div></section>`:'';
  }).join('')+'</div>';
 };
-const staffDirectLessons=items=>'<div class="betting-learning-path staff-direct-lessons">'+items.filter(Boolean).map(item=>'<section class="betting-learning-module"><div class="betting-info-grid"><article class="betting-info-card"><h4>'+(item.t?.pt||item.title||'CONTEÚDO').toUpperCase()+'</h4><div class="betting-info-content source-body">'+(item.html||'<p>'+(item.lead||item.d?.pt||'')+'</p>')+'</div></article></div></section>').join('')+'</div>';
+const staffDirectLessons=items=>'<div class="betting-learning-path staff-direct-lessons">'+items.filter(Boolean).map(item=>'<section class="betting-learning-module"><div class="betting-info-grid"><article class="betting-info-card"><div class="betting-info-content source-body">'+(item.html||'<p>'+(item.lead||item.d?.pt||'')+'</p>')+'</div></article></div></section>').join('')+'</div>';
 const sourceGroup=(title,items,tag)=>`<section class="source-group"><div class="section-top"><h2>${title}</h2><span>BASE ACADEMY</span></div>${items.filter(Boolean).map(x=>sourceLesson(x,tag)).join('')}</section>`;
 const quote=`<div class="quote">“Poker é um jogo que demora minutos para aprender. Mas leva uma vida para dominar.”<small>— MIKE SEXTON</small></div>`;
 const migratedList=(section,prefix,tag)=>heading(tag,section.title,section.description)+`<div class="list">${section.items.map((item,i)=>`<a class="chapter" href="#${prefix}/${i}"><span class="number">${String(i+1).padStart(2,'0')}</span><div><h3>${String(item[0]).toUpperCase()}</h3><p>${item[1]}</p></div></a>`).join('')}</div>`;
