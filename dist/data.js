@@ -1,7 +1,6 @@
 export const chapters=[
 ['discover','Descobrir o jogo','Primeiro contato com o poker.'],
 ['rules','Conceitos básicos','Estrutura e fluxo de uma mão.'],
-['terms','Terminologia do poker','Termos e significados usados no jogo.'],
 ['betting','Apostas e all-in','Valores, raises e potes.'],
 ['math','Matemática do poker','Odds, equity, outs e valor esperado.'],
 ['dealing','Erros e correções','Distribuição e cartas incorretas.'],
