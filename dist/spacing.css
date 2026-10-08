@@ -88,3 +88,11 @@ main{padding-inline:var(--page-gutter)}
 #app .learn-extra-pokerinno .learn-extra-copy h3{margin-block:0 10px}
 #app .learn-extra-pokerinno .learn-extra-copy p{margin:0}
 #app .journey-chapters+.learn-extra-pokerinno,#app>.learn-extra-pokerinno+.learn-extra-pokerinno,#app .learn-extra-pokerinno+.decision-cycle{margin-top:10px}
+
+/* Fix actual cause of oversized gaps: .learn-extra carried its own 14px top margin in addition to the parent gap. */
+#app .journey-chapters{display:grid;gap:10px!important;row-gap:10px!important;align-content:start}
+#app .journey-chapters>.learn-extra-pokerinno,#app .practice-catalog .journey-chapters>.learn-extra-pokerinno{margin:0!important}
+#app>.learn-extra-pokerinno{margin-block:10px 0!important}
+#app .journey-chapters>.learn-extra-pokerinno,#app>.learn-extra-pokerinno,#app .practice-catalog .journey-chapters>.learn-extra-pokerinno{height:100px!important;min-height:100px!important;max-height:100px!important;box-sizing:border-box!important}
+#app .journey-chapters>.learn-extra-pokerinno .learn-extra-host,#app>.learn-extra-pokerinno .learn-extra-host{height:100%!important;min-height:0!important;max-height:100%!important}
+#app .learn-extra-pokerinno .learn-extra-copy h3{margin:0 0 10px!important}
