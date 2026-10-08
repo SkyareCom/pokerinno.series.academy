@@ -160,5 +160,15 @@
   "procedure.flop": "Other errors, such as a two-card flop or a flop opened before preflop action ends, also require a pause. Players do not choose which cards remain on the board or remove extra cards by agreement: the official procedure preserves randomness.",
   "procedure.deck": "A card from another deck or a foreign object also requires stopping to check deck integrity before continuing.",
   "procedure.authority": "House rules and the responsible official’s decision prevail; the dealer should not improvise an important correction.",
-  "procedure.summary": "Shuffling, misdeals and irregularities: learn how to prepare cards and correct errors."
+  "procedure.summary": "Shuffling, misdeals and irregularities: learn how to prepare cards and correct errors.",
+  "messages.title": "POKERINNO MESSAGES",
+  "messages.welcomeTitle": "WELCOME",
+  "messages.welcome": "Hello! Your poker journey starts here. Learn at your own pace and practice turning knowledge into decisions.",
+  "messages.trainingTitle": "TRAINING NOTIFICATIONS",
+  "messages.start": "Your next step is to practice. Choose an activity and start training.",
+  "messages.progress": "You have recorded {count} activity answers. Keep practicing to improve.",
+  "messages.unsaved": "You have {count} answers that have not been saved yet. Save your activities to preserve your progress.",
+  "messages.practice": "GO TO PRACTICE",
+  "messages.save": "SAVE ACTIVITIES",
+  "messages.close": "CLOSE"
 }
