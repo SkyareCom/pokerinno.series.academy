@@ -149,7 +149,7 @@ body .mobile-nav a.active>.nav-symbol{box-shadow:none!important}
 .workspace header :is(h1,h2,h3),
 .sidebar :is(.brand,.series){color:#f4f2e7!important}
 
-/* Footer size override: icons 14px; captions 12px. */
-body .mobile-nav a{font-size:12px!important}
-body .mobile-nav a>.nav-symbol{font-size:14px!important;line-height:14px!important;flex-basis:14px!important;width:14px!important;height:14px!important;min-width:14px!important;min-height:14px!important}
-body .mobile-nav a>.nav-symbol svg{width:14px!important;height:14px!important;max-width:14px!important;max-height:14px!important}
+/* Footer sizes: large 25px icons and 10px captions. */
+body .mobile-nav a{font-size:10px!important}
+body .mobile-nav a>.nav-symbol{font-size:25px!important;line-height:25px!important;flex-basis:25px!important;width:25px!important;height:25px!important;min-width:25px!important;min-height:25px!important}
+body .mobile-nav a>.nav-symbol svg{width:25px!important;height:25px!important;max-width:25px!important;max-height:25px!important}
