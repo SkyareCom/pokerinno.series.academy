@@ -1,0 +1,25 @@
+import {t} from './i18n.js?v=visual-activities-20261008';
+const cardPattern='(?:10|[2-9AJQKT])\\s*[♠♥♦♣]\\uFE0F?';
+const cardRegex=()=>new RegExp(cardPattern,'g');
+const runRegex=()=>new RegExp(`${cardPattern}(?:[\\s,·]+${cardPattern})*`,'g');
+const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+export function cardTokens(value){return String(value||'').match(cardRegex())||[]}
+export function cardFigure(card){const m=String(card).match(/(10|[2-9AJQKT])\s*([♠♥♦♣])/);if(!m)return '';const rank=m[1]==='T'?'10':m[1],suit=m[2];return `<span class="playing-card ${/[♥♦]/.test(suit)?'red-suit':'black-suit'}" role="img" aria-label="${rank}${suit}"><span class="card-corner">${rank}<small>${suit}</small></span><span class="card-pip">${suit}</span><span class="card-corner card-corner-bottom" aria-hidden="true">${rank}<small>${suit}</small></span></span>`}
+const cardRow=(cards,label)=>`<figure class="quiz-card-group"><figcaption>${esc(label)}</figcaption><div class="playing-cards">${cards.map(cardFigure).join('')}</div></figure>`;
+export function optionVisual(value){const cards=cardTokens(value);return cards.length?`<span class="option-text">${esc(String(value).replace(cardRegex(),'').trim())}</span><span class="playing-cards option-cards">${cards.map(cardFigure).join('')}</span>`:esc(value)}
+export function questionVisual(question,module=''){const raw=question.prompt||question.question||'',groups=[];let previous=0;
+const add=(cards,key)=>{if(!cards.length)return;const signature=cards.join('|');if(!groups.some(g=>g.cards.join('|')===signature&&g.key===key))groups.push({cards,key})};
+let prompt=raw.replace(runRegex(),(match,offset)=>{const context=raw.slice(previous,offset).toLowerCase();previous=offset+match.length;let key=/vil[aã]o|rival|advers/.test(context)?'villain':/board|mesa|flop|river|turn|comunit/.test(context)?'board':/m[aã]o b/.test(context)?'handB':/m[aã]o a/.test(context)?'handA':/voc[eê]|suas|her[oó]i|segurando|m[aã]o|cartas|com /.test(context)?'hero':'cards';add(cardTokens(match),key);return t('visual.ref.'+key)});
+if(question.heroCards||question.villainCards||question.board){groups.length=0;add(cardTokens(question.heroCards),'hero');add(cardTokens(question.villainCards),'villain');add(cardTokens(question.board),'board')}
+if(question.visual?.kind==='compare'){groups.length=0;add(question.visual.left||[],'handA');add(question.visual.right||[],'handB')}
+if(question.visual?.cards?.length&&!groups.some(g=>g.cards.join('|')===question.visual.cards.join('|')))add(question.visual.cards,'cards');
+if(/^F2-RANK-/.test(question.id||'')&&question.type==='choice'&&question.visual?.kind==='cards')prompt=t('visual.identifyHand');
+else if(groups.length&&question.type==='choice'&&question.options?.some(x=>/^(ROYAL FLUSH|STRAIGHT FLUSH|QUADRA|FULL HOUSE|FLUSH|SEQUÊNCIA|TRINCA|DOIS PARES|UM PAR|CARTA ALTA)$/.test(x)))prompt=t('visual.identifyHand');
+else if(groups.length&&question.kind==='showdown')prompt=t(/low|baixa/i.test(raw)?'visual.lowWinner':/high|alta/i.test(raw)?'visual.highWinner':'visual.winner');
+if(groups.length===1&&groups[0].key==='board'&&/street/i.test(raw))prompt=t('visual.street');
+if(groups.length===1&&groups[0].key==='board'&&/textura/i.test(raw))prompt=t('visual.texture');
+if(groups.length>1&&question.type==='choice'&&question.options?.every(x=>/^(VOCÊ|VILÃO|HERÓI|EMPATE|POTE DIVIDIDO|VOCÊ VENCE|O RIVAL VENCE)$/.test(x)))prompt=t('visual.winner');
+const positional=module==='rules-pos'||/\b(?:BTN|SB|BB|UTG[12]?|MP[123]?|LJ|HJ|CO|OOP|IP)\b|posi[cç][aã]o|button|cutoff|hijack|lojack|big blind|small blind|heads.up/i.test(raw);
+return {prompt,html:groups.map(g=>cardRow(g.cards,t('visual.'+g.key))).join('')+(positional?positionTable(question,raw):''),groups};}
+export function positionTable(question,raw=''){let seats=/heads.up|\bHU\b/i.test(raw)?['BTN / SB','BB']:/mesa de?\s*6|mesa.*6.max/i.test(raw)?['BTN','SB','BB','UTG','HJ','CO']:/mesa de?\s*8/i.test(raw)?['BTN','SB','BB','UTG1','UTG2','LJ','HJ','CO']:/mesa de?\s*9/i.test(raw)?['BTN','SB','BB','UTG1','UTG2','MP1','LJ','HJ','CO']:['BTN','SB','BB','UTG1','UTG2','MP1','MP2','LJ','HJ','CO'];
+return `<figure class="position-table"><figcaption>${t('visual.positions')} · ${seats.length} ${t('visual.seats')}</figcaption><svg viewBox="0 0 400 270" role="img" aria-label="${t('visual.positions')}: ${seats.join(', ')}"><ellipse class="table-rail" cx="200" cy="135" rx="145" ry="84"/><ellipse class="table-felt" cx="200" cy="135" rx="132" ry="72"/><text class="table-center" x="200" y="138" text-anchor="middle">POKERINNO</text>${seats.map((seat,i)=>{const angle=-i*2*Math.PI/seats.length,x=200+160*Math.sin(angle),y=135+105*Math.cos(angle);const named=seat.split(' / ').some(s=>new RegExp('\\b'+s+'\\b').test(raw));return `<g class="table-seat ${named?'seat-mentioned':''}" transform="translate(${x.toFixed(1)},${y.toFixed(1)})"><rect x="-26" y="-15" width="52" height="30" rx="8"/><text text-anchor="middle" dominant-baseline="middle">${seat}</text></g>`}).join('')}</svg><p>${t('visual.positionNote')}</p></figure>`}
