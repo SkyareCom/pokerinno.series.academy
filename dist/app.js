@@ -98,18 +98,17 @@ const bettingIntegratedLessons=()=>{
  }).join('')+'</div>';
 };
 const staffDirectLessons=items=>{
- const cards=items.filter(Boolean).flatMap(item=>{
+ const content=items.filter(Boolean).map(item=>{
   const root=document.createElement('div');root.innerHTML=item.html||'';
   const lessons=[...root.querySelectorAll('.lc')];
   return lessons.map(lesson=>{
    const heading=lesson.querySelector(':scope > h3');
    const title=heading?.textContent.trim()||'';
-   if(title.toUpperCase()==='FUNÇÕES DO STAFF')return '';
    const body=[...lesson.children].filter(el=>el!==heading).map(el=>el.outerHTML).join('');
-   return '<article class="betting-info-card staff-topic-card">'+(title?'<h4>'+title+'</h4>':'')+'<div class="betting-info-content source-body">'+body+'</div></article>';
-  }).filter(Boolean);
- });
- return '<div class="betting-learning-path staff-direct-lessons"><section class="betting-learning-module"><div class="betting-info-grid">'+cards.join('')+'</div></section></div>';
+   return title.toUpperCase()==='FUNÇÕES DO STAFF'?body:'<section class="staff-lesson-topic">'+(title?'<h4>'+title+'</h4>':'')+body+'</section>';
+  }).join('');
+ }).join('');
+ return '<div class="betting-learning-path staff-direct-lessons"><section class="betting-learning-module"><div class="betting-info-grid"><article class="betting-info-card staff-complete-card"><div class="betting-info-content source-body">'+content+'</div></article></div></section></div>';
 };
 const sourceGroup=(title,items,tag)=>`<section class="source-group"><div class="section-top"><h2>${title}</h2><span>BASE ACADEMY</span></div>${items.filter(Boolean).map(x=>sourceLesson(x,tag)).join('')}</section>`;
 const quote=`<div class="quote">“Poker é um jogo que demora minutos para aprender. Mas leva uma vida para dominar.”<small>— MIKE SEXTON</small></div>`;
