@@ -1,8 +1,8 @@
-import {journeyIds,extraCard,staffRoles,decisionCycle} from './learn-ui.js';
-import {t} from './i18n.js';
+import {journeyIds,extraCard,staffRoles,decisionCycle} from './learn-ui.js?v=learn-five-20261008';
+import {t} from './i18n.js?v=learn-five-20261008';
 import {enablePageSwipe} from './swipe.js';
 import {loginPage} from './login.js';
-import {loadAcademy,chapters,discoverLessons,discoverSections,rulesSections,rulesGroups,rulesBasicSections,bettingSections,dealingSections,floorSections,pokerTermsGroups,pokerExtraTermsGroups,mathTermsGroups} from './data.js';import {academyVerde9} from './academy-verde9-content.js';import {legacyAcademy} from './legacy-academy-data.js';import {legacyProfile} from './legacy-profile-data.js';import {resolveRoute} from './navigation.js';import {readPreferences,savePreferences} from './preferences.js';
+import {loadAcademy,chapters,discoverLessons,discoverSections,rulesSections,rulesGroups,rulesBasicSections,bettingSections,dealingSections,floorSections,pokerTermsGroups,pokerExtraTermsGroups,mathTermsGroups} from './data.js?v=learn-five-20261008';import {academyVerde9} from './academy-verde9-content.js';import {legacyAcademy} from './legacy-academy-data.js';import {legacyProfile} from './legacy-profile-data.js';import {resolveRoute} from './navigation.js';import {readPreferences,savePreferences} from './preferences.js';
 let storage;try{storage=localStorage}catch{storage={getItem:()=>null,setItem:()=>{throw Error()}}}let preferences=readPreferences(storage);const app=document.querySelector('#app'),dialog=document.querySelector('#dialog');let state=await loadAcademy(window.StackUpAcademyAdapter);let previousFocus;
 const nav=[['home','⌂','HOME'],['journey','▤','APRENDER'],['practice','♠','PRATICAR'],['evolution','↗','JOGAR'],['profile','♙','PERFIL']];
 const chapterTitle=c=>journeyIds.includes(c.id)?t('learn.'+c.id):c.title;
