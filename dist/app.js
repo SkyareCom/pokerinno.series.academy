@@ -7,7 +7,7 @@ import {autoSave,setAutoSave,saveActivities,results,pendingCount} from './progre
 import {statsDashboard} from './stats.js?v=cards-no-arrows-20261008';
 import {practiceCatalog,practiceModule} from './practice-modules.js?v=learn-titles-20261008';
 import {sourceQuiz} from './source-quiz.js?v=cards-no-arrows-20261008';
-import {journeyIds,extraCard,staffRoles,decisionCycle} from './learn-ui.js?v=learn-titles-20261008';
+import {journeyIds,extraCard,staffRoles,decisionCycle} from './learn-ui.js?v=math-dictionary-13fd6b99';
 import {t} from './i18n.js?v=learn-titles-20261008';
 import {enablePageSwipe} from './swipe.js';
 import {loginPage} from './login.js?v=login-icons-v1';
