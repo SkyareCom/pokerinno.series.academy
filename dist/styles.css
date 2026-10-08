@@ -881,3 +881,87 @@ main,#app{
   .terms-host-copy h2{font-size:15px}
   .terms-host-copy p{font-size:10.5px;line-height:1.5}
 }
+
+/* Terminology extra card — distinct on main APRENDER */
+.learn-extra-pokerinno{
+  display:grid;
+  grid-template-columns:104px minmax(0,1fr) auto;
+  align-items:stretch;
+  gap:0;
+  padding:0;
+  border:1px solid rgba(247,199,91,.58);
+  border-radius:16px;
+  background:
+    radial-gradient(circle at 18% 20%,rgba(247,199,91,.10),transparent 38%),
+    linear-gradient(135deg,#132f27 0%,#0a211b 72%);
+  overflow:hidden;
+}
+.learn-extra-pokerinno .learn-extra-host{
+  min-height:118px;
+  border-right:1px solid rgba(247,199,91,.22);
+  background:rgba(247,199,91,.045);
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+  overflow:hidden;
+}
+.learn-extra-pokerinno .learn-extra-host img{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  object-position:center bottom;
+}
+.learn-extra-pokerinno .learn-extra-copy{
+  min-width:0;
+  padding:16px 14px;
+  align-self:center;
+}
+.learn-extra-pokerinno .learn-extra-copy .eyebrow{
+  display:block;
+  margin:0 0 5px;
+  font-size:9px;
+  font-weight:600;
+  letter-spacing:1.15px;
+  color:var(--gold);
+}
+.learn-extra-pokerinno .learn-extra-copy h3{
+  margin:0;
+  font-size:14px;
+  line-height:1.25;
+  font-weight:600;
+  color:var(--text);
+}
+.learn-extra-pokerinno .learn-extra-copy p{
+  margin:5px 0 0;
+  font-size:11px;
+  line-height:1.42;
+  font-weight:400;
+  color:var(--muted);
+  white-space:normal;
+}
+.learn-extra-pokerinno .learn-extra-arrow{
+  align-self:center;
+  padding-right:16px;
+  font-size:17px;
+  color:var(--gold);
+}
+
+@media(max-width:700px){
+  .learn-extra-pokerinno{
+    grid-template-columns:92px minmax(0,1fr) 28px;
+    min-height:122px;
+  }
+  .learn-extra-pokerinno .learn-extra-host{min-height:122px}
+  .learn-extra-pokerinno .learn-extra-copy{padding:13px 11px}
+  .learn-extra-pokerinno .learn-extra-copy h3{font-size:14px}
+  .learn-extra-pokerinno .learn-extra-copy p{font-size:10px;line-height:1.4}
+  .learn-extra-pokerinno .learn-extra-arrow{padding-right:10px}
+}
+
+/* Prevent Pokerinno portrait cropping in standard host blocks */
+.pokerinno-host img{
+  object-fit:contain;
+  object-position:center bottom;
+  background:#0d2a22;
+}
