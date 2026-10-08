@@ -1,4 +1,4 @@
-import {t} from './i18n.js?v=stats-20261008';
+import {t} from './i18n.js?v=training-history-20261008';
 export const journeyIds=['discover','rules','betting','floor','formats'];
 export const extraCard=(route,mood,title,description,portrait)=>`<a class="learn-extra learn-extra-pokerinno" href="#chapter/${route}"><div class="learn-extra-host">${portrait(mood)}</div><div class="learn-extra-copy"><span class="eyebrow">${t('learn.extra')}</span><h3>${t(title)}</h3><p>${t(description)}</p></div><span class="learn-extra-arrow">↗</span></a>`;
 export const staffRoles=()=>`<section class="discover-section staff-roles"><h3>${t('staff.title')}</h3>${['director','floor','dealer'].map(role=>`<article class="staff-role"><h4>${t('staff.'+role)}</h4><p>${t('staff.'+role+'Text')}</p></article>`).join('')}</section>`;
