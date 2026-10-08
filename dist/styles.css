@@ -1217,3 +1217,12 @@ input,select,textarea{font-family:inherit;font-size:14px}
 #app .learn-extra-pokerinno .learn-extra-copy h3{font-size:16px;line-height:1.2;margin:0 0 5px;font-weight:600}
 #app .learn-extra-pokerinno .learn-extra-copy p{font-size:12px;line-height:1.35;margin:0;font-weight:400}
 #app .learn-extra-pokerinno .learn-extra-host .pokerinno-sprite{height:100%;min-height:0;max-height:100%;background-size:contain;background-position:center bottom}
+
+/* Single vertical rhythm for cards throughout the application. */
+:root{--card-gap:16px}
+#app .journey-chapters,#app .practice-catalog .journey-chapters,#app .practice-catalog .list,#app .list{row-gap:var(--card-gap);column-gap:var(--card-gap)}
+#app .practice-catalog .source-group{gap:var(--card-gap);margin-top:var(--card-gap)}
+#app .practice-catalog .source-group .section-top{margin-bottom:0}
+#app .journey-chapters+.learn-extra-pokerinno,#app>.learn-extra-pokerinno+.learn-extra-pokerinno{margin-top:var(--card-gap)}
+#app .journey-chapters+.learn-extra-pokerinno{margin-top:var(--card-gap)}
+#app .learn-extra-pokerinno+.decision-cycle{margin-top:var(--card-gap)}
