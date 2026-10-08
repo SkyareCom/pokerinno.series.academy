@@ -204,3 +204,22 @@ body.login-screen #app .entry-auth-google{background:#fff;border:1px solid #7477
 body.login-screen #app .entry-auth-google img{width:20px;height:20px}
 body.login-screen #app .entry-auth-biometric svg{display:block;width:28px;height:28px}
 body.login-screen #app .entry-auth-stackup img{width:32px;height:32px}
+
+/* Imported position lesson: render its existing ten seats around one responsive table. */
+#app .source-body .pv{min-width:0;width:100%}
+#app .source-body .pv>.pb{position:relative;width:100%;max-width:440px;aspect-ratio:1.15;margin:var(--space-3) auto;isolation:isolate}
+#app .source-body .pb>.pt{position:absolute;inset:17% 9%;border:3px solid #927c4b;border-radius:50%;background:#263d30}
+#app .source-body .pb>.pt::before{content:'';position:absolute;inset:5px;border:1px solid #366d52;border-radius:50%;background:#113c2f}
+#app .source-body .pb>.seat{position:absolute;left:var(--seat-x);top:var(--seat-y);transform:translate(-50%,-50%);display:grid;place-items:center;width:clamp(44px,14%,62px);height:32px;border:1px solid #70877a;border-radius:8px;background:#0a211a;color:var(--text,#f4f2e7);white-space:nowrap}
+#app .source-body .pb>.seat .sl2{font-size:12px!important;font-weight:600;line-height:1.2}
+#app .source-body .pb>.s-btn{--seat-x:50%;--seat-y:92%;border-color:var(--gold)}
+#app .source-body .pb>.s-sb{--seat-x:26.49%;--seat-y:83.98%}
+#app .source-body .pb>.s-bb{--seat-x:11.96%;--seat-y:62.98%}
+#app .source-body .pb>.s-utg1{--seat-x:11.96%;--seat-y:37.02%}
+#app .source-body .pb>.s-utg2{--seat-x:26.49%;--seat-y:16.02%}
+#app .source-body .pb>.s-mp1{--seat-x:50%;--seat-y:8%}
+#app .source-body .pb>.s-mp2{--seat-x:73.51%;--seat-y:16.02%}
+#app .source-body .pb>.s-lj{--seat-x:88.04%;--seat-y:37.02%}
+#app .source-body .pb>.s-hj{--seat-x:88.04%;--seat-y:62.98%}
+#app .source-body .pb>.s-co{--seat-x:73.51%;--seat-y:83.98%}
+#app .source-body .pb>.dbtn{position:absolute;left:58%;top:81%;transform:translate(-50%,-50%);display:grid;place-items:center;width:24px;height:24px;border:1px solid var(--gold);border-radius:50%;background:var(--gold);color:#142017;font-size:12px!important;font-weight:600;line-height:1}
