@@ -1279,3 +1279,12 @@ input,select,textarea{font-family:inherit;font-size:14px}
 
 /* Remove the redundant introductory staff roles card even if an older component renders it. */
 #app .staff-roles{display:none!important}
+
+/* Staff chapter: one unified lesson card, app-wide typography and spacing. */
+#app .staff-direct-lessons{margin:10px 0!important;gap:10px!important}
+#app .staff-direct-lessons .staff-complete-card{padding:14px!important}
+#app .staff-direct-lessons .staff-lesson-topic{padding:0!important;margin:0!important;border:0!important;background:transparent!important}
+#app .staff-direct-lessons .staff-lesson-topic+.staff-lesson-topic{margin-top:16px!important}
+#app .staff-direct-lessons .staff-lesson-topic h4{font-size:14px!important;font-weight:600!important;line-height:1.4!important;color:var(--gold)!important;margin:0 0 10px!important}
+#app .staff-direct-lessons .staff-lesson-topic p{font-size:14px!important;font-weight:400!important;line-height:1.6!important;margin:0!important}
+#app .staff-direct-lessons .staff-lesson-topic p+p{margin-top:14px!important}
