@@ -40,6 +40,7 @@ jobs:
           ACADEMY_AUDIT_URL: http://127.0.0.1:8765
         run: |
           python3 -m http.server 8765 --directory dist > /tmp/academy-audit-server.log 2>&1 &
+          VISUAL_AUDIT_MODE=baseline npm run visual:audit
           npm run visual:audit
           npm run spacing:audit
       - name: Save visual audit evidence

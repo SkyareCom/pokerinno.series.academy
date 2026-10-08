@@ -4,9 +4,9 @@ const {execFileSync}=require('node:child_process');
 const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
 const base=process.env.ACADEMY_AUDIT_URL||'http://127.0.0.1:8765';
 const baseline=process.env.VISUAL_AUDIT_MODE==='baseline';
-const report={cases:[],errors:[],questions:0};
+const report={cases:[],errors:[],questions:0,questionViews:0};
 fs.mkdirSync('reports/visual',{recursive:true});
-const fixed=['home','journey','practice','play','evolution','profile','chapter/discover','chapter/rules','chapter/betting','chapter/floor','chapter/formats','chapter/math','chapter/terms','chapter/etiquette','chapter/house-rules','chapter/dealing','chapter/decisions','chapter/practice','procedure/emb','procedure/mis','procedure/irr','profile/access','profile/language','profile/history','profile/plans','profile/coach','profile/privacy'];
+const fixed=['home','journey','practice','play','evolution','profile','chapter/discover','chapter/rules','chapter/betting','chapter/floor','chapter/formats','chapter/math','chapter/terms','chapter/etiquette','chapter/house-rules','chapter/dealing','chapter/decisions','chapter/practice','procedure/emb','procedure/mis','procedure/irr','profile/access','profile/language','profile/history','profile/plans','profile/coach','profile/privacy','practice-tool/0','practice-tool/1','practice-tool/2'];
 async function inspect(page,label){
  const r=await page.evaluate(()=>{
   const visible=e=>e.getClientRects().length&&getComputedStyle(e).visibility!=='hidden';
@@ -23,12 +23,18 @@ async function inspect(page,label){
    if(![12,16,20].includes(size))bad('font-scale',e,size);
    if(['hidden','clip'].includes(s.overflowY)&&e.clientHeight>0&&e.scrollHeight>e.clientHeight+2)bad('clipped-text',e,'height');
   }
-  for(const e of root.querySelectorAll('h2,h3,h4,h5,h6,.source-lesson>summary>strong,.glossary-term>strong,.next-app>strong,.source-body .ch>strong,.source-body .ci>strong,.source-body .rname')){
+  for(const e of root.querySelectorAll('h1,.page-title'))if(visible(e)&&getComputedStyle(e).fontSize!=='20px')bad('page-title-size',e,getComputedStyle(e).fontSize);
+  for(const e of root.querySelectorAll('h2,h3,h4,h5,h6,.source-lesson>summary>strong,.glossary-term>strong,.next-app>strong,.editorial-note>strong,.discover-timeline strong,.source-body .ch>strong,.source-body .ci>strong,.source-body .rname')){
    if(!visible(e)||e.closest('.page-heading,.section-top')||e.matches('.source-question>h2'))continue;
    const s=getComputedStyle(e);
    if(s.color!=='rgb(246, 165, 64)')bad('title-color',e,s.color);
    if(s.textTransform!=='uppercase')bad('title-case',e,s.textTransform);
+   const nested=e.closest('.source-body,.discover-compare,.stats-duel,.stats-swot,.decision-steps')||e.matches('.glossary-term>strong,.discover-timeline strong');
+   const direct=e.matches(':is(.etiquette-page,.procedure-body)>.lg>.lc>h3')&&!e.closest('.source-lesson');
+   const expected=nested&&!direct?'12px':'16px';
+   if(s.fontSize!==expected)bad('card-title-size',e,s.fontSize+' / '+expected);
   }
+  for(const e of root.querySelectorAll('p,li,small,label,input,select,textarea'))if(visible(e)&&getComputedStyle(e).fontSize!=='12px')bad('copy-size',e,getComputedStyle(e).fontSize);
   for(const p of root.querySelectorAll('p+p'))if(visible(p)){
    const s=getComputedStyle(p);if(Math.abs(parseFloat(s.marginBlockStart)-parseFloat(s.lineHeight))>1)bad('paragraph-gap',p,s.marginBlockStart+' / '+s.lineHeight);
   }
@@ -39,6 +45,27 @@ async function inspect(page,label){
     const er=e.getBoundingClientRect();if(er.bottom>cr.bottom+1||er.right>cr.right+1||er.left<cr.left-1)bad('card-content-overflow',e,{card:cr.height,bottom:er.bottom-cr.bottom,right:er.right-cr.right});
    }
    if(s.borderTopWidth!=='1px'||s.borderRadius!=='16px')bad('navigation-border',card,s.borderTopWidth+' / '+s.borderRadius);
+  }
+  const geometry=(e,radius,color,padding)=>{
+   if(!visible(e))return;
+   const s=getComputedStyle(e);
+   for(const side of ['Top','Right','Bottom','Left'])if(s['border'+side+'Width']!=='1px'||s['border'+side+'Color']!==color)bad('card-border',e,side+' '+s['border'+side+'Width']+' '+s['border'+side+'Color']);
+   if(s.borderRadius!==radius)bad('card-radius',e,s.borderRadius+' / '+radius);
+   if(padding!==undefined&&['Top','Right','Bottom','Left'].some(side=>s['padding'+side]!==padding))bad('card-padding',e,s.padding+' / '+padding);
+  };
+  const inset=innerWidth<=800?'12px':'16px';
+  for(const e of root.querySelectorAll('.chapter,.feature,.discover-section,.discover-hero-card,.stats-panel,.decision-cycle,.empty,.next-app,.setting,.editorial-note,.betting-info-card'))geometry(e,'16px','rgba(246, 165, 64, 0.32)',inset);
+  for(const e of root.querySelectorAll('.source-lesson,.learn-extra-pokerinno,.pokerinno-context,.hero'))geometry(e,'16px','rgba(246, 165, 64, 0.32)');
+  for(const e of root.querySelectorAll('.learn-extra-copy,.pokerinno-context>div:last-child,.source-lesson>summary'))if(visible(e)){
+   const s=getComputedStyle(e);if(['Top','Right','Bottom','Left'].some(side=>s['padding'+side]!==inset))bad('card-padding',e,s.padding+' / '+inset);
+  }
+  for(const e of root.querySelectorAll('.glossary-term,.discover-compare article,.stats-duel article,.stats-swot article,.decision-steps li,.quiz-counters article,.stats-metrics article,.source-body .lc,.source-body .ch,.source-body .ci,.source-body .tip,.source-body .rrow')){
+   if(e.closest('.betting-info-card'))continue; // These imported blocks are intentionally flattened into a primary card.
+   const direct=e.matches(':is(.etiquette-page,.procedure-body)>.lg>.lc')&&!e.closest('.source-lesson');
+   geometry(e,direct?'16px':'12px',direct?'rgba(246, 165, 64, 0.32)':'rgba(246, 165, 64, 0.18)',direct?inset:'12px');
+  }
+  for(const e of root.querySelectorAll('.list,.grid,.journey-chapters,.source-group,.stats-dashboard,.quiz-player,.discover-page,.glossary-list,.decision-steps,.level-list,.betting-learning-path,.betting-info-grid,.source-body .lg,.source-body .cg,.source-body .compare,.source-body .ranking'))if(visible(e)){
+   const s=getComputedStyle(e);if(s.rowGap!=='10px'||s.columnGap!=='10px')bad('structural-gap',e,s.rowGap+' / '+s.columnGap);
   }
   const nav=[...document.querySelectorAll('.mobile-nav>a')];
   if(nav.length!==5)bad('footer-count',null,nav.length);
@@ -62,7 +89,7 @@ async function loginStyles(page){return page.evaluate(()=>[...document.querySele
 (async()=>{
  const browser=await chromium.launch({args:['--no-sandbox','--disable-gpu']});
  try{
-  for(const locale of baseline?['pt-BR']:['pt-BR','en-US','es-ES'])for(const width of baseline?[393]:[360,393,720,1280]){
+  const auditViewport=async(locale,width)=>{
    const context=await browser.newContext({viewport:{width,height:852},locale});
    await context.addInitScript(locale=>localStorage.setItem('stackup.locale',locale),locale);
    const page=await context.newPage();page.on('pageerror',e=>report.errors.push(e.message));
@@ -72,9 +99,15 @@ async function loginStyles(page){return page.evaluate(()=>[...document.querySele
     await open(page,route);await inspect(page,locale+'/'+width+'/'+route);
     if(!baseline&&width===393&&locale==='pt-BR'&&['home','journey','chapter/rules','chapter/etiquette','practice','profile'].includes(route))await page.screenshot({path:'reports/visual/'+route.replaceAll('/','-')+'.png'});
     if(route.startsWith('practice-module/')&&!baseline){
-     await page.locator('[data-quiz-option]:enabled').first().click();
-     while(await page.locator('[data-quiz-option]:enabled').count())await page.locator('[data-quiz-option]:enabled').first().click();
-     await inspect(page,locale+'/'+width+'/'+route+'/feedback');
+     const total=Number((await page.locator('.source-question>.eyebrow').innerText()).match(/\/\s*(\d+)/)[1]);
+     if(locale==='pt-BR'&&width===393)report.questions+=total;
+     for(let i=0;i<total;i++){
+      if(i){await page.locator('[data-quiz-next]').click({force:true});await inspect(page,locale+'/'+width+'/'+route+'/question/'+(i+1));}
+      report.questionViews++;
+      do{await page.locator('[data-quiz-option]:enabled').first().click(i?{force:true}:{});}while(await page.locator('[data-quiz-option]:enabled').count());
+      await inspect(page,locale+'/'+width+'/'+route+'/feedback/'+(i+1));
+     }
+     console.log('Audited '+locale+'/'+width+'/'+route+': '+total+' questions and feedback');
     }
    }
    await open(page,'evolution');await inspect(page,locale+'/'+width+'/evolution/with-history');
@@ -92,27 +125,16 @@ async function loginStyles(page){return page.evaluate(()=>[...document.querySele
     if(JSON.stringify(current)!==JSON.stringify(frozen))report.errors.push('Frozen login changed: '+locale+'/'+width);
    }
    await context.close();
-  }
-  if(!baseline){
-   const context=await browser.newContext({viewport:{width:393,height:852}}),page=await context.newPage();
-   page.on('pageerror',e=>report.errors.push(e.message));await open(page,'practice');
-   const modules=await page.locator('a[href^="#practice-module/"]').evaluateAll(nodes=>nodes.map(n=>n.getAttribute('href').slice(1)));
-   for(const module of modules){
-    await open(page,module);
-    const label=await page.locator('.source-question>.eyebrow').innerText();
-    const total=Number(label.match(/\/\s*(\d+)/)[1]);
-    for(let i=0;i<total;i++){
-     await inspect(page,'question/'+module+'/'+(i+1));report.questions++;
-     if(i<total-1)await page.locator('[data-quiz-next]').click();
-    }
-    console.log('Audited '+module+': '+total+' questions');
-   }
-   await context.close();
-  }
+  };
+  // Three independent language contexts avoid serializing the complete responsive matrix.
+  await Promise.all((baseline?['pt-BR']:['pt-BR','en-US','es-ES']).map(async locale=>{
+   for(const width of baseline?[393]:[360,393,720,1280])await auditViewport(locale,width);
+  }));
  }finally{await browser.close();}
  const problems=report.cases.flatMap(c=>c.findings.map(f=>({label:c.label,...f})));
- report.summary={cases:report.cases.length,questions:report.questions,textNodes:report.cases.reduce((n,c)=>n+c.textNodes,0),words:report.cases.reduce((n,c)=>n+c.words,0),violations:problems.length,errors:report.errors.length};
+ report.summary={cases:report.cases.length,questions:report.questions,questionViews:report.questionViews,textNodes:report.cases.reduce((n,c)=>n+c.textNodes,0),words:report.cases.reduce((n,c)=>n+c.words,0),violations:problems.length,errors:report.errors.length};
  fs.writeFileSync('reports/visual/audit.json',JSON.stringify(report,null,2));
- console.log(JSON.stringify(report.summary));console.log(JSON.stringify(problems.slice(0,40),null,2));
+ const unique=[...new Map(problems.map(p=>[JSON.stringify([p.kind,p.class,p.detail]),p])).values()];
+ console.log(JSON.stringify(report.summary));console.log(JSON.stringify(unique.slice(0,100),null,2));
  if(problems.length||report.errors.length){console.error(report.errors);process.exitCode=1;}
 })().catch(e=>{console.error(e);fs.writeFileSync('reports/visual/audit.json',JSON.stringify(report,null,2));process.exit(1);});
