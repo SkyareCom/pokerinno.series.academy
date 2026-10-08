@@ -101,3 +101,87 @@ main{position:relative}
     font-size:9px;
   }
 }
+
+
+/* Global card layout hardening */
+.feature,.chapter,.next-app,.training-card,.card{
+  min-width:0;
+  overflow:hidden;
+}
+.feature>div,.chapter>div,.next-app>div,.training-card>div,.card>div{
+  min-width:0;
+}
+.chapter>div{
+  flex:1 1 auto;
+  min-width:0;
+}
+.chapter .number{
+  flex:0 0 45px;
+}
+.chapter .status{
+  flex:0 0 auto;
+}
+.feature h3,.feature p,
+.chapter h3,.chapter p,
+.next-app h3,.next-app span,
+.training-card h3,.training-card p,
+.card h3,.card p{
+  min-width:0;
+  max-width:100%;
+}
+.feature p,.chapter p,.next-app span,.training-card p,.card p{
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.lesson-block{
+  align-items:flex-start;
+  min-height:auto;
+}
+.lesson-block p{
+  white-space:normal;
+  overflow:visible;
+  text-overflow:clip;
+  max-width:none;
+  line-height:1.55;
+  margin-top:7px;
+}
+@media(max-width:700px){
+  .chapter{
+    width:100%;
+    padding:16px 14px;
+    gap:10px;
+  }
+  .chapter .number{
+    flex-basis:38px;
+    width:38px;
+  }
+  .chapter h3{
+    font-size:16px;
+    line-height:1.2;
+  }
+  .chapter p{
+    font-size:11px;
+  }
+  .chapter .status{
+    max-width:36px;
+    overflow:hidden;
+  }
+  .feature{
+    min-width:0;
+  }
+  .feature p{
+    max-width:100%;
+  }
+  .lesson-block{
+    padding:18px 14px;
+  }
+  .lesson-block .number{
+    flex-basis:36px;
+    width:36px;
+  }
+  .lesson-block p{
+    font-size:12px;
+    line-height:1.5;
+  }
+}
