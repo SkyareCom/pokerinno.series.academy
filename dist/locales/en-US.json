@@ -217,6 +217,7 @@
   "play.practiceNow": "PRACTICE NOW",
   "play.training": "TRAINING",
   "play.goPractice": "GO TO PRACTICE",
+  "play.startSimulator": "START SIMULATOR",
   "streets.hero": "HERO",
   "streets.boardCount": "BOARD · {count} CARDS",
   "streets.emptyBoard": "No community cards revealed.",
