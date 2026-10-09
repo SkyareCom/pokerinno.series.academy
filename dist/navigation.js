@@ -9,6 +9,6 @@ export function resolveRoute(hash){
   if(/^base\/\d+$/.test(key))return 'chapter/rules';
   if(/^modality\/\d+$/.test(key))return 'chapter/formats';
   if(/^discover\//.test(key))return 'chapter/discover';
-  if(routes.includes(key)||/^(?:chapter\/(discover|rules|terms|betting|math|dealing|floor|etiquette|house-rules|decisions|formats|practice)|practice-tool\/\d+|practice-module\/[a-z0-9-]+|practice-bank|procedure\/(emb|mis|irr)|profile\/(access|language|history|plans|coach|privacy))$/.test(key))return key;
+  if(routes.includes(key)||/^(?:chapter\/(discover|rules|terms|betting|ranges|math|dealing|floor|etiquette|house-rules|decisions|formats|practice)|practice-tool\/\d+|practice-module\/[a-z0-9-]+|practice-bank|procedure\/(emb|mis|irr)|profile\/(access|language|history|plans|coach|privacy))$/.test(key))return key;
   return 'home';
 }
