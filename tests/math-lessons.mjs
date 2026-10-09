@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {mathLessonData,mathFields,renderMathLessons} from '../dist/math-lessons.js';
+import {mathLessonData,renderMathLessons} from '../dist/math-lessons.js';
 
 const items=new Map(mathLessonData.items.map(item=>[item.id,item]));
 const languages=['pt-BR','en-US','es-ES'];
@@ -12,18 +12,39 @@ const translator=lang=>(key,params={})=>{
 };
 const near=(actual,expected)=>assert.ok(Math.abs(actual-expected)<1e-8,actual+' != '+expected);
 
-test('all integrated math topics have the complete five-part structure in three languages',()=>{
+test('consolidated lessons preserve each original topic exactly once',()=>{
   assert.equal(items.size,58);
+  assert.ok(Array.isArray(mathLessonData.lessons),'The reader needs consolidated lessons');
+  assert.equal(mathLessonData.lessons.length,20);
+  const covered=mathLessonData.lessons.flatMap(lesson=>lesson.sources);
+  assert.equal(covered.length,items.size);
+  assert.equal(new Set(covered).size,items.size,'No concept is explained in two cards');
+  assert.deepEqual([...covered].sort(),[...items.keys()].sort());
   const grouped=mathLessonData.groups.flatMap(group=>group.items);
-  assert.equal(new Set(grouped).size,58);
-  assert.equal(grouped.length,58);
-  assert.deepEqual(mathFields,['purpose','when','how','example']);
+  assert.equal(grouped.length,20);
+  assert.deepEqual([...grouped].sort(),mathLessonData.lessons.map(lesson=>lesson.id).sort());
+});
+
+test('math uses unique explanatory prose and plain inline examples in every language',()=>{
   for(const lang of languages){
     const html=renderMathLessons(translator(lang),lang);
-    assert.equal((html.match(/data-math-item=/g)||[]).length,58);
-    for(const field of mathFields)assert.equal((html.match(new RegExp('data-math-field="'+field+'"','g'))||[]).length,58);
+    assert.equal((html.match(/data-math-item=/g)||[]).length,20);
+    assert.ok(!/data-math-field=/.test(html));
     assert.ok(!/\{\w+\}/.test(html));
-    for(const item of items.values())for(const field of ['name',...mathFields])assert.ok(catalogs[lang]['math.items.'+item.id+'.'+field].trim().length>(field==='name'?0:3));
+    const paragraphs=[...html.matchAll(/<p\b([^>]*)>([\s\S]*?)<\/p>/g)];
+    assert.ok(paragraphs.length>20);
+    const prose=paragraphs.filter(([,attrs])=>!attrs.includes('data-math-example'));
+    const normalized=prose.map(([,_,text])=>text.normalize('NFKC').replace(/\s+/g,' ').trim().toLowerCase());
+    assert.equal(new Set(normalized).size,normalized.length,'Repeated explanatory paragraph');
+    const label=translator(lang)('math.example');
+    for(const [,attrs,text] of paragraphs){
+      assert.ok(!/<\/?(?:strong|b|em|span)\b/.test(text),'Paragraphs and examples have no highlighted labels');
+      if(attrs.includes('data-math-example'))assert.ok(text.startsWith(label+' '),'Example label stays inline');
+    }
+    for(const lesson of mathLessonData.lessons){
+      assert.ok(lesson.paragraphs.length>0);
+      assert.ok(lesson.examples.length>0);
+    }
   }
 });
 
@@ -37,7 +58,7 @@ test('draw examples distinguish one and two cards, and do not double-count a com
   }
   assert.equal(items.get('combo-draw').params.outs,9+8-2);
   for(const lang of languages){
-    const rule=catalogs[lang]['math.items.rule-four.when'];
+    const rule=mathLessonData.lessons?.find(lesson=>lesson.id==='draw-probability')?.paragraphs.map(part=>catalogs[lang][part.key]).join(' ')||'';
     assert.ok(/all-in/.test(rule));
     assert.ok(/turn/.test(rule));
   }
@@ -76,5 +97,5 @@ test('math examples format values for each language without changing approved ca
   const es=renderMathLessons(translator('es-ES'),'es-ES');
   assert.ok(pt.includes('34,97%'));assert.ok(es.includes('34,97%'));assert.ok(en.includes('34.97%'));
   assert.ok(pt.includes('1.712.304'));assert.ok(en.includes('1,712,304'));
-  assert.equal((pt.match(/class="glossary-term math-lesson"/g)||[]).length,58);
+  assert.equal((pt.match(/class="glossary-term math-lesson"/g)||[]).length,20);
 });

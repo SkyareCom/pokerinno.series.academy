@@ -16,8 +16,8 @@ Esta regra se aplica a toda alteração de interface neste repositório.
 
 # Contrato de espaçamento
 
-- Matemática do Poker reúne conceitos e aprofundamento em uma única leitura. Cada item apresenta nome, finalidade e objetivo, quando usar, como calcular e exemplo, em PT-BR/EN-US/ES-ES. Não reinserir um aprofundamento duplicado em gaveta.
-- `dist/math-lessons.js` e `dist/math-lesson-data.json` organizam os itens; textos usam `math.*` nos catálogos. Preservar o banco de exercícios. `node scripts/audit-math-equity.mjs` reconta os boards dos exemplos de mãos definidas, incluindo as parcelas dos empates.
+- Matemática do Poker reúne conceitos e aprofundamento sem repetir métodos em cards separados. Preservar explicações completas em texto corrido, em PT-BR/EN-US/ES-ES; não exibir os rótulos de finalidade, momento de uso ou cálculo. Exemplos são parágrafos comuns: “Exemplo:” e conteúdo na mesma linha, sem destaque. Não reinserir um aprofundamento duplicado em gaveta.
+- `dist/math-lessons.js` e `dist/math-lesson-data.json` organizam 20 blocos com cobertura dos 58 tópicos originais; textos usam `math.*` nos catálogos. Cada tópico tem um único bloco responsável e suas variações numéricas ficam nos exemplos. Preservar o banco de exercícios. `node scripts/audit-math-equity.mjs` reconta os boards dos exemplos de mãos definidas, incluindo as parcelas dos empates.
 
 - Hierarquia visual atual, autorizada em 08/10/2026: títulos de cards e subcards em MAIÚSCULAS, branco `#fff`, 16px e peso 500, conforme a tipografia atual do repositório. Títulos de página brancos, 20px; textos e metadados, 12px. O app usa peso 500 fora do login e do rodapé congelados; essas exceções mantêm a referência aprovada. Ênfase dentro de frases herda o tamanho do texto.
 - Usar somente 12/16/20px fora do rodapé. Login e rodapé congelados continuam com as referências e exceções aprovadas.
