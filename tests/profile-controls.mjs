@@ -2,13 +2,14 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {legacyProfile} from '../dist/legacy-profile-data.js';
+import {renderProfilePlans} from '../dist/profile-plans.js';
 import {t} from '../dist/i18n.js';
 
 const source=readFileSync(new URL('../dist/app.js',import.meta.url),'utf8');
 const profile=source.split('\n').find(line=>line.startsWith("else if(route==='profile')"));
 const expression=profile.split('app.innerHTML=')[1].replace(/;$/,'');
-const render=new Function('heading','pokerinnoPanel','messageSettings','storage','preferences','legacyProfile','nextApps','t','getLocale','autoSave','return '+expression);
-const page=(locale,enabled=true)=>render(()=>'',()=>'<section data-profile-intro></section>',()=>'<section data-messages></section>',{},{sound:true,reducedMotion:false},legacyProfile,'<section class="next-apps"></section>',key=>t(key,{},locale),()=>locale,()=>enabled);
+const render=new Function('heading','pokerinnoPanel','messageSettings','storage','preferences','legacyProfile','nextApps','t','getLocale','autoSave','renderProfilePlans','return '+expression);
+const page=(locale,enabled=true)=>render(()=>'',()=>'<section data-profile-intro></section>',()=>'<section data-messages></section>',{},{sound:true,reducedMotion:false},legacyProfile,'<section class="next-apps"></section>',(key,params={})=>t(key,params,locale),()=>locale,()=>enabled,renderProfilePlans);
 
 test('profile replaces access, language and training cards with inline language buttons',()=>{
  for(const locale of ['pt-BR','en-US','es-ES']){
@@ -20,7 +21,13 @@ test('profile replaces access, language and training cards with inline language 
   assert.equal(languages.filter(x=>x[2]==='true').length,1);
   assert.equal(languages.find(x=>x[2]==='true')[1],locale);
   for(const route of ['access','language','history'])assert.ok(!html.includes('href="#profile/'+route+'"'));
-  assert.deepEqual([...html.matchAll(/href="#profile\/([^"]+)"/g)].map(x=>x[1]),['plans','coach','privacy']);
+  assert.deepEqual([...html.matchAll(/href="#profile\/([^"]+)"/g)].map(x=>x[1]),['coach','privacy']);
+  assert.deepEqual([...html.matchAll(/data-plan="([^"]+)"/g)].map(x=>x[1]),['free','monthly','semiannual','annual']);
+  const comma=locale!=='en-US';
+  assert.deepEqual([...html.matchAll(/class="plan-offer">([^<]+)</g)].map(x=>x[1]),comma?['R$ 0','R$ 49,90','R$ 219,90','R$ 289,90']:['R$ 0','R$ 49.90','R$ 219.90','R$ 289.90']);
+  assert.deepEqual([...html.matchAll(/<s>([^<]+)<\/s>/g)].map(x=>x[1]),comma?['R$ 59,90','R$ 249,90','R$ 329,90']:['R$ 59.90','R$ 249.90','R$ 329.90']);
+  assert.ok(html.includes(comma?'R$ 24,16/':'R$ 24.16/'));
+  assert.equal([...html.matchAll(/class="plan-badge"/g)].length,1);
   assert.ok(!html.includes('Privacidade e conta'));
   assert.ok(html.endsWith('<section class="next-apps"></section>'));
  }

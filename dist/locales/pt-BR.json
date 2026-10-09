@@ -364,5 +364,18 @@
   "profile.sound": "SONS DA JORNADA",
   "profile.soundDescription": "Preferência preparada para as experiências com áudio.",
   "profile.reducedMotion": "REDUZIR MOVIMENTOS",
-  "profile.reducedMotionDescription": "Uma navegação mais tranquila, com menos animações."
+  "profile.reducedMotionDescription": "Uma navegação mais tranquila, com menos animações.",
+  "plans.title": "PLANOS DO ACADEMY",
+  "plans.free.name": "FREE",
+  "plans.free.description": "Acesso inicial ao Academy.",
+  "plans.free.meta": "CONTEÚDO GRATUITO",
+  "plans.monthly.name": "MENSAL",
+  "plans.monthly.description": "Acesso completo ao Academy.",
+  "plans.semiannual.name": "SEMESTRAL",
+  "plans.semiannual.description": "Acesso completo por 6 meses.",
+  "plans.annual.name": "ANUAL",
+  "plans.annual.description": "Acesso completo por 12 meses com STACKUP COACH incluído.",
+  "plans.annual.meta": "{monthly}/MÊS · 12 MESES · COACH INCLUÍDO",
+  "plans.launchPrice": "PREÇO DE LANÇAMENTO",
+  "plans.bestChoice": "MELHOR ESCOLHA"
 }

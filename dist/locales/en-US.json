@@ -364,5 +364,18 @@
   "profile.sound": "JOURNEY SOUNDS",
   "profile.soundDescription": "Preference prepared for experiences with audio.",
   "profile.reducedMotion": "REDUCE MOTION",
-  "profile.reducedMotionDescription": "A calmer experience with fewer animations."
+  "profile.reducedMotionDescription": "A calmer experience with fewer animations.",
+  "plans.title": "ACADEMY PLANS",
+  "plans.free.name": "FREE",
+  "plans.free.description": "Initial Academy access.",
+  "plans.free.meta": "FREE CONTENT",
+  "plans.monthly.name": "MONTHLY",
+  "plans.monthly.description": "Full Academy access.",
+  "plans.semiannual.name": "6-MONTH",
+  "plans.semiannual.description": "Full access for 6 months.",
+  "plans.annual.name": "ANNUAL",
+  "plans.annual.description": "Full access for 12 months with STACKUP COACH included.",
+  "plans.annual.meta": "{monthly}/MONTH · 12 MONTHS · COACH INCLUDED",
+  "plans.launchPrice": "LAUNCH PRICE",
+  "plans.bestChoice": "BEST CHOICE"
 }

@@ -8,9 +8,26 @@ export const legacyProfile={
     ['privacy','SOBRE E PRIVACIDADE','Privacidade, dados e conta.']
   ],
   plans:[
-    {id:'free',name:'FREE',price:'R$ 0',period:'SEM PRAZO',benefits:['Ranking de mãos, Streets e Blinds e Ante','5 questões fixas por tema','Histórico de treinos']},
-    {id:'monthly',name:'MENSAL',price:'R$ 39,90',period:'/ MÊS'},
-    {id:'semiannual',name:'SEMESTRAL',price:'R$ 179,90',period:'/ 6 MESES'},
-    {id:'annual',name:'ANUAL',price:'R$ 219,90',period:'/ ANO'}
+    {
+      "id": "free",
+      "price": 0
+    },
+    {
+      "id": "monthly",
+      "price": 5990,
+      "launchPrice": 4990
+    },
+    {
+      "id": "semiannual",
+      "price": 24990,
+      "launchPrice": 21990
+    },
+    {
+      "id": "annual",
+      "price": 32990,
+      "launchPrice": 28990,
+      "bestChoice": true,
+      "months": 12
+    }
   ]
 };
