@@ -1325,3 +1325,13 @@ html body:not(.login-screen) :is(#app,.sidebar,header,dialog,.pokerinno-balloons
 html body:not(.login-screen) :is(#app,.sidebar,header,dialog,.pokerinno-balloons) *,
 html body:not(.login-screen) :is(#app,.sidebar,header,dialog,.pokerinno-balloons) *::before,
 html body:not(.login-screen) :is(#app,.sidebar,header,dialog,.pokerinno-balloons) *::after { font-weight:500!important; }
+
+/* Academy text color system: card titles, descriptions and navigation highlights. */
+:root { --academy-card-title:#F4F2E7; --academy-card-description:#9DB0A7; --academy-nav-highlight:#F7C75B; }
+#app :is(.card,.subcard,.learn-extra,.source-lesson,.source-group,.source-card,.staff-topic-card,.staff-etiquette-feature,.discover-section,.discover-hero-card,.glossary-term,.practice-catalog,.pokerinno-context,.journey-chapters,.lesson-card,.topic-card,.module-card) :is(h2,h3,h4,h5,h6,summary strong,summary b,.card-title,.source-title,.lesson-title,.source-lesson-title,.source-heading),
+#app :is(.source-lesson,.staff-topic-card,.source-group,.staff-etiquette-feature) :is(summary,summary strong,.source-lesson-title,.source-heading),
+#app :is(.learn-extra-copy,.practice-catalog,.source-body,.staff-direct-lessons,.discover-copy) :is(h2,h3,h4,h5,h6),
+#app .learn-extra .learn-extra-copy h3 { color:var(--academy-card-title)!important; -webkit-text-fill-color:var(--academy-card-title)!important; }
+#app :is(.card,.subcard,.learn-extra,.source-lesson,.source-group,.source-card,.staff-topic-card,.staff-etiquette-feature,.discover-section,.discover-hero-card,.glossary-term,.practice-catalog,.pokerinno-context,.journey-chapters,.lesson-card,.topic-card,.module-card) :is(p,.description,.card-description,.subtitle,.subtext,.source-description,.learn-extra-description),
+#app .learn-extra-copy p {color:var(--academy-card-description)!important; -webkit-text-fill-color:var(--academy-card-description)!important;}
+.nav-link.active,.mobile-nav .active,.mobile-nav [aria-current="page"],.sidebar .nav-link[aria-current="page"] {color:var(--academy-nav-highlight)!important; -webkit-text-fill-color:var(--academy-nav-highlight)!important;}
