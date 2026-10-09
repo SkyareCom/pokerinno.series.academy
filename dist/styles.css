@@ -1373,7 +1373,7 @@ html body:not(.login-screen) :is(#app,.sidebar,header,dialog,.pokerinno-balloons
 /* Profile: upcoming StackUp apps, ribbon and separate action buttons. */
 #app .next-grid{align-items:stretch}
 #app .next-app{position:relative;display:flex;flex-direction:column;gap:9px;overflow:hidden;padding:34px 14px 14px;min-width:0}
-#app .next-app .next-app-soon{position:absolute;right:-34px;top:12px;transform:rotate(35deg);width:130px;padding:3px 0;margin:0;text-align:center;background:#f7c75b;color:#15251e;font-size:10px;line-height:1.2;font-weight:600!important;letter-spacing:.04em}
+#app .next-app .next-app-soon{position:absolute;right:-34px;top:12px;transform:rotate(35deg);width:130px;padding:3px 0;margin:0;text-align:center;background:#f7c75b;color:#15251e;font-size:12px;line-height:1.2;font-weight:500!important;letter-spacing:.04em}
 #app .next-app > strong{display:block;color:#f7c75b;font-size:16px;line-height:1.3}
 #app .next-app .next-app-desc{display:block;margin:0;color:#9db0a7;font-size:12px;line-height:1.5;flex:1}
 #app .next-app-actions{display:grid;grid-template-columns:1fr;gap:7px;margin-top:7px}

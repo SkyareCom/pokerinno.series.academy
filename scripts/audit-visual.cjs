@@ -41,7 +41,10 @@ async function inspect(page,label){
    const cr=card.getBoundingClientRect(),s=getComputedStyle(card);
    if(cr.height<99)bad('navigation-height',card,cr.height);
    for(const e of card.querySelectorAll('h3,p,strong,span:not(.pokerinno-sprite)'))if(visible(e)&&!e.closest('.learn-extra-host')){
-    const er=e.getBoundingClientRect();if(er.bottom>cr.bottom+1||er.right>cr.right+1||er.left<cr.left-1)bad('card-content-overflow',e,{card:cr.height,bottom:er.bottom-cr.bottom,right:er.right-cr.right});
+    let er=e.getBoundingClientRect();
+    // The diagonal ribbon background is clipped by its card; its text must fit.
+    if(e.matches('.next-app-soon')){const label=document.createRange();label.selectNodeContents(e);er=label.getBoundingClientRect();}
+    if(er.bottom>cr.bottom+1||er.right>cr.right+1||er.left<cr.left-1)bad('card-content-overflow',e,{card:cr.height,bottom:er.bottom-cr.bottom,right:er.right-cr.right});
    }
    if(s.borderTopWidth!=='1px'||s.borderRadius!=='16px')bad('navigation-border',card,s.borderTopWidth+' / '+s.borderRadius);
   }
@@ -97,6 +100,7 @@ async function loginStyles(page){return page.evaluate(()=>[...document.querySele
    for(const route of [...fixed,...modules]){
     await open(page,route);await inspect(page,locale+'/'+width+'/'+route);
     if(!baseline&&width===393&&locale==='pt-BR'&&['home','journey','chapter/rules','chapter/etiquette','practice','profile','simulator'].includes(route))await page.screenshot({path:'reports/visual/'+route.replaceAll('/','-')+'.png'});
+    if(!baseline&&width===393&&locale==='pt-BR'&&route==='play'){await page.locator('.play-simulator-start').scrollIntoViewIfNeeded();await page.screenshot({path:'reports/visual/play.png'});}
     if(route.startsWith('practice-module/')&&!baseline){
      const total=Number((await page.locator('.source-question>.eyebrow').innerText()).match(/\/\s*(\d+)/)[1]);
      if(locale==='pt-BR'&&width===393)report.questions+=total;
