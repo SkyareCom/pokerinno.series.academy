@@ -18,6 +18,8 @@ concurrency:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+      ACADEMY_PAGES_ARTIFACT_NAME: github-pages-${{ github.run_id }}-${{ github.run_attempt }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -53,9 +55,28 @@ jobs:
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
       - name: Upload site from dist
+        id: site_artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist
+          name: ${{ env.ACADEMY_PAGES_ARTIFACT_NAME }}
+      - name: Wait for the uploaded Pages artifact
+        uses: actions/github-script@v8
+        env:
+          ACADEMY_PAGES_ARTIFACT_ID: ${{ steps.site_artifact.outputs.artifact_id }}
+        with:
+          script: |
+            const artifactId = Number(process.env.ACADEMY_PAGES_ARTIFACT_ID);
+            if (!Number.isSafeInteger(artifactId) || artifactId <= 0) throw new Error('Pages upload did not return an artifact ID.');
+            for (let attempt = 0; attempt < 15; attempt++) {
+              const { data } = await github.rest.actions.listWorkflowRunArtifacts({ ...context.repo, run_id: context.runId, per_page: 100 });
+              const ready = data.artifacts.some(artifact => artifact.id === artifactId && artifact.name === process.env.ACADEMY_PAGES_ARTIFACT_NAME && !artifact.expired);
+              if (ready) { core.info('Uploaded Pages artifact is available.'); return; }
+              if (attempt < 14) await new Promise(resolve => setTimeout(resolve, 4000));
+            }
+            throw new Error('The uploaded Pages artifact is still unavailable.');
       - name: Deploy GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          artifact_name: ${{ env.ACADEMY_PAGES_ARTIFACT_NAME }}
