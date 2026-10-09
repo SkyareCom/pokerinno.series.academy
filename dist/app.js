@@ -1,4 +1,4 @@
-import {rangesLibrary,setupRangesLibrary} from './ranges-library.js?v=8e9426e0';
+import {rangesLibrary,setupRangesLibrary} from './ranges-library.js?v=170dd1d4';
 import {simulatorPage,setupSimulator} from './simulator.js?v=simulator-header-93619ca4';
 import {renderProfilePlans} from './profile-plans.js?v=profile-plans-9550c742';
 import {decorateStreetLesson} from './street-visuals.js?v=streets-table-v1';
