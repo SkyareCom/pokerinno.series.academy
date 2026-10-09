@@ -1335,3 +1335,16 @@ html body:not(.login-screen) :is(#app,.sidebar,header,dialog,.pokerinno-balloons
 #app :is(.card,.subcard,.learn-extra,.source-lesson,.source-group,.source-card,.staff-topic-card,.staff-etiquette-feature,.discover-section,.discover-hero-card,.glossary-term,.practice-catalog,.pokerinno-context,.journey-chapters,.lesson-card,.topic-card,.module-card) :is(p,.description,.card-description,.subtitle,.subtext,.source-description,.learn-extra-description),
 #app .learn-extra-copy p {color:var(--academy-card-description)!important; -webkit-text-fill-color:var(--academy-card-description)!important;}
 .nav-link.active,.mobile-nav .active,.mobile-nav [aria-current="page"],.sidebar .nav-link[aria-current="page"] {color:var(--academy-nav-highlight)!important; -webkit-text-fill-color:var(--academy-nav-highlight)!important;}
+
+/* Math quick reference: visually separated compact matchup cards. */
+#app .math-matchups{padding:16px;margin:0 0 20px;border:1px solid #66552d;border-radius:16px;background:#0b211b}
+#app .math-matchups>h3{font-size:16px!important;font-weight:500!important;color:#F4F2E7!important;margin:0 0 6px}
+#app .math-matchups-intro{font-size:14px!important;color:#9DB0A7!important;margin:0 0 14px;line-height:1.5}
+#app .math-matchups-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:10px}
+#app .math-matchup-card{min-width:0;padding:14px;border:1px solid #29413a;border-radius:12px;background:#102b23;display:flex;flex-direction:column;gap:12px}
+#app .math-matchup-hands{display:flex;align-items:center;justify-content:space-between;gap:6px;color:#F4F2E7;font-size:16px!important;line-height:1.3}
+#app .math-matchup-hands span{font-size:16px!important;font-weight:500!important;white-space:nowrap}
+#app .math-matchup-hands small{color:#F7C75B;font-size:14px!important}
+#app .math-matchup-equity{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;border-top:1px solid #29413a;padding-top:10px}
+#app .math-matchup-equity strong{color:#F7C75B!important;font-size:24px!important;font-weight:500!important;line-height:1}
+#app .math-matchup-equity span{color:#9DB0A7!important;font-size:12px!important;font-weight:500!important;letter-spacing:.3px}
