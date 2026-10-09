@@ -1354,3 +1354,6 @@ html body:not(.login-screen) :is(#app,.sidebar,header,dialog,.pokerinno-balloons
 
 #app .math-lesson .math-decision-note .math-decision-title{color:#F4F2E7!important;font-size:16px!important;font-weight:500!important;margin-bottom:5px}
 #app .math-lesson .math-decision-note p{color:#9DB0A7!important;font-size:14px!important;font-weight:500!important;line-height:1.6!important}
+
+/* Behavior > Possible penalties: one text line between intro and first penalty. */
+#app .etiquette-page .lc.note > p + .steps { margin-top:1.6em!important; }
