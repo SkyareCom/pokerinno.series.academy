@@ -1349,16 +1349,16 @@ html body:not(.login-screen) :is(#app,.sidebar,header,dialog,.pokerinno-balloons
 #app .math-matchup-equity strong{color:#F7C75B!important;font-size:24px!important;font-weight:500!important;line-height:1}
 #app .math-matchup-equity span{color:#9DB0A7!important;font-size:12px!important;font-weight:500!important;letter-spacing:.3px}
 
-#app .math-lesson .math-decision-note{margin-top:12px!important;padding:12px!important;border-left:2px solid #F7C75B;background:#102b23;border-radius:0 8px 8px 0;color:#9DB0A7!important;font-size:14px!important;line-height:1.6!important}
+#app .math-lesson .math-decision-note{margin-top:12px!important;padding:12px!important;border-left:2px solid #F7C75B;background:#102b23;border-radius:0 8px 8px 0;color:#9DB0A7!important;font-size:12px!important;line-height:1.6!important}
 #app .math-lesson .math-decision-note strong{display:block;color:#F4F2E7!important;font-size:16px!important;font-weight:500!important;margin-bottom:5px}
 
 #app .math-lesson .math-decision-note .math-decision-title{color:#F4F2E7!important;font-size:16px!important;font-weight:500!important;margin-bottom:5px}
-#app .math-lesson .math-decision-note p{color:#9DB0A7!important;font-size:14px!important;font-weight:500!important;line-height:1.6!important}
+#app .math-lesson .math-decision-note p{color:#9DB0A7!important;font-size:12px!important;font-weight:500!important;line-height:1.6!important}
 
 /* Behavior > Possible penalties: one text line between intro and first penalty. */
 #app .etiquette-page .lc.note > p + .steps { margin-top:1.6em!important; }
 
 /* JOGAR: Pokerinno and player profiles form one cohesive card below REPITA. */
 #app .play-profiles-pokerinno{margin:16px 0 20px;padding:14px;border:1px solid #5b5132;border-radius:16px;background:#0b231d}
-#app .play-profiles-pokerinno .source-lesson{margin-top:12px!important;border:1px solid #29413a!important;border-radius:10px;background:#102b23!important}
+#app .play-profiles-pokerinno .source-lesson{margin-top:12px!important;border:1px solid var(--ui-card-border)!important;border-radius:16px;background:#102b23!important}
 #app .play-profiles-pokerinno .source-lesson summary span{display:none!important}
