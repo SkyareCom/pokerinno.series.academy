@@ -9,7 +9,7 @@ import {practiceCatalog,practiceModule} from './practice-modules.js?v=learn-titl
 import {sourceQuiz} from './source-quiz.js?v=cards-no-arrows-20261008';
 import {journeyIds,extraCard,staffRoles,decisionCycle} from './learn-ui.js?v=math-dictionary-13fd6b99';
 import {t,getLocale} from './i18n.js?v=math-dedup-v2';
-import {renderMathLessons} from './math-lessons.js?v=matchup-cards-9c3c78a8';
+import {renderMathLessons} from './math-lessons.js?v=decisions-8295e338';
 import {enablePageSwipe} from './swipe.js';
 import {loginPage} from './login.js?v=login-icons-v1';
 import {loadAcademy,chapters,discoverLessons,discoverSections,rulesSections,rulesGroups,rulesBasicSections,bettingSections,dealingSections,floorSections,pokerTermsGroups,pokerExtraTermsGroups} from './data.js?v=learn-five-20261008';import {academyVerde9} from './academy-verde9-content.js?v=remove-floor-3e63f900';import {legacyAcademy} from './legacy-academy-data.js';import {legacyProfile} from './legacy-profile-data.js';import {resolveRoute} from './navigation.js?v=house-rules-route-v3';import {readPreferences,savePreferences} from './preferences.js';
