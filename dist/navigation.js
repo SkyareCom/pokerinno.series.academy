@@ -1,4 +1,4 @@
-export const routes=['home','journey','practice','play','evolution','profile','welcome'];
+export const routes=['home','journey','practice','play','evolution','profile','welcome','simulator'];
 export function resolveRoute(hash){
   const key=hash.replace(/^#\/?/,'');
   const aliases={
