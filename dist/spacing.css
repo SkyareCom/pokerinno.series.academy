@@ -333,3 +333,8 @@ body:not(.login-screen) #app :is(.quiz-controls,.stats-filters,.entry-languages)
 body:not(.login-screen) #app :is(h1,h2,h3,h4,h5,h6,p,li,.stats-module,.setting){overflow-wrap:anywhere}
 @media(max-width:800px){body:not(.login-screen){--ui-card-pad:12px}}
 
+
+/* Inline Profile controls retain the app hierarchy and login language-button geometry. */
+body:not(.login-screen) #app .profile-languages{margin-block:var(--component-gap)}
+body:not(.login-screen) #app .profile-languages button{min-height:40px;padding:8px 4px}
+body:not(.login-screen) #app .profile-auto-save>.profile-setting-copy{min-width:0;flex:1 1 auto;display:grid;gap:var(--space-1)}

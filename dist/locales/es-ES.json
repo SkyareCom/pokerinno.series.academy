@@ -357,5 +357,7 @@
   "math.groups.equity": "EQUIDAD Y VALOR DE LAS DECISIONES",
   "math.groups.pots": "BOTE, STACK Y APUESTAS",
   "math.groups.flops": "PROYECTOS Y PROBABILIDADES POSTFLOP",
-  "math.example": "Ejemplo:"
+  "math.example": "Ejemplo:",
+  "profile.languageSelector": "IDIOMA",
+  "profile.autoSaveTraining": "GUARDAR ENTRENAMIENTOS AUTOMÁTICAMENTE"
 }
