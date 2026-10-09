@@ -1319,3 +1319,6 @@ input,select,textarea{font-family:inherit;font-size:14px}
   color:#fff!important;
   -webkit-text-fill-color:#fff!important;
 }
+
+/* Global typography rule: all app text uses font-weight 500, including controls and pseudo-elements. */
+html body, html body *, html body *::before, html body *::after { font-weight:500!important; }
