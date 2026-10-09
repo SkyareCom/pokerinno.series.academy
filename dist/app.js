@@ -1,4 +1,4 @@
-import {simulatorPage,setupSimulator} from './simulator.js?v=4ac59846';
+import {simulatorPage,setupSimulator} from './simulator.js?v=simulator-header-93619ca4';
 import {renderProfilePlans} from './profile-plans.js?v=profile-plans-9550c742';
 import {decorateStreetLesson} from './street-visuals.js?v=streets-table-v1';
 import {saveMessagePreference,trackMessageVisit} from './pokerinno-messages.js?v=pokerinno-balloons-v1';
@@ -10,7 +10,7 @@ import {statsDashboard} from './stats.js?v=cards-no-arrows-20261008';
 import {practiceCatalog,practiceModule} from './practice-modules.js?v=learn-titles-20261008';
 import {sourceQuiz} from './source-quiz.js?v=cards-no-arrows-20261008';
 import {journeyIds,extraCard,staffRoles,decisionCycle} from './learn-ui.js?v=math-dictionary-13fd6b99';
-import {t,getLocale} from './i18n.js?v=profile-privacy-link-6c04dc51';
+import {t,getLocale} from './i18n.js?v=simulator-header-93619ca4';
 import {renderMathLessons} from './math-lessons.js?v=decisions-8295e338';
 import {enablePageSwipe} from './swipe.js';
 import {loginPage} from './login.js?v=login-icons-v1';
@@ -152,7 +152,7 @@ else if(route==='chapter/house-rules'){const item=verdeRuleSubs.casa||verdeFund.
 else if(route==='chapter/floor'){const c=chapters.find(c=>c.id==='floor');app.innerHTML=`<a href="#journey" class="back back-journey">← VOLTAR À JORNADA</a>`+heading(`CAPÍTULO ${String(c.order).padStart(2,'0')}`,chapterTitle(c),chapterDescription(c))+`<div class="discover-page">${floorSections.filter(s=>s.type==='host').map((section,i)=>discoverSection(i===0?{...section,mood:'thinking'}:section)).join('')}</div>`+staffDirectLessons([verdeFund.staff])+`<div class="discover-page">${floorSections.filter(s=>s.type!=='host').map(discoverSection).join('')}</div>`}
 else if(route==='chapter/discover'){const c=chapters.find(c=>c.id==='discover');app.innerHTML=`<a href="#journey" class="back back-journey">← VOLTAR À JORNADA</a>`+heading(`CAPÍTULO ${String(c.order).padStart(2,'0')}`,chapterTitle(c),'Entenda o jogo antes de entrar nas regras.')+`<div class="discover-page">${discoverSections.map((section,i)=>discoverSection(i===0?{...section,mood:'curious'}:section)).join('')}</div>`}
 else if(route==='chapter/decisions')app.innerHTML=`<a href="#journey" class="back back-journey">← VOLTAR À JORNADA</a>`+decisionCycle(pokerinnoMood);
-else if(route==='simulator')app.innerHTML=simulatorPage();
+else if(route==='simulator')app.innerHTML=`<a class="back" href="#play">${t('ui.back')}</a>`+heading(t('simulator.label'),t('simulator.title'),t('simulator.description'))+simulatorPage();
 else if(route==='play'||route==='chapter/practice'){const c=chapters.find(c=>c.id==='practice');app.innerHTML=(route==='play'?heading(t('play.label'),t('nav.play'),t('play.description')):`<a href="#journey" class="back back-journey">← VOLTAR À JORNADA</a>`+heading(`CAPÍTULO ${String(c.order).padStart(2,'0')}`,chapterTitle(c),chapterDescription(c)))+secondaryContent([
 [t('play.recognizeTitle'),t('play.recognizeText')],
 [t('play.decideTitle'),t('play.decideText')],
@@ -198,4 +198,3 @@ document.addEventListener('change',e=>{if(e.target.matches('[data-message-prefer
 
 document.addEventListener('visibilitychange',()=>{if(messageVisitStarted&&document.visibilityState==='visible')trackMessageVisit(storage)});
 enablePageSwipe(nav.map(item=>item[0]));
-

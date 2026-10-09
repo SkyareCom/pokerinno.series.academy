@@ -6,7 +6,7 @@ const base=process.env.ACADEMY_AUDIT_URL||'http://127.0.0.1:8765';
 const baseline=process.env.VISUAL_AUDIT_MODE==='baseline';
 const report={cases:[],errors:[],questions:0,questionViews:0};
 fs.mkdirSync('reports/visual',{recursive:true});
-const fixed=['home','journey','practice','play','evolution','profile','chapter/discover','chapter/rules','chapter/betting','chapter/floor','chapter/formats','chapter/math','chapter/terms','chapter/etiquette','chapter/house-rules','chapter/dealing','chapter/decisions','chapter/practice','procedure/emb','procedure/mis','procedure/irr','profile/access','profile/language','profile/history','profile/plans','profile/coach','profile/privacy','practice-tool/0','practice-tool/1','practice-tool/2'];
+const fixed=['home','journey','practice','play','simulator','evolution','profile','chapter/discover','chapter/rules','chapter/betting','chapter/floor','chapter/formats','chapter/math','chapter/terms','chapter/etiquette','chapter/house-rules','chapter/dealing','chapter/decisions','chapter/practice','procedure/emb','procedure/mis','procedure/irr','profile/access','profile/language','profile/history','profile/plans','profile/coach','profile/privacy','practice-tool/0','practice-tool/1','practice-tool/2'];
 async function inspect(page,label){
  const r=await page.evaluate(()=>{
   const visible=e=>e.getClientRects().length&&getComputedStyle(e).visibility!=='hidden';
@@ -96,7 +96,7 @@ async function loginStyles(page){return page.evaluate(()=>[...document.querySele
    const modules=await page.locator('a[href^="#practice-module/"]').evaluateAll(nodes=>nodes.map(n=>n.getAttribute('href').slice(1)));
    for(const route of [...fixed,...modules]){
     await open(page,route);await inspect(page,locale+'/'+width+'/'+route);
-    if(!baseline&&width===393&&locale==='pt-BR'&&['home','journey','chapter/rules','chapter/etiquette','practice','profile'].includes(route))await page.screenshot({path:'reports/visual/'+route.replaceAll('/','-')+'.png'});
+    if(!baseline&&width===393&&locale==='pt-BR'&&['home','journey','chapter/rules','chapter/etiquette','practice','profile','simulator'].includes(route))await page.screenshot({path:'reports/visual/'+route.replaceAll('/','-')+'.png'});
     if(route.startsWith('practice-module/')&&!baseline){
      const total=Number((await page.locator('.source-question>.eyebrow').innerText()).match(/\/\s*(\d+)/)[1]);
      if(locale==='pt-BR'&&width===393)report.questions+=total;

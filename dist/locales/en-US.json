@@ -378,5 +378,8 @@
   "plans.annual.meta": "{monthly}/MONTH · 12 MONTHS · COACH INCLUDED",
   "plans.launchPrice": "LAUNCH PRICE",
   "plans.bestChoice": "BEST CHOICE",
-  "profile.privacyPolicy": "PRIVACY POLICY"
+  "profile.privacyPolicy": "PRIVACY POLICY",
+  "simulator.label": "THIRD ADVENTURE",
+  "simulator.title": "POKER SIMULATOR",
+  "simulator.description": "POKERINNO · PRACTICE YOUR DECISIONS AT THE TABLE"
 }
