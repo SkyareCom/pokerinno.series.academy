@@ -17,7 +17,7 @@ export function renderMathLessons(translate,locale='pt-BR'){
   return '<div class="discover-page glossary-page math-lessons">'+data.groups.map(group=>
     '<section class="discover-section glossary-group"><h3>'+escape(translate('math.groups.'+group.id))+'</h3><div class="glossary-list">'+group.items.map(id=>{
       const lesson=lessons.get(id);
-      return '<article class="glossary-term math-lesson" data-math-item="'+id+'"><strong>'+escape(translate('math.lessons.'+id+'.name'))+'</strong>'+lesson.paragraphs.map(part=>paragraph(part)).join('')+lesson.examples.map(part=>paragraph(part,true)).join('')+'</article>';
+      return '<article class="glossary-term math-lesson" data-math-item="'+id+'"><strong>'+escape(translate('math.lessons.'+id+'.name'))+'</strong>'+lesson.paragraphs.map(part=>paragraph(part)).join('')+lesson.examples.slice(0,1).map(part=>paragraph(part,true)).join('')+'</article>';
     }).join('')+'</div></section>'
   ).join('')+'</div>';
 }
