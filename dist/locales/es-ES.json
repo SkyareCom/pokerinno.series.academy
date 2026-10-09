@@ -377,5 +377,6 @@
   "plans.annual.description": "Acceso completo por 12 meses con STACKUP COACH incluido.",
   "plans.annual.meta": "{monthly}/MES · 12 MESES · COACH INCLUIDO",
   "plans.launchPrice": "PRECIO DE LANZAMIENTO",
-  "plans.bestChoice": "MEJOR ELECCIÓN"
+  "plans.bestChoice": "MEJOR ELECCIÓN",
+  "profile.privacyPolicy": "POLÍTICA DE PRIVACIDAD"
 }

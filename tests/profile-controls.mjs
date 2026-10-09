@@ -21,7 +21,8 @@ test('profile replaces access, language and training cards with inline language 
   assert.equal(languages.filter(x=>x[2]==='true').length,1);
   assert.equal(languages.find(x=>x[2]==='true')[1],locale);
   for(const route of ['access','language','history'])assert.ok(!html.includes('href="#profile/'+route+'"'));
-  assert.deepEqual([...html.matchAll(/href="#profile\/([^"]+)"/g)].map(x=>x[1]),['coach','privacy']);
+  assert.deepEqual([...html.matchAll(/class="chapter" href="#profile\/([^"]+)"/g)].map(x=>x[1]),[]);
+  assert.deepEqual([...html.matchAll(/href="#profile\/([^"]+)"/g)].map(x=>x[1]),['privacy']);
   assert.deepEqual([...html.matchAll(/data-plan="([^"]+)"/g)].map(x=>x[1]),['free','monthly','semiannual','annual']);
   const comma=locale!=='en-US';
   assert.deepEqual([...html.matchAll(/class="plan-offer">([^<]+)</g)].map(x=>x[1]),comma?['R$ 0','R$ 49,90','R$ 219,90','R$ 289,90']:['R$ 0','R$ 49.90','R$ 219.90','R$ 289.90']);
@@ -29,7 +30,7 @@ test('profile replaces access, language and training cards with inline language 
   assert.ok(html.includes(comma?'R$ 24,16/':'R$ 24.16/'));
   assert.equal([...html.matchAll(/class="plan-badge"/g)].length,1);
   assert.ok(!html.includes('Privacidade e conta'));
-  assert.ok(html.endsWith('<section class="next-apps"></section>'));
+  assert.ok(html.endsWith('<section class="next-apps"></section><a class="profile-privacy-link" href="#profile/privacy">'+t('profile.privacyPolicy',{},locale)+'</a>'));
  }
 });
 
