@@ -113,7 +113,7 @@ const staffDirectLessons=items=>{
  });
  return '<div class="betting-learning-path staff-direct-lessons"><section class="betting-learning-module"><div class="betting-info-grid">'+cards.join('')+'</div></section></div>';
 };
-const sourceGroup=(title,items,tag)=>`<section class="source-group"><div class="section-top"><h2>${title}</h2><span>BASE ACADEMY</span></div>${items.filter(Boolean).map(x=>sourceLesson(x,tag)).join('')}</section>`;
+const sourceGroup=(title,items,tag)=>`<section class="source-group"><div class="section-top"><h2>${title}</h2></div>${items.filter(Boolean).map(x=>sourceLesson(x,tag)).join('')}</section>`;
 const quote=`<div class="quote">${t('home.quote')}<small>— MIKE SEXTON</small></div>`;
 const migratedList=(section,prefix,tag)=>heading(tag,section.title,section.description)+`<div class="list">${section.items.map((item,i)=>`<a class="chapter" href="#${prefix}/${i}"><span class="number">${String(i+1).padStart(2,'0')}</span><div><h3>${String(item[0]).toUpperCase()}</h3><p>${item[1]}</p></div></a>`).join('')}</div>`;
 const migratedDetail=(section,index,back,tag)=>{const item=section.items[index];if(!item)return empty('▤','Conteúdo não encontrado.','Volte para a etapa anterior e escolha outro conteúdo.');return `<a href="#${back}" class="back">← VOLTAR</a>`+heading(tag,String(item[0]).toUpperCase(),item[1])+`<section class="empty"><div class="empty-symbol">▤</div><h2>${String(item[0]).toUpperCase()}</h2><p>${item[1]}</p></section>`};
