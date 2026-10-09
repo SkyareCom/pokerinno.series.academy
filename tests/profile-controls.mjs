@@ -26,6 +26,19 @@ test('profile replaces access, language and training cards with inline language 
  }
 });
 
+test('profile applies the stored language to the document on reload',()=>{
+ const start=source.indexOf('function render(){');
+ const end=source.indexOf('const route=resolveRoute(location.hash)',start);
+ assert.ok(start>=0&&end>start);
+ const bootstrap=source.slice(start,end)+'} render();';
+ const run=new Function('document','location','getLocale','closePokerinno','loginPage','storage','messageVisitStarted','messageReturn','trackMessageVisit','t',bootstrap);
+ for(const locale of ['pt-BR','en-US','es-ES']){
+  const document={documentElement:{lang:'pt-BR'},body:{classList:{remove(){}}},querySelector:()=>({setAttribute(){}})};
+  run(document,{hash:'#profile'},()=>locale,()=>{},()=>{}, {},true,null,()=>{},key=>t(key,{},locale));
+  assert.equal(document.documentElement.lang,locale);
+ }
+});
+
 test('profile automatic training save reflects the preference and keeps manual saving available',()=>{
  const labels={'pt-BR':'SALVAR TREINOS AUTOMATICAMENTE','en-US':'SAVE TRAINING AUTOMATICALLY','es-ES':'GUARDAR ENTRENAMIENTOS AUTOMÁTICAMENTE'};
  for(const [locale,title] of Object.entries(labels))for(const enabled of [true,false]){
@@ -38,3 +51,4 @@ test('profile automatic training save reflects the preference and keeps manual s
   assert.ok(html.indexOf('autoSaveActivities')<html.indexOf('CONFIGURAÇÕES DO ACADEMY'));
  }
 });
+
