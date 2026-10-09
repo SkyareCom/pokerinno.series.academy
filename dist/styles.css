@@ -1307,3 +1307,15 @@ input,select,textarea{font-family:inherit;font-size:14px}
 #app .staff-etiquette-feature .source-lesson summary strong{display:block}
 @media(max-width:370px){#app .staff-etiquette-feature{grid-template-columns:70px minmax(0,1fr);gap:10px;padding:12px}#app .staff-etiquette-feature .staff-etiquette-portrait{width:70px}}
 
+
+/* Global card and subcard title typography: 16px / 500, white. */
+#app :is(.card,.subcard,.learn-extra,.source-lesson,.source-group,.source-card,.staff-topic-card,.staff-etiquette-feature,.discover-section,.discover-hero-card,.glossary-term,.practice-catalog,.practice-theme-title,.pokerinno-context,.etiquette-page,.house-rules-page,.journey-chapters,.list,.lesson-card,.topic-card,.module-card) :is(h2,h3,h4,h5,h6,summary strong,summary b,.card-title,.source-title,.lesson-title,.source-lesson-title,.source-heading),
+#app :is(.source-lesson,.staff-topic-card,.source-group,.staff-etiquette-feature) :is(summary,summary strong,.source-lesson-title,.source-heading),
+#app :is(.learn-extra-copy,.practice-catalog,.source-body,.staff-direct-lessons,.discover-copy) :is(h2,h3,h4,h5,h6),
+#app .staff-direct-lessons .staff-topic-card .source-body :is(h2,h3,h4,h5,h6),
+#app .learn-extra .learn-extra-copy h3 {
+  font-size:16px!important;
+  font-weight:500!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
