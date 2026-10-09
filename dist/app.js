@@ -8,7 +8,7 @@ import {statsDashboard} from './stats.js?v=cards-no-arrows-20261008';
 import {practiceCatalog,practiceModule} from './practice-modules.js?v=learn-titles-20261008';
 import {sourceQuiz} from './source-quiz.js?v=cards-no-arrows-20261008';
 import {journeyIds,extraCard,staffRoles,decisionCycle} from './learn-ui.js?v=math-dictionary-13fd6b99';
-import {t,getLocale} from './i18n.js?v=math-dedup-v2';
+import {t,getLocale} from './i18n.js?v=practice-adventure-1a5fc75b';
 import {renderMathLessons} from './math-lessons.js?v=decisions-8295e338';
 import {enablePageSwipe} from './swipe.js';
 import {loginPage} from './login.js?v=login-icons-v1';
