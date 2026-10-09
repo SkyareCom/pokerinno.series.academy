@@ -1291,8 +1291,8 @@ input,select,textarea{font-family:inherit;font-size:14px}
 
 /* Staff topic cards follow the same Academy card rhythm. */
 #app .staff-direct-lessons .staff-topic-card{margin:0!important}
-#app .staff-direct-lessons .staff-topic-card h4{margin:0 0 10px!important;font-weight:600!important;line-height:1.4!important;color:var(--gold)}
-#app .staff-direct-lessons .staff-topic-card .source-body p{font-weight:400!important;line-height:1.6!important;margin:0!important}
+#app .staff-direct-lessons .staff-topic-card h4{margin:0 0 10px!important;font-weight:500!important;line-height:1.4!important;color:var(--gold)}
+#app .staff-direct-lessons .staff-topic-card .source-body p{font-weight:500!important;line-height:1.6!important;margin:0!important}
 #app .staff-direct-lessons .staff-topic-card .source-body p+p{margin-top:14px!important}
 
 /* Bons Modos: Pokerinno-featured card; same vertical rhythm as neighboring lessons. */
