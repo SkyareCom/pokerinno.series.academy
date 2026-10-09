@@ -1362,3 +1362,7 @@ html body:not(.login-screen) :is(#app,.sidebar,header,dialog,.pokerinno-balloons
 #app .play-profiles-pokerinno{margin:16px 0 20px;padding:14px;border:1px solid #5b5132;border-radius:16px;background:#0b231d}
 #app .play-profiles-pokerinno .source-lesson{margin-top:12px!important;border:1px solid var(--ui-card-border)!important;border-radius:16px;background:#102b23!important}
 #app .play-profiles-pokerinno .source-lesson summary span{display:none!important}
+
+/* Player profile observation cards: keep heading and explanation as separate lines. */
+#app .play-profiles-pokerinno .source-body .cg .ch > strong{display:block!important;margin:0 0 8px!important;line-height:1.35!important}
+#app .play-profiles-pokerinno .source-body .cg .ch > span{display:block!important;margin:0!important;line-height:1.55!important;word-spacing:normal!important}
