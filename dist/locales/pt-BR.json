@@ -359,5 +359,10 @@
   "math.groups.flops": "DRAWS E PROBABILIDADES PÓS-FLOP",
   "math.example": "Exemplo:",
   "profile.languageSelector": "IDIOMA",
-  "profile.autoSaveTraining": "SALVAR TREINOS AUTOMATICAMENTE"
+  "profile.autoSaveTraining": "SALVAR TREINOS AUTOMATICAMENTE",
+  "profile.settings": "CONFIGURAÇÕES DO ACADEMY",
+  "profile.sound": "SONS DA JORNADA",
+  "profile.soundDescription": "Preferência preparada para as experiências com áudio.",
+  "profile.reducedMotion": "REDUZIR MOVIMENTOS",
+  "profile.reducedMotionDescription": "Uma navegação mais tranquila, com menos animações."
 }

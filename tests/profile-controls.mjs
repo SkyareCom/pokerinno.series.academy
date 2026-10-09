@@ -48,7 +48,12 @@ test('profile automatic training save reflects the preference and keeps manual s
   assert.equal(/\bchecked\b/.test(checkbox),enabled);
   assert.ok(html.includes(title));
   assert.equal(html.includes('data-save-activities'),!enabled);
-  assert.ok(html.indexOf('autoSaveActivities')<html.indexOf('CONFIGURAÇÕES DO ACADEMY'));
+  const settings=html.match(/<section class="profile-preferences"[^>]*>([\s\S]*?)<\/section>/)?.[1];
+  assert.ok(settings,'Academy settings group is available in Profile');
+  assert.ok(settings.includes(t('profile.settings',{},locale)));
+  assert.ok(settings.indexOf('id="sound"')<settings.indexOf('id="reducedMotion"'));
+  assert.ok(settings.indexOf('id="reducedMotion"')<settings.indexOf('id="autoSaveActivities"'));
+  assert.ok(settings.includes(title));
  }
 });
 

@@ -359,5 +359,10 @@
   "math.groups.flops": "PROYECTOS Y PROBABILIDADES POSTFLOP",
   "math.example": "Ejemplo:",
   "profile.languageSelector": "IDIOMA",
-  "profile.autoSaveTraining": "GUARDAR ENTRENAMIENTOS AUTOMÁTICAMENTE"
+  "profile.autoSaveTraining": "GUARDAR ENTRENAMIENTOS AUTOMÁTICAMENTE",
+  "profile.settings": "CONFIGURACIÓN DE ACADEMY",
+  "profile.sound": "SONIDOS DE LA JORNADA",
+  "profile.soundDescription": "Preferencia preparada para experiencias con audio.",
+  "profile.reducedMotion": "REDUCIR MOVIMIENTO",
+  "profile.reducedMotionDescription": "Una navegación más tranquila, con menos animaciones."
 }

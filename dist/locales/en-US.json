@@ -359,5 +359,10 @@
   "math.groups.flops": "DRAWS AND POSTFLOP PROBABILITIES",
   "math.example": "Example:",
   "profile.languageSelector": "LANGUAGE",
-  "profile.autoSaveTraining": "SAVE TRAINING AUTOMATICALLY"
+  "profile.autoSaveTraining": "SAVE TRAINING AUTOMATICALLY",
+  "profile.settings": "ACADEMY SETTINGS",
+  "profile.sound": "JOURNEY SOUNDS",
+  "profile.soundDescription": "Preference prepared for experiences with audio.",
+  "profile.reducedMotion": "REDUCE MOTION",
+  "profile.reducedMotionDescription": "A calmer experience with fewer animations."
 }
