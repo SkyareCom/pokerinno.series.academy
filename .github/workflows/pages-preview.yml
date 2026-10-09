@@ -31,6 +31,7 @@ jobs:
         run: |
           npm test
           npm run i18n:audit
+          node scripts/audit-math-equity.mjs
       - name: Install audit browser
         run: |
           npm install --no-save playwright@1.62.1

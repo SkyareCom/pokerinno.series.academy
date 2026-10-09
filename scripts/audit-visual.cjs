@@ -21,17 +21,16 @@ async function inspect(page,label){
    const s=getComputedStyle(e),size=parseFloat(s.fontSize);
    words.push(text);fonts[size]=(fonts[size]||0)+1;
    if(![12,16,20].includes(size))bad('font-scale',e,size);
+   if(s.fontWeight!=='500')bad('font-weight',e,s.fontWeight);
    if(['hidden','clip'].includes(s.overflowY)&&e.clientHeight>0&&e.scrollHeight>e.clientHeight+2)bad('clipped-text',e,'height');
   }
   for(const e of root.querySelectorAll('h1,.page-title'))if(visible(e)&&getComputedStyle(e).fontSize!=='20px')bad('page-title-size',e,getComputedStyle(e).fontSize);
   for(const e of root.querySelectorAll('h2,h3,h4,h5,h6,.source-lesson>summary>strong,.glossary-term>strong,.next-app>strong,.editorial-note>strong,.discover-timeline strong,.source-body .ch>strong,.source-body .ci>strong,.source-body .rname,.quiz-counters article>span,.stats-metrics article>span')){
    if(!visible(e)||e.closest('.page-heading,.section-top')||e.matches('.source-question>h2'))continue;
    const s=getComputedStyle(e);
-   if(s.color!=='rgb(244, 242, 231)')bad('title-color',e,s.color);
+   if(s.color!=='rgb(255, 255, 255)')bad('title-color',e,s.color);
    if(s.textTransform!=='uppercase')bad('title-case',e,s.textTransform);
-   const nested=e.closest('.source-body,.discover-compare,.stats-duel,.stats-swot,.decision-steps')||e.matches('.glossary-term>strong,.discover-timeline strong,.quiz-counters article>span,.stats-metrics article>span');
-   const direct=e.matches(':is(.etiquette-page,.procedure-body)>.lg>.lc>h3')&&!e.closest('.source-lesson');
-   const expected=nested&&!direct?'12px':'16px';
+   const expected='16px';
    if(s.fontSize!==expected)bad('card-title-size',e,s.fontSize+' / '+expected);
   }
   for(const e of root.querySelectorAll('p,li,small,label,input,select,textarea'))if(visible(e)&&getComputedStyle(e).fontSize!=='12px')bad('copy-size',e,getComputedStyle(e).fontSize);

@@ -1320,5 +1320,8 @@ input,select,textarea{font-family:inherit;font-size:14px}
   -webkit-text-fill-color:#fff!important;
 }
 
-/* Global typography rule: all app text uses font-weight 500, including controls and pseudo-elements. */
-html body, html body *, html body *::before, html body *::after { font-weight:500!important; }
+/* App text uses weight 500. Frozen login and footer retain their approved weights. */
+html body:not(.login-screen) :is(#app,.sidebar,header,dialog,.pokerinno-balloons),
+html body:not(.login-screen) :is(#app,.sidebar,header,dialog,.pokerinno-balloons) *,
+html body:not(.login-screen) :is(#app,.sidebar,header,dialog,.pokerinno-balloons) *::before,
+html body:not(.login-screen) :is(#app,.sidebar,header,dialog,.pokerinno-balloons) *::after { font-weight:500!important; }
