@@ -1351,3 +1351,6 @@ html body:not(.login-screen) :is(#app,.sidebar,header,dialog,.pokerinno-balloons
 
 #app .math-lesson .math-decision-note{margin-top:12px!important;padding:12px!important;border-left:2px solid #F7C75B;background:#102b23;border-radius:0 8px 8px 0;color:#9DB0A7!important;font-size:14px!important;line-height:1.6!important}
 #app .math-lesson .math-decision-note strong{display:block;color:#F4F2E7!important;font-size:16px!important;font-weight:500!important;margin-bottom:5px}
+
+#app .math-lesson .math-decision-note .math-decision-title{color:#F4F2E7!important;font-size:16px!important;font-weight:500!important;margin-bottom:5px}
+#app .math-lesson .math-decision-note p{color:#9DB0A7!important;font-size:14px!important;font-weight:500!important;line-height:1.6!important}
