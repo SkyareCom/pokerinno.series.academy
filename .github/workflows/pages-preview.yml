@@ -45,6 +45,14 @@ jobs:
         with:
           name: academy-local-spot-audit
           path: reports/solver/academy-local-audit.json
+      - name: Audit each Academy spot certification
+        run: node scripts/audit-academy-certification.mjs
+      - name: Save certification ledger
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: academy-1500-certification-ledger
+          path: reports/solver/academy-certification-ledger.json
       - name: Audit Academy solver readiness
         run: node scripts/audit-academy-solve-readiness.mjs
       - name: Save solver readiness report
