@@ -160,3 +160,24 @@ body:not(.login-screen) #app :is(.subtitle,.sub-title,.subheading,
  color:#9DB0A7!important;
  -webkit-text-fill-color:#9DB0A7!important;
 }
+
+/* FINAL LOCK: titles 600 / #F4F2E7; secondary copy 400 / #9DB0A7.
+   Scope excludes login, footer, nav, functional buttons, status and XP. */
+body:not(.login-screen) #app :is(
+ h1,h2,h3,h4,h5,h6,
+ .card-title,.page-title,.section-title,.section-heading,
+ .source-title,.lesson-title,.chapter-title,
+ .source-lesson summary strong,.learn-extra-copy h3,
+ .stats-swot article h3,.stats-panel h2,
+ .glossary-term>strong,.source-body .ch>strong,.source-body .ci>strong
+){font-weight:600!important;color:#F4F2E7!important;-webkit-text-fill-color:#F4F2E7!important}
+body:not(.login-screen) #app :is(
+ .subtitle,.sub-title,.subheading,[class*="subtitle"],
+ [class*="description"],[class*="desc-"],[class$="-desc"],
+ .muted,.eyebrow,.tiny,
+ .learn-extra-copy p,.stats-panel p,.stats-swot article p,
+ .stats-swot article small,.page-heading p,.source-lesson summary small,
+ .source-lesson>p,.chapter>p,.feature>p,.editorial-note p,
+ .profile-setting-copy p,.profile-plan p,.stats-history small,
+ .stats-storage,.practice-mix-note
+){font-weight:400!important;color:#9DB0A7!important;-webkit-text-fill-color:#9DB0A7!important}
