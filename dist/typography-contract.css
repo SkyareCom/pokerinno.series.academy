@@ -720,3 +720,17 @@ html body:not(.login-screen) #app :is(
 ){
  border:1px solid #F7C75B!important;
 }
+
+/* USER FINAL REQUIREMENT: 100% of ALL app CSS borders = #D4CFBD, 1px.
+   Applied after previous color contracts, including cards, buttons,
+   activities, ranges, settings, footer, login and pseudo-elements.
+   Border style unchanged; elements with no border remain borderless. */
+html body,html body *,html body *::before,html body *::after{
+ border-color:#D4CFBD!important;
+ border-top-color:#D4CFBD!important;
+ border-right-color:#D4CFBD!important;
+ border-bottom-color:#D4CFBD!important;
+ border-left-color:#D4CFBD!important;
+ border-width:1px!important;
+}
+/* SVG graphics have strokes, not CSS borders: preserve their appearance. */
