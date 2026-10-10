@@ -18,14 +18,18 @@ for(const spot of trainingSpots){
  if(evidence.spotId!==spot.id)reasons.push('WRONG_SPOT_ID');
  if(evidence.schemaVersion!==1)reasons.push('WRONG_SCHEMA');
  if(!isHash(evidence.sourceInputSha256))reasons.push('MISSING_SOURCE_HASH');
+ if(!isHash(evidence.spotSourceSha256)||evidence.spotSourceSha256!==sha(JSON.stringify(spot)))reasons.push('SPOT_SOURCE_INTEGRITY_MISMATCH');
  if(!isHash(evidence.rangeSourceSha256)||!evidence.rangeSourceVerified)reasons.push('RANGE_SOURCE_NOT_VERIFIED');
  if(!Array.isArray(evidence.rangeSourceReferences)||evidence.rangeSourceReferences.length<1)reasons.push('MISSING_RANGE_REFERENCES');
  if(!Array.isArray(evidence.engines)||evidence.engines.length<2)reasons.push('MISSING_TWO_ENGINES');
  const engines=Array.isArray(evidence.engines)?evidence.engines:[];
- if(new Set(engines.map(e=>e?.name)).size<2)reasons.push('NOT_INDEPENDENT_ENGINES');
+ if(new Set(engines.map(e=>e?.name)).size<2||engines.some(e=>typeof e?.name!=='string'||!e.name.trim()))reasons.push('NOT_INDEPENDENT_ENGINES');
  for(const e of engines){
   if(!e?.name||!isHash(e.commitSha256)&&!(/^[a-f0-9]{40}$/.test(e?.commit??'')))reasons.push('MISSING_ENGINE_PROVENANCE');
-  if(!isHash(e?.strategySha256)||!e?.converged||!Number.isFinite(e?.exploitabilityPercent)||e.exploitabilityPercent>0.3)reasons.push('UNVERIFIED_SOLVER_RESULT');
+  if(!isHash(e?.strategySha256)||!e?.converged||!Number.isFinite(e?.exploitabilityPercent)||e.exploitabilityPercent<0||e.exploitabilityPercent>0.3)reasons.push('UNVERIFIED_SOLVER_RESULT');
+  if(!isHash(e?.inputSha256)||e.inputSha256!==evidence.sourceInputSha256)reasons.push('ENGINE_INPUT_INTEGRITY_MISMATCH');
+  if(!isHash(e?.rangeSourceSha256)||e.rangeSourceSha256!==evidence.rangeSourceSha256)reasons.push('ENGINE_RANGE_INTEGRITY_MISMATCH');
+  if(!e?.actionFrequencies||e.strategySha256!==sha(JSON.stringify(e.actionFrequencies)))reasons.push('ENGINE_STRATEGY_HASH_MISMATCH');
  }
  const [a,b]=engines;
  const x=a?.actionFrequencies,y=b?.actionFrequencies;
