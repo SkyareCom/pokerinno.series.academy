@@ -3,6 +3,7 @@ name: Publish Academy Preview
 on:
   push:
     branches:
+      - main
       - feat/pokerinno-frontend
   workflow_dispatch:
 
