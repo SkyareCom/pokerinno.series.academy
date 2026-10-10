@@ -4,6 +4,8 @@ import {createHash} from 'node:crypto';
 const out='reports/solver/independent';
 mkdirSync(out,{recursive:true});
 const selected=Number(process.env.ACADEMY_SOLVER_SPOT_ID??721);
+const maxIterations=Number(process.env.ACADEMY_SOLVER_MAX_ITERATIONS??100);
+if(!Number.isInteger(maxIterations)||maxIterations<1||maxIterations>10000)throw Error('Invalid iteration limit');
 const rows=[];
 const fmt=r=>Object.entries(r??{}).filter(([,v])=>v>0).map(([k,v])=>k+':'+Number(v).toFixed(6)).join(',');
 for(const s of trainingSpots.filter(s=>s.street!=='pre')){
@@ -20,7 +22,7 @@ for(const s of trainingSpots.filter(s=>s.street!=='pre')){
   'build_tree',
   'set_thread_num 2',
   'set_accuracy 0.3',
-  'set_max_iteration 100',
+  'set_max_iteration '+maxIterations,
   'set_print_interval 10',
   'set_use_isomorphism 1',
   'start_solve',
