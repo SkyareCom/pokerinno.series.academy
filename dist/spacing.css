@@ -1,0 +1,356 @@
+/* Shared spacing contract. Keep this stylesheet after component styles. */
+:root{--space-1:4px;--space-2:8px;--space-3:12px;--space-4:16px;--space-6:24px;--space-8:32px;--reading-line:1.55;--paragraph-gap:1lh;--copy-tracking:.015em;--title-tracking:.025em;--page-gutter:48px}
+body{line-height:var(--reading-line);letter-spacing:var(--copy-tracking);word-spacing:normal}
+#app :is(p,li,small,label,input,select,textarea){letter-spacing:var(--copy-tracking);word-spacing:normal;line-height:var(--reading-line)}
+#app :is(h1,h2,h3,h4,h5,h6){letter-spacing:var(--title-tracking);word-spacing:normal;line-height:1.25}
+#app :is(.eyebrow,.tiny){letter-spacing:.08em;line-height:1.4}
+#app p{margin-block:0}
+/* A full line between paragraphs, including imported course content. */
+#app p+p{margin-block-start:var(--paragraph-gap)}
+#app :is(h1,h2,h3,h4,h5,h6)+:is(p,ul,ol){margin-block-start:var(--space-2)}
+#app :is(p,ul,ol)+:is(h2,h3,h4,h5,h6){margin-block-start:var(--space-6)}
+#app :is(ul,ol){padding-inline-start:var(--space-6)}
+#app li+li{margin-block-start:var(--space-2)}
+#app :is(.list,.grid,.source-group,.stats-dashboard,.quiz-player,.glossary-list,.decision-steps,.level-list){gap:var(--space-3)}
+#app .page-heading{margin-block-end:var(--space-6);gap:var(--space-4)}
+#app .page-heading h1{margin-block-start:var(--space-2)}
+#app .section-top{margin-block:var(--space-6) var(--space-3);gap:var(--space-3)}
+#app>.page-actions{margin-block-end:var(--space-4)}
+#app>.source-group{margin-block-start:var(--space-4)}
+#app>:is(.hero,.discover-hero-card,.pokerinno-context,.staff-roles){margin-block-end:var(--space-4)}
+#app>:is(.list,.grid,.source-group,.stats-dashboard,.quiz-player)+:is(.list,.grid,.source-group,.decision-cycle,.pokerinno-context){margin-block-start:var(--space-4)}
+#app :is(.chapter,.feature,.stats-panel,.glossary-group,.decision-cycle){padding:var(--space-4)}
+#app .chapter{gap:var(--space-4)}
+#app :is(.feature,.chapter,.pokerinno-context,.learn-extra-copy,.staff-role,.decision-steps) :is(h2,h3,h4)+p{margin-block-start:var(--space-2)}
+#app .source-lesson>summary{padding:var(--space-3) var(--space-4);gap:var(--space-2)}
+#app .source-body{padding:0 var(--space-4) var(--space-4)}
+#app .source-body :is(.lg,.cg,.compare,.ranking,.steps){display:grid;gap:var(--space-3)}
+#app .source-body :is(.lc,.ch,.ci,.ex,.tip,.rrow){padding:var(--space-4)}
+#app .source-body :is(.lc,.ch,.ci,.ex,.tip,.rrow)+:is(.lc,.ch,.ci,.ex,.tip,.rrow){margin-block-start:var(--space-3)}
+#app .source-body :is(.lg,.cg,.compare,.ranking)>*{margin-block:0}
+#app .source-body :is(h3,h4){margin-block:0 var(--space-2)}
+#app .source-body :is(p,ul,ol)+:is(h3,h4){margin-block-start:var(--space-6)}
+#app .source-body :is(ul,ol){margin-block:var(--space-2) 0}
+#app .source-body .step{display:grid;grid-template-columns:2.5em minmax(0,1fr);gap:var(--space-3);align-items:start}
+#app .source-body .step .n{color:var(--gold);font-variant-numeric:tabular-nums;line-height:var(--reading-line)}
+#app .procedure-body>section+section{margin-block-start:var(--space-6)}
+#app .procedure-body>section>h2{margin-block:var(--space-4) var(--space-3)}
+#app .glossary-term{padding:var(--space-3)}
+#app .glossary-term p{margin-block-start:var(--space-2)}
+#app .decision-steps{margin-block:var(--space-4);padding:0}
+#app .decision-steps li{margin:0;padding:var(--space-3);gap:var(--space-3)}
+#app .quiz-options{gap:var(--space-2);margin-block-start:var(--space-4)}
+#app .quiz-controls{gap:var(--space-2)}
+#app :is(.quiz-feedback,.quiz-card-group,.position-table,.stats-line,.level-meter){margin-block:var(--space-4)}
+#app :is(.reinforce-learning,.save-activities){margin-block:var(--space-6) var(--space-2)}
+#app :is(p,.source-group,.list,.grid)+:is(.primary,button){margin-block-start:var(--space-4)}
+#app :is(.stats-topic,.stats-module,.stats-history,.training-session,.staff-role){padding-block:var(--space-3)}
+#app :is(.stats-metrics,.quiz-counters,.stats-swot,.stats-duel,.training-session-metrics){gap:var(--space-3)}
+#app .stats-panel h2{margin-block-end:var(--space-3)}
+#app :is(.stats-module,.stats-history,.training-session summary){gap:var(--space-3)}
+main{padding-inline:var(--page-gutter)}
+.mobile-nav a{letter-spacing:.025em;word-spacing:normal}
+@media(max-width:800px){:root{--page-gutter:16px}#app .source-body{padding-inline:var(--space-3)}#app .source-body :is(.lc,.ch,.ci,.ex,.tip,.rrow){padding:var(--space-3)}}
+
+/* Cards use their full surface as the affordance; no decorative arrows. */
+#app .learn-extra-pokerinno{grid-template-columns:30% minmax(0,1fr)}
+#app :is(.arrow,.learn-extra-arrow){display:none}
+#app summary{list-style:none}
+#app summary::marker{content:''}
+#app summary::-webkit-details-marker{display:none}
+
+/* Consistent secondary headings, readable card content and safe narrow layouts. */
+#app :is(.chapter,.feature,.stats-panel,.glossary-group,.source-body,.procedure-body){min-width:0;overflow-wrap:break-word}
+#app :is(.chapter,.feature,.stats-panel,.glossary-group) :is(h2,h3,h4){max-width:100%;overflow-wrap:break-word}
+#app :is(.chapter,.feature,.stats-panel,.glossary-group) :is(h3,h4){font-size:14px;font-weight:600;line-height:1.35;margin-block:var(--space-4) var(--space-2)}
+#app :is(.chapter,.feature,.stats-panel,.glossary-group) :is(h2,h3,h4):first-child{margin-block-start:0}
+#app :is(.chapter,.feature,.stats-panel,.glossary-group) :is(p,ul,ol)+:is(h3,h4){margin-block-start:var(--space-6)}
+#app :is(.chapter,.feature,.stats-panel,.glossary-group) :is(button,.primary){max-width:100%}
+#app :is(.list,.grid,.source-group,.stats-dashboard,.quiz-player)>*{min-width:0}
+
+/* Unified internal card rhythm: headings, descriptions and action rows. */
+#app :is(.chapter,.feature,.stats-panel,.glossary-group,.source-body,.procedure-body) :is(h2,h3,h4)+:is(.list,.grid,.steps,.lg,.cg,.compare,.ranking){margin-block-start:var(--space-3)}
+#app :is(.chapter,.feature,.stats-panel,.glossary-group,.source-body,.procedure-body) :is(.list,.grid,.steps,.lg,.cg,.compare,.ranking)+:is(h2,h3,h4){margin-block-start:var(--space-6)}
+#app :is(.chapter,.feature,.stats-panel,.glossary-group,.source-body,.procedure-body) :is(p,ul,ol)+:is(.primary,.quiet,button){margin-block-start:var(--space-4)}
+#app :is(.chapter,.feature,.stats-panel,.glossary-group,.source-body,.procedure-body) :is(button,.primary,.quiet)+:is(p,ul,ol){margin-block-start:var(--space-3)}
+#app :is(.source-body,.procedure-body) :is(.lc,.ch,.ci,.ex,.tip,.rrow) :is(h3,h4){margin-block:0 var(--space-2);line-height:1.35}
+#app :is(.source-body,.procedure-body) :is(.lc,.ch,.ci,.ex,.tip,.rrow) :is(h3,h4)+p{margin-block-start:var(--space-2)}
+#app :is(.chapter,.feature,.stats-panel,.glossary-group,.source-body,.procedure-body) :is(p,li){overflow-wrap:anywhere}
+
+/* Global spacing contract: 10px between cards and between cards and adjacent text. */
+:root{--card-gap:10px;--component-gap:10px}
+#app :is(.list,.grid,.source-group,.stats-dashboard,.quiz-player,.glossary-list,.decision-steps,.level-list,.journey-chapters,.practice-catalog .list){gap:var(--component-gap);row-gap:var(--component-gap);column-gap:var(--component-gap)}
+#app :is(.list,.grid,.source-group,.journey-chapters,.practice-catalog,.learn-extra-pokerinno,.chapter,.feature,.stats-panel,.glossary-group,.decision-cycle)+:is(.list,.grid,.source-group,.journey-chapters,.practice-catalog,.learn-extra-pokerinno,.chapter,.feature,.stats-panel,.glossary-group,.decision-cycle,p,h2,h3,h4){margin-block-start:10px}
+#app :is(p,h2,h3,h4)+:is(.list,.grid,.source-group,.journey-chapters,.practice-catalog,.learn-extra-pokerinno,.chapter,.feature,.stats-panel,.glossary-group,.decision-cycle){margin-block-start:10px}
+#app .practice-catalog .source-group{gap:10px;margin-top:10px}
+#app .section-top{margin-block:10px;gap:10px}
+#app .learn-extra-pokerinno .learn-extra-copy{padding:10px}
+#app .learn-extra-pokerinno .learn-extra-copy h3{margin-block:0 10px}
+#app .learn-extra-pokerinno .learn-extra-copy p{margin:0}
+#app .journey-chapters+.learn-extra-pokerinno,#app>.learn-extra-pokerinno+.learn-extra-pokerinno,#app .learn-extra-pokerinno+.decision-cycle{margin-top:10px}
+
+/* Fix actual cause of oversized gaps: .learn-extra carried its own 14px top margin in addition to the parent gap. */
+#app .journey-chapters{display:grid;gap:10px!important;row-gap:10px!important;align-content:start}
+#app .journey-chapters>.learn-extra-pokerinno,#app .practice-catalog .journey-chapters>.learn-extra-pokerinno{margin:0!important}
+#app>.learn-extra-pokerinno{margin-block:10px 0!important}
+#app .journey-chapters>.learn-extra-pokerinno,#app>.learn-extra-pokerinno,#app .practice-catalog .journey-chapters>.learn-extra-pokerinno{box-sizing:border-box!important}
+#app .journey-chapters>.learn-extra-pokerinno .learn-extra-host,#app>.learn-extra-pokerinno .learn-extra-host{}
+#app .learn-extra-pokerinno .learn-extra-copy h3{margin:0 0 10px!important}
+
+/* HARD OVERRIDE — unified 10px exterior spacing across all app cards, text and sections. */
+:root{--card-gap:10px!important;--component-gap:10px!important}
+#app :is(.list,.grid,.journey-chapters,.source-group,.practice-catalog .journey-chapters,.practice-catalog .list,.stats-dashboard,.quiz-player,.glossary-list,.decision-steps,.level-list){gap:10px!important;row-gap:10px!important;column-gap:10px!important}
+#app :is(.list,.grid,.journey-chapters,.source-group,.practice-catalog .journey-chapters,.practice-catalog .list)>:is(.learn-extra,.learn-extra-pokerinno,.chapter,.feature,.source-group,.glossary-group,.stats-panel){margin:0!important}
+#app .journey-chapters>.learn-extra-pokerinno{margin:0!important}
+#app :is(.page-heading,.section-top){gap:10px!important;margin-block:10px!important}
+#app :is(.list,.grid,.journey-chapters,.source-group,.learn-extra-pokerinno,.chapter,.feature,.stats-panel,.glossary-group,.decision-cycle,.page-heading,.section-top)+:is(.list,.grid,.journey-chapters,.source-group,.learn-extra-pokerinno,.chapter,.feature,.stats-panel,.glossary-group,.decision-cycle,.page-heading,.section-top,p,h2,h3,h4){margin-block-start:10px!important}
+#app :is(p,h2,h3,h4)+:is(.list,.grid,.journey-chapters,.source-group,.learn-extra-pokerinno,.chapter,.feature,.stats-panel,.glossary-group,.decision-cycle){margin-block-start:10px!important}
+#app>.learn-extra-pokerinno{margin-top:10px!important;margin-bottom:0!important}
+#app .learn-extra-pokerinno .learn-extra-copy h3{margin:0 0 10px!important}
+#app .learn-extra-pokerinno .learn-extra-copy p{margin:0!important}
+#app .practice-catalog .source-group{margin-top:10px!important;gap:10px!important}
+#app .practice-catalog .source-group>.section-top{margin:0 0 10px!important}
+
+/* Betting lesson cards: same visual language as the app, consistent 10px spacing. */
+#app .betting-learning-path,#app .betting-info-grid{display:grid;gap:10px}
+#app .betting-learning-module{margin:10px 0 0}
+#app .betting-module-heading{margin:0 0 10px}
+#app .betting-module-heading h3{font-size:16px;font-weight:600;line-height:1.3;margin:6px 0 10px}
+#app .betting-module-heading p{font-size:12px;margin:0;line-height:1.5}
+#app .betting-info-card{min-width:0;padding:14px;border:1px solid var(--line);border-radius:16px;background:#0b231d;overflow-wrap:anywhere}
+#app .betting-info-index{color:var(--gold);font-size:12px;font-weight:600;margin-bottom:10px}
+#app .betting-info-card h4{font-size:14px;font-weight:600;color:var(--gold);margin:0 0 10px}
+#app .betting-info-content.source-body{padding:0;color:var(--text)}
+#app .betting-info-content> :first-child{margin-top:0}
+#app .betting-info-content :is(p,ul,ol){margin-bottom:10px}
+
+/* Frozen login typography — preserve the approved computed values. */
+:root{--card-title-size:16px;--card-body-size:12px;--card-label-size:12px}
+html body.login-screen{font-size:16px}
+body.login-screen :is(.sidebar,.workspace,header,main,#app,dialog){font-size:16px}
+body.login-screen :is(.sidebar,.workspace,header,main,#app,dialog) :is(h1,h2,.hero-title,.page-title){font-size:20px!important}
+body.login-screen :is(.sidebar,.workspace,header,main,#app,dialog) :is(h3,h4,h5,h6,strong,button,summary,.card-title,.chapter-title){font-size:16px!important}
+body.login-screen :is(.sidebar,.workspace,header,main,#app,dialog) :is(p,li,small,label,input,select,textarea,.eyebrow,.tiny,.breadcrumb,.card-description,.source-body,.source-body *, .source-lesson summary small){font-size:12px!important}
+body.login-screen :is(.sidebar,.workspace,header,main,#app,dialog) :is(.source-body h1,.source-body h2){font-size:20px!important}
+body.login-screen :is(.sidebar,.workspace,header,main,#app,dialog) :is(.source-body h3,.source-body h4,.source-body h5,.source-body h6){font-size:16px!important}
+body footer,body footer *,body .mobile-nav .nav-label,body .mobile-nav small,body .mobile-nav span:not(.nav-symbol):not(.nav-icon):not(.icon),body .mobile-nav a{font-size:10px!important}
+/* Five footer items: identical icon boxes and label baseline. */
+body .mobile-nav{align-items:stretch!important}
+body .mobile-nav a{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:flex-start!important;gap:5px!important;font-size:10px!important;line-height:14px!important}
+body .mobile-nav a>.nav-symbol{display:flex!important;align-items:center!important;justify-content:center!important;flex:0 0 12px!important;width:12px!important;height:12px!important;min-width:12px!important;min-height:12px!important;margin:0 auto!important;font-size:12px!important;line-height:12px!important}
+body .mobile-nav a>.nav-symbol svg{display:block!important;width:12px!important;height:12px!important;max-width:12px!important;max-height:12px!important;flex:none!important}
+body .mobile-nav a.active>.nav-symbol{box-shadow:none!important}
+
+
+/* Frozen login title colors. */
+body.login-screen #app :is(h1,h2,h3,h4,h5,h6,.page-title,.hero-title,.section-title,.chapter-heading,.section-heading,.card-title,.chapter-title,.lesson-title,.subcard-title,.sub-card-title){color:#f4f2e7!important}
+
+/* Footer sizes: large 25px icons and 10px captions. */
+body .mobile-nav a{font-size:10px!important}
+body .mobile-nav a>.nav-symbol{font-size:25px!important;line-height:25px!important;flex-basis:25px!important;width:25px!important;height:25px!important;min-width:25px!important;min-height:25px!important}
+body .mobile-nav a>.nav-symbol svg{width:25px!important;height:25px!important;max-width:25px!important;max-height:25px!important}
+
+/* Entry journey heading. */
+body.login-screen #app .entry-form>h2{font-size:16px!important}
+
+/* Pokerinno speaks in animated balloons; footer rules remain unchanged. */
+.pokerinno-balloons{position:fixed;z-index:20;top:calc(96px + env(safe-area-inset-top,0px));right:16px;width:min(390px,calc(100vw - 32px));max-height:calc(100dvh - 190px);overflow:auto;padding:24px 12px 12px;border:1px solid var(--gold);border-radius:16px;background:#09231df5;color:#f4f2e7;animation:pokerinno-arrive .3s ease-out}
+.pokerinno-dismiss{position:absolute;right:6px;top:3px;min-width:32px;min-height:32px;border:0;background:none;color:inherit;font-size:20px}
+.pokerinno-speech-row{display:grid;grid-template-columns:76px minmax(0,1fr);gap:12px;align-items:end}
+.pokerinno-speaker{display:block;width:76px;height:100px;object-fit:cover;border-radius:12px;animation:pokerinno-greet .5s ease-out}
+.pokerinno-speech{position:relative;min-width:0;padding:12px;border:1px solid var(--gold);border-radius:16px 16px 16px 4px;background:#18392e;animation:pokerinno-arrive .3s ease-out}
+.pokerinno-speech:before{content:'';position:absolute;left:-7px;bottom:18px;width:12px;height:12px;transform:rotate(45deg);background:#18392e;border-left:1px solid var(--gold);border-bottom:1px solid var(--gold)}
+.pokerinno-speech strong{font-size:16px;font-weight:600}.pokerinno-speech p{font-size:12px;line-height:1.55;margin:10px 0;overflow-wrap:anywhere}
+.pokerinno-speech .primary{max-width:100%;font-size:12px;min-height:40px;padding:10px;gap:8px}
+.pokerinno-speech-controls{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:8px 12px;margin-top:12px;font-size:12px}
+.pokerinno-speech-controls>span{display:flex;align-items:center;min-height:32px;line-height:1.4;grid-column:1;grid-row:1}
+.pokerinno-speech-controls>button{grid-column:1/-1;grid-row:2;justify-self:stretch}
+.pokerinno-speech-controls>.quiet{display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.4;margin:0;max-width:100%;overflow-wrap:anywhere}
+.pokerinno-speech-controls>a:last-child{grid-column:2;grid-row:1;justify-self:stretch}
+.pokerinno-speech-controls .quiet,.pokerinno-balloons>.quiet{font-size:12px;min-height:32px}.pokerinno-balloons>p{font-size:12px;margin:10px 0}
+.pokerinno-message-settings{margin-block:16px}.pokerinno-message-settings .setting>div{min-width:0}.pokerinno-message-settings input{flex-shrink:0}
+@keyframes pokerinno-arrive{from{opacity:0;transform:translateY(-8px) scale(.97)}to{opacity:1;transform:none}}
+@keyframes pokerinno-greet{from{transform:translateY(8px) rotate(-3deg)}to{transform:none}}
+@media(max-width:800px){.pokerinno-balloons{top:calc(73px + env(safe-area-inset-top,0px));max-height:calc(100dvh - 165px)}}
+@media(prefers-reduced-motion:reduce){.pokerinno-balloons,.pokerinno-speech,.pokerinno-speaker{animation:none}}
+
+/* Compact speech area and upper-left message heading. */
+.pokerinno-balloons{padding:12px}
+.pokerinno-message-heading{display:flex;align-items:center;max-width:calc(100% - 32px);min-height:32px;margin:0 0 8px;line-height:1.35;font-size:12px;text-align:left}
+.pokerinno-speech-row{grid-template-columns:60px minmax(0,1fr);gap:10px}
+.pokerinno-speaker{width:60px;height:80px}
+.pokerinno-speech{padding:10px}
+.pokerinno-speech p{margin:8px 0;line-height:1.4}
+.pokerinno-speech .primary{padding:8px 10px;min-height:36px}
+.pokerinno-speech-controls{margin-top:8px}
+.pokerinno-speech-controls>button{grid-column:2;grid-row:1;justify-self:end}
+
+/* Numbered balloon navigation inside the speech area. */
+.pokerinno-speech-actions{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.pokerinno-balloon-pages{display:flex;align-items:center;gap:4px}
+.pokerinno-page{display:grid;place-items:center;flex:0 0 24px;width:24px;height:24px;border:1px solid var(--gold);border-radius:50%;padding:0;background:transparent;color:#f4f2e7;font-size:12px;line-height:1}
+.pokerinno-page.active{background:var(--gold);color:#142017}
+
+.pokerinno-balloons>.pokerinno-balloon-pages{justify-content:flex-end;margin-top:8px}
+
+/* Login provider marks; keep the existing button labels and alignment. */
+body.login-screen #app .entry-buttons .entry-auth-icon{display:grid;place-items:center;flex:0 0 32px;width:32px;height:32px;line-height:1;color:var(--gold)}
+body.login-screen #app .entry-auth-icon img{display:block;max-width:100%;object-fit:contain}
+body.login-screen #app .entry-auth-google{background:#fff;border:1px solid #747775;border-radius:50%}
+body.login-screen #app .entry-auth-google img{width:20px;height:20px}
+body.login-screen #app .entry-auth-biometric svg{display:block;width:28px;height:28px}
+body.login-screen #app .entry-auth-stackup img{width:32px;height:32px}
+
+/* Imported position lesson: render its existing ten seats around one responsive table. */
+#app .source-body .pv{min-width:0;width:100%}
+#app .source-body .pv>.pb{position:relative;width:100%;max-width:440px;aspect-ratio:1.15;margin:var(--space-3) auto;isolation:isolate}
+#app .source-body .pb>.pt{position:absolute;inset:17% 9%;border:3px solid #927c4b;border-radius:50%;background:#263d30}
+#app .source-body .pb>.pt::before{content:'';position:absolute;inset:5px;border:1px solid #366d52;border-radius:50%;background:#113c2f}
+#app .source-body .pb>.seat{position:absolute;left:var(--seat-x);top:var(--seat-y);transform:translate(-50%,-50%);display:grid;place-items:center;width:clamp(44px,14%,62px);height:32px;border:1px solid #70877a;border-radius:8px;background:#0a211a;color:var(--text,#f4f2e7);white-space:nowrap}
+#app .source-body .pb>.seat .sl2{font-size:12px!important;font-weight:600;line-height:1.2}
+#app .source-body .pb>.s-btn{--seat-x:50%;--seat-y:90%;border-color:var(--gold)}
+#app .source-body .pb>.s-sb{--seat-x:26.49%;--seat-y:82.36%}
+#app .source-body .pb>.s-bb{--seat-x:11.96%;--seat-y:62.36%}
+#app .source-body .pb>.s-utg1{--seat-x:11.96%;--seat-y:37.64%}
+#app .source-body .pb>.s-utg2{--seat-x:26.49%;--seat-y:17.64%}
+#app .source-body .pb>.s-mp1{--seat-x:50%;--seat-y:10%}
+#app .source-body .pb>.s-mp2{--seat-x:73.51%;--seat-y:17.64%}
+#app .source-body .pb>.s-lj{--seat-x:88.04%;--seat-y:37.64%}
+#app .source-body .pb>.s-hj{--seat-x:88.04%;--seat-y:62.36%}
+#app .source-body .pb>.s-co{--seat-x:73.51%;--seat-y:82.36%}
+#app .source-body .pb>.dbtn{position:absolute;left:58%;top:74%;transform:translate(-50%,-50%);display:grid;place-items:center;width:24px;height:24px;border:1px solid var(--gold);border-radius:50%;background:var(--gold);color:#142017;font-size:12px!important;font-weight:600;line-height:1}
+
+/* Streets: consistent reading rhythm and a cropped table for the same example hand. */
+#app .streets-lesson .lg{gap:var(--component-gap)!important}
+#app .streets-lesson .lc{margin:0!important;padding:var(--space-3)!important}
+#app .streets-lesson .lc>h3{margin:0!important;line-height:1.3!important}
+#app .streets-lesson .lc>p{margin:0!important;line-height:var(--reading-line)!important}
+#app .streets-lesson .lc>h3+p{margin-block-start:var(--component-gap)!important}
+#app .streets-lesson .lc>p+p{margin-block-start:var(--paragraph-gap)!important}
+#app .streets-lesson .cg{grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--component-gap)!important}
+#app .streets-lesson .ch{display:grid;gap:var(--space-2);margin:0!important;padding:var(--space-3)!important}
+#app .streets-lesson .street-visual{width:100%;max-width:440px;margin:var(--component-gap) auto 0}
+#app .streets-lesson .street-scene{position:relative;isolation:isolate;display:grid;justify-items:center;gap:var(--space-4);padding:var(--space-4) var(--space-2) 0;border-radius:16px;overflow:hidden}
+#app .streets-lesson .street-felt{position:absolute;z-index:-1;inset:0 0 22px;border:3px solid #927c4b;border-top:0;border-radius:0 0 45% 45%;background:#113c2f}
+#app .streets-lesson .street-board{display:grid;justify-items:center;gap:var(--space-2);width:100%;min-width:0}
+#app .streets-lesson .street-label{font-size:12px!important;font-weight:600;line-height:1.4;text-align:center;color:var(--text,#f4f2e7)}
+#app .streets-lesson :is(.street-board-cards,.street-hero-cards){display:grid;justify-content:center;align-items:center;gap:var(--space-1);min-height:62px;width:100%}
+#app .streets-lesson .street-board-cards{grid-template-columns:repeat(var(--board-count),minmax(0,42px))}
+#app .streets-lesson .street-board-cards:has(.street-empty-board){grid-template-columns:minmax(0,1fr)}
+#app .streets-lesson .street-hero-cards{grid-template-columns:repeat(2,42px)}
+#app .streets-lesson .street-visual .playing-card{width:100%;height:62px;min-width:0;box-shadow:none}
+#app .streets-lesson .street-visual .card-corner{font-size:12px!important;line-height:1!important;font-weight:600}
+#app .streets-lesson .street-visual .card-corner small{font-size:12px!important;line-height:1!important}
+#app .streets-lesson .street-visual .card-pip{font-size:20px!important;line-height:1!important}
+#app .streets-lesson .street-visual .street-card-new{border:2px solid var(--gold)}
+#app .streets-lesson .street-empty-board{font-size:12px!important;line-height:var(--reading-line);text-align:center;color:var(--muted);max-width:200px}
+#app .streets-lesson .street-hero{display:grid;justify-items:center;gap:var(--space-2)}
+#app .streets-lesson .street-hero-seat{display:flex;align-items:center;gap:var(--space-2);padding:var(--space-1) var(--space-2);min-height:44px;border:1px solid var(--line);border-radius:9px;background:#0a211a}
+#app .streets-lesson .street-hero-seat img{display:block;width:32px;height:36px;object-fit:cover;border-radius:6px}
+#app .streets-lesson .street-hero-seat strong{font-size:12px!important;font-weight:600;line-height:1.4}
+
+/* Bons Modos opens a full reading page; its entry card keeps the app's Pokerinno style. */
+#app .staff-etiquette-feature .staff-etiquette-lesson h3{margin:0;font-size:16px;line-height:1.3}
+#app .staff-etiquette-feature .staff-etiquette-lesson h3+p{margin-block-start:var(--component-gap)}
+#app .etiquette-page.source-body{padding:0;min-width:0}
+#app .etiquette-page .lg{gap:var(--component-gap)!important}
+#app .etiquette-page .lc{margin:0!important;padding:var(--space-3)!important}
+#app .etiquette-page .lc>h3{margin:0!important;line-height:1.3!important}
+#app .etiquette-page .lc>p{margin:0!important;line-height:var(--reading-line)!important}
+#app .etiquette-page .lc>h3+p{margin-block-start:var(--component-gap)!important}
+#app .etiquette-page .lc>p+p{margin-block-start:var(--paragraph-gap)!important}
+#app .etiquette-page .lc>.cg{margin-block-start:var(--component-gap)}
+#app .etiquette-page .cg>.ch{display:grid;gap:var(--space-2);margin:0!important}
+
+/* Authoritative Academy hierarchy. Login and the frozen footer are outside this scope. */
+body:not(.login-screen){--ui-title:#fff;--ui-card-border:rgba(246,165,64,.32);--ui-subcard-border:rgba(246,165,64,.18);--ui-card-pad:16px}
+body:not(.login-screen) #app{--line:var(--ui-card-border);font-size:12px;color:var(--text,#f4f2e7)}
+body:not(.login-screen) #app *{font-size:12px!important}
+body:not(.login-screen) :is(.sidebar,header,dialog,.pokerinno-balloons),
+body:not(.login-screen) :is(.sidebar,header,dialog,.pokerinno-balloons) *{font-size:12px!important}
+body:not(.login-screen) .sidebar :is(.brand>span:last-child,.spade,.nav-symbol){font-size:20px!important}
+body:not(.login-screen) #app :is(h1,.page-title){font-size:20px!important;color:#f4f2e7!important;text-transform:uppercase;line-height:1.25}
+body:not(.login-screen) #app :is(h2,h3,h4,h5,h6,.card-title,.source-title,.lesson-title),
+body:not(.login-screen) #app .source-lesson>summary>strong,
+body:not(.login-screen) #app :is(.next-app,.editorial-note)>strong{font-size:16px!important;font-weight:500;color:var(--ui-title)!important;-webkit-text-fill-color:currentColor!important;text-transform:uppercase;line-height:1.3}
+body:not(.login-screen) #app :is(.page-heading,.section-top) h2{color:#f4f2e7!important}
+body:not(.login-screen) #app .source-question>h2{font-size:16px!important;color:#f4f2e7!important;text-transform:none}
+/* Every card title uses 16px; inline emphasis stays at reading size. */
+body:not(.login-screen) #app :is(.source-body,.discover-compare,.stats-duel,.stats-swot,.decision-steps) :is(h2,h3,h4,h5,h6),
+body:not(.login-screen) #app :is(.glossary-term>strong,.discover-timeline strong,.source-body .ch>strong,.source-body .ci>strong,.source-body .rname,.quiz-counters article>span,.stats-metrics article>span){font-size:16px!important;font-weight:500;color:var(--ui-title)!important;-webkit-text-fill-color:currentColor!important;text-transform:uppercase}
+body:not(.login-screen) #app :is(.etiquette-page,.procedure-body)>.lg>.lc>h3{font-size:16px!important}
+body:not(.login-screen) #app .source-lesson .procedure-body .lc>h3{font-size:16px!important}
+body:not(.login-screen) #app :is(p,li,small,label,input,select,textarea){font-size:12px!important;line-height:var(--reading-line)!important;letter-spacing:var(--copy-tracking);word-spacing:normal}
+body:not(.login-screen) #app :is(p,li) :is(strong,b,em,span,a){font-size:inherit!important;line-height:inherit}
+body:not(.login-screen) #app p+p{margin-block-start:var(--paragraph-gap)!important}
+body:not(.login-screen) #app .staff-direct-lessons .staff-topic-card .source-body p{font-size:12px!important;line-height:var(--reading-line)!important}
+body:not(.login-screen) #app .staff-direct-lessons .staff-topic-card .source-body p+p{margin-block-start:var(--paragraph-gap)!important}
+body:not(.login-screen) #app .academy-example-label{font-size:12px!important}
+body:not(.login-screen) #app :is(.quiz-counters,.stats-metrics,.stats-duel,.xp-heading)>:is(article,strong) strong,
+body:not(.login-screen) #app :is(.quiz-counters article>strong,.stats-metrics article>strong,.stats-duel article>strong,.xp-heading>strong,.stats-donut text){font-size:20px!important}
+body:not(.login-screen) #app .card-pip{font-size:20px!important}
+body:not(.login-screen) #app :is(.empty-symbol,.chapter .number,.pokerinno-logo strong){font-size:20px!important}
+body:not(.login-screen) #app :is(.primary,.save-activities){font-size:16px!important}
+body:not(.login-screen) :is(dialog h2,.pokerinno-speech>strong){font-size:16px!important;color:var(--ui-title)!important;text-transform:uppercase}
+body:not(.login-screen) :is(.close,.pokerinno-dismiss){font-size:20px!important}
+
+/* Primary reading surfaces share one border, corner and inset. */
+body:not(.login-screen) #app :is(.chapter,.feature,.source-lesson,.discover-section,.discover-hero-card,.stats-panel,.decision-cycle,.empty,.pokerinno-context,.learn-extra-pokerinno,.staff-etiquette-feature,.next-app,.setting,.hero,.editorial-note){border:1px solid var(--ui-card-border);border-radius:16px;box-shadow:none;min-width:0}
+body:not(.login-screen) #app :is(.chapter,.feature,.discover-section,.discover-hero-card,.stats-panel,.decision-cycle,.empty,.next-app,.setting,.editorial-note){padding:var(--ui-card-pad);background:#0b231d}
+body:not(.login-screen) #app :is(.learn-extra-pokerinno,.pokerinno-context){gap:0;grid-template-columns:30% minmax(0,1fr)}
+body:not(.login-screen) #app :is(.learn-extra-copy,.pokerinno-context>div:last-child){padding:var(--ui-card-pad);overflow:visible;min-width:0}
+body:not(.login-screen) #app :is(.learn-extra-copy,.pokerinno-context) h3{margin:0 0 var(--component-gap)!important}
+body:not(.login-screen) #app :is(.learn-extra-pokerinno,.chapter:not(.lesson-block),.next-app){height:auto!important;min-height:100px!important;max-height:none!important;overflow:visible}
+body:not(.login-screen) #app .chapter h3{max-height:none;overflow:visible;-webkit-line-clamp:unset}
+body:not(.login-screen) #app .chapter p{display:block;overflow:visible;-webkit-line-clamp:unset}
+body:not(.login-screen) #app :is(.chapter p,.next-app span,.feature p){white-space:normal;text-overflow:clip;overflow:visible}
+body:not(.login-screen) #app .feature{height:auto;min-height:100px;overflow:visible}
+body:not(.login-screen) #app .feature h3{min-height:0;max-height:none;overflow:visible}
+body:not(.login-screen) #app .learn-extra-host{height:auto!important;min-height:98px!important;max-height:none!important;align-self:stretch}
+body:not(.login-screen) #app .learn-extra-host :is(img,.pokerinno-sprite){height:98px!important;min-height:0!important;max-height:98px!important;object-fit:contain;background-size:contain;align-self:center}
+body:not(.login-screen) #app .source-lesson>summary{min-height:100px;padding:var(--ui-card-pad);gap:var(--component-gap)}
+body:not(.login-screen) #app .source-body{padding:0 var(--ui-card-pad) var(--ui-card-pad)}
+body:not(.login-screen) #app :is(.etiquette-page,.betting-info-content).source-body{padding:0}
+body:not(.login-screen) #app .source-body :is(.lc,.ch,.ci,.tip,.rrow){border:1px solid var(--ui-subcard-border);border-radius:12px;padding:12px;background:rgba(255,255,255,.018);box-shadow:none}
+body:not(.login-screen) #app :is(.etiquette-page,.procedure-body)>.lg>.lc{border-color:var(--ui-card-border);border-radius:16px;padding:var(--ui-card-pad)!important}
+body:not(.login-screen) #app .source-lesson .procedure-body>.lg>.lc{border-color:var(--ui-subcard-border);border-radius:12px;padding:12px!important}
+body:not(.login-screen) #app :is(.glossary-term,.discover-compare article,.stats-duel article,.stats-swot article,.decision-steps li,.quiz-counters article,.stats-metrics article){border:1px solid var(--ui-subcard-border);border-radius:12px;padding:12px;background:rgba(255,255,255,.018);box-shadow:none}
+body:not(.login-screen) #app .setting{min-height:84px;margin-block:var(--component-gap);gap:var(--component-gap)}
+body:not(.login-screen) #app .setting h3{margin:0}
+body:not(.login-screen) #app .setting input{flex:none}
+body:not(.login-screen) #app .next-apps{border:0;padding:0;background:transparent}
+body:not(.login-screen) #app .next-grid{margin:0;gap:var(--component-gap)}
+
+/* One structural rhythm, with a full reading line between consecutive paragraphs. */
+body:not(.login-screen) #app :is(.list,.grid,.journey-chapters,.source-group,.stats-dashboard,.quiz-player,.discover-page,.glossary-list,.decision-steps,.level-list,.betting-learning-path,.betting-info-grid,.source-body .lg,.source-body .cg,.source-body .compare,.source-body .ranking,.source-body .steps,.stats-metrics,.quiz-counters,.stats-swot,.stats-duel,.training-session-metrics,.discover-compare,.discover-steps,.discover-timeline,.quiz-options){gap:var(--component-gap)!important}
+body:not(.login-screen) #app :is(.discover-page,.betting-learning-path,.betting-info-grid,.source-group,.source-body .lg,.source-body .cg)>*{margin-block:0!important}
+body:not(.login-screen) #app .betting-learning-module{margin:0}
+body:not(.login-screen) #app>:not(.page-actions)+:is(.discover-page,.betting-learning-path,.etiquette-page,.source-body,.decision-cycle,.pokerinno-context,.section-top,.source-group,.list,.journey-chapters){margin-block-start:var(--component-gap)!important}
+body:not(.login-screen) #app :is(h2,h3,h4,h5,h6)+:is(p,ul,ol,.glossary-list,.discover-steps,.discover-compare,.discover-timeline){margin-block-start:var(--component-gap)!important}
+body:not(.login-screen) #app :is(.source-body,.glossary-group) :is(h2,h3,h4,h5,h6){margin-inline:0!important}
+body:not(.login-screen) #app :is(.primary,.quiz-options button,.quiz-controls button,.stats-filters button,.app-back,.save-activities){min-height:44px;border-radius:9px;max-width:100%;white-space:normal;overflow-wrap:anywhere}
+body:not(.login-screen) #app :is(.quiz-controls,.stats-filters,.entry-languages){gap:var(--component-gap)}
+body:not(.login-screen) #app :is(h1,h2,h3,h4,h5,h6,p,li,.stats-module,.setting){overflow-wrap:anywhere}
+@media(max-width:800px){body:not(.login-screen){--ui-card-pad:12px}}
+
+
+/* Inline Profile controls retain the app hierarchy and login language-button geometry. */
+body:not(.login-screen) #app .profile-languages{margin-block:var(--component-gap)}
+body:not(.login-screen) #app .profile-languages button{min-height:40px;padding:8px 4px}
+body:not(.login-screen) #app .profile-auto-save>.profile-setting-copy{min-width:0;flex:1 1 auto;display:grid;gap:var(--space-1)}
+
+/* Subscription plans are read directly in Profile, using the shared card hierarchy. */
+body:not(.login-screen) #app .profile-plans{margin-block:var(--component-gap)}
+body:not(.login-screen) #app .plan-grid{display:grid;gap:var(--component-gap)}
+body:not(.login-screen) #app .profile-plan{display:grid;gap:var(--component-gap);min-width:0;min-height:100px;padding:var(--ui-card-pad);border:1px solid var(--ui-card-border);border-radius:16px;background:#0b231d;box-shadow:none}
+body:not(.login-screen) #app .plan-head{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:var(--component-gap);min-width:0}
+body:not(.login-screen) #app .plan-price{display:flex;align-items:baseline;flex-wrap:wrap;gap:var(--space-2);font-variant-numeric:tabular-nums}
+body:not(.login-screen) #app .plan-price s{color:var(--muted)}
+body:not(.login-screen) #app .plan-price .plan-offer{font-size:16px!important;color:var(--gold)}
+body:not(.login-screen) #app .profile-plan p{color:var(--muted)}
+body:not(.login-screen) #app :is(.plan-meta,.plan-badge){color:var(--gold);line-height:var(--reading-line);text-transform:uppercase}
+/* Privacy remains a simple link after the last Profile section. */
+body:not(.login-screen) #app .profile-privacy-link{display:inline-flex;align-items:center;min-height:44px;margin-block-start:var(--component-gap);font-size:12px;color:var(--gold);text-decoration:underline}
+
+/* The simulator entry uses one complete action row on the Play page. */
+body:not(.login-screen) #app>.play-simulator-start{display:flex;width:100%;justify-content:center;margin-block-start:var(--component-gap)}

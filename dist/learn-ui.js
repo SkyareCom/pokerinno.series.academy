@@ -1,0 +1,5 @@
+import {t} from './i18n.js?v=learn-titles-20261008';
+export const journeyIds=['discover','rules','betting','floor','formats'];
+export const extraCard=(route,mood,title,description,portrait)=>`<a class="learn-extra learn-extra-pokerinno" href="#chapter/${route}"><div class="learn-extra-host">${portrait(mood)}</div><div class="learn-extra-copy"><h3>${t(title)}</h3><p>${t(description)}</p></div></a>`;
+export const staffRoles=()=>'';
+export const decisionCycle=portrait=>`<section class="decision-cycle"><div class="decision-cycle-heading">${portrait('analyzing')}<div><span class="eyebrow">POKERINNO</span><h2>${t('decisions.title')}</h2></div></div><p class="decision-intro">${t('decisions.intro')}</p><ol class="decision-steps">${['observe','options','choose','follow','review'].map((step,i)=>`<li><span class="decision-step-number" aria-hidden="true">${i+1}</span><div><h3>${t('decisions.'+step)}</h3><p>${t('decisions.'+step+'Text')}</p></div></li>`).join('')}</ol></section>`;

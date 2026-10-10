@@ -1,0 +1,36 @@
+name: Academy Ten-Layer Certification Audit
+on:
+  push:
+    branches: [feat/pokerinno-frontend]
+    paths:
+      - 'scripts/audit-academy-ten-layers.mjs'
+      - 'dist/simulator-spots.js'
+      - 'dist/simulator-uniqueness.js'
+      - '.github/workflows/academy-ten-layer-audit.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Audit all ten layers without fabricating solves
+        run: node scripts/audit-academy-ten-layers.mjs
+      - name: Run structural Academy audit
+        run: node scripts/audit-academy-spots.mjs
+      - name: Generate 1500-spot certification ledger
+        run: node scripts/audit-academy-certification.mjs
+      - name: Generate postflop solver queue
+        run: node scripts/export-9max-solver-queue.mjs
+      - name: Enforce independent certification gate
+        run: node scripts/audit-academy-ten-layers.mjs --strict
+      - name: Upload full ten-layer evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: academy-ten-layer-certification-audit
+          path: reports/solver/

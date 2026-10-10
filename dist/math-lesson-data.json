@@ -1,0 +1,1071 @@
+{
+  "groups": [
+    {
+      "id": "basics",
+      "items": [
+        "outs",
+        "combinatorics",
+        "probability",
+        "odds",
+        "frequency",
+        "starting-hands"
+      ]
+    },
+    {
+      "id": "equity",
+      "items": [
+        "equity",
+        "fold-equity",
+        "ev"
+      ]
+    },
+    {
+      "id": "pots",
+      "items": [
+        "pot-odds",
+        "implied-odds",
+        "reverse-implied-odds",
+        "spr",
+        "bluff-defense"
+      ]
+    },
+    {
+      "id": "flops",
+      "items": [
+        "draw-probability",
+        "suited",
+        "flop-straight",
+        "flop-set",
+        "flop-rank",
+        "flop-two-pair"
+      ]
+    }
+  ],
+  "items": [
+    {
+      "id": "out",
+      "params": {}
+    },
+    {
+      "id": "outs",
+      "params": {}
+    },
+    {
+      "id": "odds",
+      "params": {}
+    },
+    {
+      "id": "probability",
+      "params": {}
+    },
+    {
+      "id": "combo",
+      "params": {}
+    },
+    {
+      "id": "combinatorics",
+      "params": {}
+    },
+    {
+      "id": "equity",
+      "params": {}
+    },
+    {
+      "id": "fold-equity",
+      "params": {}
+    },
+    {
+      "id": "ev",
+      "params": {}
+    },
+    {
+      "id": "break-even",
+      "params": {}
+    },
+    {
+      "id": "risk-reward",
+      "params": {}
+    },
+    {
+      "id": "frequency",
+      "params": {}
+    },
+    {
+      "id": "pot-odds",
+      "params": {}
+    },
+    {
+      "id": "implied-odds",
+      "params": {}
+    },
+    {
+      "id": "reverse-implied-odds",
+      "params": {}
+    },
+    {
+      "id": "spr",
+      "params": {}
+    },
+    {
+      "id": "effective-stack",
+      "params": {}
+    },
+    {
+      "id": "call-percentage",
+      "params": {}
+    },
+    {
+      "id": "mdf",
+      "params": {}
+    },
+    {
+      "id": "alpha",
+      "params": {}
+    },
+    {
+      "id": "rule-two",
+      "params": {}
+    },
+    {
+      "id": "rule-four",
+      "params": {}
+    },
+    {
+      "id": "one-card",
+      "params": {}
+    },
+    {
+      "id": "receive-aa",
+      "params": {
+        "ways": "C(4,2) = 6",
+        "favorable": 6,
+        "percent": 0.4524886877828055,
+        "every": 221.0
+      }
+    },
+    {
+      "id": "receive-pair",
+      "params": {
+        "ways": "13 × C(4,2) = 78",
+        "favorable": 78,
+        "percent": 5.88235294117647,
+        "every": 17.0
+      }
+    },
+    {
+      "id": "receive-ak",
+      "params": {
+        "ways": "4 × 4 = 16",
+        "favorable": 16,
+        "percent": 1.206636500754148,
+        "every": 82.875
+      }
+    },
+    {
+      "id": "receive-aks",
+      "params": {
+        "ways": "1 × 4 = 4",
+        "favorable": 4,
+        "percent": 0.301659125188537,
+        "every": 331.5
+      }
+    },
+    {
+      "id": "receive-suited",
+      "params": {
+        "ways": "4 × C(13,2) = 312",
+        "favorable": 312,
+        "percent": 23.52941176470588,
+        "every": 4.25
+      }
+    },
+    {
+      "id": "flop-flush",
+      "params": {
+        "formula": "C(11,3) ÷ C(50,3)",
+        "favorable": 165,
+        "total": 19600,
+        "percent": 0.8418367346938775
+      }
+    },
+    {
+      "id": "flop-flush-draw",
+      "params": {
+        "formula": "C(11,2) × C(39,1) ÷ C(50,3)",
+        "favorable": 2145,
+        "total": 19600,
+        "percent": 10.943877551020408
+      }
+    },
+    {
+      "id": "flop-straight",
+      "params": {
+        "formula": "(4 × 4³) ÷ C(50,3)",
+        "favorable": 256,
+        "total": 19600,
+        "percent": 1.3061224489795917
+      }
+    },
+    {
+      "id": "flop-set",
+      "params": {
+        "formula": "1 − C(48,3) ÷ C(50,3)",
+        "favorable": 2304,
+        "total": 19600,
+        "percent": 11.755102040816327
+      }
+    },
+    {
+      "id": "flop-rank",
+      "params": {
+        "formula": "1 − C(44,3) ÷ C(50,3)",
+        "favorable": 6356,
+        "total": 19600,
+        "percent": 32.42857142857143
+      }
+    },
+    {
+      "id": "flop-two-pair",
+      "params": {
+        "formula": "(3 × 3 × 44) ÷ C(50,3)",
+        "favorable": 396,
+        "total": 19600,
+        "percent": 2.020408163265306
+      }
+    },
+    {
+      "id": "suited-river",
+      "params": {
+        "formula": "[C(11,3)×C(39,2) + C(11,4)×C(39,1) + C(11,5)] ÷ C(50,5)",
+        "favorable": 135597,
+        "total": 2118760,
+        "percent": 6.399828201400819
+      }
+    },
+    {
+      "id": "flush-draw",
+      "params": {
+        "outs": 9,
+        "missOne": 38,
+        "missTwo": 37,
+        "next": 19.148936170212767,
+        "turn": 19.565217391304348,
+        "river": 34.96762257169288
+      }
+    },
+    {
+      "id": "oesd",
+      "params": {
+        "outs": 8,
+        "missOne": 39,
+        "missTwo": 38,
+        "next": 17.02127659574468,
+        "turn": 17.391304347826086,
+        "river": 31.452358926919523
+      }
+    },
+    {
+      "id": "gutshot",
+      "params": {
+        "outs": 4,
+        "missOne": 43,
+        "missTwo": 42,
+        "next": 8.51063829787234,
+        "turn": 8.695652173913043,
+        "river": 16.466234967622572
+      }
+    },
+    {
+      "id": "pair-two-outs",
+      "params": {
+        "outs": 2,
+        "missOne": 45,
+        "missTwo": 44,
+        "next": 4.25531914893617,
+        "turn": 4.3478260869565215,
+        "river": 8.418131359851976
+      }
+    },
+    {
+      "id": "overcards",
+      "params": {
+        "outs": 6,
+        "missOne": 41,
+        "missTwo": 40,
+        "next": 12.76595744680851,
+        "turn": 13.043478260869565,
+        "river": 24.14431082331174
+      }
+    },
+    {
+      "id": "combo-draw",
+      "params": {
+        "outs": 15,
+        "missOne": 32,
+        "missTwo": 31,
+        "next": 31.914893617021278,
+        "turn": 32.608695652173914,
+        "river": 54.11655874190564
+      }
+    },
+    {
+      "id": "aa-random",
+      "params": {}
+    },
+    {
+      "id": "aa-kk",
+      "params": {
+        "hero": "A♠ A♥",
+        "villain": "K♣ K♦",
+        "wins": 1388072,
+        "ties": 6538,
+        "total": 1712304,
+        "percent": 81.25548967940273
+      }
+    },
+    {
+      "id": "aa-ako",
+      "params": {
+        "hero": "A♠ A♥",
+        "villain": "A♦ K♣",
+        "wins": 1574439,
+        "ties": 21449,
+        "total": 1712304,
+        "percent": 92.5748874031714
+      }
+    },
+    {
+      "id": "aa-aks",
+      "params": {
+        "hero": "A♠ A♥",
+        "villain": "A♦ K♦",
+        "wins": 1493670,
+        "ties": 21503,
+        "total": 1712304,
+        "percent": 87.85948639961128
+      }
+    },
+    {
+      "id": "88-aqo",
+      "params": {
+        "hero": "8♠ 8♥",
+        "villain": "A♦ Q♣",
+        "wins": 951005,
+        "ties": 4959,
+        "total": 1712304,
+        "percent": 55.68430021771835
+      }
+    },
+    {
+      "id": "88-aqs",
+      "params": {
+        "hero": "8♠ 8♥",
+        "villain": "A♦ Q♦",
+        "wins": 894512,
+        "ties": 5960,
+        "total": 1712304,
+        "percent": 52.41429092030387
+      }
+    },
+    {
+      "id": "qq-ako",
+      "params": {
+        "hero": "Q♠ Q♥",
+        "villain": "A♦ K♣",
+        "wins": 975909,
+        "ties": 5854,
+        "total": 1712304,
+        "percent": 57.1648492323793
+      }
+    },
+    {
+      "id": "aks-qq",
+      "params": {
+        "hero": "A♦ K♦",
+        "villain": "Q♠ Q♥",
+        "wins": 787966,
+        "ties": 6732,
+        "total": 1712304,
+        "percent": 46.21445724590961
+      }
+    },
+    {
+      "id": "ako-aqo",
+      "params": {
+        "hero": "A♠ K♥",
+        "villain": "A♦ Q♣",
+        "wins": 1228082,
+        "ties": 78598,
+        "total": 1712304,
+        "percent": 74.0161209691737
+      }
+    },
+    {
+      "id": "bet-quarter",
+      "params": {
+        "bet": 25,
+        "finalPot": 150,
+        "percent": 16.666666666666664
+      }
+    },
+    {
+      "id": "bet-third",
+      "params": {
+        "bet": 33.333333333333336,
+        "finalPot": 166.66666666666669,
+        "percent": 20.0
+      }
+    },
+    {
+      "id": "bet-half",
+      "params": {
+        "bet": 50,
+        "finalPot": 200,
+        "percent": 25.0
+      }
+    },
+    {
+      "id": "bet-two-thirds",
+      "params": {
+        "bet": 66.66666666666667,
+        "finalPot": 233.33333333333334,
+        "percent": 28.57142857142857
+      }
+    },
+    {
+      "id": "bet-three-quarters",
+      "params": {
+        "bet": 75,
+        "finalPot": 250,
+        "percent": 30.0
+      }
+    },
+    {
+      "id": "bet-pot",
+      "params": {
+        "bet": 100,
+        "finalPot": 300,
+        "percent": 33.33333333333333
+      }
+    },
+    {
+      "id": "bet-one-half",
+      "params": {
+        "bet": 150,
+        "finalPot": 400,
+        "percent": 37.5
+      }
+    },
+    {
+      "id": "bet-double",
+      "params": {
+        "bet": 200,
+        "finalPot": 500,
+        "percent": 40.0
+      }
+    }
+  ],
+  "lessons": [
+    {
+      "id": "outs",
+      "sources": [
+        "out",
+        "outs"
+      ],
+      "paragraphs": [
+        {
+          "key": "math.lessons.outs.text.1"
+        },
+        {
+          "key": "math.lessons.outs.text.2"
+        }
+      ],
+      "examples": [
+        {
+          "key": "math.lessons.outs.example.1"
+        }
+      ]
+    },
+    {
+      "id": "combinatorics",
+      "sources": [
+        "combo",
+        "combinatorics"
+      ],
+      "paragraphs": [
+        {
+          "key": "math.lessons.combinatorics.text.1"
+        },
+        {
+          "key": "math.lessons.combinatorics.text.2"
+        }
+      ],
+      "examples": [
+        {
+          "key": "math.lessons.combinatorics.example.1"
+        }
+      ]
+    },
+    {
+      "id": "probability",
+      "sources": [
+        "probability"
+      ],
+      "paragraphs": [
+        {
+          "key": "math.lessons.probability.text.1",
+          "source": "probability"
+        },
+        {
+          "key": "math.lessons.probability.text.2",
+          "source": "probability"
+        }
+      ],
+      "examples": [
+        {
+          "key": "math.lessons.probability.example.1",
+          "source": "probability"
+        }
+      ]
+    },
+    {
+      "id": "odds",
+      "sources": [
+        "odds"
+      ],
+      "paragraphs": [
+        {
+          "key": "math.lessons.odds.text.1",
+          "source": "odds"
+        },
+        {
+          "key": "math.lessons.odds.text.2",
+          "source": "odds"
+        }
+      ],
+      "examples": [
+        {
+          "key": "math.lessons.odds.example.1",
+          "source": "odds"
+        }
+      ]
+    },
+    {
+      "id": "frequency",
+      "sources": [
+        "frequency"
+      ],
+      "paragraphs": [
+        {
+          "key": "math.lessons.frequency.text.1",
+          "source": "frequency"
+        },
+        {
+          "key": "math.lessons.frequency.text.2",
+          "source": "frequency"
+        }
+      ],
+      "examples": [
+        {
+          "key": "math.lessons.frequency.example.1",
+          "source": "frequency"
+        }
+      ]
+    },
+    {
+      "id": "starting-hands",
+      "sources": [
+        "receive-aa",
+        "receive-pair",
+        "receive-ak",
+        "receive-aks",
+        "receive-suited"
+      ],
+      "paragraphs": [
+        {
+          "key": "math.lessons.starting-hands.text.1"
+        },
+        {
+          "key": "math.lessons.starting-hands.text.2"
+        }
+      ],
+      "examples": [
+        {
+          "key": "math.lessons.starting-hands.example.1",
+          "source": "receive-aa"
+        },
+        {
+          "key": "math.lessons.starting-hands.example.2",
+          "source": "receive-pair"
+        },
+        {
+          "key": "math.lessons.starting-hands.example.3",
+          "source": "receive-ak"
+        },
+        {
+          "key": "math.lessons.starting-hands.example.4",
+          "source": "receive-aks"
+        },
+        {
+          "key": "math.lessons.starting-hands.example.5",
+          "source": "receive-suited"
+        }
+      ]
+    },
+    {
+      "id": "equity",
+      "sources": [
+        "equity",
+        "aa-random",
+        "aa-kk",
+        "aa-ako",
+        "aa-aks",
+        "88-aqo",
+        "88-aqs",
+        "qq-ako",
+        "aks-qq",
+        "ako-aqo"
+      ],
+      "paragraphs": [
+        {
+          "key": "math.lessons.equity.text.1",
+          "source": "equity"
+        },
+        {
+          "key": "math.lessons.equity.text.2",
+          "source": "equity"
+        },
+        {
+          "key": "math.lessons.equity.text.3",
+          "source": "equity"
+        },
+        {
+          "key": "math.lessons.equity.text.4"
+        },
+        {
+          "key": "math.lessons.equity.text.5",
+          "source": "aa-random"
+        }
+      ],
+      "examples": [
+        {
+          "key": "math.lessons.equity.example.1",
+          "source": "equity"
+        },
+        {
+          "key": "math.lessons.equity.example.2",
+          "source": "aa-kk"
+        },
+        {
+          "key": "math.lessons.equity.example.3",
+          "source": "aa-ako"
+        },
+        {
+          "key": "math.lessons.equity.example.4",
+          "source": "aa-aks"
+        },
+        {
+          "key": "math.lessons.equity.example.5",
+          "source": "88-aqo"
+        },
+        {
+          "key": "math.lessons.equity.example.6",
+          "source": "88-aqs"
+        },
+        {
+          "key": "math.lessons.equity.example.7",
+          "source": "qq-ako"
+        },
+        {
+          "key": "math.lessons.equity.example.8",
+          "source": "aks-qq"
+        },
+        {
+          "key": "math.lessons.equity.example.9",
+          "source": "ako-aqo"
+        },
+        {
+          "key": "math.lessons.equity.example.10",
+          "source": "aa-random"
+        }
+      ]
+    },
+    {
+      "id": "fold-equity",
+      "sources": [
+        "fold-equity"
+      ],
+      "paragraphs": [
+        {
+          "key": "math.lessons.fold-equity.text.1",
+          "source": "fold-equity"
+        },
+        {
+          "key": "math.lessons.fold-equity.text.2",
+          "source": "fold-equity"
+        }
+      ],
+      "examples": [
+        {
+          "key": "math.lessons.fold-equity.example.1",
+          "source": "fold-equity"
+        }
+      ]
+    },
+    {
+      "id": "ev",
+      "sources": [
+        "ev",
+        "break-even"
+      ],
+      "paragraphs": [
+        {
+          "key": "math.lessons.ev.text.1",
+          "source": "ev"
+        },
+        {
+          "key": "math.lessons.ev.text.2",
+          "source": "ev"
+        },
+        {
+          "key": "math.lessons.ev.text.3",
+          "source": "ev"
+        },
+        {
+          "key": "math.lessons.ev.text.4"
+        }
+      ],
+      "examples": [
+        {
+          "key": "math.lessons.ev.example.1",
+          "source": "ev"
+        }
+      ]
+    },
+    {
+      "id": "pot-odds",
+      "sources": [
+        "pot-odds",
+        "call-percentage",
+        "risk-reward",
+        "bet-quarter",
+        "bet-third",
+        "bet-half",
+        "bet-two-thirds",
+        "bet-three-quarters",
+        "bet-pot",
+        "bet-one-half",
+        "bet-double"
+      ],
+      "paragraphs": [
+        {
+          "key": "math.lessons.pot-odds.text.1",
+          "source": "pot-odds"
+        },
+        {
+          "key": "math.lessons.pot-odds.text.2",
+          "source": "pot-odds"
+        },
+        {
+          "key": "math.lessons.pot-odds.text.3",
+          "source": "pot-odds"
+        },
+        {
+          "key": "math.lessons.pot-odds.text.4"
+        }
+      ],
+      "examples": [
+        {
+          "key": "math.lessons.pot-odds.example.1",
+          "source": "bet-half"
+        },
+        {
+          "key": "math.lessons.pot-odds.example.2",
+          "source": "bet-quarter"
+        },
+        {
+          "key": "math.lessons.pot-odds.example.3",
+          "source": "bet-third"
+        },
+        {
+          "key": "math.lessons.pot-odds.example.5",
+          "source": "bet-two-thirds"
+        },
+        {
+          "key": "math.lessons.pot-odds.example.6",
+          "source": "bet-three-quarters"
+        },
+        {
+          "key": "math.lessons.pot-odds.example.7",
+          "source": "bet-pot"
+        },
+        {
+          "key": "math.lessons.pot-odds.example.8",
+          "source": "bet-one-half"
+        },
+        {
+          "key": "math.lessons.pot-odds.example.9",
+          "source": "bet-double"
+        }
+      ]
+    },
+    {
+      "id": "implied-odds",
+      "sources": [
+        "implied-odds"
+      ],
+      "paragraphs": [
+        {
+          "key": "math.lessons.implied-odds.text.1",
+          "source": "implied-odds"
+        },
+        {
+          "key": "math.lessons.implied-odds.text.2",
+          "source": "implied-odds"
+        }
+      ],
+      "examples": [
+        {
+          "key": "math.lessons.implied-odds.example.1",
+          "source": "implied-odds"
+        }
+      ]
+    },
+    {
+      "id": "reverse-implied-odds",
+      "sources": [
+        "reverse-implied-odds"
+      ],
+      "paragraphs": [
+        {
+          "key": "math.lessons.reverse-implied-odds.text.1",
+          "source": "reverse-implied-odds"
+        },
+        {
+          "key": "math.lessons.reverse-implied-odds.text.2",
+          "source": "reverse-implied-odds"
+        }
+      ],
+      "examples": [
+        {
+          "key": "math.lessons.reverse-implied-odds.example.1",
+          "source": "reverse-implied-odds"
+        }
+      ]
+    },
+    {
+      "id": "spr",
+      "sources": [
+        "spr",
+        "effective-stack"
+      ],
+      "paragraphs": [
+        {
+          "key": "math.lessons.spr.text.1"
+        },
+        {
+          "key": "math.lessons.spr.text.2"
+        }
+      ],
+      "examples": [
+        {
+          "key": "math.lessons.spr.example.1"
+        }
+      ]
+    },
+    {
+      "id": "bluff-defense",
+      "sources": [
+        "alpha",
+        "mdf"
+      ],
+      "paragraphs": [
+        {
+          "key": "math.lessons.bluff-defense.text.1"
+        },
+        {
+          "key": "math.lessons.bluff-defense.text.2"
+        },
+        {
+          "key": "math.lessons.bluff-defense.text.3"
+        }
+      ],
+      "examples": [
+        {
+          "key": "math.lessons.bluff-defense.example.1"
+        }
+      ]
+    },
+    {
+      "id": "draw-probability",
+      "sources": [
+        "rule-two",
+        "rule-four",
+        "one-card",
+        "flush-draw",
+        "oesd",
+        "gutshot",
+        "pair-two-outs",
+        "overcards",
+        "combo-draw"
+      ],
+      "paragraphs": [
+        {
+          "key": "math.lessons.draw-probability.text.1"
+        },
+        {
+          "key": "math.lessons.draw-probability.text.2"
+        },
+        {
+          "key": "math.lessons.draw-probability.text.3"
+        },
+        {
+          "key": "math.lessons.draw-probability.text.4"
+        }
+      ],
+      "examples": [
+        {
+          "key": "math.lessons.draw-probability.example.1",
+          "source": "flush-draw"
+        },
+        {
+          "key": "math.lessons.draw-probability.example.2",
+          "source": "oesd"
+        },
+        {
+          "key": "math.lessons.draw-probability.example.3",
+          "source": "gutshot"
+        },
+        {
+          "key": "math.lessons.draw-probability.example.4",
+          "source": "pair-two-outs"
+        },
+        {
+          "key": "math.lessons.draw-probability.example.5",
+          "source": "overcards"
+        },
+        {
+          "key": "math.lessons.draw-probability.example.6",
+          "source": "combo-draw"
+        }
+      ]
+    },
+    {
+      "id": "suited",
+      "sources": [
+        "flop-flush",
+        "flop-flush-draw",
+        "suited-river"
+      ],
+      "paragraphs": [
+        {
+          "key": "math.lessons.suited.text.1"
+        },
+        {
+          "key": "math.lessons.suited.text.2"
+        },
+        {
+          "key": "math.lessons.suited.text.3"
+        }
+      ],
+      "examples": [
+        {
+          "key": "math.lessons.suited.example.1",
+          "source": "flop-flush"
+        },
+        {
+          "key": "math.lessons.suited.example.2",
+          "source": "flop-flush-draw"
+        },
+        {
+          "key": "math.lessons.suited.example.3",
+          "source": "suited-river"
+        }
+      ]
+    },
+    {
+      "id": "flop-straight",
+      "sources": [
+        "flop-straight"
+      ],
+      "paragraphs": [
+        {
+          "key": "math.lessons.flop-straight.text.1",
+          "source": "flop-straight"
+        },
+        {
+          "key": "math.lessons.flop-straight.text.2"
+        }
+      ],
+      "examples": [
+        {
+          "key": "math.lessons.flop-straight.example.1",
+          "source": "flop-straight"
+        }
+      ]
+    },
+    {
+      "id": "flop-set",
+      "sources": [
+        "flop-set"
+      ],
+      "paragraphs": [
+        {
+          "key": "math.lessons.flop-set.text.1",
+          "source": "flop-set"
+        },
+        {
+          "key": "math.lessons.flop-set.text.2"
+        }
+      ],
+      "examples": [
+        {
+          "key": "math.lessons.flop-set.example.1",
+          "source": "flop-set"
+        }
+      ]
+    },
+    {
+      "id": "flop-rank",
+      "sources": [
+        "flop-rank"
+      ],
+      "paragraphs": [
+        {
+          "key": "math.lessons.flop-rank.text.1",
+          "source": "flop-rank"
+        },
+        {
+          "key": "math.lessons.flop-rank.text.2"
+        }
+      ],
+      "examples": [
+        {
+          "key": "math.lessons.flop-rank.example.1",
+          "source": "flop-rank"
+        }
+      ]
+    },
+    {
+      "id": "flop-two-pair",
+      "sources": [
+        "flop-two-pair"
+      ],
+      "paragraphs": [
+        {
+          "key": "math.lessons.flop-two-pair.text.1",
+          "source": "flop-two-pair"
+        },
+        {
+          "key": "math.lessons.flop-two-pair.text.2"
+        }
+      ],
+      "examples": [
+        {
+          "key": "math.lessons.flop-two-pair.example.1",
+          "source": "flop-two-pair"
+        }
+      ]
+    }
+  ]
+}

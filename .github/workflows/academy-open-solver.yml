@@ -1,0 +1,76 @@
+name: Academy Open Solver Smoke
+on:
+  push:
+    branches:
+      - feat/pokerinno-frontend
+    paths:
+      - '.github/workflows/academy-open-solver.yml'
+      - 'scripts/prepare-open-solver-inputs.mjs'
+  workflow_dispatch:
+    inputs:
+      spot_id:
+        description: 'Academy postflop spot ID (721-1500)'
+        required: true
+        default: '721'
+        type: string
+concurrency:
+  group: academy-solver-${{ github.ref }}
+  cancel-in-progress: false
+permissions:
+  contents: read
+jobs:
+  solver:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Generate actual solver configuration
+        env:
+          ACADEMY_SOLVER_SPOT_ID: ${{ inputs.spot_id || '721' }}
+        run: node scripts/prepare-open-solver-inputs.mjs
+      - name: Install build dependencies
+        run: sudo apt-get update && sudo apt-get install -y cmake ninja-build g++ libomp-dev
+      - name: Checkout pinned upstream solver
+        run: |
+          git clone https://github.com/kfg021/Postflop-Poker-Solver.git /tmp/academy-open-solver
+          git -C /tmp/academy-open-solver checkout 2319e0d5f1bd6f5976faf4d1041ff0b49605e192
+          test "$(git -C /tmp/academy-open-solver rev-parse HEAD)" = 2319e0d5f1bd6f5976faf4d1041ff0b49605e192
+          git -C /tmp/academy-open-solver rev-parse HEAD | tee reports/solver/postflop-inputs/upstream-commit.txt
+      - name: Compile solver
+        run: |
+          cmake -S /tmp/academy-open-solver -B /tmp/academy-open-solver/build -G Ninja -DCMAKE_BUILD_TYPE=Release
+          cmake --build /tmp/academy-open-solver/build -j 2
+      - name: Smoke test solver loading and tree size
+        run: |
+          set -o pipefail
+          printf 'holdem %s\nsize\nexit\n' "$GITHUB_WORKSPACE/reports/solver/postflop-inputs/selected-spot.yml" | timeout 120 /tmp/academy-open-solver/build/PostflopSolver 2>&1 | tee reports/solver/postflop-inputs/solver-smoke.log
+          ! grep -Eq 'Error:|Game settings not loaded|Could not load field' reports/solver/postflop-inputs/solver-smoke.log
+          grep -q 'Successfully loaded field tree::starting-wager-per-player' reports/solver/postflop-inputs/solver-smoke.log
+      - name: Execute DCFR solve and capture strategy
+        continue-on-error: true
+        timeout-minutes: 12
+        run: |
+          set -o pipefail
+          printf 'holdem %s\nsolve\nstrategy all\nexit\n' "$GITHUB_WORKSPACE/reports/solver/postflop-inputs/selected-spot.yml" | timeout 600 /tmp/academy-open-solver/build/PostflopSolver 2>&1 | tee reports/solver/postflop-inputs/solver-run.log
+          ! grep -Eq 'Error:|Game settings not loaded|Could not load field' reports/solver/postflop-inputs/solver-run.log
+          grep -Eiq 'strategy|exploitability' reports/solver/postflop-inputs/solver-run.log
+      - name: Audit solver completion status
+        if: always()
+        run: |
+          python3 - <<'PY'
+          import json,pathlib,re
+          p=pathlib.Path('reports/solver/postflop-inputs/solver-run.log')
+          log=p.read_text(errors='replace') if p.exists() else ''
+          report={'solverOutputPresent':bool(log),'hasStrategyTable':bool(re.search(r'Hand\s*\|\s*Weight',log)),'hasExploitabilityReport':bool(re.search(r'exploitability',log,re.I)),'containsError':bool(re.search(r'Error:|Game settings not loaded|Could not load field',log)),'independentlyCertified':False,'status':'SOLVER_EVIDENCE_UNVERIFIED'}
+          pathlib.Path('reports/solver/postflop-inputs/solver-completion-audit.json').write_text(json.dumps(report,indent=2)+'\n')
+          print(json.dumps(report))
+          PY
+      - name: Upload solver evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: academy-solver-smoke-${{ inputs.spot_id || '721' }}
+          path: reports/solver/postflop-inputs/

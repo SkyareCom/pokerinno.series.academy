@@ -1,0 +1,146 @@
+name: Publish Academy Preview
+
+on:
+  push:
+    branches:
+      - feat/pokerinno-frontend
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      ACADEMY_PAGES_ARTIFACT_NAME: github-pages-${{ github.run_id }}-${{ github.run_attempt }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Export Academy weighted ranges
+        run: node scripts/build-academy-weighted-ranges.mjs
+      - name: Save Academy weighted ranges
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: academy-weighted-ranges
+          path: dist/academy-weighted-ranges.json
+      - name: Audit Academy scenarios independently of external repositories
+        run: node scripts/audit-academy-spots.mjs
+      - name: Save Academy local audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: academy-local-spot-audit
+          path: reports/solver/academy-local-audit.json
+      - name: Audit available Academy solver outputs
+        run: node scripts/import-academy-solves.mjs
+      - name: Save solver import audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: academy-solve-import-audit
+          path: reports/solver/academy-solve-import-audit.json
+      - name: Prepare open DCFR solver inputs
+        run: node scripts/prepare-open-solver-inputs.mjs
+      - name: Save open solver input manifest
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: academy-open-solver-inputs
+          path: reports/solver/postflop-inputs/academy-postflop-inputs.json
+      - name: Cross-check Academy DCFR 9max ranges
+        run: node scripts/crosscheck-academy-dcfr.mjs
+      - name: Save DCFR cross-check
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: academy-dcfr-crosscheck
+          path: reports/solver/academy-dcfr-crosscheck.json
+      - name: Audit each Academy spot certification
+        run: node scripts/audit-academy-certification.mjs
+      - name: Save certification ledger
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: academy-1500-certification-ledger
+          path: reports/solver/academy-certification-ledger.json
+      - name: Audit Academy solver readiness
+        run: node scripts/audit-academy-solve-readiness.mjs
+      - name: Save solver readiness report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: academy-solve-readiness
+          path: reports/solver/academy-solve-readiness.json
+      - name: Export unresolved 9max solver queue
+        run: node scripts/export-9max-solver-queue.mjs
+      - name: Save solver queue
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: academy-9max-solver-queue
+          path: reports/solver/9max-postflop-pending.json
+      - name: Verify unit tests and language keys
+        run: |
+          npm test
+          npm run i18n:audit
+          node scripts/audit-math-equity.mjs
+      - name: Install audit browser
+        run: |
+          npm install --no-save playwright@1.62.1
+          npx playwright install --with-deps chromium
+      - name: Audit all rendered content
+        env:
+          ACADEMY_AUDIT_URL: http://127.0.0.1:8765
+        run: |
+          python3 -m http.server 8765 --directory dist > /tmp/academy-audit-server.log 2>&1 &
+          VISUAL_AUDIT_MODE=baseline npm run visual:audit
+          npm run visual:audit
+          npm run spacing:audit
+      - name: Save visual audit evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: academy-visual-audit
+          path: reports/visual
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+      - name: Upload site from dist
+        id: site_artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
+          name: ${{ env.ACADEMY_PAGES_ARTIFACT_NAME }}
+      - name: Wait for the uploaded Pages artifact
+        uses: actions/github-script@v8
+        env:
+          ACADEMY_PAGES_ARTIFACT_ID: ${{ steps.site_artifact.outputs.artifact_id }}
+        with:
+          script: |
+            const artifactId = Number(process.env.ACADEMY_PAGES_ARTIFACT_ID);
+            if (!Number.isSafeInteger(artifactId) || artifactId <= 0) throw new Error('Pages upload did not return an artifact ID.');
+            for (let attempt = 0; attempt < 15; attempt++) {
+              const { data } = await github.rest.actions.listWorkflowRunArtifacts({ ...context.repo, run_id: context.runId, per_page: 100 });
+              const ready = data.artifacts.some(artifact => artifact.id === artifactId && artifact.name === process.env.ACADEMY_PAGES_ARTIFACT_NAME && !artifact.expired);
+              if (ready) { core.info('Uploaded Pages artifact is available.'); return; }
+              if (attempt < 14) await new Promise(resolve => setTimeout(resolve, 4000));
+            }
+            throw new Error('The uploaded Pages artifact is still unavailable.');
+      - name: Deploy GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+        with:
+          artifact_name: ${{ env.ACADEMY_PAGES_ARTIFACT_NAME }}
