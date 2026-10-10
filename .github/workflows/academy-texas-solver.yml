@@ -2,7 +2,7 @@ name: Academy Independent TexasSolver Build
 on:
   push:
     branches: [feat/pokerinno-frontend]
-    paths: ['.github/workflows/academy-texas-solver.yml', 'scripts/prepare-texas-solver-inputs.mjs', 'scripts/audit-texas-solver-run.mjs', 'scripts/audit-solver-development-ten-layers.mjs', 'scripts/audit-solver-development-twenty-layers.mjs']
+    paths: ['.github/workflows/academy-texas-solver.yml', 'scripts/prepare-texas-solver-inputs.mjs', 'scripts/audit-texas-solver-run.mjs', 'scripts/audit-solver-development-ten-layers.mjs', 'scripts/audit-solver-development-twenty-layers.mjs', 'scripts/audit-twenty-certification-evidence-tasks.mjs']
   workflow_dispatch:
     inputs:
       spot_id:
@@ -87,6 +87,10 @@ jobs:
         if: always()
         continue-on-error: true
         run: node scripts/audit-texas-solver-run.mjs
+      - name: Audit twenty certification evidence tasks
+        if: always()
+        continue-on-error: true
+        run: node scripts/audit-twenty-certification-evidence-tasks.mjs
       - name: Record independent certification limitations
         if: always()
         run: |
