@@ -62,3 +62,44 @@ body:not(.login-screen) #app :is(.chapter h3,.feature h3,.learn-extra-copy h3,.s
 body:not(.login-screen) #app :is(.learn-extra-copy p,.stats-panel>p,.stats-swot article p,.stats-history small,.stats-storage,.profile-setting-copy p,.profile-plan p,.source-lesson>p,.page-heading>p,.editorial-note>p){font-size:12px!important;color:#9DB0A7!important;-webkit-text-fill-color:#9DB0A7!important}
 body:not(.login-screen) #app :is(.list,.grid,.journey-chapters,.source-group,.stats-dashboard,.quiz-player,.stats-swot,.stats-metrics,.glossary-list,.decision-steps){gap:10px!important;row-gap:10px!important;column-gap:10px!important}
 body:not(.login-screen) #app :is(.chapter,.feature,.stats-panel,.stats-swot article,.glossary-term,.quiz-counters article,.stats-metrics article){min-width:0;overflow-wrap:break-word}
+
+/* Unified structural contract: content-only, never entry screen or footer. */
+body:not(.login-screen) #app{
+ --ui-space:10px;
+ --ui-card-radius:16px;
+ --ui-subcard-radius:12px;
+ --ui-title-color:#F4F2E7;
+ --ui-secondary-color:#9DB0A7;
+ --ui-border-color:#29413A;
+}
+body:not(.login-screen) #app :is(.chapter,.feature,.stats-panel,.discover-section,.discover-hero-card,.decision-cycle,.learn-extra-pokerinno,.profile-plan,.setting,.editorial-note,.next-app){
+ border-radius:var(--ui-card-radius)!important;
+ border-color:var(--ui-border-color)!important;
+ box-sizing:border-box;
+ min-width:0;
+}
+body:not(.login-screen) #app :is(.stats-swot article,.stats-metrics article,.quiz-counters article,.glossary-term,.source-body .lc,.source-body .ch,.source-body .ci,.source-body .tip){
+ border-radius:var(--ui-subcard-radius)!important;
+ border-color:var(--ui-border-color)!important;
+ box-sizing:border-box;
+ min-width:0;
+}
+body:not(.login-screen) #app :is(.journey-chapters,.practice-catalog,.source-group,.stats-dashboard,.stats-swot,.stats-metrics,.quiz-player,.quiz-options,.quiz-controls,.plan-grid,.betting-info-grid,.profile-plans){
+ gap:var(--ui-space)!important;
+ row-gap:var(--ui-space)!important;
+ column-gap:var(--ui-space)!important;
+ min-width:0;
+}
+body:not(.login-screen) #app :is(.chapter,.feature,.stats-panel,.profile-plan,.setting,.source-lesson,.learn-extra-copy) :is(p,small,.description,.muted){
+ overflow-wrap:break-word;
+}
+body:not(.login-screen) #app .academy-inline-drawer{
+ position:relative;inset:auto;z-index:auto;
+ width:100%;max-width:100%;margin:0 0 var(--ui-space);
+ padding:12px;border:1px solid var(--ui-border-color);
+ border-radius:var(--ui-card-radius);background:var(--panel);
+ box-shadow:none;box-sizing:border-box;
+}
+body:not(.login-screen) #app .academy-inline-drawer>strong{display:block;font-size:14px!important;font-weight:600;color:var(--ui-title-color);margin-bottom:10px}
+body:not(.login-screen) #app .academy-inline-drawer>p{font-size:12px!important;color:var(--ui-secondary-color);margin:0 0 10px}
+body:not(.login-screen) #app .academy-inline-drawer>button{min-height:44px;padding:8px 14px;border:1px solid var(--ui-border-color);border-radius:9px;background:var(--panel);color:var(--gold);font-size:12px!important}
