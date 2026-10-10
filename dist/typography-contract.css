@@ -43,3 +43,22 @@ body:not(.login-screen) #app .stats-swot article h3{font-size:14px!important;lin
 body:not(.login-screen) #app .stats-swot article :is(p,small,span){font-size:12px!important;line-height:1.55!important;white-space:normal}
 body:not(.login-screen) #app .stats-swot article{padding:12px!important}
 @media(max-width:380px){body:not(.login-screen) #app .stats-swot{grid-template-columns:minmax(0,1fr)!important}}
+
+/* Unified content tokens and hierarchy; login and navigation remain frozen. */
+body:not(.login-screen) #app{
+ --academy-card-description:#9DB0A7;
+ --academy-card-title:#F4F2E7;
+ --ui-title:#F4F2E7;
+ --ui-card-border:#29413A;
+ --ui-subcard-border:#29413A;
+ --card-gap:10px;
+ --component-gap:10px;
+ --card-title-size:14px;
+ --card-body-size:12px;
+ --card-label-size:12px;
+}
+body:not(.login-screen) #app :is(.section-title,.section-heading,.page-heading h1,.section-top h2){font-size:18px!important;font-weight:600!important;color:#F4F2E7!important}
+body:not(.login-screen) #app :is(.chapter h3,.feature h3,.learn-extra-copy h3,.stats-panel h2,.stats-swot h3,.source-lesson>summary>strong,.source-question h2,.card-title,.source-title,.lesson-title){font-size:14px!important;font-weight:600!important;color:#F4F2E7!important}
+body:not(.login-screen) #app :is(.learn-extra-copy p,.stats-panel>p,.stats-swot article p,.stats-history small,.stats-storage,.profile-setting-copy p,.profile-plan p,.source-lesson>p,.page-heading>p,.editorial-note>p){font-size:12px!important;color:#9DB0A7!important;-webkit-text-fill-color:#9DB0A7!important}
+body:not(.login-screen) #app :is(.list,.grid,.journey-chapters,.source-group,.stats-dashboard,.quiz-player,.stats-swot,.stats-metrics,.glossary-list,.decision-steps){gap:10px!important;row-gap:10px!important;column-gap:10px!important}
+body:not(.login-screen) #app :is(.chapter,.feature,.stats-panel,.stats-swot article,.glossary-term,.quiz-counters article,.stats-metrics article){min-width:0;overflow-wrap:break-word}
