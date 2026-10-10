@@ -114,3 +114,22 @@ body:not(.login-screen) #app :is(
  .profile-setting-copy p,.profile-plan p,.source-lesson>summary>small,
  .source-lesson>p,.editorial-note p,.practice-mix-note
 ){color:#9DB0A7!important;-webkit-text-fill-color:#9DB0A7!important}
+
+/* Typography weights: all content titles 600; all secondary text 400.
+   Login screen and frozen navigation are excluded. */
+body:not(.login-screen) #app :is(
+ h1,h2,h3,h4,h5,h6,.card-title,.source-title,.lesson-title,
+ .chapter-title,.section-title,.section-heading,.page-title,
+ .stats-swot h3,.learn-extra-copy h3,.source-lesson>summary>strong,
+ .editorial-note>strong,.pokerinno-context strong
+){font-weight:600!important}
+body:not(.login-screen) #app :is(
+ .subtitle,.sub-title,.subheading,.section-subtitle,.card-subtitle,
+ .page-subtitle,.lesson-subtitle,.chapter-subtitle,.source-subtitle,
+ .description,.card-description,.section-description,.page-description,
+ .lesson-description,.chapter-description,.source-description,
+ .learn-extra-copy p,.page-heading p,.stats-panel p,.stats-swot article p,
+ .profile-setting-copy p,.profile-plan p,.source-lesson>summary>small,
+ .source-lesson>p,.editorial-note p,.practice-mix-note,
+ .stats-history small,.stats-storage,.setting-description,.setting-desc
+){font-weight:400!important}
