@@ -678,3 +678,16 @@ html body:not(.login-screen) #app>.learn-extra-pokerinno{
  border:1px solid #F7C75B!important;
  border-radius:inherit;
 }
+
+/* PRACTICE SCREEN: screenshot shows dark outer edges on list cards.
+   Force gold on actual catalog list children, including links and buttons,
+   regardless of the internal card component name. Do not touch layout. */
+html body:not(.login-screen) #app .practice-catalog :is(.list,.journey-chapters) > :is(a,article,button,div,section),
+html body:not(.login-screen) #app .practice-catalog :is(.list,.journey-chapters) > :is(a,article,button,div,section) > :is(a,article,button),
+html body:not(.login-screen) #app .practice-catalog :is(.practice-card,.learn-extra-pokerinno),
+html body:not(.login-screen) #app .practice-catalog a:has(.practice-card-progress),
+html body:not(.login-screen) #app .practice-catalog :has(> .practice-card-progress){
+ border-color:#F7C75B!important;
+ border-width:1px!important;
+ outline-color:#F7C75B!important;
+}
