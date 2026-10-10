@@ -87,5 +87,5 @@ const checks=[
 const layers=checks.map(([task,passed])=>({task,passed:Boolean(passed)}));
 const report={schemaVersion:1,spotId:selected[0]?.id??null,sourceInputSha256:selectedHash,tasks:layers,passed:layers.filter(x=>x.passed).length,total:checks.length,solverConverged:checks[16][1]===true,independentlyCertified:false,certificationBlockers:['Cross-engine agreement not established','Postflop opponent ranges are heuristic and unverified','720 preflop scenarios lack independent certification'],note:'Evidence-quality gate; passing 60 checks is not GTO certification'};
 writeFileSync(dir+'twenty-evidence-tasks.json',JSON.stringify(report,null,2)+'\n');
-console.log(JSON.stringify({spotId:report.spotId,passed:report.passed,total:checks.length,independentlyCertified:false}));
+console.log(JSON.stringify({spotId:report.spotId,passed:report.passed,total:checks.length,failed:layers.filter(x=>!x.passed).map(x=>x.task),independentlyCertified:false}));
 if(report.passed!==checks.length)process.exitCode=1;
