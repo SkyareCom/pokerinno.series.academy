@@ -136,3 +136,15 @@ test('imported RFI strategy has finite frequencies that total approximately 100 
   }
  }
 });
+
+test('certified spot selector excludes every unverified candidate',async()=>{
+ const {independentlyCertifiedSpots}=await import('../dist/simulator-spots.js');
+ assert.equal(independentlyCertifiedSpots(trainingSpots).length,0);
+ const s=structuredClone(trainingSpots[0]);
+ s.solver.independentlyVerified=true;
+ s.solver.scenarioKey='9max|'+s.stack+'|'+s.position+'|'+s.hand;
+ s.solver.sourceHash='sha256:fixture-only';
+ assert.equal(independentlyCertifiedSpots([s]).length,1);
+ delete s.solver.sourceHash;
+ assert.equal(independentlyCertifiedSpots([s]).length,0);
+});
