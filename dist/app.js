@@ -1,5 +1,5 @@
 import {coachProfileSetting,setCoachEnabled,setCoachQuestionCount} from './simulator-coach.js?v=35bc6e7';
-import {rangesLibrary,setupRangesLibrary} from './ranges-library.js?v=bddf00e';
+import {rangesLibrary,setupRangesLibrary} from './ranges-library.js?v=415f994';
 import {simulatorPage,setupSimulator} from './simulator.js?v=c707521';
 import {renderProfilePlans} from './profile-plans.js?v=profile-plans-9550c742';
 import {decorateStreetLesson} from './street-visuals.js?v=streets-table-v1';
