@@ -1,0 +1,9 @@
+/* Typography contract · Academy · 2026-10-10 */
+:root{--text-size:12px;--card-title-size:14px;--section-title-size:18px;--footer-text-size:10px}
+body,button,input,select,textarea{font-size:var(--text-size)}
+#app p,#app li,#app small,#app label,#app input,#app select,#app textarea,#app button,#app .eyebrow,#app .practice-card-progress,#app .practice-card-xp,#app .quiz-feedback,#app .source-question,#app .practice-mix-note{font-size:12px!important}
+#app h3,#app h4,#app .learn-extra-copy h3,#app .learn-extra h3,#app .card h3,#app .source-question h2{font-size:14px!important}
+#app h1,#app h2,#app .page-heading h1,#app .section-title,#app .section-heading{font-size:18px!important}
+footer,.mobile-nav,.mobile-nav *,#mobile-navigation,#mobile-navigation *,#app .footer,#app .footer *{font-size:10px!important}
+#app .quiz-player .quiz-counters>article>strong{font-size:18px!important}
+#app .quiz-player .quiz-counters>article>span,#app .quiz-player .quiz-counters>article>small{font-size:12px!important}
