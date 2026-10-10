@@ -17,3 +17,7 @@ Os 780 candidatos pos-flop nao possuem solves associados. Nao contam como certif
 Nao liberar os candidatos como banco validado. Nao remover o bloqueio de CI ate existir comprovacao individual verificavel de 1500 solves.
 
 Log: https://github.com/SkyareCom/pokerinno.series.academy/actions/runs/38013840293
+
+## Solver source compatibility
+
+Grinder EVO data/solver/manifest.json reports 30 postflop base spots; data/solver/multiway-postflop.json reports 1892 solved decisions but its inspected scenario has tableSize=6 and trainingTableSize=6. These cannot be imported as 9-max decisions without a matching 9-max solver scenario. The engine registry identifies DCFR_PREFLOP_9MAX separately from postflop engines. No 6-max postflop record is eligible for 9-max certification solely by changing the seat count.
