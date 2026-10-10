@@ -13,7 +13,9 @@ export const trainingSpots=Array.from({length:1500},(_,i)=>{
  const actions=scenario?.actions.find(row=>row[0]===hand)?.slice(1)??null;
  return {id:i+1,street,stack,position,pot:street==='pre'?1.5:1.5+(i%12)*2,hand,board,solver:actions?{solveId:scenario.solveId,actions,context:'9MAX RFI PREFLOP'}:null};
 });
+export function legalTrainingActions(spot){return spot.street==='pre'&&spot.position!=='BB'&&spot.solver?['FOLD','RAISE','ALL IN']:[];}
 export function checkTrainingAction(spot,action){
+ if(!legalTrainingActions(spot).includes(action))return {status:'unvalidated',scorable:false,message:'Ação sem contexto de apostas suficiente.'};
  if(!spot.solver)return {status:'unvalidated',scorable:false,message:'Cenário didático: não existe solve correspondente nesta biblioteca.'};
  const map={'RAISE':'raise','FOLD':'fold','ALL IN':'allin','CALL':'call','CHECK':'check'};
  const chosen=map[action];
