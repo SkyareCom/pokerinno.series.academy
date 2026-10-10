@@ -1420,3 +1420,16 @@ html body:not(.login-screen) :is(#app,.sidebar,header,dialog,.pokerinno-balloons
 #app .simulator-folded .simulator-hole-cards{opacity:0.12;}
 #app .simulator-folded{opacity:.72;}
 @media(prefers-reduced-motion:reduce){#app .simulator-folded{transition:none;}}
+
+/* Pokerinno reference layout: wide oval, 9 compact seats, hero centered at bottom. */
+#app .simulator-table-area{width:100%;max-width:560px;aspect-ratio:1.35;min-height:0;margin:16px auto 25px;overflow:visible;}
+#app .simulator-table{inset:15% 12%;border-radius:50% / 48%;border:7px solid #b18b4a;box-shadow:inset 0 0 0 3px #5c4a2d,0 0 0 2px #856c3e;background:#112e25;}
+#app .simulator-felt{inset:4%;border-radius:50% / 48%;border:2px solid #6b9880;background:#183c30;gap:5px;}
+#app .simulator-board{gap:3px;}
+#app .simulator-board span{width:clamp(17px,5vw,29px);height:clamp(25px,7vw,40px);font-size:14px;}
+#app .simulator-seat,#app .simulator-hero{width:56px;min-width:56px;max-width:56px;padding:3px 1px;gap:0;border-radius:6px;}
+#app .simulator-hero{background:#4c391e;border:2px solid #e2bc62;}
+#app .simulator-seat-position,#app .simulator-stack,#app .simulator-seat-action{font-size:10px;line-height:11px;min-height:11px;}
+#app .simulator-hole-cards{top:-12px;}
+#app .simulator-bet{bottom:-15px;}
+@media(max-width:480px){#app .simulator-table-area{aspect-ratio:1.15;min-height:0;margin:17px auto 22px;}#app .simulator-table{inset:17% 12%;}#app .simulator-seat,#app .simulator-hero{width:49px;min-width:49px;max-width:49px;}#app .simulator-seat-position,#app .simulator-stack,#app .simulator-seat-action{font-size:10px;line-height:11px;}#app .simulator-hole-cards{top:-10px;}}
