@@ -30,14 +30,13 @@ const groups=[
  {id:'math',title:()=>t('learn.math'),description:'Exercícios de matemática aplicada ao poker.',themes:['math']},
  {id:'etiquette',title:()=>t('staff.etiquette.title'),description:'Pratique boas maneiras e comportamento na mesa.',themes:['staff']},
  {id:'house-rules',title:()=>t('learn.houseRules'),description:'Pratique regras e situações de jogo.',themes:['staff']},
- {id:'terms',title:()=>t('learn.terms'),description:'Atividades de vocabulário e conceitos.',themes:['terms']},
- {id:'decisions',title:()=>t('decisions.title'),description:'Misture situações e decisões para aumentar a dificuldade.',themes:['decisions']}
+ {id:'terms',title:()=>t('learn.terms'),description:'Atividades de vocabulário e conceitos.',themes:['terms']}
 ];
 const groupModules=id=>{const byId={
  discover:['rank','pos'],rules:['rank','pos','blinds','streets','seq'],
  betting:['seq','quiz'],floor:['staff','emb','mis','irr','fichas','assentos'],formats:[],
  math:[],etiquette:['etq'], 'house-rules':['casa'],terms:[],
- decisions:['situations']
+ decisions:[]
  };const ids=byId[id];return practiceModules.filter(m=>ids?.length?ids.includes(m.id):groups.find(g=>g.id===id)?.themes.includes(m.theme))};
 // Assign each original question to only one Practice card. Never duplicate it across themes.
 const assigned=new Map();
@@ -55,7 +54,14 @@ const uniqueGroupQuestions=id=>{
  }
  return questions;
 };
+// Audit each of the 300 historical simulator situations by its actual learning objective.
+// Showdowns: rules of hand ranking (Hold'em) or formats (Omaha/PLO).
+// Pot-odds decisions: mathematical application. No separate 'continuous decisions' topic.
+const classifyScenario=q=>q.kind==='decisao'?'math':/omaha|plo|o8|hi.lo/i.test(String(q.game||''))?'formats':'rules';
+const scenarioAllocation={rules:[],formats:[],math:[]};
+for(const q of academyVerde9.SIMB||[]){const topic=classifyScenario(q);scenarioAllocation[topic].push({...q,id:'decisions-situations-'+q.id});}
 const groupQuestionBank=new Map(groups.filter(g=>!g.ranges).map(g=>[g.id,uniqueGroupQuestions(g.id)]));
+for(const [topic,questions] of Object.entries(scenarioAllocation)){const bank=groupQuestionBank.get(topic);for(const q of questions){const fingerprint=normalizedQuestion(q);if(assigned.has(fingerprint)||assignedIds.has(q.id))continue;assigned.set(fingerprint,topic);assignedIds.add(q.id);bank.push(q)}}
 for(const [id,questions] of Object.entries({...creativeActivities,...Object.fromEntries(Object.entries(supplementalActivities).map(([id,items])=>[id,[...(creativeActivities[id]||[]),...items]]))})){const group=groupQuestionBank.get(id);if(!group)continue;for(const q of questions){const fingerprint=normalizedQuestion(q);if(assigned.has(fingerprint)||assignedIds.has(q.id))continue;assigned.set(fingerprint,id);assignedIds.add(q.id);group.push(q)}}
 const mix=questions=>{
  const a=[...questions],out=[];
