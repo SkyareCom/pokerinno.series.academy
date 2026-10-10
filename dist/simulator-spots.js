@@ -1,27 +1,61 @@
 import ranges from './ranges-dcfr-9max.json' with {type:'json'};
-// Only RFI in the eight non-BB positions can be matched to the imported DCFR dataset.
-// Other spots remain educational and have no solver-approved answer.
-const positions=['UTG','UTG+1','UTG+2','LJ','HJ','CO','BTN','SB','BB'];
+// 1,500 distinct educational decision contexts; not independently solver-certified.
+const positions=['UTG','UTG+1','UTG+2','LJ','HJ','CO','BTN','SB'];
 const stacks=[10,15,30,100];
-const hands=['AKs','QQ','JTs','77','AQo','KQs','T9s','A5s'];
-const cards=['Ah','7d','2c','9s','Kd'];
 const ranks='23456789TJQKA',suits='shdc';
+const deck=[...ranks].flatMap(rank=>[...suits].map(suit=>rank+suit));
+const handClasses=Object.keys(ranges.scenarios).length
+ ? ranges.scenarios['100|UTG'].actions.map(row=>row[0]):[];
 function holeCards(hand,index){
- const a=hand[0],b=hand[1],type=hand[2];
- const available=suits.filter(s=>!cards.some(card=>card===a+s||card===b+s));
- if(a===b){const pair=available.slice(0,2);return [a+pair[0],b+pair[1]];}
- if(type==='s'){const suit=available[index%available.length];return [a+suit,b+suit];}
- const first=available[index%available.length],second=available[(index+1)%available.length];
- return [a+first,b+second];
+ const [a,b,type]=hand;
+ if(a===b)return [a+suits[index%4],b+suits[(index+1)%4]];
+ if(type==='s'){const suit=suits[index%4];return [a+suit,b+suit];}
+ return [a+suits[index%4],b+suits[(index+1)%4]];
 }
-export const trainingSpots=Array.from({length:1500},(_,i)=>{
- const street=i%100<48?'pre':i%100<78?'flop':i%100<93?'turn':'river';
- const stack=stacks[i%4],position=positions[Math.floor(i/4)%9],hand=hands[Math.floor(i/36)%8];
- const board=cards.slice(0,street==='pre'?0:street==='flop'?3:street==='turn'?4:5);
- const scenario=street==='pre'&&position!=='BB'?ranges.scenarios[stack+'|'+position]:null;
+function boardCards(heroCards,index,count){
+ const available=deck.filter(card=>!heroCards.includes(card));
+ // Rotate a deterministic 52-card deck, not merely permuting an identical board.
+ const offset=(index*17+Math.floor(index/31)*7)%available.length;
+ return Array.from({length:count},(_,j)=>available[(offset+j*9)%available.length]);
+}
+const preflop=Array.from({length:720},(_,i)=>{
+ const position=positions[i%8],stack=stacks[Math.floor(i/8)%4];
+ const hand=handClasses[Math.floor(i/32)%handClasses.length];
+ const scenario=ranges.scenarios[stack+'|'+position];
  const actions=scenario?.actions.find(row=>row[0]===hand)?.slice(1)??null;
- return {id:i+1,street,stack,position,pot:street==='pre'?1.5:1.5+(i%12)*2,hand,heroCards:holeCards(hand,i),board,solver:actions?{solveId:scenario.solveId,actions,context:'9MAX RFI PREFLOP'}:null};
+ return {id:i+1,tableSize:9,street:'pre',position,stack,effectiveStack:stack,
+  hand,heroCards:holeCards(hand,i),board:[],pot:1.5,
+  aggressor:null,villainRange:'UNOPENED',bettingLine:[],
+  solver:actions?{solveId:scenario.solveId,actions,context:'9MAX RFI PREFLOP'}:null};
 });
+const postflop=Array.from({length:780},(_,i)=>{
+ const street=i<450?'flop':i<675?'turn':'river';
+ const count={flop:3,turn:4,river:5}[street];
+ const stack=[30,100][i%2],position='BTN';
+ const hand=handClasses[Math.floor(i/2)%handClasses.length];
+ const heroCards=holeCards(hand,i);
+ const board=boardCards(heroCards,i,count);
+ const bettingLine=[
+  {street:'pre',position:'BTN',action:'raise',sizeBB:2.5},
+  {street:'pre',position:'BB',action:'call',sizeBB:2.5}
+ ];
+ if(street!=='flop')bettingLine.push(
+  {street:'flop',position:'BB',action:'check',sizeBB:0},
+  {street:'flop',position:'BTN',action:'bet',sizeBB:2},
+  {street:'flop',position:'BB',action:'call',sizeBB:2}
+ );
+ if(street==='river')bettingLine.push(
+  {street:'turn',position:'BB',action:'check',sizeBB:0},
+  {street:'turn',position:'BTN',action:'bet',sizeBB:4},
+  {street:'turn',position:'BB',action:'call',sizeBB:4}
+ );
+ bettingLine.push({street,position:'BB',action:'check',sizeBB:0});
+ const pot={flop:5.5,turn:9.5,river:17.5}[street];
+ return {id:721+i,tableSize:9,street,position,stack,effectiveStack:stack-2.5-(street==='flop'?0:street==='turn'?2:6),
+  hand,heroCards,board,pot,aggressor:'BTN',villainRange:'BB_DEFEND_VS_BTN_OPEN_UNVERIFIED',
+  bettingLine,solver:null};
+});
+export const trainingSpots=[...preflop,...postflop];
 export function legalTrainingActions(spot){return spot.street==='pre'&&spot.position!=='BB'&&spot.solver?['FOLD','RAISE']:[];}
 export function checkTrainingAction(spot,action){
  if(!legalTrainingActions(spot).includes(action))return {status:'unvalidated',scorable:false,message:'Ação sem contexto de apostas suficiente.'};
