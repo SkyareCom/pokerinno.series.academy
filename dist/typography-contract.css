@@ -644,3 +644,26 @@ html body #app *::before,html body #app *::after{
  border-bottom-width:1px!important;
  border-left-width:1px!important;
 }
+
+/* FINAL OVERRIDE: official border colors, exactly 1px, without adding borders.
+   Use low-level universal selector as baseline and exceptions afterwards. */
+html body #app,html body #app *,
+html body #app *::before,html body #app *::after{
+ border-color:#F7C75B!important;
+ border-width:1px!important;
+}
+html body #app :is(.secondary,.secondary-card,.secondary-panel,.muted-card,.muted-panel),
+html body #app :is(.secondary,.secondary-card,.secondary-panel,.muted-card,.muted-panel)::before,
+html body #app :is(.secondary,.secondary-card,.secondary-panel,.muted-card,.muted-panel)::after{
+ border-color:#536457!important;
+}
+html body #app :is(.playing-card,.street-card,.simulator-card),
+html body #app :is(.playing-card,.street-card,.simulator-card)::before,
+html body #app :is(.playing-card,.street-card,.simulator-card)::after{
+ border-color:#D4CFBD!important;
+}
+html body #app :is(.lilac-border,.purple-border,.special-lilac),
+html body #app :is(.lilac-border,.purple-border,.special-lilac)::before,
+html body #app :is(.lilac-border,.purple-border,.special-lilac)::after{
+ border-color:#B79AF5!important;
+}
