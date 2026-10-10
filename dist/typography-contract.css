@@ -647,9 +647,11 @@ html body #app *::before,html body #app *::after{
 
 
 
-/* OFFICIAL THREE-COLOR BORDER CONTRACT — 1px, authoritative.
-   Gold covers all normal AND secondary UI. Beige = playing cards.
-   Lilac = explicitly designated special elements. */
+
+/* THREE-COLOR BORDER POLICY — final source of truth.
+   1px gold on all standard and secondary surfaces; beige for playing
+   cards; lilac for explicitly marked special surfaces.
+   Border style remains unchanged, so borderless elements stay borderless. */
 html body :is(#app,#app *,#app *::before,#app *::after,
  .workspace,.workspace *, .sidebar,.sidebar *, .mobile-nav,.mobile-nav *,
  dialog,dialog *,header,header *,footer,footer *){
@@ -659,8 +661,10 @@ html body :is(#app,#app *,#app *::before,#app *::after,
 html body :is(.playing-card,.street-card,.simulator-card),
 html body #app :is(.playing-card,.street-card,.simulator-card){
  border-color:#D4CFBD!important;
+ border-width:1px!important;
 }
 html body :is(.lilac-border,.purple-border,.special-lilac),
 html body #app :is(.lilac-border,.purple-border,.special-lilac){
  border-color:#B79AF5!important;
+ border-width:1px!important;
 }
