@@ -691,3 +691,32 @@ html body:not(.login-screen) #app .practice-catalog :has(> .practice-card-progre
  border-width:1px!important;
  outline-color:#F7C75B!important;
 }
+
+/* USER SCREENSHOT FIX: actual list items, settings rows, plan cards,
+   coach message rows, decision steps, and generic panels.
+   Covers every existing non-transparent border in #app without changing layout. */
+html body:not(.login-screen) #app :is(
+ li,section,article,aside,div,a,button,label,fieldset,details,summary,
+ input,select,textarea
+){
+ border-color:#F7C75B!important;
+ border-width:1px!important;
+}
+/* Keep exceptions: physical playing cards and special lilac surfaces. */
+html body:not(.login-screen) #app :is(.playing-card,.street-card,.simulator-card){
+ border-color:#D4CFBD!important;
+}
+html body:not(.login-screen) #app :is(.lilac-border,.purple-border,.special-lilac){
+ border-color:#B79AF5!important;
+}
+/* Do not allow old green borders in screenshots' common card classes. */
+html body:not(.login-screen) #app :is(
+ .decision-steps li,.practice-catalog .list>*,
+ .practice-catalog .journey-chapters>*,
+ .learn-extra-pokerinno,.profile-settings>*,
+ .settings-list>*,.settings-row,.setting-card,
+ .plan-card,.subscription-card,.coach-setting,.coach-message,
+ .profile-plans>*,.profile-card
+){
+ border:1px solid #F7C75B!important;
+}
