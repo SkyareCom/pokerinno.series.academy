@@ -27,7 +27,6 @@ jobs:
       - name: Generate postflop solver queue
         run: node scripts/export-9max-solver-queue.mjs
       - name: Enforce independent certification gate
-        continue-on-error: true
         run: node scripts/audit-academy-ten-layers.mjs --strict
       - name: Upload full ten-layer evidence
         if: always()
