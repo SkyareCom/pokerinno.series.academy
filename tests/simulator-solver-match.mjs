@@ -58,3 +58,19 @@ test('solver must never invent an absent action frequency',()=>{
   }
  }
 });
+
+test('all-in is not equated with an unsized generic RFI raise',()=>{
+ for(const s of trainingSpots){
+  const result=checkTrainingAction(s,'ALL IN');
+  assert.equal(result.status,'unvalidated');
+  assert.equal(result.scorable,false);
+ }
+});
+test('imported solver references have bounded numeric action frequencies',()=>{
+ for(const s of trainingSpots.filter(s=>s.solver)){
+  for(const [action,freq] of s.solver.actions){
+   assert.ok(['fold','raise','call','check','allin'].includes(action));
+   assert.ok(Number.isFinite(freq)&&freq>=0&&freq<=100);
+  }
+ }
+});
