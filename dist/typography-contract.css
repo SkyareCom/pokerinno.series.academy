@@ -13,3 +13,22 @@ footer,#app .footer,#app .footer *{font-size:10px!important}
 
 /* Footer icons: explicitly requested 25px; preserve all other footer properties. */
 @media(max-width:800px){#mobile-navigation .nav-symbol{font-size:25px!important}#mobile-navigation .nav-symbol svg{width:25px!important;height:25px!important}}
+
+/* Secondary text palette audit: scoped to app content, not entry screen or navigation. */
+:root{--academy-card-description:#9DB0A7}
+body:not(.login-screen) #app .learn-extra-copy>p,
+body:not(.login-screen) #app .practice-catalog .practice-card-progress,
+body:not(.login-screen) #app .practice-catalog .practice-card-xp,
+body:not(.login-screen) #app .editorial-note>p,
+body:not(.login-screen) #app .practice-mix-note,
+body:not(.login-screen) #app .source-lesson>p,
+body:not(.login-screen) #app .source-group>p,
+body:not(.login-screen) #app .page-heading p,
+body:not(.login-screen) #app .page-heading .eyebrow,
+body:not(.login-screen) #app .profile-settings p,
+body:not(.login-screen) #app .profile-settings small,
+body:not(.login-screen) #app .profile-settings label p,
+body:not(.login-screen) #app .profile-settings label small{
+ color:var(--muted)!important;
+ -webkit-text-fill-color:var(--muted)!important;
+}
