@@ -143,8 +143,11 @@ test('certified spot selector excludes every unverified candidate',async()=>{
  const s=structuredClone(trainingSpots[0]);
  s.solver.independentlyVerified=true;
  s.solver.scenarioKey='9max|'+s.stack+'|'+s.position+'|'+s.hand;
- s.solver.sourceHash='sha256:fixture-only';
+ s.solver.sourceHash='sha256:'+'a'.repeat(64);
  assert.equal(independentlyCertifiedSpots([s]).length,1);
- delete s.solver.sourceHash;
+ s.solver.sourceHash='sha256:fixture-only';
+ assert.equal(independentlyCertifiedSpots([s]).length,0);
+ s.solver.sourceHash='sha256:'+'a'.repeat(64);
+ s.solver.actions=[['fold',80],['raise',80]];
  assert.equal(independentlyCertifiedSpots([s]).length,0);
 });
