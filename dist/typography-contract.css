@@ -734,3 +734,20 @@ html body,html body *,html body *::before,html body *::after{
  border-width:1px!important;
 }
 /* SVG graphics have strokes, not CSS borders: preserve their appearance. */
+
+/* BEIGE BORDER HARD LOCK — high-specificity override.
+   Intentionally outranks legacy nested #app selectors and gold rules.
+   Applies to all real CSS borders, including pseudo-elements and app shell. */
+html body:not(#_border_lock_a):not(#_border_lock_b) *,
+html body:not(#_border_lock_a):not(#_border_lock_b) *::before,
+html body:not(#_border_lock_a):not(#_border_lock_b) *::after,
+html body:not(#_border_lock_a):not(#_border_lock_b){
+ border-top-color:#D4CFBD!important;
+ border-right-color:#D4CFBD!important;
+ border-bottom-color:#D4CFBD!important;
+ border-left-color:#D4CFBD!important;
+ border-top-width:1px!important;
+ border-right-width:1px!important;
+ border-bottom-width:1px!important;
+ border-left-width:1px!important;
+}
