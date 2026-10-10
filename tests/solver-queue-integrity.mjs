@@ -21,6 +21,8 @@ test('exported 9max solver queue is exact, unique and never misrepresented as so
   assert.equal(r.tableSize,9);
   assert.equal(r.status,'BLOCKED_MISSING_SOLVER_INPUT');
   assert.equal(r.certified,false);
+  assert.equal(Object.keys(r.villainRange).length,169);
+  assert.equal(Object.keys(r.heroRange).length,169);
   assert.ok(r.unresolved.some(x=>x.includes('villainRange')));
   assert.ok(r.unresolved.some(x=>x.includes('heroRange')));
   assert.ok(r.unresolved.some(x=>x.includes('solver run')));
