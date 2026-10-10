@@ -1,3 +1,4 @@
+import {showDecisionCoach} from './simulator-coach.js';
 import {trainingSpots,checkTrainingAction} from './simulator-spots.js';
 const seats=[{pos:'UTG',x:22,y:25},{pos:'UTG+1',x:39,y:12},{pos:'UTG+2',x:61,y:12},{pos:'LJ',x:78,y:25},{pos:'HJ',x:88,y:51},{pos:'CO',x:76,y:76},{pos:'BTN',x:50,y:88},{pos:'SB',x:24,y:76},{pos:'BB',x:12,y:51}];
 const stackBB=[100,85,125,62,110,73,90,48,100];
@@ -31,7 +32,8 @@ export function setupSimulator(root){
  legend.textContent='CENÁRIO '+s.id+' / 1500 · '+s.street.toUpperCase()+' · '+s.stack+' BB · '+s.position+' · '+s.hand+' · '+s.heroCards.join(' ');
  feedback.textContent='Sua vez. As ações anteriores são ilustrativas quando não há histórico registrado.';feedback.dataset.validationStatus='unvalidated';
  explain.textContent='Observe as ações, apostas externas aos avatares e o pote atualizado. As situações são didáticas, não soluções certificadas do solver.';
- page.querySelectorAll('[data-sim-action]').forEach(b=>b.disabled=false);
+ page.querySelectorAll('[data-sim-action]').forEach(b=>b.disabled=true);
+ showDecisionCoach(page,s,()=>page.querySelectorAll('[data-sim-action]').forEach(b=>b.disabled=false));
  }
  page.querySelectorAll('[data-sim-action]').forEach(b=>b.addEventListener('click',()=>{const action=b.dataset.simAction;if(action==='PRÓXIMO'){index=(index+1)%trainingSpots.length;draw();return;}const s=trainingSpots[index];const result=checkTrainingAction(s,action);const bet=action==='CALL'?2:action==='RAISE'?3:action==='ALL IN'?stakes[heroIndex]:0;act(heroIndex,action,bet,true);feedback.textContent='AÇÃO: '+action+' · '+result.message;feedback.dataset.validationStatus=result.status;}));
  page.querySelectorAll('[data-stack-unit]').forEach(b=>b.addEventListener('click',()=>{selectedUnit=b.dataset.stackUnit;page.querySelectorAll('[data-stack-unit]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));refresh();}));
