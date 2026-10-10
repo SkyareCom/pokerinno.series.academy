@@ -117,3 +117,22 @@ test('each imported 9max RFI decision exactly matches its source record',async()
   assert.deepEqual(s.solver.actions,row.slice(1));
  }
 });
+
+test('imported RFI strategy has finite frequencies that total approximately 100 percent',async()=>{
+ const {default:ranges}=await import('../dist/ranges-dcfr-9max.json',{with:{type:'json'}});
+ for(const [scenarioKey,scenario] of Object.entries(ranges.scenarios)){
+  assert.ok(scenario.solveId,'missing solve ID for '+scenarioKey);
+  for(const [hand,...actions] of scenario.actions){
+   assert.ok(actions.length>0,scenarioKey+' '+hand);
+   const names=new Set();
+   let total=0;
+   for(const [name,freq] of actions){
+    assert.ok(!names.has(name),'duplicate action '+scenarioKey+' '+hand+' '+name);
+    names.add(name);
+    assert.ok(Number.isFinite(freq)&&freq>=0&&freq<=100,scenarioKey+' '+hand);
+    total+=freq;
+   }
+   assert.ok(Math.abs(total-100)<=0.2,scenarioKey+' '+hand+' totals '+total);
+  }
+ }
+});
