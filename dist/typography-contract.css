@@ -646,33 +646,21 @@ html body #app *::before,html body #app *::after{
 }
 
 
-/* GLOBAL OFFICIAL BORDER CONTRACT — one authoritative final override.
-   Only recolors existing borders; does not set border-style or create borders. */
+
+/* OFFICIAL THREE-COLOR BORDER CONTRACT — 1px, authoritative.
+   Gold covers all normal AND secondary UI. Beige = playing cards.
+   Lilac = explicitly designated special elements. */
 html body :is(#app,#app *,#app *::before,#app *::after,
  .workspace,.workspace *, .sidebar,.sidebar *, .mobile-nav,.mobile-nav *,
  dialog,dialog *,header,header *,footer,footer *){
  border-color:#F7C75B!important;
  border-width:1px!important;
 }
-/* Secondary structures */
-html body :is(.secondary,.secondary-card,.secondary-panel,.muted-card,.muted-panel){
- border-color:#536457!important;
-}
-/* Real playing cards: beige */
-html body :is(.playing-card,.street-card,.simulator-card){
- border-color:#D4CFBD!important;
-}
-/* Explicit special lilac elements */
-html body :is(.lilac-border,.purple-border,.special-lilac){
- border-color:#B79AF5!important;
-}
-/* Preserve exceptions even when deeply nested in gold activity cards. */
+html body :is(.playing-card,.street-card,.simulator-card),
 html body #app :is(.playing-card,.street-card,.simulator-card){
  border-color:#D4CFBD!important;
 }
-html body #app :is(.secondary,.secondary-card,.secondary-panel,.muted-card,.muted-panel){
- border-color:#536457!important;
-}
+html body :is(.lilac-border,.purple-border,.special-lilac),
 html body #app :is(.lilac-border,.purple-border,.special-lilac){
  border-color:#B79AF5!important;
 }
