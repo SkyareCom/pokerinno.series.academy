@@ -17,6 +17,15 @@ for(const s of trainingSpots){
  if(!Number.isFinite(s.pot)||s.pot<=0)fail('invalid_pot');
  if(s.street==='pre'){
   if(s.board?.length||s.bettingLine?.length||s.pot!==1.5||s.effectiveStack!==s.stack)fail('invalid_unopened_preflop');
+  if(!s.solver?.solveId||!Array.isArray(s.solver.actions))fail('missing_preflop_source_reference');
+  else {
+   const seen=new Set();let sum=0;
+   for(const [action,freq] of s.solver.actions){
+    if(seen.has(action)||!Number.isFinite(freq)||freq<0||freq>100)fail('invalid_preflop_action_frequency');
+    seen.add(action);sum+=freq;
+   }
+   if(Math.abs(sum-100)>0.2)fail('preflop_frequency_sum');
+  }
  }else{
   const line=s.bettingLine??[];
   const expected=[['pre','BTN','raise',2.5],['pre','BB','call',2.5]];
