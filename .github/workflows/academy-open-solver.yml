@@ -36,6 +36,8 @@ jobs:
       - name: Checkout pinned upstream solver
         run: |
           git clone https://github.com/kfg021/Postflop-Poker-Solver.git /tmp/academy-open-solver
+          git -C /tmp/academy-open-solver checkout 2319e0d5f1bd6f5976faf4d1041ff0b49605e192
+          test "$(git -C /tmp/academy-open-solver rev-parse HEAD)" = 2319e0d5f1bd6f5976faf4d1041ff0b49605e192
           git -C /tmp/academy-open-solver rev-parse HEAD | tee reports/solver/postflop-inputs/upstream-commit.txt
       - name: Compile solver
         run: |
