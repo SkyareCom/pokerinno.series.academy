@@ -968,3 +968,23 @@ html body #app .profile-plan{border:1px solid #D4CFBD!important;}
 html body:not(#eyebrow-a):not(#eyebrow-b):not(#eyebrow-c) #app .page-heading .eyebrow{
  color:#F7C75B!important;
 }
+
+/* FINAL STRUCTURAL FRAME LOCK — outer wrappers must never draw borders.
+   Applies to all pages; cards, plan articles, inputs and buttons untouched. */
+html body:not(#outer1):not(#outer2):not(#outer3):not(#outer4):not(#outer5) :is(
+ #app,.workspace,.sidebar,.mobile-nav,.page-heading,.page-heading>div,
+ .page-heading .chapter-tag,.section-top,.section-top>span,
+ .profile-plans,.profile-plans>.section-top,.profile-plans>.plan-grid
+){
+ border:0!important;
+ border-top:0!important;border-right:0!important;
+ border-bottom:0!important;border-left:0!important;
+ outline:0!important;
+ box-shadow:none!important;
+}
+html body:not(#outer1):not(#outer2):not(#outer3):not(#outer4):not(#outer5) .workspace>header{
+ border:0!important;outline:0!important;box-shadow:none!important;
+}
+html body:not(#gold1):not(#gold2):not(#gold3):not(#gold4):not(#gold5) #app .page-heading .eyebrow{
+ color:#F7C75B!important;
+}
