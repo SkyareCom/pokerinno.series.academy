@@ -1068,3 +1068,34 @@ html body:not(#paletteA):not(#paletteB):not(#paletteC):not(#paletteD):not(#palet
  color:#1C211E!important;-webkit-text-fill-color:#1C211E!important;
  border-color:#837F75!important;
 }
+
+/* FINAL FORCE: BUTTON COLOR CONTRACT. Keep structural styles unchanged.
+   Extra specificity outranks legacy global button overrides. */
+html body:not(#lock01):not(#lock02):not(#lock03):not(#lock04):not(#lock05):not(#lock06):not(#lock07):not(#lock08):not(#lock09) :is(button,[role="button"],input[type="button"],input[type="submit"],input[type="reset"],.btn,.button,a.primary){
+ background:#061714!important;background-color:#061714!important;background-image:none!important;
+ color:#F7C75B!important;-webkit-text-fill-color:#F7C75B!important;
+ border-color:#F7C75B!important;border-width:1px!important;border-style:solid!important;
+}
+html body:not(#lock01):not(#lock02):not(#lock03):not(#lock04):not(#lock05):not(#lock06):not(#lock07):not(#lock08):not(#lock09) :is(button,[role="button"],input[type="button"],input[type="submit"],input[type="reset"],.btn,.button,a.primary):is(:active,.active,.selected,.is-active,.is-selected,.checked,[aria-pressed="true"],[aria-selected="true"],[aria-checked="true"],[data-selected="true"],[data-active="true"],[data-state="active"],[data-state="checked"]){
+ background:#F7C75B!important;background-color:#F7C75B!important;
+ color:#061714!important;-webkit-text-fill-color:#061714!important;
+ border-color:#F7C75B!important;
+}
+html body:not(#lock01):not(#lock02):not(#lock03):not(#lock04):not(#lock05):not(#lock06):not(#lock07):not(#lock08):not(#lock09) :is(button.primary,a.primary,.btn-primary,.button-primary,input[type="submit"]){
+ background:#F7C75B!important;background-color:#F7C75B!important;background-image:none!important;
+ color:#061714!important;-webkit-text-fill-color:#061714!important;
+ border-color:#061714!important;border-width:1px!important;border-style:solid!important;
+}
+html body:not(#lock01):not(#lock02):not(#lock03):not(#lock04):not(#lock05):not(#lock06):not(#lock07):not(#lock08):not(#lock09) :is(.quiz-options button,.ranges-activity-choices button,.activity-options button,.answer-options button,.quiz-answers button){
+ background:#1C211E!important;background-color:#1C211E!important;background-image:none!important;
+ color:#DED6C8!important;-webkit-text-fill-color:#DED6C8!important;
+ border-color:#837F75!important;border-width:1px!important;border-style:solid!important;
+}
+html body:not(#lock01):not(#lock02):not(#lock03):not(#lock04):not(#lock05):not(#lock06):not(#lock07):not(#lock08):not(#lock09) :is(.quiz-options button,.ranges-activity-choices button,.activity-options button,.answer-options button,.quiz-answers button):is(:active,.active,.selected,.is-active,.is-selected,.checked,[aria-pressed="true"],[aria-selected="true"],[aria-checked="true"],[data-selected="true"],[data-active="true"],[data-state="active"],[data-state="checked"]){
+ background:#B7A48B!important;background-color:#B7A48B!important;background-image:none!important;
+ color:#1C211E!important;-webkit-text-fill-color:#1C211E!important;
+ border-color:#837F75!important;
+}
+html body:not(#lock01):not(#lock02):not(#lock03):not(#lock04):not(#lock05):not(#lock06):not(#lock07):not(#lock08):not(#lock09) :is(button,[role="button"],.btn,.button,a.primary) :is(span,strong,small,em,b,i){
+ color:inherit!important;-webkit-text-fill-color:inherit!important;
+}
