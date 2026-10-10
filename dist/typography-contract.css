@@ -877,3 +877,17 @@ html body:not(#final-a):not(#final-b):not(#final-c):not(#final-d) :is(button,[ro
  border-bottom-color:#FF8C00!important;
  border-left-color:#FF8C00!important;
 }
+
+/* USER APPROVED GOLD BUTTON PALETTE — all buttons and interaction states.
+   Match the visible COMEÇAR A APRENDER button: gold fill and dark text.
+   The rule supersedes previous beige/selected button styling. */
+html body:not(#gold-button-a):not(#gold-button-b):not(#gold-button-c):not(#gold-button-d) :is(button,[role="button"],input[type="button"],input[type="submit"],input[type="reset"],.btn,.button),
+html body:not(#gold-button-a):not(#gold-button-b):not(#gold-button-c):not(#gold-button-d) :is(button,[role="button"],input[type="button"],input[type="submit"],input[type="reset"],.btn,.button):is(:hover,:focus,:active,.active,.selected,.is-active,.is-selected,[aria-pressed="true"],[aria-selected="true"],[data-selected="true"],[data-active="true"]){
+ background:#F7C75B!important;
+ background-color:#F7C75B!important;
+ background-image:none!important;
+ color:#061714!important;
+}
+html body:not(#gold-button-a):not(#gold-button-b):not(#gold-button-c):not(#gold-button-d) :is(button,[role="button"],input[type="button"],input[type="submit"],input[type="reset"],.btn,.button) :is(span,strong,small,em,b,i){
+ color:inherit!important;
+}
