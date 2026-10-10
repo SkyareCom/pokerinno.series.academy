@@ -11,6 +11,9 @@ const rows=manifest?.inputs??[];
 const selectedText=existsSync(dir+'selected-texas-input.txt')?readFileSync(dir+'selected-texas-input.txt','utf8'):'';
 const selectedHash=createHash('sha256').update(selectedText).digest('hex');
 const selected=rows.filter(r=>r.sha256===selectedHash);
+const sourceSpot=trainingSpots.find(s=>s.id===selected[0]?.id);
+const board=sourceSpot?.board??[];
+const allCards=[...(board??[]),...(sourceSpot?.heroCards??[])];
 const cards=new Set([...'23456789TJQKA'].flatMap(r=>[...'shdc'].map(s=>r+s)));
 const checks=[
  ['01_total_spots',trainingSpots.length===1500],
@@ -25,7 +28,7 @@ const checks=[
  ['10_selected_input_unique',selected.length===1],
  ['11_selected_input_matches_manifest',selected.length===1&&selected[0].input===selectedText],
  ['12_selected_spot_exists',selected.length===1&&trainingSpots.some(s=>s.id===selected[0].id)],
- ['13_selected_cards_valid',selected.length===1&&selected[0].input.match(/set_board ([^\n]+)/)?.[1].split(',').every(c=>cards.has(c))===true],
+ ['13_selected_cards_valid',selected.length===1&&board.length>=3&&board.every(c=>cards.has(c))&&new Set(board).size===board.length],
  ['14_solver_exited_zero',audit?.executionExitCode===0],
  ['15_strategy_json_parseable',!!result&&typeof result==='object'],
  ['16_exploitability_numeric',Number.isFinite(audit?.finalExploitabilityPercent)],
