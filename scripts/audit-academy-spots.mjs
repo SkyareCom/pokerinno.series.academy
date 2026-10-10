@@ -11,6 +11,16 @@ for(const s of trainingSpots){
  if(!Array.isArray(s.heroCards)||s.heroCards.length!==2)fail('missing_hero_cards');
  const cards=[...(s.heroCards??[]),...(s.board??[])];
  if(cards.some(c=>!deck.test(c))||new Set(cards).size!==cards.length)fail('invalid_or_colliding_cards');
+ if(s.heroCards?.length===2&&typeof s.hand==='string'){
+  const [a,b]=s.heroCards;
+  const rankA=a[0],rankB=b[0],suited=a[1]===b[1];
+  const pair=rankA===rankB;
+  const expected=pair?rankA+rankB:rankA+rankB+(suited?'s':'o');
+  const reversed=pair?expected:rankB+rankA+(suited?'s':'o');
+  if(s.hand!==expected&&s.hand!==reversed)fail('hand_class_mismatch');
+  if(pair&&suited)fail('impossible_suited_pair');
+ }
+
  const count={pre:0,flop:3,turn:4,river:5}[s.street];
  if(count===undefined||(s.board??[]).length!==count)fail('invalid_board_street');
  if(!Number.isFinite(s.stack)||!Number.isFinite(s.effectiveStack)||s.effectiveStack<0||s.effectiveStack>s.stack)fail('invalid_stack');
