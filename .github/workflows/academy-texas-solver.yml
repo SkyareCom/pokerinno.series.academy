@@ -1,0 +1,48 @@
+name: Academy Independent TexasSolver Build
+on:
+  push:
+    branches: [feat/pokerinno-frontend]
+    paths: ['.github/workflows/academy-texas-solver.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  texas-solver:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install independent solver toolchain
+        run: sudo apt-get update && sudo apt-get install -y cmake ninja-build g++ libomp-dev
+      - name: Checkout independently maintained TexasSolver source
+        run: |
+          mkdir -p reports/solver/independent
+          git clone --recursive https://github.com/bupticybee/TexasSolver.git /tmp/academy-texas-solver
+          git -C /tmp/academy-texas-solver checkout bb53f8cbfff4841da2d75bd060d0ab269c3d5881
+          git -C /tmp/academy-texas-solver submodule update --init --recursive
+          test "$(git -C /tmp/academy-texas-solver rev-parse HEAD)" = bb53f8cbfff4841da2d75bd060d0ab269c3d5881
+          git -C /tmp/academy-texas-solver rev-parse HEAD | tee reports/solver/independent/texas-solver-commit.txt
+          cp /tmp/academy-texas-solver/LICENSE* reports/solver/independent/ 2>/dev/null || true
+      - name: Inspect TexasSolver build interfaces
+        run: |
+          find /tmp/academy-texas-solver -maxdepth 3 \( -name CMakeLists.txt -o -name Makefile -o -name README.md \) | tee reports/solver/independent/build-interfaces.txt
+          test -f /tmp/academy-texas-solver/CMakeLists.txt
+      - name: Compile independent engine
+        run: |
+          set -o pipefail
+          cmake -S /tmp/academy-texas-solver -B /tmp/academy-texas-solver/build-academy -G Ninja -DCMAKE_BUILD_TYPE=Release 2>&1 | tee reports/solver/independent/configure.log
+          cmake --build /tmp/academy-texas-solver/build-academy -j 2 2>&1 | tee reports/solver/independent/build.log
+      - name: Inventory built binaries
+        run: |
+          find /tmp/academy-texas-solver/build-academy -type f -executable | tee reports/solver/independent/binaries.txt
+          test -s reports/solver/independent/binaries.txt
+      - name: Record independent certification limitations
+        if: always()
+        run: |
+          printf '%s\n' 'Independent engine checkout/build only. No TexasSolver solve executed. No convergence or action-frequency cross-check. 0 spots certified by this workflow.' > reports/solver/independent/certification-status.txt
+      - name: Upload independent engine evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: academy-texas-solver-build-evidence
+          path: reports/solver/independent/
