@@ -22,14 +22,38 @@ jobs:
       - uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.11.1'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run frontend tests and audits
+        run: |
+          npm test
+          npm run i18n:audit
+          npm run spacing:audit
+          npm run visual:audit
       - name: Package local frontend
         run: |
           mkdir -p android/app/src/main/assets
           cp -a dist/. android/app/src/main/assets/
           test -s android/app/src/main/assets/index.html
+      - name: Validate release version input
+        env:
+          RELEASE_VERSION_CODE: ${{ vars.PLAY_RELEASE_VERSION_CODE }}
+        run: |
+          if [ -n "$RELEASE_VERSION_CODE" ]; then
+            case "$RELEASE_VERSION_CODE" in
+              *[!0-9]*|'') echo "Invalid PLAY_RELEASE_VERSION_CODE"; exit 1 ;;
+            esac
+            test "$RELEASE_VERSION_CODE" -gt 0
+          fi
       - name: Build unsigned Android App Bundle
         working-directory: android
-        run: gradle :app:bundleRelease --no-daemon
+        run: |
+          if [ -n "${{ vars.PLAY_RELEASE_VERSION_CODE }}" ]; then
+            gradle :app:bundleRelease -PreleaseVersionCode="${{ vars.PLAY_RELEASE_VERSION_CODE }}" --no-daemon
+          else
+            gradle :app:bundleRelease --no-daemon
+          fi
       - uses: actions/upload-artifact@v4
         with:
           name: pokerinno-academy-unsigned-aab
