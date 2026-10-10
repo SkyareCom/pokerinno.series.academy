@@ -26,6 +26,11 @@ for(const s of trainingSpots){
  }
 
  const count={pre:0,flop:3,turn:4,river:5}[s.street];
+ if(s.street!=='pre'&&s.board?.length>=3){
+  const flop=s.board.slice(0,3);
+  if(new Set(flop.map(x=>x[0])).size===1&&flop.length!==3)fail('invalid_trips_board');
+  if(s.board.some(card=>s.heroCards.includes(card)))fail('hero_board_collision');
+ }
  if(count===undefined||(s.board??[]).length!==count)fail('invalid_board_street');
  if(!Number.isFinite(s.stack)||!Number.isFinite(s.effectiveStack)||s.effectiveStack<0||s.effectiveStack>s.stack)fail('invalid_stack');
  if(!Number.isFinite(s.pot)||s.pot<=0)fail('invalid_pot');
