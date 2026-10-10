@@ -1,4 +1,4 @@
-import {creativeActivities} from './creative-activities.js?v=2282527';
+import {creativeActivities} from './creative-activities.js?v=3ffb838';
 import {academyVerde9} from './academy-verde9-content.js';
 import {t} from './i18n.js?v=learn-titles-20261008';
 import {sourceQuiz} from './source-quiz.js?v=cards-no-arrows-20261008';
