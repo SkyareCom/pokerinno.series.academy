@@ -22,7 +22,10 @@ permissions:
 jobs:
   texas-solver:
     runs-on: ubuntu-latest
-    timeout-minutes: 40
+    timeout-minutes: 35
+    concurrency:
+      group: academy-texas-independent-solver
+      cancel-in-progress: true
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -66,13 +69,13 @@ jobs:
           test -s reports/solver/independent/binaries.txt
       - name: Execute one real independent solve (diagnostic only)
         continue-on-error: true
-        timeout-minutes: 25
+        timeout-minutes: 18
         run: |
           set -o pipefail
           cd /tmp/academy-texas-solver/install
           cp "$GITHUB_WORKSPACE/reports/solver/independent/selected-texas-input.txt" ./academy-spot-input.txt
           set +e
-          timeout 1200 ./console_solver -i academy-spot-input.txt 2>&1 | tee "$GITHUB_WORKSPACE/reports/solver/independent/texas-solver-run.log"
+          timeout 900 ./console_solver -i academy-spot-input.txt 2>&1 | tee "$GITHUB_WORKSPACE/reports/solver/independent/texas-solver-run.log"
           solver_exit=${PIPESTATUS[0]}
           set -e
           printf '%s\n' "$solver_exit" > "$GITHUB_WORKSPACE/reports/solver/independent/texas-solver-exit-code.txt"
