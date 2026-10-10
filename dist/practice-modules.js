@@ -37,7 +37,7 @@ const groupModules=id=>{const byId={
  };const ids=byId[id];return practiceModules.filter(m=>ids?.length?ids.includes(m.id):groups.find(g=>g.id===id)?.themes.includes(m.theme))};
 // Assign each original question to only one Practice card. Never duplicate it across themes.
 const assigned=new Map();
-const normalizedQuestion=q=>JSON.stringify([q.question||q.prompt||q.q||'',q.options||q.items||[],q.answer||'']).normalize('NFKC').toLowerCase().replace(/\\s+/g,' ').trim();
+const normalizedQuestion=q=>JSON.stringify([q.question||q.prompt||q.q||'',q.options||q.items||[],q.answer||'']).normalize('NFKC').toLowerCase().replace(/\s+/g,' ').trim();
 const uniqueGroupQuestions=id=>{
  const questions=[];
  for(const m of groupModules(id))for(let i=0;i<(m.quiz||[]).length;i++){
