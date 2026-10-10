@@ -1,4 +1,4 @@
-import {showDecisionCoach,coachEnabled,setCoachEnabled} from './simulator-coach.js?v=9033571';
+import {showDecisionCoach,coachEnabled,setCoachEnabled} from './simulator-coach.js?v=45dcf7e';
 import {trainingSpots,checkTrainingAction} from './simulator-spots.js';
 const seats=[{pos:'UTG',x:22,y:25},{pos:'UTG+1',x:39,y:12},{pos:'UTG+2',x:61,y:12},{pos:'LJ',x:78,y:25},{pos:'HJ',x:88,y:51},{pos:'CO',x:76,y:76},{pos:'BTN',x:50,y:88},{pos:'SB',x:24,y:76},{pos:'BB',x:12,y:51}];
 const stackBB=[100,85,125,62,110,73,90,48,100];
