@@ -2,10 +2,6 @@ name: Academy TexasSolver Batch Pilot
 on:
   workflow_dispatch:
     inputs:
-      start_id:
-        description: 'First postflop spot ID (721-1497)'
-        required: false
-        default: '721'
       max_iterations:
         description: 'Solver iterations (diagnostic default 100)'
         required: false
@@ -24,9 +20,9 @@ jobs:
       fail-fast: false
       max-parallel: 2
       matrix:
-        offset: [0, 1, 2, 3]
+        spot_id: [721, 722, 723, 724]
     concurrency:
-      group: academy-texas-batch-${{ github.run_id }}-${{ matrix.offset }}
+      group: academy-texas-batch-${{ github.run_id }}-${{ matrix.spot_id }}
       cancel-in-progress: false
     steps:
       - uses: actions/checkout@v4
