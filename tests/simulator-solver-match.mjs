@@ -36,3 +36,12 @@ test('only RFI preflop is eligible for the imported solver reference',()=>{
  assert.equal(withReference.pre>0,true);
  assert.equal(withReference.flop+withReference.turn+withReference.river,0);
 });
+
+test('RFI starts with 1.5 BB and never reports call or check as validated',()=>{
+ for(const s of trainingSpots.filter(s=>s.street==='pre')){
+  assert.equal(s.pot,1.5);
+  for(const a of ['CALL','CHECK']){
+   assert.equal(checkTrainingAction(s,a).status,'unvalidated');
+  }
+ }
+});
