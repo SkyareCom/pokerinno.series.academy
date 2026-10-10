@@ -1,4 +1,4 @@
-import {rangesActivitiesPage,setupRangesActivities} from './ranges-activities.js?v=07cb902';
+import {rangesActivitiesPage,setupRangesActivities} from './ranges-activities.js?v=d2549d0';
 import {coachProfileSetting,setCoachEnabled,setCoachQuestionCount} from './simulator-coach.js?v=35bc6e7';
 import {rangesLibrary,setupRangesLibrary} from './ranges-library.js?v=45ac161';
 import {simulatorPage,setupSimulator} from './simulator.js?v=ecd59da';
@@ -10,7 +10,7 @@ import {procedureCards,procedureDetail} from './procedure-content.js?v=cards-no-
 import {standardizeBack} from './back-navigation.js?v=house-rules-route-v2';
 import {autoSave,setAutoSave,saveActivities,results,pendingCount} from './progress.js?v=cards-no-arrows-20261008';
 import {statsDashboard} from './stats.js?v=cards-no-arrows-20261008';
-import {practiceCatalog,practiceModule} from './practice-modules.js?v=23fd21b';
+import {practiceCatalog,practiceModule} from './practice-modules.js?v=de08ce6';
 import {sourceQuiz} from './source-quiz.js?v=4ab7a89';
 import {journeyIds,extraCard,staffRoles,decisionCycle} from './learn-ui.js?v=math-dictionary-13fd6b99';
 import {t,getLocale} from './i18n.js?v=play-simulator-0762ed62';
