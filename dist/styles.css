@@ -1401,3 +1401,6 @@ html body:not(.login-screen) :is(#app,.sidebar,header,dialog,.pokerinno-balloons
 #app .simulator-card-back{display:block;box-sizing:border-box;width:13px;height:18px;flex:0 0 13px;border:1px solid #e7dfc9;border-radius:2px;background:repeating-linear-gradient(45deg,#193c5c 0px,#193c5c 3px,#34678a 3px,#34678a 5px);box-shadow:inset 0 0 0 2px #193c5c;}
 #app .simulator-seat-position,#app .simulator-stack,#app .simulator-seat-action{font-size:10px;line-height:12px;min-height:12px;}
 @media(max-width:390px){#app .simulator-seat,#app .simulator-hero{width:58px;min-width:58px;max-width:58px;}}
+
+/* Mobile table: reserve enough vertical room for compact 4-row seats. */
+@media(max-width:480px){#app .simulator-table-area{min-height:340px;aspect-ratio:1/1.24;}#app .simulator-seat,#app .simulator-hero{width:56px;min-width:56px;max-width:56px;padding:2px 1px;gap:0;}#app .simulator-hole-cards{height:16px;gap:2px;}#app .simulator-card-back{width:11px;height:15px;flex-basis:11px;}#app .simulator-seat-position,#app .simulator-stack,#app .simulator-seat-action{font-size:10px;line-height:11px;min-height:11px;}}
