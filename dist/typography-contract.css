@@ -7,3 +7,6 @@ body,button,input,select,textarea{font-size:var(--text-size)}
 footer,.mobile-nav,.mobile-nav *,#mobile-navigation,#mobile-navigation *,#app .footer,#app .footer *{font-size:10px!important}
 #app .quiz-player .quiz-counters>article>strong{font-size:18px!important}
 #app .quiz-player .quiz-counters>article>span,#app .quiz-player .quiz-counters>article>small{font-size:12px!important}
+
+/* Profile settings: descriptions use the same muted color regardless of checkbox state. */
+#app .profile-settings label p,#app .profile-settings label small,#app .profile-settings .setting-description,#app .profile-settings .setting-desc,#app .profile-settings .settings-description,#app .profile-settings .muted{color:var(--muted)!important}
