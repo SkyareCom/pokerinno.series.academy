@@ -897,3 +897,21 @@ html body:not(#gold-button-a):not(#gold-button-b):not(#gold-button-c):not(#gold-
 html body #app .page-heading .eyebrow{
  color:#F7C75B!important;
 }
+
+/* REMOVE STRUCTURAL CHROME BORDERS ONLY.
+   Preserve functional card, button, form, activity, and image borders. */
+html body .sidebar,
+html body .workspace > header,
+html body .mobile-nav,
+html body .sidebar .side-bottom,
+html body .workspace > footer,
+html body #app .page-heading,
+html body #app .page-heading .chapter-tag,
+html body #app .section-top,
+html body #app .section-top > span{
+ border:0!important;
+ border-top:0!important;
+ border-right:0!important;
+ border-bottom:0!important;
+ border-left:0!important;
+}
