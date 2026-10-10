@@ -1608,3 +1608,21 @@ html body:not(.login-screen) :is(#app,.sidebar,header,dialog,.pokerinno-balloons
 #app .ranges-filters .ranges-filter-drawer[hidden]{display:none!important;}
 #app .ranges-filters .ranges-filter-drawer button{display:block;width:100%;min-height:40px;padding:10px;border:1px solid #536b5e;border-radius:6px;background:#17382d;color:#f3f2eb;font-size:12px;text-align:left;white-space:normal;}
 #app .ranges-filters .ranges-filter-drawer button[aria-pressed=true]{border-color:#f0c86e;background:#4d4327;color:#fff;}
+
+/* Beginner range exercises and practice entry */
+#app .ranges-practice-entry{display:grid;gap:10px;margin:16px 0;padding:16px;border:1px solid #d5b56b;border-radius:10px;background:#112b23;color:#fff;text-decoration:none;}
+#app .ranges-practice-entry strong{color:#f2cc70;font-size:16px;}
+#app .ranges-practice-entry span{font-size:12px;line-height:1.5;}
+#app .ranges-activity-page{padding:12px 0 24px;}
+#app .ranges-activity-page h2{font-size:20px;color:#f1ca73;}
+#app .ranges-activity-page>p{font-size:12px;line-height:1.6;}
+#app .ranges-activity-progress{margin:14px 0;font-size:14px;font-weight:600;color:#f1ca73;}
+#app .ranges-activity-card{padding:14px;border:1px solid #d5b56b;border-radius:10px;background:#102b23;}
+#app .ranges-activity-context{font-size:12px;color:#f1ca73;line-height:1.6;}
+#app .ranges-activity-question{font-size:16px;line-height:1.5;color:#fff;}
+#app .ranges-activity-choices{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:16px 0;}
+#app .ranges-activity-choices button,#app .ranges-activity-next{min-height:42px;padding:8px 5px;border:1px solid #d5b56b;border-radius:8px;background:#17392d;color:#fff;font-size:12px;font-weight:600;}
+#app .ranges-activity-choices button[aria-pressed=true]{background:#b9974d;color:#10271f;}
+#app .ranges-activity-result{min-height:45px;font-size:12px;line-height:1.6;color:#f1ca73;}
+#app .ranges-activity-next{display:block;width:100%;margin-top:10px;background:#f0c66a;color:#10271f;}
+#app .ranges-activity-next:disabled{opacity:.45;}
