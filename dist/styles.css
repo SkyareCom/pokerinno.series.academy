@@ -1572,3 +1572,11 @@ html body:not(.login-screen) :is(#app,.sidebar,header,dialog,.pokerinno-balloons
 /* Simulator-only help switch, positioned after all simulator content. */
 #app .simulator-coach-toggle{display:block;width:100%;margin:14px auto 8px;min-height:42px;padding:9px 12px;border:1px solid #d5b56b;border-radius:8px;background:#112b24;color:#f1d185;font-size:12px;font-weight:600;text-align:center;}
 #app .simulator-coach-toggle[aria-pressed=true]{border-color:#a1a9a3;color:#e2e4e0;}
+
+/* Global in-page drawer: never floats above or blocks the app. */
+#app .academy-inline-drawer{position:relative;display:grid;gap:10px;padding:14px;margin:12px 0;border:1px solid #d5b56b;border-radius:10px;background:#102b23;color:#fff;animation:academy-drawer-in .2s ease-out;}
+#app .academy-inline-drawer strong{color:#f1d185;font-size:16px;}
+#app .academy-inline-drawer p{margin:0;font-size:12px;line-height:1.6;white-space:pre-line;}
+#app .academy-inline-drawer button{justify-self:end;padding:8px 16px;border:1px solid #d5b56b;border-radius:7px;background:transparent;color:#f1d185;font-size:12px;}
+@keyframes academy-drawer-in{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+@media(prefers-reduced-motion:reduce){#app .academy-inline-drawer{animation:none}}
