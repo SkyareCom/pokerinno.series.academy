@@ -40,7 +40,10 @@ jobs:
           cmake --build /tmp/academy-open-solver/build -j 2
       - name: Smoke test solver loading and tree size
         run: |
+          set -o pipefail
           printf 'holdem %s\nsize\nexit\n' "$GITHUB_WORKSPACE/reports/solver/postflop-inputs/selected-spot.yml" | timeout 120 /tmp/academy-open-solver/build/PostflopSolver 2>&1 | tee reports/solver/postflop-inputs/solver-smoke.log
+          ! grep -Eq 'Error:|Game settings not loaded|Could not load field' reports/solver/postflop-inputs/solver-smoke.log
+          grep -q 'Successfully loaded field tree::starting-wager-per-player' reports/solver/postflop-inputs/solver-smoke.log
       - name: Upload solver evidence
         if: always()
         uses: actions/upload-artifact@v4
