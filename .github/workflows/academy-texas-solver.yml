@@ -2,7 +2,7 @@ name: Academy Independent TexasSolver Build
 on:
   push:
     branches: [feat/pokerinno-frontend]
-    paths: ['.github/workflows/academy-texas-solver.yml']
+    paths: ['.github/workflows/academy-texas-solver.yml', 'scripts/prepare-texas-solver-inputs.mjs']
   workflow_dispatch:
 permissions:
   contents: read
@@ -12,6 +12,11 @@ jobs:
     timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Generate 780 independent-engine scenario inputs
+        run: node scripts/prepare-texas-solver-inputs.mjs
       - name: Install independent solver toolchain
         run: sudo apt-get update && sudo apt-get install -y cmake ninja-build g++ libomp-dev
       - name: Checkout independently maintained TexasSolver source
@@ -32,9 +37,11 @@ jobs:
           set -o pipefail
           cmake -S /tmp/academy-texas-solver -B /tmp/academy-texas-solver/build-academy -G Ninja -DCMAKE_BUILD_TYPE=Release 2>&1 | tee reports/solver/independent/configure.log
           cmake --build /tmp/academy-texas-solver/build-academy -j 2 2>&1 | tee reports/solver/independent/build.log
+          cmake --install /tmp/academy-texas-solver/build-academy 2>&1 | tee reports/solver/independent/install.log
       - name: Inventory built binaries
         run: |
           find /tmp/academy-texas-solver/build-academy -type f -executable | tee reports/solver/independent/binaries.txt
+          find /tmp/academy-texas-solver/install -type f -executable 2>/dev/null | tee -a reports/solver/independent/binaries.txt
           test -s reports/solver/independent/binaries.txt
       - name: Record independent certification limitations
         if: always()
