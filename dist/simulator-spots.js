@@ -70,3 +70,11 @@ export function checkTrainingAction(spot,action){
  if(!Number.isFinite(frequency)||frequency<0||frequency>100)return {status:'unvalidated',scorable:false,message:'Frequência inválida no registro do solver.'};
  return {status:'solver-reference',frequency,solveId:spot.solver.solveId,scorable:false,message:chosen.toUpperCase()+': '+frequency.toFixed(1)+'% no arquivo DCFR 9-max (RFI). Referência de solver ainda não certificada independentemente; sem pontuação.'};
 }
+
+export function independentlyCertifiedSpots(spots=trainingSpots){
+ return spots.filter(s=>s.solver?.independentlyVerified===true&&
+ typeof s.solver.solveId==='string'&&s.solver.solveId.length>0&&
+ typeof s.solver.scenarioKey==='string'&&s.solver.scenarioKey.length>0&&
+ typeof s.solver.sourceHash==='string'&&s.solver.sourceHash.length>0&&
+ Array.isArray(s.solver.actions)&&s.solver.actions.length>0);
+}
