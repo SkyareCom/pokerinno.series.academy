@@ -125,7 +125,7 @@ main{padding-inline:var(--page-gutter)}
 #app .betting-info-content :is(p,ul,ol){margin-bottom:10px}
 
 /* Frozen login typography — preserve the approved computed values. */
-:root{--card-title-size:16px;--card-body-size:12px;--card-label-size:12px}
+:root{--card-title-size:14px;--card-body-size:12px;--card-label-size:12px}
 html body.login-screen{font-size:16px}
 body.login-screen :is(.sidebar,.workspace,header,main,#app,dialog){font-size:16px}
 body.login-screen :is(.sidebar,.workspace,header,main,#app,dialog) :is(h1,h2,.hero-title,.page-title){font-size:20px!important}
@@ -265,21 +265,21 @@ body.login-screen #app .entry-auth-stackup img{width:32px;height:32px}
 /* Authoritative Academy hierarchy. Login and the frozen footer are outside this scope. */
 body:not(.login-screen){--ui-title:#fff;--ui-card-border:rgba(246,165,64,.32);--ui-subcard-border:rgba(246,165,64,.18);--ui-card-pad:16px}
 body:not(.login-screen) #app{--line:var(--ui-card-border);font-size:12px;color:var(--text,#f4f2e7)}
-body:not(.login-screen) #app *{font-size:12px!important}
+body:not(.login-screen) #app{font-size:12px}
 body:not(.login-screen) :is(.sidebar,header,dialog,.pokerinno-balloons),
 body:not(.login-screen) :is(.sidebar,header,dialog,.pokerinno-balloons) *{font-size:12px!important}
 body:not(.login-screen) .sidebar :is(.brand>span:last-child,.spade,.nav-symbol){font-size:20px!important}
-body:not(.login-screen) #app :is(h1,.page-title){font-size:20px!important;color:#f4f2e7!important;text-transform:uppercase;line-height:1.25}
+body:not(.login-screen) #app :is(h1,.page-title){font-size:18px!important;color:#f4f2e7!important;text-transform:uppercase;line-height:1.25}
 body:not(.login-screen) #app :is(h2,h3,h4,h5,h6,.card-title,.source-title,.lesson-title),
 body:not(.login-screen) #app .source-lesson>summary>strong,
-body:not(.login-screen) #app :is(.next-app,.editorial-note)>strong{font-size:16px!important;font-weight:500;color:var(--ui-title)!important;-webkit-text-fill-color:currentColor!important;text-transform:uppercase;line-height:1.3}
+body:not(.login-screen) #app :is(.next-app,.editorial-note)>strong{font-size:14px!important;font-weight:600;color:var(--ui-title)!important;-webkit-text-fill-color:currentColor!important;text-transform:uppercase;line-height:1.3}
 body:not(.login-screen) #app :is(.page-heading,.section-top) h2{color:#f4f2e7!important}
-body:not(.login-screen) #app .source-question>h2{font-size:16px!important;color:#f4f2e7!important;text-transform:none}
-/* Every card title uses 16px; inline emphasis stays at reading size. */
+body:not(.login-screen) #app .source-question>h2{font-size:14px!important;color:#f4f2e7!important;text-transform:none}
+/* Card titles use 14px; inline emphasis stays at reading size. */
 body:not(.login-screen) #app :is(.source-body,.discover-compare,.stats-duel,.stats-swot,.decision-steps) :is(h2,h3,h4,h5,h6),
-body:not(.login-screen) #app :is(.glossary-term>strong,.discover-timeline strong,.source-body .ch>strong,.source-body .ci>strong,.source-body .rname,.quiz-counters article>span,.stats-metrics article>span){font-size:16px!important;font-weight:500;color:var(--ui-title)!important;-webkit-text-fill-color:currentColor!important;text-transform:uppercase}
-body:not(.login-screen) #app :is(.etiquette-page,.procedure-body)>.lg>.lc>h3{font-size:16px!important}
-body:not(.login-screen) #app .source-lesson .procedure-body .lc>h3{font-size:16px!important}
+body:not(.login-screen) #app :is(.glossary-term>strong,.discover-timeline strong,.source-body .ch>strong,.source-body .ci>strong,.source-body .rname,.quiz-counters article>span,.stats-metrics article>span){font-size:14px!important;font-weight:600;color:var(--ui-title)!important;-webkit-text-fill-color:currentColor!important;text-transform:uppercase}
+body:not(.login-screen) #app :is(.etiquette-page,.procedure-body)>.lg>.lc>h3{font-size:14px!important}
+body:not(.login-screen) #app .source-lesson .procedure-body .lc>h3{font-size:14px!important}
 body:not(.login-screen) #app :is(p,li,small,label,input,select,textarea){font-size:12px!important;line-height:var(--reading-line)!important;letter-spacing:var(--copy-tracking);word-spacing:normal}
 body:not(.login-screen) #app :is(p,li) :is(strong,b,em,span,a){font-size:inherit!important;line-height:inherit}
 body:not(.login-screen) #app p+p{margin-block-start:var(--paragraph-gap)!important}
@@ -290,8 +290,8 @@ body:not(.login-screen) #app :is(.quiz-counters,.stats-metrics,.stats-duel,.xp-h
 body:not(.login-screen) #app :is(.quiz-counters article>strong,.stats-metrics article>strong,.stats-duel article>strong,.xp-heading>strong,.stats-donut text){font-size:20px!important}
 body:not(.login-screen) #app .card-pip{font-size:20px!important}
 body:not(.login-screen) #app :is(.empty-symbol,.chapter .number,.pokerinno-logo strong){font-size:20px!important}
-body:not(.login-screen) #app :is(.primary,.save-activities){font-size:16px!important}
-body:not(.login-screen) :is(dialog h2,.pokerinno-speech>strong){font-size:16px!important;color:var(--ui-title)!important;text-transform:uppercase}
+body:not(.login-screen) #app :is(.primary,.save-activities){font-size:12px!important}
+body:not(.login-screen) :is(dialog h2,.pokerinno-speech>strong){font-size:14px!important;color:var(--ui-title)!important;text-transform:uppercase}
 body:not(.login-screen) :is(.close,.pokerinno-dismiss){font-size:20px!important}
 
 /* Primary reading surfaces share one border, corner and inset. */
