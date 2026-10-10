@@ -32,3 +32,14 @@ body:not(.login-screen) #app .profile-settings label small{
  color:var(--muted)!important;
  -webkit-text-fill-color:var(--muted)!important;
 }
+
+/* Mobile content overflow guard. Entry and frozen footer intentionally excluded. */
+body:not(.login-screen) #app,
+body:not(.login-screen) #app :is(.stats-dashboard,.stats-panel,.stats-swot,.stats-swot article,.stats-metrics,.stats-duel,.stats-duel article,.quiz-player,.quiz-counters,.source-group,.journey-chapters,.learn-extra-copy,.chapter,.feature,.setting,.profile-plan){min-width:0;max-width:100%;box-sizing:border-box}
+body:not(.login-screen) #app :is(.stats-swot,.stats-duel,.stats-metrics,.quiz-counters){grid-template-columns:repeat(2,minmax(0,1fr))}
+body:not(.login-screen) #app :is(.stats-swot article,.stats-duel article,.stats-metrics article,.quiz-counters article){min-width:0;overflow-wrap:break-word;word-break:normal}
+body:not(.login-screen) #app :is(.stats-swot article h3,.stats-duel article h3,.stats-swot article strong,.stats-swot article p,.stats-swot article span){max-width:100%;min-width:0;overflow-wrap:normal;word-break:normal;hyphens:none}
+body:not(.login-screen) #app .stats-swot article h3{font-size:14px!important;line-height:1.3!important;letter-spacing:0!important;white-space:normal!important;margin:0 0 10px!important}
+body:not(.login-screen) #app .stats-swot article :is(p,small,span){font-size:12px!important;line-height:1.55!important;white-space:normal}
+body:not(.login-screen) #app .stats-swot article{padding:12px!important}
+@media(max-width:380px){body:not(.login-screen) #app .stats-swot{grid-template-columns:minmax(0,1fr)!important}}
