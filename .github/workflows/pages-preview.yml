@@ -29,6 +29,14 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Export unresolved 9max solver queue
+        run: node scripts/export-9max-solver-queue.mjs
+      - name: Save solver queue
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: academy-9max-solver-queue
+          path: reports/solver/9max-postflop-pending.json
       - name: Verify unit tests and language keys
         run: |
           npm test
