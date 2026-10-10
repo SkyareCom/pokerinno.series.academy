@@ -15,3 +15,10 @@ if(missingContext.length){
  console.error('BLOCKED: postflop candidates without complete betting context cannot be certified unique.');
  process.exitCode=1;
 }
+
+const certified=trainingSpots.filter(s=>s.solver?.solveId&&s.solver?.independentlyVerified===true&&s.solver?.scenarioKey&&s.solver?.sourceHash&&Array.isArray(s.solver?.actions));
+console.log(JSON.stringify({independentlyCertified:certified.length,required:1500,deficit:1500-certified.length},null,2));
+if(certified.length!==1500){
+ console.error('BLOCKED: 1500 independently verified source solver decisions required; imported or synthetic references do not qualify.');
+ process.exitCode=1;
+}
