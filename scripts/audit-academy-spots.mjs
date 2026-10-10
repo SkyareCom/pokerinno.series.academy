@@ -8,6 +8,10 @@ for(const s of trainingSpots){
  const fail=reason=>errors.push({id:s.id,reason});
  streets[s.street]=(streets[s.street]??0)+1;
  if(s.tableSize!==9)fail('not_9max');
+ if(!Number.isInteger(s.id)||s.id<1||s.id>1500)fail('invalid_id');
+ if(!['UTG','UTG+1','UTG+2','LJ','HJ','CO','BTN','SB'].includes(s.position))fail('invalid_hero_position');
+ if(typeof s.hand!=='string'||!/^(?:[2-9TJQKA]{2}|[2-9TJQKA]{2}[so])$/.test(s.hand))fail('invalid_hand_class');
+
  if(!Array.isArray(s.heroCards)||s.heroCards.length!==2)fail('missing_hero_cards');
  const cards=[...(s.heroCards??[]),...(s.board??[])];
  if(cards.some(c=>!deck.test(c))||new Set(cards).size!==cards.length)fail('invalid_or_colliding_cards');
@@ -50,6 +54,9 @@ for(const s of trainingSpots){
   if(s.solver!==null)fail('postflop_not_independently_solved');
  }
 }
+const ids=trainingSpots.map(s=>s.id);
+if(new Set(ids).size!==ids.length)errors.push({reason:'duplicate_ids'});
+if(ids.some((id,i)=>id!==i+1))errors.push({reason:'noncontiguous_ids'});
 const uniqueness=auditStrategicDuplicates(trainingSpots);
 if(uniqueness.duplicateCount)errors.push({reason:'duplicate_strategic_decisions',count:uniqueness.duplicateCount});
 const report={schemaVersion:1,scope:'ACADEMY_LOCAL_9MAX',source:'academy dist/simulator-spots.js',counts:streets,total:trainingSpots.length,unique:uniqueness.unique,structuralErrors:errors.length,errors,independentSolverCertification:'NOT_PERFORMED'};
