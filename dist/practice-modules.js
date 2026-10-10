@@ -34,9 +34,9 @@ const groups=[
 ];
 const groupModules=id=>{const byId={
  discover:['rank','pos'],rules:['rank','pos','blinds','streets','seq'],
- betting:['seq','quiz','situations'],floor:['staff'],formats:[],
- math:[],etiquette:['etq'], 'house-rules':['staff'],terms:[],
- decisions:['quiz','situations']
+ betting:['seq','quiz'],floor:['staff','emb','mis','irr','fichas','assentos'],formats:[],
+ math:[],etiquette:['etq'], 'house-rules':['casa'],terms:[],
+ decisions:['situations']
  };const ids=byId[id];return practiceModules.filter(m=>ids?.length?ids.includes(m.id):groups.find(g=>g.id===id)?.themes.includes(m.theme))};
 // Assign each original question to only one Practice card. Never duplicate it across themes.
 const assigned=new Map();
