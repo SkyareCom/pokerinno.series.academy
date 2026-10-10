@@ -19,6 +19,8 @@ export function checkTrainingAction(spot,action){
  if(!spot.solver)return {status:'unvalidated',scorable:false,message:'Cenário didático: não existe solve correspondente nesta biblioteca.'};
  const map={'RAISE':'raise','FOLD':'fold','ALL IN':'allin','CALL':'call','CHECK':'check'};
  const chosen=map[action];
- const frequency=spot.solver.actions.find(([a])=>a===chosen)?.[1]??0;
+ const matched=spot.solver.actions.find(([a])=>a===chosen);
+ if(!matched)return {status:'unvalidated',scorable:false,message:'Ação sem frequência explícita neste solve; não é possível avaliar.'};
+ const frequency=matched[1];
  return {status:'solver-reference',frequency,solveId:spot.solver.solveId,scorable:false,message:chosen.toUpperCase()+': '+frequency.toFixed(1)+'% no arquivo DCFR 9-max (RFI). Referência de solver ainda não certificada independentemente; sem pontuação.'};
 }
