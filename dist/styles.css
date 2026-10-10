@@ -1522,3 +1522,11 @@ html body:not(.login-screen) :is(#app,.sidebar,header,dialog,.pokerinno-balloons
 #app .simulator-coach-talk{height:auto;max-height:none;overflow:visible;}
 #app .simulator-coach-bubble{height:auto!important;min-height:0!important;max-height:none!important;overflow:visible!important;overflow-y:visible!important;white-space:normal;word-break:normal;overflow-wrap:break-word;flex-shrink:0;}
 #app .simulator-coach-calculation{overflow:visible!important;overflow-x:visible!important;white-space:normal;overflow-wrap:anywhere;}
+
+/* Coach is a floating panel; NEVER change the height of the underlying action buttons. */
+#app .simulator-actions{min-height:0!important;height:auto!important;}
+#app .simulator-actions .simulator-coach-overlay{position:absolute;left:0;right:0;bottom:0;top:auto;inset:auto 0 0;min-height:0;height:auto;overflow:visible;align-items:stretch;}
+#app .simulator-coach-stage{min-height:0;height:auto;align-items:center;}
+#app .simulator-coach-character{height:auto;max-height:130px;}
+#app .simulator-coach-talk{height:auto;max-height:none;}
+#app .simulator-coach-bubble{max-height:none!important;overflow:visible!important;}
