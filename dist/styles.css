@@ -1498,3 +1498,6 @@ html body:not(.login-screen) :is(#app,.sidebar,header,dialog,.pokerinno-balloons
 #app .simulator-seat .simulator-hole-cards,#app .simulator-hero .simulator-hole-cards{position:absolute;top:-21px;bottom:auto;left:50%;transform:translateX(-50%);height:18px;width:max-content;display:flex;align-items:center;justify-content:center;gap:2px;z-index:4;pointer-events:none;}
 #app .simulator-seat .simulator-card-back,#app .simulator-hero .simulator-card-back{width:13px;height:18px;flex:0 0 13px;}
 @media(max-width:480px){#app .simulator-seat .simulator-hole-cards,#app .simulator-hero .simulator-hole-cards{top:-18px;height:15px;}#app .simulator-seat .simulator-card-back,#app .simulator-hero .simulator-card-back{width:11px;height:15px;flex-basis:11px;}}
+
+#app .simulator-coach-calculation{margin-top:7px;padding:7px;border-top:1px solid #d5b56b;color:#ffe6a2;white-space:pre-line;font-size:11px;line-height:1.45;font-weight:600}
+#app .simulator-coach-bubble{max-height:145px}
