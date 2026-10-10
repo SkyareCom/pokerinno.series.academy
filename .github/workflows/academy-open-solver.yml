@@ -13,6 +13,9 @@ on:
         required: true
         default: '721'
         type: string
+concurrency:
+  group: academy-solver-${{ github.ref }}
+  cancel-in-progress: true
 permissions:
   contents: read
 jobs:
