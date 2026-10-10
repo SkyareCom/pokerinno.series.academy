@@ -1560,3 +1560,11 @@ html body:not(.login-screen) :is(#app,.sidebar,header,dialog,.pokerinno-balloons
 #app .simulator-decision-lines{display:grid;gap:6px;text-align:center;font-size:12px;line-height:1.4;}
 #app .simulator-decision-lines>div{display:block;}
 #app .simulator-decision-source{display:block;margin-top:9px;font-size:10px;color:#c9d0c6;line-height:1.4;}
+
+/* Larger face-up HERO cards only; other players and seat dimensions unchanged. */
+#app .simulator-seat.simulator-hero .simulator-hole-cards{top:-31px!important;height:27px!important;gap:3px!important;z-index:7!important;}
+#app .simulator-seat.simulator-hero .simulator-hole-cards .simulator-card-back.simulator-card-face{width:21px!important;min-width:21px!important;height:27px!important;flex:0 0 21px!important;font-size:14px!important;line-height:25px!important;border-radius:3px!important;}
+@media(max-width:480px){
+ #app .simulator-seat.simulator-hero .simulator-hole-cards{top:-29px!important;height:25px!important;}
+ #app .simulator-seat.simulator-hero .simulator-hole-cards .simulator-card-back.simulator-card-face{width:20px!important;min-width:20px!important;height:25px!important;flex-basis:20px!important;font-size:13px!important;line-height:23px!important;}
+}
