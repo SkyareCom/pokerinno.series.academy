@@ -1492,3 +1492,9 @@ html body:not(.login-screen) :is(#app,.sidebar,header,dialog,.pokerinno-balloons
 /* Solid backdrop covers the full action-button area during Pokerinno guidance. */
 #app .simulator-actions .simulator-coach-overlay{background:#10271f;border:1px solid #ad8e4f;border-radius:10px;box-sizing:border-box;overflow:visible;}
 #app .simulator-coach-stage{padding:8px;box-sizing:border-box;}
+
+/* Hole cards completely outside each player avatar, above its upper border. */
+#app .simulator-seat,#app .simulator-hero{position:absolute;overflow:visible;}
+#app .simulator-seat .simulator-hole-cards,#app .simulator-hero .simulator-hole-cards{position:absolute;top:-21px;bottom:auto;left:50%;transform:translateX(-50%);height:18px;width:max-content;display:flex;align-items:center;justify-content:center;gap:2px;z-index:4;pointer-events:none;}
+#app .simulator-seat .simulator-card-back,#app .simulator-hero .simulator-card-back{width:13px;height:18px;flex:0 0 13px;}
+@media(max-width:480px){#app .simulator-seat .simulator-hole-cards,#app .simulator-hero .simulator-hole-cards{top:-18px;height:15px;}#app .simulator-seat .simulator-card-back,#app .simulator-hero .simulator-card-back{width:11px;height:15px;flex-basis:11px;}}
