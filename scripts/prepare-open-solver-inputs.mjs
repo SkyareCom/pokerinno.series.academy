@@ -20,8 +20,8 @@ for(const s of trainingSpots.filter(s=>s.street!=='pre')){
   bettingLine:s.bettingLine,
   blockers:[...s.heroCards,...s.board],
   solver:'kfg021/Postflop-Poker-Solver',
-  status:'INPUT_ONLY_NOT_CERTIFIED',
-  warning:'Ranges are not independently solver-certified; action tree, rake and sizing must be configured and verified before solving.'
+  status:'EXECUTABLE_CONFIG_NOT_CERTIFIED',
+  warning:'Provisional ranges and illustrative bet sizing; executable tree does not reconstruct historical action reach probabilities or certify the spot.'
  };
  const digest=createHash('sha256').update(JSON.stringify(scenario)).digest('hex');
  const yaml=[
@@ -31,14 +31,33 @@ for(const s of trainingSpots.filter(s=>s.street!=='pre')){
   '  oop: '+quote(weightedRange(s.villainRange)),
   '  ip: '+quote(weightedRange(s.heroRange)),
   'board: '+quote(cards(s.board)),
-  '# The upstream solver requires additional scenario-specific pot, stack,',
-  '# bet sizing and tree configuration; do not run this incomplete YAML as a certified solve.',
-  '# pot: '+s.pot,
-  '# effective_stack: '+s.effectiveStack
+  'tree:',
+  '  starting-wager-per-player: '+(s.pot/2),
+  '  dead-money-in-pot: 0',
+  '  effective-stack-remaining: '+s.effectiveStack,
+  '  use-isomorphism: true',
+  '  actions:',
+  ...['oop','ip'].flatMap(player=>[
+   '    '+player+':',
+   ...['flop','turn','river'].flatMap(street=>[
+    '      '+street+':',
+    '        bet-sizes: [33, 75]',
+    '        raise-sizes: [50]'
+   ])
+  ]),
+  'solver:',
+  '  threads: 2',
+  '  target-exploitability-percent: 0.3',
+  '  max-iterations: 1000',
+  '  exploitability-check-frequency: 10'
  ].join('\n')+'\n';
  // Avoid writing 780 files into GitHub Actions artifacts: use one combined manifest.
  rows.push({id:s.id,sha256:digest,scenario,yaml});
 }
+const selected=Number(process.env.ACADEMY_SOLVER_SPOT_ID??721);
+const selectedRow=rows.find(row=>row.id===selected);
+if(!selectedRow)throw Error('Unknown Academy solver spot ID '+selected);
+writeFileSync(out+'/selected-spot.yml',selectedRow.yaml);
 writeFileSync(out+'/academy-postflop-inputs.json',JSON.stringify({
  engine:'kfg021/Postflop-Poker-Solver',license:'MIT',total:rows.length,
  certified:0,execution:'NOT_PERFORMED',inputs:rows
