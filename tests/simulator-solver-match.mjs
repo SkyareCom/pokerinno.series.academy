@@ -104,3 +104,16 @@ test('all 1500 candidate scenarios have a complete nonduplicated deck and distin
   }
  }
 });
+
+test('each imported 9max RFI decision exactly matches its source record',async()=>{
+ const {default:ranges}=await import('../dist/ranges-dcfr-9max.json',{with:{type:'json'}});
+ for(const s of trainingSpots.filter(s=>s.street==='pre')){
+  const scenario=ranges.scenarios[s.stack+'|'+s.position];
+  assert.ok(scenario,'missing scenario for spot '+s.id);
+  const row=scenario.actions.find(a=>a[0]===s.hand);
+  assert.ok(row,'missing source hand for spot '+s.id);
+  assert.ok(s.solver,'missing imported reference for spot '+s.id);
+  assert.equal(s.solver.solveId,scenario.solveId);
+  assert.deepEqual(s.solver.actions,row.slice(1));
+ }
+});
