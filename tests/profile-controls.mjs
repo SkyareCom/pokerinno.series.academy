@@ -37,7 +37,7 @@ test('profile replaces access, language and training cards with inline language 
 
 test('profile applies the stored language to the document on reload',()=>{
  const start=source.indexOf('function render(){');
- const end=source.indexOf('const route=resolveRoute(location.hash)',start);
+ const end=source.indexOf('const route=',start);
  assert.ok(start>=0&&end>start);
  const bootstrap=source.slice(start,end)+'} render();';
  const run=new Function('document','location','getLocale','closePokerinno','loginPage','storage','messageVisitStarted','messageReturn','trackMessageVisit','t',bootstrap);
