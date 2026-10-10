@@ -37,14 +37,17 @@ const groupModules=id=>{const byId={
  };const ids=byId[id];return practiceModules.filter(m=>ids?.length?ids.includes(m.id):groups.find(g=>g.id===id)?.themes.includes(m.theme))};
 // Assign each original question to only one Practice card. Never duplicate it across themes.
 const assigned=new Map();
-const normalizedQuestion=q=>JSON.stringify([q.question||q.prompt||q.q||'',q.options||q.items||[],q.answer||'']).normalize('NFKC').toLowerCase().replace(/\s+/g,' ').trim();
+const assignedIds=new Set();
+const normalizedQuestion=q=>JSON.stringify([q.question||q.prompt||q.q||q.text||q.title||'',q.options||q.items||[],q.answer||'']).normalize('NFKC').toLowerCase().replace(/\s+/g,' ').trim();
 const uniqueGroupQuestions=id=>{
  const questions=[];
  for(const m of groupModules(id))for(let i=0;i<(m.quiz||[]).length;i++){
   const q=m.quiz[i],fingerprint=normalizedQuestion(q);
-  if(assigned.has(fingerprint))continue;
+  const originalId=m.key+'-'+(q.id??i);
+  if(assigned.has(fingerprint)||assignedIds.has(originalId))continue;
+  assignedIds.add(originalId);
   assigned.set(fingerprint,id);
-  questions.push({...q,id:m.key+'-'+(q.id??i)});
+  questions.push({...q,id:originalId});
  }
  return questions;
 };
