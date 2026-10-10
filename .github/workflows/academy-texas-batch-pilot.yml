@@ -1,5 +1,8 @@
 name: Academy TexasSolver Batch Pilot
 on:
+  push:
+    branches: [feat/pokerinno-frontend]
+    paths: ['.github/workflows/academy-texas-batch-pilot.yml']
   workflow_dispatch:
     inputs:
       max_iterations:
@@ -35,7 +38,7 @@ jobs:
         run: node scripts/audit-solver-development-twenty-layers.mjs
       - name: Generate 780 independent-engine scenario inputs
         env:
-          ACADEMY_SOLVER_SPOT_ID: ${{ fromJSON(inputs.start_id || '721') + matrix.offset }}
+          ACADEMY_SOLVER_SPOT_ID: ${{ matrix.spot_id }}
           ACADEMY_SOLVER_MAX_ITERATIONS: ${{ inputs.max_iterations || '100' }}
           ACADEMY_SOLVER_DUMP_ROUNDS: ${{ inputs.dump_rounds || '1' }}
         run: node scripts/prepare-texas-solver-inputs.mjs
@@ -93,5 +96,5 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: academy-texas-batch-${{ matrix.offset }}-evidence
+          name: academy-texas-batch-${{ matrix.spot_id }}-evidence
           path: reports/solver/independent/
