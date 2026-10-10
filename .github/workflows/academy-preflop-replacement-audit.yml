@@ -1,0 +1,26 @@
+name: Academy Preflop Replacement Candidate Audit
+on:
+  push:
+    branches: [feat/pokerinno-frontend]
+    paths:
+      - 'scripts/prepare-certifiable-preflop-replacements.mjs'
+      - '.github/workflows/academy-preflop-replacement-audit.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  candidates:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Generate distinct preflop replacement candidates
+        run: node scripts/prepare-certifiable-preflop-replacements.mjs
+      - name: Publish candidate inventory, not certification
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: academy-preflop-replacement-candidates
+          path: reports/solver/certification/preflop-replacement-candidates.json
