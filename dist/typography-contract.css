@@ -668,3 +668,13 @@ html body #app :is(.lilac-border,.purple-border,.special-lilac){
  border-color:#B79AF5!important;
  border-width:1px!important;
 }
+
+/* Screenshot-confirmed fix: outer contour of Pokerinno catalog cards.
+   Keep image divider, dimensions, spacing, footer and login unchanged. */
+html body:not(.login-screen) #app .practice-catalog .learn-extra-pokerinno,
+html body:not(.login-screen) #app .practice-catalog .journey-chapters>.learn-extra-pokerinno,
+html body:not(.login-screen) #app .journey-chapters>.learn-extra-pokerinno,
+html body:not(.login-screen) #app>.learn-extra-pokerinno{
+ border:1px solid #F7C75B!important;
+ border-radius:inherit;
+}
