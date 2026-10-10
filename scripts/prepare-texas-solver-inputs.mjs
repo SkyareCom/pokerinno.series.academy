@@ -20,7 +20,7 @@ for(const s of trainingSpots.filter(s=>s.street!=='pre')){
   'build_tree',
   'set_thread_num 2',
   'set_accuracy 0.3',
-  'set_max_iteration 200',
+  'set_max_iteration 100',
   'set_print_interval 10',
   'set_use_isomorphism 1',
   'start_solve',
