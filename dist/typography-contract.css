@@ -1037,3 +1037,34 @@ html body:not(#answer-gold1):not(#answer-gold2):not(#answer-gold3):not(#answer-g
  color:#061714!important;-webkit-text-fill-color:#061714!important;
  border:1px solid #F7C75B!important;
 }
+
+/* BUTTON PALETTE — approved category reassignment 2026-10-10.
+   Default/other buttons: dark green + gold, selected gold.
+   Main CTA: always gold + dark green.
+   Activity answer choices: taupe normal, champagne selected.
+   Preserve dimensions, font sizes and layout. */
+html body:not(#paletteA):not(#paletteB):not(#paletteC):not(#paletteD):not(#paletteE):not(#paletteF):not(#paletteG):not(#paletteH) :is(button,[role="button"],input[type="button"],input[type="submit"],input[type="reset"],.btn,.button,a.primary){
+ background:#061714!important;background-color:#061714!important;background-image:none!important;
+ color:#F7C75B!important;-webkit-text-fill-color:#F7C75B!important;
+ border:1px solid #F7C75B!important;
+}
+html body:not(#paletteA):not(#paletteB):not(#paletteC):not(#paletteD):not(#paletteE):not(#paletteF):not(#paletteG):not(#paletteH) :is(button,[role="button"],input[type="button"],input[type="submit"],input[type="reset"],.btn,.button,a.primary):is(:active,.active,.selected,.is-active,.is-selected,.checked,[aria-pressed="true"],[aria-selected="true"],[aria-checked="true"],[data-selected="true"],[data-active="true"],[data-state="active"],[data-state="checked"]){
+ background:#F7C75B!important;background-color:#F7C75B!important;
+ color:#061714!important;-webkit-text-fill-color:#061714!important;
+ border-color:#F7C75B!important;
+}
+html body:not(#paletteA):not(#paletteB):not(#paletteC):not(#paletteD):not(#paletteE):not(#paletteF):not(#paletteG):not(#paletteH) :is(button.primary,a.primary,.btn-primary,.button-primary,input[type="submit"]){
+ background:#F7C75B!important;background-color:#F7C75B!important;background-image:none!important;
+ color:#061714!important;-webkit-text-fill-color:#061714!important;
+ border:1px solid #061714!important;
+}
+html body:not(#paletteA):not(#paletteB):not(#paletteC):not(#paletteD):not(#paletteE):not(#paletteF):not(#paletteG):not(#paletteH) :is(.quiz-options button,.ranges-activity-choices button,.activity-options button,.answer-options button,.quiz-answers button){
+ background:#1C211E!important;background-color:#1C211E!important;background-image:none!important;
+ color:#DED6C8!important;-webkit-text-fill-color:#DED6C8!important;
+ border:1px solid #837F75!important;
+}
+html body:not(#paletteA):not(#paletteB):not(#paletteC):not(#paletteD):not(#paletteE):not(#paletteF):not(#paletteG):not(#paletteH) :is(.quiz-options button,.ranges-activity-choices button,.activity-options button,.answer-options button,.quiz-answers button):is(:active,.active,.selected,.is-active,.is-selected,.checked,[aria-pressed="true"],[aria-selected="true"],[aria-checked="true"],[data-selected="true"],[data-active="true"],[data-state="active"],[data-state="checked"]){
+ background:#B7A48B!important;background-color:#B7A48B!important;background-image:none!important;
+ color:#1C211E!important;-webkit-text-fill-color:#1C211E!important;
+ border-color:#837F75!important;
+}
