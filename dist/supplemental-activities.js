@@ -1,4 +1,4 @@
-/* Additional independently identifiable exercises. No recycled prompt IDs. */
+/* Semantic audit: one exercise per underlying etiquette conduct, house policy, or glossary term. */
 const q=(id,prompt,options,answer,analysis)=>({id,type:'choice',prompt,options,answer,analysis});
 const bank={discover:[],rules:[],floor:[],etiquette:[], 'house-rules':[],terms:[]};
 const add=(topic,id,prompt,options,answer,analysis)=>bank[topic].push(q('NEW-'+topic+'-'+id,prompt,options,answer,analysis));
@@ -35,7 +35,7 @@ const etiquetteSituations=[
  ['jogador comenta a força de cartas descartadas','Não comentar cartas durante a mão']
 ];
 const environments=['mesa de cash game','torneio regular','mesa final','jogo com jogadores iniciantes','torneio com transmissão','jogo presencial de clube','evento com dealer profissional','mesa com vários all-ins','jogo com observadores','torneio de classificação'];
-for(let i=0;i<etiquetteSituations.length;i++)for(let j=0;j<environments.length;j++){
+for(let i=0;i<etiquetteSituations.length;i++)for(let j=0;j<1;j++){
  const [situation,correct]=etiquetteSituations[i];
  add('etiquette',i+'-'+j,'Em '+environments[j]+', '+situation+'. Qual atitude respeita a etiqueta?', [correct,'Estimular a interferência','Desconsiderar os demais participantes'],correct,'A etiqueta protege o respeito e a integridade da partida.');
 }
@@ -61,14 +61,14 @@ const policies=[
  ['uso de aplicativos durante a mão','consultar a política de dispositivos e assistência'],
  ['encerramento de mesa','seguir o procedimento anunciado pela direção']
 ];
-for(let i=0;i<policies.length;i++)for(const setting of ['em torneio','em cash game','em evento especial','em clube','em mesa televisionada']){
+for(let i=0;i<policies.length;i++)for(const setting of ['em torneio']){
  const [subject,correct]=policies[i];
  add('house-rules',i+'-'+setting,'Antes de decidir sobre '+subject+' '+setting+', qual fonte prevalece?', [correct,'Uma regra presumida de outra casa','Uma opinião de espectador'],correct,'As regras particulares devem ser consultadas no regulamento vigente da casa ou evento.');
 }
 const glossary=[
  ['stack','total de fichas de um jogador'],['pot','fichas disputadas na mão'],['kicker','carta usada para desempatar mãos equivalentes'],['ante','contribuição obrigatória anterior à distribuição'],['blind','aposta obrigatória de posição'],['flop','três primeiras cartas comunitárias'],['turn','quarta carta comunitária'],['river','quinta carta comunitária'],['showdown','revelação e comparação das mãos'],['fold','desistir da mão'],['call','igualar aposta vigente'],['raise','aumentar a aposta'],['check','passar sem apostar quando permitido'],['bet','fazer uma aposta'],['all-in','colocar todas as fichas disponíveis em jogo'],['button','marcador da posição do dealer'],['cutoff','posição imediatamente anterior ao botão'],['under the gun','primeiro a agir pré-flop sem straddle'],['outs','cartas que podem melhorar a mão para o resultado desejado'],['draw','mão que ainda busca completar combinação'],['nut flush','maior flush possível no board'],['open-ended','projeto de sequência com duas pontas'],['gutshot','projeto de sequência com lacuna interna'],['board','cartas comunitárias'],['range','conjunto de mãos possíveis'],['equity','parcela esperada do pote segundo probabilidades'],['value bet','aposta visando receber calls de mãos piores'],['bluff','aposta buscando fazer mão melhor desistir'],['check-raise','passar e depois aumentar uma aposta'],['limp','entrar pagando o big blind sem aumentar'],['3-bet','terceira aposta na sequência de aumentos'],['4-bet','aumento após uma 3-bet'],['SPR','razão entre stack efetivo e pote'],['ICM','modelo do valor monetário das fichas em torneios'],['bubble','fase próxima da entrada na premiação'],['heads-up','confronto entre dois jogadores'],['short stack','stack pequeno em relação aos blinds'],['effective stack','menor stack entre jogadores envolvidos'],['side pot','pote paralelo para quem tem fichas adicionais'],['rake','taxa retirada pela casa']
 ];
-for(let i=0;i<glossary.length;i++)for(let j=0;j<3;j++){
+for(let i=0;i<glossary.length;i++)for(let j=0;j<1;j++){
  const [term,meaning]=glossary[i],wrong1=glossary[(i+7+j)%glossary.length][1],wrong2=glossary[(i+17+j)%glossary.length][1];
  add('terms',i+'-'+j,'No glossário de poker, o termo '+term+' significa o quê?'+(j===1?' Considere o uso durante uma mão.':j===2?' Considere o uso em estudo técnico.':''),[meaning,wrong1,wrong2],meaning,term+': '+meaning+'.');
 }
