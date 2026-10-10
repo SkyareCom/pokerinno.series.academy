@@ -764,3 +764,15 @@ html body:not(#b1):not(#b2):not(#b3):not(#b4):not(#b5) *::after{
  border-left-color:#D4CFBD!important;
  border-width:1px!important;
 }
+
+/* BUTTON STATES — inactive/unselected: app background + white text.
+   Scope to content actions only. Keep selected buttons and fixed nav intact. */
+html body:not(.login-screen) #app button:not(:disabled):not(.active):not(.selected):not(.is-active):not(.is-selected):not([aria-pressed="true"]):not([aria-selected="true"]):not([data-selected="true"]):not([data-active="true"]):not(.primary):not(.ranges-activity-next),
+html body:not(.login-screen) #app [role="button"]:not(.active):not(.selected):not(.is-active):not(.is-selected):not([aria-pressed="true"]):not([aria-selected="true"]),
+html body:not(.login-screen) #app .quiz-options button:not(.correct):not(.incorrect):not(.chosen):not(.selected),
+html body:not(.login-screen) #app .modality-filters button:not(.active):not(.selected){
+ background:#061714!important;
+ background-image:none!important;
+ color:#FFFFFF!important;
+}
+/* Disabled controls remain visually recognizable as unavailable. */
