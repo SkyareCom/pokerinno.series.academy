@@ -37,6 +37,14 @@ jobs:
         with:
           name: academy-local-spot-audit
           path: reports/solver/academy-local-audit.json
+      - name: Audit Academy solver readiness
+        run: node scripts/audit-academy-solve-readiness.mjs
+      - name: Save solver readiness report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: academy-solve-readiness
+          path: reports/solver/academy-solve-readiness.json
       - name: Export unresolved 9max solver queue
         run: node scripts/export-9max-solver-queue.mjs
       - name: Save solver queue
