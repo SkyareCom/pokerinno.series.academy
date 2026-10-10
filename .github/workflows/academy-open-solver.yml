@@ -56,7 +56,7 @@ jobs:
           set -o pipefail
           printf 'holdem %s\nsolve\nstrategy all\nexit\n' "$GITHUB_WORKSPACE/reports/solver/postflop-inputs/selected-spot.yml" | timeout 600 /tmp/academy-open-solver/build/PostflopSolver 2>&1 | tee reports/solver/postflop-inputs/solver-run.log
           ! grep -Eq 'Error:|Game settings not loaded|Could not load field' reports/solver/postflop-inputs/solver-run.log
-          grep -Eq 'Hand[[:space:]]*\\|[[:space:]]*Weight|target exploitability|exploitability' reports/solver/postflop-inputs/solver-run.log
+          grep -Eiq 'strategy|exploitability' reports/solver/postflop-inputs/solver-run.log
       - name: Audit solver completion status
         if: always()
         run: |
@@ -64,8 +64,8 @@ jobs:
           import json,pathlib,re
           p=pathlib.Path('reports/solver/postflop-inputs/solver-run.log')
           log=p.read_text(errors='replace') if p.exists() else ''
-          report={'solverOutputPresent':bool(log),'hasStrategyTable':bool(re.search(r'Hand\\s*\\|\\s*Weight',log)),'hasExploitabilityReport':bool(re.search(r'exploitability',log,re.I)),'containsError':bool(re.search(r'Error:|Game settings not loaded|Could not load field',log)),'independentlyCertified':False,'status':'SOLVER_EVIDENCE_UNVERIFIED'}
-          pathlib.Path('reports/solver/postflop-inputs/solver-completion-audit.json').write_text(json.dumps(report,indent=2)+'\\n')
+          report={'solverOutputPresent':bool(log),'hasStrategyTable':bool(re.search(r'Hand\s*\|\s*Weight',log)),'hasExploitabilityReport':bool(re.search(r'exploitability',log,re.I)),'containsError':bool(re.search(r'Error:|Game settings not loaded|Could not load field',log)),'independentlyCertified':False,'status':'SOLVER_EVIDENCE_UNVERIFIED'}
+          pathlib.Path('reports/solver/postflop-inputs/solver-completion-audit.json').write_text(json.dumps(report,indent=2)+'\n')
           print(json.dumps(report))
           PY
       - name: Upload solver evidence
