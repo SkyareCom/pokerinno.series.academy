@@ -30,8 +30,8 @@ export function buildDecisionQuestions(spot){
  const call=Number(spot.callAmountBB);
  const hasCall=spot.callAmountBB!==undefined&&spot.callAmountBB!==null&&valid(call)&&call>0;
  const spr=street!=='pre'&&valid(eff)&&valid(pot)&&pot>0;
- const sprMath=spr?`SPR = stack efetivo ÷ pote\\nSPR = ${fmt(eff)} BB ÷ ${fmt(pot)} BB = ${fmt(eff/pot)}`:'';
- const oddsMath=hasCall&&valid(pot)?`Equidade mínima = valor do call ÷ (pote + call) × 100\\n= ${fmt(call)} ÷ (${fmt(pot)} + ${fmt(call)}) × 100 = ${fmt(call/(pot+call)*100)}%`:'';
+ const sprMath=spr?`SPR = ${fmt(eff)} ÷ ${fmt(pot)} = ${fmt(eff/pot)}`:'';
+ const oddsMath=hasCall&&valid(pot)?`Pot odds = ${fmt(call)} ÷ (${fmt(pot)} + ${fmt(call)}) × 100 = ${fmt(call/(pot+call)*100)}%`:'';
 
  add('POSIÇÃO',`Você está em ${position}. Quantos jogadores ainda precisam agir depois de você?`);
  if(street==='pre'){
