@@ -41,14 +41,14 @@ for(const s of trainingSpots.filter(s=>s.street!=='pre')){
    '    '+player+':',
    ...['flop','turn','river'].flatMap(street=>[
     '      '+street+':',
-    '        bet-sizes: [33, 75]',
+    '        bet-sizes: [50]',
     '        raise-sizes: [50]'
    ])
   ]),
   'solver:',
   '  threads: 2',
-  '  target-exploitability-percent: 0.3',
-  '  max-iterations: 1000',
+  '  target-exploitability: 0.3',
+  '  max-iterations: 200',
   '  exploitability-check-frequency: 10'
  ].join('\n')+'\n';
  // Avoid writing 780 files into GitHub Actions artifacts: use one combined manifest.
