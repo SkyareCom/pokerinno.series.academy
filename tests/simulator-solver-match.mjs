@@ -14,8 +14,9 @@ test('solver frequencies are only taken from the exact RFI hand and scenario',()
  for(const s of trainingSpots.filter(s=>s.solver)){
   for(const [label,action] of [['FOLD','fold'],['RAISE','raise']]){
    const result=checkTrainingAction(s,label);
-   assert.equal(result.status,'solver-reference');
-   assert.equal(result.frequency,s.solver.actions.find(a=>a[0]===action)?.[1]??0);
+   const expected=s.solver.actions.find(a=>a[0]===action);
+   assert.equal(result.status,expected?'solver-reference':'unvalidated');
+   if(expected)assert.equal(result.frequency,expected[1]);
   }
  }
 });
@@ -42,6 +43,18 @@ test('RFI starts with 1.5 BB and never reports call or check as validated',()=>{
   assert.equal(s.pot,1.5);
   for(const a of ['CALL','CHECK']){
    assert.equal(checkTrainingAction(s,a).status,'unvalidated');
+  }
+ }
+});
+
+test('solver must never invent an absent action frequency',()=>{
+ for(const s of trainingSpots.filter(s=>s.solver)){
+  for(const a of ['RAISE','FOLD','ALL IN']){
+   const result=checkTrainingAction(s,a);
+   if(!s.solver.actions.some(([name])=>name===a.toLowerCase())){
+    assert.equal(result.status,'unvalidated');
+    assert.equal(result.frequency,undefined);
+   }
   }
  }
 });
