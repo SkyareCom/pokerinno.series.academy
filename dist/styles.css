@@ -1626,3 +1626,22 @@ html body:not(.login-screen) :is(#app,.sidebar,header,dialog,.pokerinno-balloons
 #app .ranges-activity-result{min-height:45px;font-size:12px;line-height:1.6;color:#f1ca73;}
 #app .ranges-activity-next{display:block;width:100%;margin-top:10px;background:#f0c66a;color:#10271f;}
 #app .ranges-activity-next:disabled{opacity:.45;}
+
+/* Academy layout consistency audit: content-safe cards on narrow screens. */
+#app,#app *{box-sizing:border-box;}
+#app{min-width:0;max-width:100%;overflow-wrap:break-word;}
+#app .quiz-counters{grid-template-columns:repeat(3,minmax(0,1fr));align-items:stretch;gap:8px;}
+#app .quiz-counters article{min-width:0;min-height:126px;padding:12px 5px;grid-template-rows:minmax(38px,auto) 1fr auto;align-items:center;justify-items:center;gap:8px;}
+#app .quiz-counters article>span{display:flex;align-items:center;justify-content:center;min-width:0;width:100%;min-height:38px;font-size:clamp(10px,2.8vw,12px);font-weight:600;line-height:1.3;overflow-wrap:break-word;hyphens:auto;text-align:center;}
+#app .quiz-counters article>strong{align-self:center;font-size:25px;line-height:1.1;}
+#app .quiz-counters article>small{align-self:end;font-size:12px;line-height:1.2;}
+#app .practice-catalog,#app .practice-catalog .source-group,#app .practice-catalog .journey-chapters{min-width:0;max-width:100%;}
+#app .practice-catalog .learn-extra{min-width:0;max-width:100%;overflow:hidden;}
+#app .practice-catalog .learn-extra-copy{min-width:0;overflow-wrap:break-word;}
+#app .practice-catalog .learn-extra-copy h3,#app .practice-catalog .learn-extra-copy p{max-width:100%;overflow-wrap:break-word;}
+#app .quiz-player,#app .source-question,#app .quiz-options,#app .quiz-controls{min-width:0;max-width:100%;}
+#app .quiz-options button,#app .quiz-controls button{min-width:0;white-space:normal;overflow-wrap:anywhere;}
+#app .source-question h2{overflow-wrap:break-word;}
+#app .ranges-activity-card,#app .ranges-activity-choices,#app .ranges-filter-drawer{min-width:0;max-width:100%;}
+#app .ranges-activity-choices button,#app .ranges-filter-drawer button{min-width:0;overflow-wrap:anywhere;}
+@media(max-width:360px){#app .quiz-counters{gap:5px;}#app .quiz-counters article{padding:10px 3px;}#app .quiz-counters article>span{font-size:10px;}#app .quiz-controls{gap:5px;}}
