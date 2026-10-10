@@ -1,5 +1,5 @@
 const key='academy.activity.results.v1',preferenceKey='academy.training.save';let pending=[],savedMemory=[];
-const valid=x=>x&&typeof x.module==='string'&&typeof x.question==='string'&&typeof x.correct==='boolean'&&Number.isFinite(x.at)&&['rules','staff','formats','terms','math','decisions','discover','betting','floor','etiquette','house-rules'].includes(x.theme);
+const valid=x=>x&&typeof x.module==='string'&&typeof x.question==='string'&&typeof x.correct==='boolean'&&Number.isFinite(x.at)&&['rules','staff','formats','terms','math','decisions','discover','betting','floor','etiquette','house-rules','ranges'].includes(x.theme);
 export function savedResults(){try{const value=JSON.parse(localStorage.getItem(key)||'[]');if(Array.isArray(value))savedMemory=value.filter(valid);}catch{}return savedMemory}
 export function results(){return [...savedResults(),...pending]}
 export function autoSave(){try{return localStorage.getItem(preferenceKey)!=='off'}catch{return true}}
