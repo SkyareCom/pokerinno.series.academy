@@ -30,6 +30,7 @@ for(const s of trainingSpots){
  if(!Number.isFinite(s.stack)||!Number.isFinite(s.effectiveStack)||s.effectiveStack<0||s.effectiveStack>s.stack)fail('invalid_stack');
  if(!Number.isFinite(s.pot)||s.pot<=0)fail('invalid_pot');
  if(s.street==='pre'){
+  if(s.position==='BB')fail('unopened_bb_position_invalid');
   if(s.board?.length||s.bettingLine?.length||s.pot!==1.5||s.effectiveStack!==s.stack)fail('invalid_unopened_preflop');
   if(!s.solver?.solveId||!Array.isArray(s.solver.actions))fail('missing_preflop_source_reference');
   else {
@@ -52,6 +53,8 @@ for(const s of trainingSpots){
   const expectedStack=s.stack-2.5-(s.street==='flop'?0:s.street==='turn'?2:6);
   if(Math.abs(s.effectiveStack-expectedStack)>1e-9)fail('stack_conservation');
   if(s.solver!==null)fail('postflop_not_independently_solved');
+  if(s.position!=='BTN'||s.aggressor!=='BTN')fail('postflop_role_mismatch');
+  if(s.villainRange!=='BB_DEFEND_VS_BTN_OPEN_UNVERIFIED')fail('postflop_range_provenance_mismatch');
  }
 }
 const ids=trainingSpots.map(s=>s.id);
