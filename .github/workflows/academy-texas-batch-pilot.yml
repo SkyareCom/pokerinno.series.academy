@@ -6,9 +6,9 @@ on:
   workflow_dispatch:
     inputs:
       spot_ids:
-        description: 'JSON list of postflop IDs, e.g. [725,726,727,728]'
+        description: 'JSON list of postflop IDs, e.g. [729,730,731,732]'
         required: false
-        default: '[725,726,727,728]'
+        default: '[729,730,731,732]'
       max_iterations:
         description: 'Solver iterations (diagnostic default 100)'
         required: false
@@ -27,7 +27,7 @@ jobs:
       fail-fast: false
       max-parallel: 4
       matrix:
-        spot_id: ${{ fromJSON(inputs.spot_ids || '[725,726,727,728]') }}
+        spot_id: ${{ fromJSON(inputs.spot_ids || '[729,730,731,732]') }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
