@@ -27,10 +27,13 @@ jobs:
           node-version: '22'
       - name: Run frontend tests and audits
         run: |
-          npm test
-          npm run i18n:audit
-          npm run spacing:audit
-          npm run visual:audit
+          set +e
+          npm test; tests=$?
+          npm run i18n:audit; i18n=$?
+          npm run spacing:audit; spacing=$?
+          npm run visual:audit; visual=$?
+          echo "Results: tests=$tests i18n=$i18n spacing=$spacing visual=$visual"
+          test "$tests" -eq 0 && test "$i18n" -eq 0 && test "$spacing" -eq 0 && test "$visual" -eq 0
       - name: Package local frontend
         run: |
           mkdir -p android/app/src/main/assets
