@@ -57,7 +57,21 @@ const uniqueGroupQuestions=id=>{
 };
 const groupQuestionBank=new Map(groups.filter(g=>!g.ranges).map(g=>[g.id,uniqueGroupQuestions(g.id)]));
 for(const [id,questions] of Object.entries({...creativeActivities,...Object.fromEntries(Object.entries(supplementalActivities).map(([id,items])=>[id,[...(creativeActivities[id]||[]),...items]]))})){const group=groupQuestionBank.get(id);if(!group)continue;for(const q of questions){const fingerprint=normalizedQuestion(q);if(assigned.has(fingerprint)||assignedIds.has(q.id))continue;assigned.set(fingerprint,id);assignedIds.add(q.id);group.push(q)}}
-const mix=questions=>{const a=[...questions];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const mix=questions=>{
+ const a=[...questions],out=[];
+ const shuffle=items=>{for(let i=items.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[items[i],items[j]]=[items[j],items[i]]}return items};
+ const category=q=>{const id=String(q.id||'').replace(/^NEW-[^-]+-/,'').replace(/[0-9]+/g,'#');const prompt=String(q.prompt||q.question||q.q||q.text||'').normalize('NFKC').toLowerCase().replace(/\\d+/g,'#').replace(/\\s+/g,' ').trim();return (q.kind||q.type||'')+'|'+(id.split('-').slice(0,2).join('-')||prompt.slice(0,55))};
+ shuffle(a);
+ while(a.length){
+  const recent=out.slice(-2).map(category);
+  const choices=a.map((q,i)=>({i,penalty:recent.reduce((n,k,j)=>n+(category(q)===k?(j===recent.length-1?8:3):0),0)}));
+  const min=Math.min(...choices.map(x=>x.penalty));
+  const eligible=choices.filter(x=>x.penalty===min);
+  const picked=eligible[Math.floor(Math.random()*eligible.length)].i;
+  out.push(a.splice(picked,1)[0]);
+ }
+ return out;
+};
 const practiceCardStats=(g,rows)=>{const questions=groupQuestionBank.get(g.id)||[];const total=g.ranges?300:questions.length;const module='group-'+g.id;const ids=new Set(questions.map(q=>String(q.id)));const done=g.ranges?new Set(rows.filter(row=>row.module==='group-ranges'&&/^range-\d+$/.test(row.question)).map(row=>row.question)).size:new Set(rows.filter(row=>row.module===module&&ids.has(row.question)).map(row=>row.question)).size;const pct=total?Math.round(done*100/total):0;const maxXp=g.ranges?6000:questions.reduce((sum,q)=>sum+activityDifficulty(q,g.id).xp,0);return {done,total,pct,maxXp};};
 export function practiceCatalog(){const rows=results();return `<div class="practice-catalog"><div class="list journey-chapters">${groups.map((g,i)=>{const stats=practiceCardStats(g,rows);return `<a class="learn-extra learn-extra-pokerinno" href="#practice-module/${g.id}"><div class="learn-extra-host"><span class="pokerinno-sprite ${['curious','learning','focused','analyzing','evolving','thinking','confident','practicing','studying','motivated'][i%10]}" role="img" aria-label="Pokerinno"></span></div><div class="learn-extra-copy"><h3>${g.title()}</h3><p class="practice-card-progress">${stats.done} / ${stats.total} REALIZADOS · ${stats.pct}%</p><p class="practice-card-xp">XP MÁXIMO: ${stats.maxXp.toLocaleString('pt-BR')}</p></div></a>`}).join('')}</div></div>`}
 export function practiceModule(key){const group=groups.find(g=>g.id===key);if(group?.ranges){location.hash='practice-ranges';return ''}if(group){const questions=groupQuestionBank.get(key)||[];return `<a class="back" href="#practice">← ${t('practice.back')}</a><div class="page-heading"><div><span class="eyebrow">PRATICAR</span><h1>${group.title()}</h1></div></div>${questions.length?'<p class="practice-mix-note">Atividades relacionadas reunidas neste tema, sem subdivisões.</p>':''}${questions.length?sourceQuiz(mix(questions),'group-'+key,key):'<p class="practice-mix-note">Atividades deste tema em preparação.</p>'}`}
