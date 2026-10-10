@@ -10,3 +10,6 @@ footer,#app .footer,#app .footer *{font-size:10px!important}
 
 /* Profile settings: descriptions use the same muted color regardless of checkbox state. */
 #app .profile-settings label p,#app .profile-settings label small,#app .profile-settings .setting-description,#app .profile-settings .setting-desc,#app .profile-settings .settings-description,#app .profile-settings .muted{color:var(--muted)!important}
+
+/* Footer icons: explicitly requested 25px; preserve all other footer properties. */
+@media(max-width:800px){#mobile-navigation .nav-symbol{font-size:25px!important}#mobile-navigation .nav-symbol svg{width:25px!important;height:25px!important}}
