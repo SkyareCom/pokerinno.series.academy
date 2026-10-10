@@ -87,3 +87,20 @@ test('hero has two distinct physical cards without collision with the board',()=
   if(s.hand.endsWith('o'))assert.notEqual(a[1],b[1]);
  }
 });
+
+test('all 1500 candidate scenarios have a complete nonduplicated deck and distinct strategic key',async()=>{
+ const {auditStrategicDuplicates}=await import('../dist/simulator-uniqueness.js');
+ const report=auditStrategicDuplicates(trainingSpots);
+ assert.equal(report.total,1500);
+ assert.equal(report.duplicateCount,0,JSON.stringify(report.duplicates.slice(0,5)));
+ for(const s of trainingSpots){
+  assert.equal(new Set([...s.heroCards,...s.board]).size,2+s.board.length);
+  assert.ok(s.effectiveStack>0);
+  if(s.street!=='pre'){
+   assert.ok(s.bettingLine.length>=3);
+   assert.ok(s.villainRange);
+   assert.ok(s.aggressor);
+   assert.equal(s.solver,null);
+  }
+ }
+});
