@@ -1,9 +1,11 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
+import {execFileSync} from 'node:child_process';
 import {trainingSpots} from '../dist/simulator-spots.js';
 import {strategicSpotKey} from '../dist/simulator-uniqueness.js';
 
+execFileSync(process.execPath,['scripts/export-9max-solver-queue.mjs'],{stdio:'pipe'});
 const file=JSON.parse(readFileSync('reports/solver/9max-postflop-pending.json','utf8'));
 test('exported 9max solver queue is exact, unique and never misrepresented as solved',()=>{
  const pending=trainingSpots.filter(s=>s.street!=='pre'&&!s.solver);
