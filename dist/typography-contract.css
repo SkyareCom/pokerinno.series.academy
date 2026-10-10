@@ -915,3 +915,25 @@ html body #app .section-top > span{
  border-bottom:0!important;
  border-left:0!important;
 }
+
+/* TWO BUTTON STYLES ONLY — approved discreet design.
+   Normal: dark background, beige text/border.
+   Selected/pressed: beige background, dark text/border.
+   No orange, gold, or third primary style. */
+html body:not(#two-a):not(#two-b):not(#two-c):not(#two-d) :is(button,[role="button"],input[type="button"],input[type="submit"],input[type="reset"],.btn,.button,.primary,a.primary){
+ background:#061714!important;
+ background-color:#061714!important;
+ background-image:none!important;
+ color:#D4CFBD!important;
+ border-color:#D4CFBD!important;
+ border-width:1px!important;
+}
+html body:not(#two-a):not(#two-b):not(#two-c):not(#two-d) :is(button,[role="button"],input[type="button"],input[type="submit"],input[type="reset"],.btn,.button,.primary,a.primary) :is(span,strong,small,em,b,i){color:inherit!important;}
+html body:not(#two-a):not(#two-b):not(#two-c):not(#two-d) :is(button,[role="button"],input[type="button"],input[type="submit"],input[type="reset"],.btn,.button,.primary,a.primary):is(:active,.active,.selected,.is-active,.is-selected,.checked,[aria-pressed="true"],[aria-selected="true"],[aria-checked="true"],[data-selected="true"],[data-active="true"],[data-state="active"],[data-state="checked"]){
+ background:#D4CFBD!important;
+ background-color:#D4CFBD!important;
+ background-image:none!important;
+ color:#061714!important;
+ border-color:#D4CFBD!important;
+ border-width:1px!important;
+}
