@@ -29,6 +29,14 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Audit Academy scenarios independently of external repositories
+        run: node scripts/audit-academy-spots.mjs
+      - name: Save Academy local audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: academy-local-spot-audit
+          path: reports/solver/academy-local-audit.json
       - name: Export unresolved 9max solver queue
         run: node scripts/export-9max-solver-queue.mjs
       - name: Save solver queue
