@@ -29,6 +29,14 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Export Academy weighted ranges
+        run: node scripts/build-academy-weighted-ranges.mjs
+      - name: Save Academy weighted ranges
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: academy-weighted-ranges
+          path: dist/academy-weighted-ranges.json
       - name: Audit Academy scenarios independently of external repositories
         run: node scripts/audit-academy-spots.mjs
       - name: Save Academy local audit
