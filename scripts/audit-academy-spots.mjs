@@ -57,7 +57,11 @@ for(const s of trainingSpots){
   if(Math.abs(s.effectiveStack-expectedStack)>1e-9)fail('stack_conservation');
   if(s.solver!==null)fail('postflop_not_independently_solved');
   if(s.position!=='BTN'||s.aggressor!=='BTN')fail('postflop_role_mismatch');
-  if(s.villainRange!=='BB_DEFEND_VS_BTN_OPEN_UNVERIFIED')fail('postflop_range_provenance_mismatch');
+  if(s.rangeProvenance?.villain!=='ACADEMY_HEURISTIC_UNVERIFIED')fail('postflop_range_provenance_mismatch');
+  for(const [name,range] of [['hero',s.heroRange],['villain',s.villainRange]]){
+   if(!range||Object.keys(range).length!==169)fail('incomplete_'+name+'_range');
+   else if(Object.values(range).some(w=>!Number.isFinite(w)||w<0||w>1))fail('invalid_'+name+'_range_weight');
+  }
  }
 }
 const ids=trainingSpots.map(s=>s.id);
