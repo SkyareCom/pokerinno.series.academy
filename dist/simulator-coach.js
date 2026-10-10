@@ -24,7 +24,15 @@ export function buildDecisionQuestions(spot){
  const multiway=spot.playersInHand>2;
  const short=Number.isFinite(eff)&&eff<=20;
  const q=[];
- const add=(category,question)=>q.push({category,question});
+ const add=(category,question,calculation='')=>q.push({category,question,calculation});
+ const fmt=n=>Number(n).toLocaleString('pt-BR',{maximumFractionDigits:2});
+ const valid=n=>Number.isFinite(n)&&n>=0;
+ const call=Number(spot.callAmountBB);
+ const hasCall=spot.callAmountBB!==undefined&&spot.callAmountBB!==null&&valid(call)&&call>0;
+ const spr=street!=='pre'&&valid(eff)&&valid(pot)&&pot>0;
+ const sprMath=spr?`SPR = stack efetivo ÷ pote\\nSPR = ${fmt(eff)} BB ÷ ${fmt(pot)} BB = ${fmt(eff/pot)}`:'';
+ const oddsMath=hasCall&&valid(pot)?`Equidade mínima = valor do call ÷ (pote + call) × 100\\n= ${fmt(call)} ÷ (${fmt(pot)} + ${fmt(call)}) × 100 = ${fmt(call/(pot+call)*100)}%`:'';
+
  add('POSIÇÃO',`Você está em ${position}. Quantos jogadores ainda precisam agir depois de você?`);
  if(street==='pre'){
   if(unopened){
@@ -43,11 +51,11 @@ export function buildDecisionQuestions(spot){
   add('HISTÓRICO',`No ${street.toUpperCase()}, quem foi o agressor pré-flop e como a ação chegou até você?`);
   add('BOARD',street==='flop'?'Com estas três cartas do flop, sua mão acertou algo ou possui algum projeto?':street==='turn'?'A quarta carta melhorou sua mão ou completou algum projeto?':'Com as cinco cartas na mesa, qual é a força final da sua mão?');
   add('TEXTURA',street==='flop'?'O flop é seco, conectado ou apresenta possibilidade de flush?':street==='turn'?'O turn mudou a textura ou a vantagem de range?':'O river completou sequência, flush ou outra combinação que muda o valor das mãos?');
-  if(bet)add('APOSTA RECEBIDA','Quanto você precisa pagar em relação ao pote? Quais pot odds precisa considerar?');
+  if(bet)add('APOSTA RECEBIDA',hasCall?'Qual é a equidade mínima necessária para pagar esta aposta?':'Quanto você precisa pagar em relação ao pote? Quais pot odds precisa considerar?',oddsMath);
   else add('AÇÃO DISPONÍVEL','Como não há aposta a pagar agora, apostar por valor, blefar ou fazer check faz mais sentido?');
   if(multiway)add('POTE MULTIWAY','Sua mão perde valor por enfrentar vários adversários ao mesmo tempo?');
   else if(short)add('STACK CURTO','Quanto do seu stack efetivo ficaria comprometido se você apostasse ou pagasse?');
-  else if(Number.isFinite(eff)&&Number.isFinite(pot)&&pot>0)add('STACK E POTE',`O pote é de cerca de ${pot} BB e o stack efetivo de ${eff} BB. Como a relação stack/pote muda o risco?`);
+  else if(spr)add('SPR', 'Qual é o SPR desta mão e o que esse resultado significa para sua decisão?',sprMath);
   else add('RANGE','Quais mãos fortes e projetos o adversário pode ter pela linha de ações apresentada?');
   add('DECISÃO',bet?'Você está pagando por valor de showdown, por um projeto com odds adequadas, ou deveria desistir?':street==='river'?'Quais mãos piores pagariam sua aposta de valor e quais mãos melhores desistiriam de um blefe?':'Quais mãos piores pagariam sua aposta e o que você faria diante de um raise?');
   if(street==='river')add('CONCLUSÃO','Se enfrentar um raise no river, quais mãos de valor e possíveis blefes explicam essa ação?');
@@ -57,7 +65,8 @@ export function buildDecisionQuestions(spot){
  // Rotate one optional contextual question across scenarios while preserving the decision sequence.
  const limit=street==='pre'?5:5;
  const first=q[0],lastQuestion=q.at(-1),middle=q.slice(1,-1);
- const selected=middle.length<=limit-2?middle:middle.filter((_,i)=>i!==((Number(spot.id)||0)%middle.length)).slice(0,limit-2);
+ const required=middle.find(item=>item.category==='SPR'||(item.category==='APOSTA RECEBIDA'&&item.calculation));
+ const selected=required?[...middle.filter(item=>item!==required).slice(0,limit-3),required]:middle.slice(0,limit-2);
  return [first,...selected,lastQuestion];
 }
 export function showDecisionCoach(page,spot,proceed){
@@ -73,7 +82,7 @@ export function showDecisionCoach(page,spot,proceed){
  const faces=['pokerinno-happy.webp','pokerinno-curious.webp','pokerinno-thinking.webp','pokerinno-analyzing.webp','pokerinno-focused.webp','pokerinno-studying.webp','pokerinno-confident.webp'];
  overlay.innerHTML='<div class="simulator-coach-stage"><img class="simulator-coach-character" src="assets/pokerinno-happy.webp" alt="Pokerinno" /><div class="simulator-coach-talk"><div class="simulator-coach-bubble" aria-live="polite"></div><div class="simulator-coach-buttons"><button type="button" data-coach-skip>PULAR ETAPA</button><button type="button" data-coach-next>PRÓXIMO</button></div></div></div>';
  const character=overlay.querySelector('.simulator-coach-character'),bubble=overlay.querySelector('.simulator-coach-bubble'),next=overlay.querySelector('[data-coach-next]');
- function show(){const item=questions[index];character.src='assets/'+(index<0?faces[0]:faces[Math.floor(index/2+1)%faces.length]);bubble.textContent=index<0?'Olá, sou Pokerinno e vou ajudar você a tomar a melhor decisão.':item.question;next.textContent=index===questions.length-1?'DECIDIR':'PRÓXIMO';bubble.classList.remove('simulator-coach-bubble-enter');void bubble.offsetWidth;bubble.classList.add('simulator-coach-bubble-enter');}
+ function show(){const item=questions[index];character.src='assets/'+(index<0?faces[0]:faces[Math.floor(index/2+1)%faces.length]);bubble.replaceChildren();const question=document.createElement('div');question.textContent=index<0?'Olá, sou Pokerinno e vou ajudar você a tomar a melhor decisão.':item.question;bubble.append(question);if(item?.calculation){const calc=document.createElement('div');calc.className='simulator-coach-calculation';calc.textContent=item.calculation;bubble.append(calc)}next.textContent=index===questions.length-1?'DECIDIR':'PRÓXIMO';bubble.classList.remove('simulator-coach-bubble-enter');void bubble.offsetWidth;bubble.classList.add('simulator-coach-bubble-enter');}
  function finish(){if(closing)return;closing=true;overlay.classList.add('simulator-coach-exit');const done=()=>{overlay.remove();proceed()};if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){done();return}overlay.addEventListener('animationend',e=>{if(e.target===overlay)done()},{once:true});setTimeout(()=>{if(overlay.isConnected)done()},550)}
  overlay.querySelector('[data-coach-skip]').addEventListener('click',finish);
  next.addEventListener('click',()=>{if(index>=questions.length-1){finish();return}index++;show()});
