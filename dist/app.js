@@ -1,4 +1,4 @@
-import {rangesActivitiesPage,setupRangesActivities} from './ranges-activities.js?v=4a6998d';
+import {rangesActivitiesPage,setupRangesActivities} from './ranges-activities.js?v=07cb902';
 import {coachProfileSetting,setCoachEnabled,setCoachQuestionCount} from './simulator-coach.js?v=35bc6e7';
 import {rangesLibrary,setupRangesLibrary} from './ranges-library.js?v=45ac161';
 import {simulatorPage,setupSimulator} from './simulator.js?v=ecd59da';
