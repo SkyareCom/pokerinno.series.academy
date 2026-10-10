@@ -45,6 +45,14 @@ jobs:
         with:
           name: academy-local-spot-audit
           path: reports/solver/academy-local-audit.json
+      - name: Prepare open DCFR solver inputs
+        run: node scripts/prepare-open-solver-inputs.mjs
+      - name: Save open solver input manifest
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: academy-open-solver-inputs
+          path: reports/solver/postflop-inputs/academy-postflop-inputs.json
       - name: Cross-check Academy DCFR 9max ranges
         run: node scripts/crosscheck-academy-dcfr.mjs
       - name: Save DCFR cross-check
