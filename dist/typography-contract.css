@@ -803,3 +803,24 @@ html body button :is(span,strong,small,em,b,i),
 html body #app [role="button"] :is(span,strong,small,em,b,i){
  color:#D4CFBD!important;
 }
+
+/* BUTTON CLICK / SELECTION: orange border, beige fill, dark writing.
+   Preserve neutral button appearance when not selected. */
+html body button:is(:active,.active,.selected,.is-active,.is-selected,[aria-pressed="true"],[aria-selected="true"],[data-selected="true"],[data-active="true"]),
+html body #app [role="button"]:is(:active,.active,.selected,.is-active,.is-selected,[aria-pressed="true"],[aria-selected="true"],[data-selected="true"],[data-active="true"]),
+html body #app input:is([type="button"],[type="submit"],[type="reset"]):active{
+ background:#D4CFBD!important;
+ background-color:#D4CFBD!important;
+ background-image:none!important;
+ color:#061714!important;
+ border-color:#FF8C00!important;
+ border-top-color:#FF8C00!important;
+ border-right-color:#FF8C00!important;
+ border-bottom-color:#FF8C00!important;
+ border-left-color:#FF8C00!important;
+ border-width:1px!important;
+}
+html body button:is(:active,.active,.selected,.is-active,.is-selected,[aria-pressed="true"],[aria-selected="true"],[data-selected="true"],[data-active="true"]) :is(span,strong,small,em,b,i),
+html body #app [role="button"]:is(:active,.active,.selected,.is-active,.is-selected,[aria-pressed="true"],[aria-selected="true"],[data-selected="true"],[data-active="true"]) :is(span,strong,small,em,b,i){
+ color:#061714!important;
+}
