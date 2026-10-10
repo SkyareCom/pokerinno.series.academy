@@ -1645,3 +1645,10 @@ html body:not(.login-screen) :is(#app,.sidebar,header,dialog,.pokerinno-balloons
 #app .ranges-activity-card,#app .ranges-activity-choices,#app .ranges-filter-drawer{min-width:0;max-width:100%;}
 #app .ranges-activity-choices button,#app .ranges-filter-drawer button{min-width:0;overflow-wrap:anywhere;}
 @media(max-width:360px){#app .quiz-counters{gap:5px;}#app .quiz-counters article{padding:10px 3px;}#app .quiz-counters article>span{font-size:10px;}#app .quiz-controls{gap:5px;}}
+
+/* Quiz indicators: fixed 12px headings, no hyphenation, aligned values. */
+#app .quiz-counters{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:8px!important;align-items:stretch!important;}
+#app .quiz-counters article{display:grid!important;grid-template-rows:42px 1fr 22px!important;align-items:center!important;justify-items:center!important;min-width:0!important;min-height:140px!important;padding:12px 4px!important;gap:8px!important;}
+#app .quiz-counters article>span{display:flex!important;align-items:center!important;justify-content:center!important;width:100%!important;min-height:42px!important;font-size:12px!important;font-weight:600!important;line-height:1.2!important;text-align:center!important;hyphens:none!important;word-break:normal!important;overflow-wrap:normal!important;white-space:normal!important;}
+#app .quiz-counters article>strong{align-self:center!important;line-height:1!important;}
+#app .quiz-counters article>small{align-self:center!important;line-height:1!important;}
