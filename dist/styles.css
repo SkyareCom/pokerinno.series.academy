@@ -1501,3 +1501,5 @@ html body:not(.login-screen) :is(#app,.sidebar,header,dialog,.pokerinno-balloons
 
 #app .simulator-coach-calculation{margin-top:7px;padding:7px;border-top:1px solid #d5b56b;color:#ffe6a2;white-space:pre-line;font-size:11px;line-height:1.45;font-weight:600}
 #app .simulator-coach-bubble{max-height:145px}
+
+#app .simulator-coach-calculation{white-space:nowrap;overflow-x:auto;max-width:100%;font-size:10px;line-height:1.25;padding:5px 2px;margin-top:4px}
