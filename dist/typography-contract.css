@@ -891,3 +891,9 @@ html body:not(#gold-button-a):not(#gold-button-b):not(#gold-button-c):not(#gold-
 html body:not(#gold-button-a):not(#gold-button-b):not(#gold-button-c):not(#gold-button-d) :is(button,[role="button"],input[type="button"],input[type="submit"],input[type="reset"],.btn,.button) :is(span,strong,small,em,b,i){
  color:inherit!important;
 }
+
+/* GOLD PAGE EYEBROWS — Academy discovery and adventure labels.
+   Only page-heading eyebrow labels; no button or footer changes. */
+html body #app .page-heading .eyebrow{
+ color:#F7C75B!important;
+}
