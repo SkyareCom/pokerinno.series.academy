@@ -43,10 +43,21 @@ jobs:
           find /tmp/academy-texas-solver/build-academy -type f -executable | tee reports/solver/independent/binaries.txt
           find /tmp/academy-texas-solver/install -type f -executable 2>/dev/null | tee -a reports/solver/independent/binaries.txt
           test -s reports/solver/independent/binaries.txt
+      - name: Execute one real independent solve (diagnostic only)
+        continue-on-error: true
+        timeout-minutes: 12
+        run: |
+          set -o pipefail
+          cd /tmp/academy-texas-solver/install
+          cp "$GITHUB_WORKSPACE/reports/solver/independent/selected-texas-input.txt" ./academy-spot-input.txt
+          timeout 600 ./console_solver -i academy-spot-input.txt 2>&1 | tee "$GITHUB_WORKSPACE/reports/solver/independent/texas-solver-run.log"
+          if test -s academy-texas-result.json; then cp academy-texas-result.json "$GITHUB_WORKSPACE/reports/solver/independent/texas-solver-result.json"; fi
+          grep -q 'Total exploitability' "$GITHUB_WORKSPACE/reports/solver/independent/texas-solver-run.log"
+          test -s "$GITHUB_WORKSPACE/reports/solver/independent/texas-solver-result.json"
       - name: Record independent certification limitations
         if: always()
         run: |
-          printf '%s\n' 'Independent engine checkout/build only. No TexasSolver solve executed. No convergence or action-frequency cross-check. 0 spots certified by this workflow.' > reports/solver/independent/certification-status.txt
+          printf '%s\n' 'Independent engine execution is diagnostic only. A result file without converged exploitability and cross-engine action-frequency agreement is NOT certification. 0 spots certified by this workflow.' > reports/solver/independent/certification-status.txt
       - name: Upload independent engine evidence
         if: always()
         uses: actions/upload-artifact@v4
