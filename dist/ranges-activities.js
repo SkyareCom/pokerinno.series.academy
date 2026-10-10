@@ -1,4 +1,4 @@
-import {record,results} from './progress.js?v=3ce5c6a';
+import {record,results} from './progress.js?v=733a7b1';
 /* 300 deterministic beginner exercises: 9-max only; teaching examples, not solver evaluations. */
 const ranks='AKQJT98765432';
 const hands=['AA','KK','QQ','JJ','TT','99','88','77','66','AKs','AQs','AJs','ATs','KQs','KJs','QJs','JTs','AKo','AQo','AJo','KQo','55','44','33','22','A9s','KTs','QTs','T9s','98s'];
