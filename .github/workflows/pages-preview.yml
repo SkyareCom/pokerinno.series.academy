@@ -45,6 +45,14 @@ jobs:
         with:
           name: academy-local-spot-audit
           path: reports/solver/academy-local-audit.json
+      - name: Audit available Academy solver outputs
+        run: node scripts/import-academy-solves.mjs
+      - name: Save solver import audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: academy-solve-import-audit
+          path: reports/solver/academy-solve-import-audit.json
       - name: Prepare open DCFR solver inputs
         run: node scripts/prepare-open-solver-inputs.mjs
       - name: Save open solver input manifest
