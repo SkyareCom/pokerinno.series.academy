@@ -103,3 +103,14 @@ body:not(.login-screen) #app .academy-inline-drawer{
 body:not(.login-screen) #app .academy-inline-drawer>strong{display:block;font-size:14px!important;font-weight:600;color:var(--ui-title-color);margin-bottom:10px}
 body:not(.login-screen) #app .academy-inline-drawer>p{font-size:12px!important;color:var(--ui-secondary-color);margin:0 0 10px}
 body:not(.login-screen) #app .academy-inline-drawer>button{min-height:44px;padding:8px 14px;border:1px solid var(--ui-border-color);border-radius:9px;background:var(--panel);color:var(--gold);font-size:12px!important}
+
+/* User-approved color contract: subtitles and descriptions use secondary gray. */
+body:not(.login-screen) #app :is(
+ .subtitle,.sub-title,.subheading,.section-subtitle,.card-subtitle,
+ .page-subtitle,.lesson-subtitle,.chapter-subtitle,.source-subtitle,
+ .description,.card-description,.section-description,.page-description,
+ .lesson-description,.chapter-description,.source-description,
+ .learn-extra-copy p,.page-heading p,.stats-panel p,.stats-swot article p,
+ .profile-setting-copy p,.profile-plan p,.source-lesson>summary>small,
+ .source-lesson>p,.editorial-note p,.practice-mix-note
+){color:#9DB0A7!important;-webkit-text-fill-color:#9DB0A7!important}
