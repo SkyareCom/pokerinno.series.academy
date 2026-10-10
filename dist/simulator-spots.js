@@ -11,7 +11,7 @@ export const trainingSpots=Array.from({length:1500},(_,i)=>{
  const board=cards.slice(0,street==='pre'?0:street==='flop'?3:street==='turn'?4:5);
  const scenario=street==='pre'&&position!=='BB'?ranges.scenarios[stack+'|'+position]:null;
  const actions=scenario?.actions.find(row=>row[0]===hand)?.slice(1)??null;
- return {id:i+1,street,stack,position,pot:1.5+(i%12)*2,hand,board,solver:actions?{solveId:scenario.solveId,actions,context:'9MAX RFI PREFLOP'}:null};
+ return {id:i+1,street,stack,position,pot:street==='pre'?1.5:1.5+(i%12)*2,hand,board,solver:actions?{solveId:scenario.solveId,actions,context:'9MAX RFI PREFLOP'}:null};
 });
 export function checkTrainingAction(spot,action){
  if(!spot.solver)return {status:'unvalidated',scorable:false,message:'Cenário didático: não existe solve correspondente nesta biblioteca.'};
