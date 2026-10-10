@@ -5,13 +5,22 @@ const positions=['UTG','UTG+1','UTG+2','LJ','HJ','CO','BTN','SB','BB'];
 const stacks=[10,15,30,100];
 const hands=['AKs','QQ','JTs','77','AQo','KQs','T9s','A5s'];
 const cards=['Ah','7d','2c','9s','Kd'];
+const ranks='23456789TJQKA',suits='shdc';
+function holeCards(hand,index){
+ const a=hand[0],b=hand[1],type=hand[2];
+ const available=suits.filter(s=>!cards.some(card=>card===a+s||card===b+s));
+ if(a===b){const pair=available.slice(0,2);return [a+pair[0],b+pair[1]];}
+ if(type==='s'){const suit=available[index%available.length];return [a+suit,b+suit];}
+ const first=available[index%available.length],second=available[(index+1)%available.length];
+ return [a+first,b+second];
+}
 export const trainingSpots=Array.from({length:1500},(_,i)=>{
  const street=i%100<48?'pre':i%100<78?'flop':i%100<93?'turn':'river';
  const stack=stacks[i%4],position=positions[Math.floor(i/4)%9],hand=hands[Math.floor(i/36)%8];
  const board=cards.slice(0,street==='pre'?0:street==='flop'?3:street==='turn'?4:5);
  const scenario=street==='pre'&&position!=='BB'?ranges.scenarios[stack+'|'+position]:null;
  const actions=scenario?.actions.find(row=>row[0]===hand)?.slice(1)??null;
- return {id:i+1,street,stack,position,pot:street==='pre'?1.5:1.5+(i%12)*2,hand,board,solver:actions?{solveId:scenario.solveId,actions,context:'9MAX RFI PREFLOP'}:null};
+ return {id:i+1,street,stack,position,pot:street==='pre'?1.5:1.5+(i%12)*2,hand,heroCards:holeCards(hand,i),board,solver:actions?{solveId:scenario.solveId,actions,context:'9MAX RFI PREFLOP'}:null};
 });
 export function legalTrainingActions(spot){return spot.street==='pre'&&spot.position!=='BB'&&spot.solver?['FOLD','RAISE']:[];}
 export function checkTrainingAction(spot,action){
