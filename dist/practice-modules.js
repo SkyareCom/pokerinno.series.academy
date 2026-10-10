@@ -1,3 +1,4 @@
+import {creativeActivities} from './creative-activities.js?v=2282527';
 import {academyVerde9} from './academy-verde9-content.js';
 import {t} from './i18n.js?v=learn-titles-20261008';
 import {sourceQuiz} from './source-quiz.js?v=cards-no-arrows-20261008';
@@ -52,6 +53,7 @@ const uniqueGroupQuestions=id=>{
  return questions;
 };
 const groupQuestionBank=new Map(groups.filter(g=>!g.ranges).map(g=>[g.id,uniqueGroupQuestions(g.id)]));
+for(const [id,questions] of Object.entries(creativeActivities)){const group=groupQuestionBank.get(id);if(!group)continue;for(const q of questions){const fingerprint=normalizedQuestion(q);if(assigned.has(fingerprint)||assignedIds.has(q.id))continue;assigned.set(fingerprint,id);assignedIds.add(q.id);group.push(q)}}
 const mix=questions=>{const a=[...questions];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
 export function practiceCatalog(){return `<div class="practice-catalog"><div class="list journey-chapters">${groups.map((g,i)=>`<a class="learn-extra learn-extra-pokerinno" href="#practice-module/${g.id}"><div class="learn-extra-host"><span class="pokerinno-sprite ${['curious','learning','focused','analyzing','evolving','thinking','confident','practicing','studying','motivated'][i%10]}" role="img" aria-label="Pokerinno"></span></div><div class="learn-extra-copy"><h3>${g.title()}</h3><p>${g.description}</p></div></a>`).join('')}</div></div>`}
 export function practiceModule(key){const group=groups.find(g=>g.id===key);if(group?.ranges){location.hash='practice-ranges';return ''}if(group){const questions=groupQuestionBank.get(key)||[];return `<a class="back" href="#practice">← ${t('practice.back')}</a><div class="page-heading"><div><span class="eyebrow">PRATICAR</span><h1>${group.title()}</h1></div></div>${questions.length?'<p class="practice-mix-note">Atividades relacionadas reunidas neste tema, sem subdivisões.</p>':''}${questions.length?sourceQuiz(mix(questions),'group-'+key,key):'<p class="practice-mix-note">Atividades deste tema em preparação.</p>'}`}
