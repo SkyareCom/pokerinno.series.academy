@@ -1530,3 +1530,8 @@ html body:not(.login-screen) :is(#app,.sidebar,header,dialog,.pokerinno-balloons
 #app .simulator-coach-character{height:auto;max-height:130px;}
 #app .simulator-coach-talk{height:auto;max-height:none;}
 #app .simulator-coach-bubble{max-height:none!important;overflow:visible!important;}
+
+/* Keep the six poker action buttons at their original compact dimensions. */
+#app .simulator-actions{min-height:0!important;height:auto!important;grid-auto-rows:42px!important;align-content:start!important;align-items:start!important;}
+#app .simulator-actions>button[data-sim-action]{height:42px!important;min-height:42px!important;max-height:42px!important;align-self:start!important;padding:4px 6px!important;box-sizing:border-box!important;}
+#app .simulator-actions .simulator-coach-overlay{grid-row:auto;inset:auto 0 0!important;height:auto!important;min-height:0!important;}
