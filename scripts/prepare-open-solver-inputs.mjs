@@ -32,9 +32,9 @@ for(const s of trainingSpots.filter(s=>s.street!=='pre')){
   '  ip: '+quote(weightedRange(s.heroRange)),
   'board: '+quote(cards(s.board)),
   'tree:',
-  '  starting-wager-per-player: '+(s.pot/2),
+  '  starting-wager-per-player: '+Math.round(s.pot*2),
   '  dead-money-in-pot: 0',
-  '  effective-stack-remaining: '+s.effectiveStack,
+  '  effective-stack-remaining: '+Math.round(s.effectiveStack*4),
   '  use-isomorphism: true',
   '  actions:',
   ...['oop','ip'].flatMap(player=>[
