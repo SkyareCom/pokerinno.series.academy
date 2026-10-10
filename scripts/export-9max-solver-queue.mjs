@@ -7,14 +7,14 @@ const report=auditStrategicDuplicates(pending);
 if(report.duplicateCount)throw new Error('Duplicate postflop decisions: '+report.duplicateCount);
 const requests=pending.map(s=>{
  const unresolved=[];
- if(!s.villainRange||s.villainRange.includes('UNVERIFIED'))unresolved.push('villainRange: solver-defined 9max BB defense range');
- if(!s.heroRange)unresolved.push('heroRange: solver-defined 9max BTN opening range');
+ if(s.rangeProvenance?.villain!=='SOLVER_VERIFIED')unresolved.push('villainRange: existing weighted heuristic requires solver validation');
+ if(!s.heroRange||s.rangeProvenance?.hero!=='SOLVER_VERIFIED')unresolved.push('heroRange: weighted imported reference requires independent certification');
  if(!s.solver?.solveId)unresolved.push('original 9max solver run and artifact');
  return {
   id:s.id,strategicKey:strategicSpotKey(s),status:'BLOCKED_MISSING_SOLVER_INPUT',
   tableSize:9,street:s.street,position:s.position,hand:s.hand,
   heroCards:s.heroCards,board:s.board,effectiveStack:s.effectiveStack,
-  pot:s.pot,bettingLine:s.bettingLine,aggressor:s.aggressor,
+  pot:s.pot,bettingLine:s.bettingLine,aggressor:s.aggressor,heroRange:s.heroRange,villainRange:s.villainRange,rangeProvenance:s.rangeProvenance,
   unresolved,certified:false
  };
 });
