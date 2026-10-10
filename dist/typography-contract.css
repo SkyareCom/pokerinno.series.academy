@@ -776,3 +776,30 @@ html body:not(.login-screen) #app .modality-filters button:not(.active):not(.sel
  color:#FFFFFF!important;
 }
 /* Disabled controls remain visually recognizable as unavailable. */
+
+/* ALL APP BUTTONS — explicit user requirement, all states and screens.
+   App background #061714, text #D4CFBD; borders stay 1px #D4CFBD.
+   Does not alter sizes, layout, or icons. */
+html body button,
+html body button:hover,
+html body button:focus,
+html body button:active,
+html body button:disabled,
+html body button[aria-pressed="true"],
+html body button[aria-selected="true"],
+html body #app [role="button"],
+html body #app [role="button"]:hover,
+html body #app [role="button"]:focus,
+html body #app [role="button"]:active,
+html body #app input:is([type="button"],[type="submit"],[type="reset"]){
+ background:#061714!important;
+ background-color:#061714!important;
+ background-image:none!important;
+ color:#D4CFBD!important;
+ border-color:#D4CFBD!important;
+ border-width:1px!important;
+}
+html body button :is(span,strong,small,em,b,i),
+html body #app [role="button"] :is(span,strong,small,em,b,i){
+ color:#D4CFBD!important;
+}
