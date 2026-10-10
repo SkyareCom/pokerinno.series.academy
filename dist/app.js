@@ -10,7 +10,7 @@ import {procedureCards,procedureDetail} from './procedure-content.js?v=cards-no-
 import {standardizeBack} from './back-navigation.js?v=house-rules-route-v2';
 import {autoSave,setAutoSave,saveActivities,results,pendingCount} from './progress.js?v=cards-no-arrows-20261008';
 import {statsDashboard} from './stats.js?v=cards-no-arrows-20261008';
-import {practiceCatalog,practiceModule} from './practice-modules.js?v=learn-titles-20261008';
+import {practiceCatalog,practiceModule} from './practice-modules.js?v=fe68712';
 import {sourceQuiz} from './source-quiz.js?v=cards-no-arrows-20261008';
 import {journeyIds,extraCard,staffRoles,decisionCycle} from './learn-ui.js?v=math-dictionary-13fd6b99';
 import {t,getLocale} from './i18n.js?v=play-simulator-0762ed62';
@@ -165,7 +165,7 @@ else if(route==='play'||route==='chapter/practice'){const c=chapters.find(c=>c.i
 ])+`<section class="play-profiles-pokerinno">${pokerinnoPanel('tips','POKERINNO · SEU ANFITRIÃO','PERFIS DE JOGADORES','Observe como cada adversário escolhe as mãos e aposta. Reconhecer padrões ajuda a adaptar suas decisões sem transformar ninguém em um rótulo fixo.')}${sourceLesson(verdeFund.prof,'')}</section>`+`<a class="primary play-simulator-start" href="#simulator">${t('play.startSimulator')}</a>`}
 else if(route==='chapter/formats'){app.innerHTML=`<a href="#journey" class="back back-journey">← VOLTAR</a>`+heading('APRENDER',t('learn.formats'),'Conheça os formatos de poker, suas regras e diferenças.')+discoverSection({type:'host',mood:'studying',eyebrow:'POKERINNO · SEU ANFITRIÃO',title:'CADA MODALIDADE TEM SEU JEITO DE JOGAR',text:'As modalidades mudam a quantidade de cartas, a formação das mãos e a estratégia. Entenda as diferenças antes de escolher onde jogar.',host:'Conheça cada modalidade antes de sentar à mesa.'})+sourceGroup('CASH GAME E TORNEIOS',[verdeFund.cash,verdeFund.tour],'')+sourceGroup('MODALIDADES EM PROFUNDIDADE',verdeMods,'')}
 else if(route.startsWith('chapter/')){const c=chapters.find(c=>c.id===route.split('/')[1]);app.innerHTML=`<a href="#journey" class="back back-journey">← VOLTAR À JORNADA</a>`+heading(`CAPÍTULO 0${c.order}`,chapterTitle(c),chapterDescription(c))+empty('▤','Conteúdo em preparação.','Este capítulo será desenvolvido dentro da mesma estrutura de até três camadas.')}
-else if(route==='practice'||route==='practice-bank')app.innerHTML=heading(t('practice.label'),t('practice.title'),t('practice.description'))+'<a class="ranges-practice-entry" href="#practice-ranges"><strong>NOÇÃO DE RANGES · 300 ATIVIDADES</strong><span>Pratique escolhas introdutórias de mãos em mesas de 9 jogadores.</span><span>INICIAR ATIVIDADES →</span></a>'+practiceCatalog();
+else if(route==='practice'||route==='practice-bank')app.innerHTML=heading(t('practice.label'),t('practice.title'),t('practice.description'))+practiceCatalog();
 else if(route==='practice-ranges')app.innerHTML=rangesActivitiesPage();
 else if(route.startsWith('practice-module/'))app.innerHTML=practiceModule(route.split('/')[1]);
 else if(route.startsWith('practice-tool/'))app.innerHTML=migratedDetail(legacyAcademy.practice,Number(route.split('/')[1]),'practice','PRATICAR');
