@@ -12,7 +12,7 @@ test('open-solver manifest preserves all 780 9max scenarios and unverified prove
  assert.equal(new Set(report.inputs.map(r=>r.id)).size,780);
  for(const row of report.inputs){
   assert.match(row.sha256,/^[a-f0-9]{64}$/);
-  assert.equal(row.scenario.status,'INPUT_ONLY_NOT_CERTIFIED');
+  assert.equal(row.scenario.status,'EXECUTABLE_CONFIG_NOT_CERTIFIED');
   assert.equal(Object.keys(row.scenario.ranges.oop).length,169);
   assert.equal(Object.keys(row.scenario.ranges.ip).length,169);
   assert.equal(row.scenario.provenance.villain,'ACADEMY_HEURISTIC_UNVERIFIED');
