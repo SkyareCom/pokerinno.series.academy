@@ -530,3 +530,17 @@ body:not(.login-screen) #app .ranges-activity-page .ranges-activity-next{
  color:#10271F!important;
  -webkit-text-fill-color:#10271F!important;
 }
+
+/* Explicit visible outer border of the complete ranges activity card. */
+body:not(.login-screen) #app .ranges-activity-page>article.ranges-activity-card{
+ display:block!important;
+ width:100%!important;
+ max-width:100%!important;
+ box-sizing:border-box!important;
+ border:2px solid #D5B56B!important;
+ border-radius:12px!important;
+ background:#102B23!important;
+ padding:14px!important;
+ overflow:visible!important;
+ box-shadow:none!important;
+}
