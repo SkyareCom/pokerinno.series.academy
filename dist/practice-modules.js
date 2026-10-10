@@ -1,4 +1,4 @@
-import {supplementalActivities} from './supplemental-activities.js?v=cea7aee';
+import {supplementalActivities} from './supplemental-activities.js?v=fb98065';
 import {results} from './progress.js?v=733a7b1';
 import {activityDifficulty} from './xp.js';
 import {creativeActivities} from './creative-activities.js?v=3ffb838';
