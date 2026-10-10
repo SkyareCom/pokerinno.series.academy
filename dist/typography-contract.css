@@ -824,3 +824,31 @@ html body button:is(:active,.active,.selected,.is-active,.is-selected,[aria-pres
 html body #app [role="button"]:is(:active,.active,.selected,.is-active,.is-selected,[aria-pressed="true"],[aria-selected="true"],[data-selected="true"],[data-active="true"]) :is(span,strong,small,em,b,i){
  color:#061714!important;
 }
+
+/* FINAL BUTTON CONTRACT — outranks earlier universal beige border lock.
+   All neutral buttons: app background + beige writing.
+   All pressed/selected buttons: beige background + dark writing + orange border. */
+html body:not(#btn-lock-a):not(#btn-lock-b):not(#btn-lock-c) :is(button,[role="button"],input[type="button"],input[type="submit"],input[type="reset"]),
+html body:not(#btn-lock-a):not(#btn-lock-b):not(#btn-lock-c) :is(button,[role="button"],input[type="button"],input[type="submit"],input[type="reset"]):is(:hover,:focus){
+ background:#061714!important;
+ background-color:#061714!important;
+ background-image:none!important;
+ color:#D4CFBD!important;
+ border-color:#D4CFBD!important;
+}
+html body:not(#btn-lock-a):not(#btn-lock-b):not(#btn-lock-c) :is(button,[role="button"],input[type="button"],input[type="submit"],input[type="reset"]) :is(span,strong,small,em,b,i){
+ color:inherit!important;
+}
+html body:not(#btn-lock-a):not(#btn-lock-b):not(#btn-lock-c) :is(button,[role="button"],input[type="button"],input[type="submit"],input[type="reset"]):is(:active,.active,.selected,.is-active,.is-selected,.checked,[aria-pressed="true"],[aria-selected="true"],[aria-checked="true"],[data-selected="true"],[data-active="true"],[data-state="active"],[data-state="checked"]),
+html body:not(#btn-lock-a):not(#btn-lock-b):not(#btn-lock-c) :is(button,[role="button"],input[type="button"],input[type="submit"],input[type="reset"]):focus-visible{
+ background:#D4CFBD!important;
+ background-color:#D4CFBD!important;
+ background-image:none!important;
+ color:#061714!important;
+ border-color:#FF8C00!important;
+ border-top-color:#FF8C00!important;
+ border-right-color:#FF8C00!important;
+ border-bottom-color:#FF8C00!important;
+ border-left-color:#FF8C00!important;
+ border-width:1px!important;
+}
