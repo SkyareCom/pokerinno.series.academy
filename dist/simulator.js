@@ -28,7 +28,38 @@ export function setupSimulator(root){
  for(const pos of prior){if(token!==runToken||!page.isConnected)return;const seat=currentPositions.indexOf(pos);if(seat<0)continue;const step=recorded.find(a=>a.position===pos);const action=step?String(step.action||'CHECK').toUpperCase():(s.street==='pre'?'FOLD':'CHECK');const amount=step?Number(step.sizeBB)||0:0;avatars.forEach((el,i)=>el.classList.toggle('simulator-acting',i===seat));act(seat,action,amount,true);await delay(500);}
  if(token!==runToken||!page.isConnected)return;avatars.forEach((el,i)=>el.classList.toggle('simulator-acting',i===heroIndex));const alert=document.createElement('div');alert.className='simulator-turn-alert';alert.textContent='SUA AÇÃO';alert.setAttribute('role','status');page.querySelector('.simulator-table-area').append(alert);sound('CALL');await delay(2000);alert.remove();if(token!==runToken||!page.isConnected)return;showDecisionCoach(page,s,()=>{if(token===runToken)enableActions(true)});
  }
- function renderDecision(spot,action,result){decisionCard.hidden=false;const comment=decisionCard.querySelector('.simulator-decision-comment'),lines=decisionCard.querySelector('.simulator-decision-lines'),source=decisionCard.querySelector('.simulator-decision-source');lines.replaceChildren();const solver=spot.solver;const options=Array.isArray(solver?.actions)?solver.actions.filter(a=>Array.isArray(a)&&Number.isFinite(Number(a[1]))&&Number(a[1])>=0&&Number(a[1])<=100).sort((a,b)=>Number(b[1])-Number(a[1])):[];const labels={raise:'RAISE',fold:'FOLD',call:'CALL',check:'CHECK',bet:'BET',allin:'ALL IN'};const label=a=>labels[String(a).toLowerCase()]||String(a).toUpperCase();if(!options.length){comment.textContent='Decisão registrada. Avaliação indisponível sem solver validado.';['Ação mais EV = não disponível','Outras ações = não disponível','Outras ações = não disponível'].forEach(t=>{const div=document.createElement('div');div.textContent=t;lines.append(div)});source.textContent='Não há dados de EV certificados para este cenário.';return;}const fmtPct=n=>Number(n).toLocaleString('pt-BR',{minimumFractionDigits:1,maximumFractionDigits:1})+'%';const chosen=options.find(a=>label(a[0])===action);const top=options[0];const independentlyVerified=solver.independentlyVerified===true;comment.textContent=independentlyVerified&&chosen?(Number(chosen[1])===Number(top[1])?'Parabéns!!! Excelente decisão!!!':Number(chosen[1])>0?'Boa decisão!!! Mas poderia ser melhor!!!':'Poxa, decisão ruim!!! Estude mais!!!'):'Decisão registrada. Consulte as frequências de referência.';[top,...options.filter(a=>a!==top).slice(0,2)].forEach((a,i)=>{const div=document.createElement('div');div.textContent=(i===0?'Maior frequência = ':'Outra ação = ')+label(a[0])+' '+fmtPct(a[1]);lines.append(div)});while(lines.children.length<3){const div=document.createElement('div');div.textContent='Outra ação = não disponível';lines.append(div)}source.textContent=independentlyVerified?'Frequências do solver; frequência não é EV.':'Frequências de referência não certificadas; frequência não é EV nem comprova a melhor decisão.';}
+ function renderDecision(spot,action,result){
+  decisionCard.hidden=false;
+  const comment=decisionCard.querySelector('.simulator-decision-comment'),lines=decisionCard.querySelector('.simulator-decision-lines'),source=decisionCard.querySelector('.simulator-decision-source');
+  lines.replaceChildren();
+  const solver=spot.solver,labels={raise:'RAISE',fold:'FOLD',call:'CALL',check:'CHECK',bet:'BET',allin:'ALL IN'};
+  const label=a=>labels[String(a).toLowerCase()]||String(a).toUpperCase();
+  const percent=n=>Number(n).toLocaleString('pt-BR',{minimumFractionDigits:1,maximumFractionDigits:1})+'%';
+  const addRow=t=>{const row=document.createElement('div');row.textContent=t;lines.append(row);};
+  // EV and action frequency are distinct quantities. Only use independently
+  // verified EV when the spot explicitly supplies comparable per-action values.
+  const ev=solver?.independentlyVerified===true&&Array.isArray(solver?.actionEV)?
+   solver.actionEV.filter(a=>Array.isArray(a)&&a.length===2&&typeof a[1]==='number'&&Number.isFinite(a[1])).sort((a,b)=>b[1]-a[1]):[];
+  if(ev.length){
+   const top=ev[0],chosen=ev.find(a=>label(a[0])===action);
+   const gap=chosen?top[1]-chosen[1]:Infinity;
+   comment.textContent=gap<=0.0001?'Parabéns!!! Excelente decisão!!!':gap<=0.1?'Boa decisão!!! Mas poderia ser melhor!!!':'Poxa, decisão ruim!!! Estude mais!!!';
+   [top,...ev.filter(a=>a!==top).slice(0,2)].forEach((a,i)=>addRow((i===0?'Maior EV = ':'Outra ação = ')+label(a[0])+' '+a[1].toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2})+' BB'));
+   while(lines.children.length<3)addRow('Outra ação = não disponível');
+   source.textContent='EV em BB por ação; percentuais não representam EV.';
+   return;
+  }
+  const frequencies=Array.isArray(solver?.actions)?solver.actions.filter(a=>Array.isArray(a)&&a.length===2&&typeof a[1]==='number'&&Number.isFinite(a[1])&&a[1]>=0&&a[1]<=100).sort((a,b)=>b[1]-a[1]):[];
+  comment.textContent='Decisão registrada. Avaliação de EV ainda indisponível.';
+  if(frequencies.length){
+   [frequencies[0],...frequencies.slice(1,3)].forEach((a,i)=>addRow((i===0?'Maior frequência = ':'Outra ação = ')+label(a[0])+' '+percent(a[1])));
+   while(lines.children.length<3)addRow('Outra ação = não disponível');
+   source.textContent='Frequências de referência DCFR 9-max, não certificadas. Frequência não é EV.';
+  }else{
+   addRow('Maior EV = não disponível');addRow('Outra ação = não disponível');addRow('Outra ação = não disponível');
+   source.textContent='Este cenário não possui resultados de solver comparáveis.';
+  }
+ }
  function draw(){resetStart();decisionCard.hidden=true;const s=trainingSpots[index];folded=new Set();log=[];history.textContent='';potBB=0;heroIndex=6;
  // Keep the hero physically fixed at the lower seat; rotate position labels for each hand.
  const heroPos=positions.indexOf(s.position);currentPositions=avatars.map((_,i)=>positions[(heroPos+i-heroIndex+9)%9]);
