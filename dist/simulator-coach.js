@@ -10,4 +10,22 @@ export const coachSections=[
 export function coachEnabled(){try{return localStorage.getItem(coachKey)!=='off'}catch{return true}}
 export function setCoachEnabled(value){try{localStorage.setItem(coachKey,value?'on':'off')}catch{}}
 export function coachProfileSetting(){return '<div class="setting"><div><h3>REFLEXÃO COM POKERINNO ANTES DA DECISÃO</h3><p>Exibir perguntas didáticas antes de cada decisão na mesa.</p></div><input type="checkbox" id="pokerinnoPredecision" aria-label="Ativar reflexão do Pokerinno" '+(coachEnabled()?'checked':'')+'></div>'}
-export function showDecisionCoach(page,spot,proceed){page.querySelector('.simulator-coach-overlay')?.remove();if(!coachEnabled()){proceed();return}const overlay=document.createElement('section');overlay.className='simulator-coach-overlay';overlay.setAttribute('role','dialog');overlay.setAttribute('aria-modal','true');overlay.setAttribute('aria-label','Reflexão com Pokerinno');let step=0;const render=()=>{const intro=step<0;const section=intro?null:coachSections[step];overlay.innerHTML='<div class="simulator-coach-card"><div class="simulator-coach-speaker"><img class="simulator-coach-avatar" src="assets/pokerinno-thinking.webp" alt="Pokerinno" /><div class="simulator-coach-dialogue"><strong>POKERINNO</strong><div class="simulator-coach-bubble">'+(intro?'<p>Olá, sou Pokerinno e vou ajudar você a tomar a melhor decisão.</p>':section[1].map(q=>'<p>'+q+'</p>').join(''))+'</div></div></div>'+(intro?'':'<h3>'+section[0]+'</h3><small>'+(step+1)+' / '+coachSections.length+'</small>')+'<div class="simulator-coach-buttons"><button type="button" data-coach-skip>PULAR</button><button type="button" data-coach-next>'+(step===coachSections.length-1?'DECIDIR':intro?'COMEÇAR':'PRÓXIMO')+'</button></div></div>';overlay.querySelector('[data-coach-skip]').onclick=finish;overlay.querySelector('[data-coach-next]').onclick=()=>{step++;if(step===coachSections.length)finish();else render()}};function finish(){overlay.remove();proceed()}(page.querySelector('.simulator-actions')||page).append(overlay);render()}
+export function showDecisionCoach(page,spot,proceed){
+ page.querySelector('.simulator-coach-overlay')?.remove();
+ if(!coachEnabled()){proceed();return}
+ const host=page.querySelector('.simulator-actions')||page;
+ const overlay=document.createElement('section');
+ overlay.className='simulator-coach-overlay';
+ overlay.setAttribute('role','group');
+ overlay.setAttribute('aria-label','Orientação do Pokerinno antes da decisão');
+ const questions=coachSections.flatMap(([category,items])=>items.map(question=>({category,question})));
+ let index=-1,closing=false;
+ const faces=['pokerinno-happy.webp','pokerinno-curious.webp','pokerinno-thinking.webp','pokerinno-analyzing.webp','pokerinno-focused.webp','pokerinno-studying.webp','pokerinno-confident.webp'];
+ overlay.innerHTML='<div class="simulator-coach-stage"><img class="simulator-coach-character" src="assets/pokerinno-happy.webp" alt="Pokerinno" /><div class="simulator-coach-talk"><div class="simulator-coach-bubble" aria-live="polite"></div><div class="simulator-coach-buttons"><button type="button" data-coach-skip>PULAR ETAPA</button><button type="button" data-coach-next>PRÓXIMO</button></div></div></div>';
+ const character=overlay.querySelector('.simulator-coach-character'),bubble=overlay.querySelector('.simulator-coach-bubble'),next=overlay.querySelector('[data-coach-next]');
+ function show(){const item=questions[index];character.src='assets/'+(index<0?faces[0]:faces[Math.floor(index/2+1)%faces.length]);bubble.textContent=index<0?'Olá, sou Pokerinno e vou ajudar você a tomar a melhor decisão.':item.question;next.textContent=index===questions.length-1?'DECIDIR':'PRÓXIMO';bubble.classList.remove('simulator-coach-bubble-enter');void bubble.offsetWidth;bubble.classList.add('simulator-coach-bubble-enter');}
+ function finish(){if(closing)return;closing=true;overlay.classList.add('simulator-coach-exit');const done=()=>{overlay.remove();proceed()};if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){done();return}overlay.addEventListener('animationend',e=>{if(e.target===overlay)done()},{once:true});setTimeout(()=>{if(overlay.isConnected)done()},550)}
+ overlay.querySelector('[data-coach-skip]').addEventListener('click',finish);
+ next.addEventListener('click',()=>{if(index>=questions.length-1){finish();return}index++;show()});
+ host.append(overlay);show();
+}
