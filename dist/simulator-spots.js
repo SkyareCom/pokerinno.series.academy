@@ -7,6 +7,7 @@ const deck=[...ranks].flatMap(rank=>[...suits].map(suit=>rank+suit));
 const handClasses=Object.keys(ranges.scenarios).length
  ? ranges.scenarios['100|UTG'].actions.map(row=>row[0]):[];
 const classFor=(i)=>handClasses[i%handClasses.length];
+if(!handClasses.length)throw new Error('DCFR 9-max RFI hand classes missing: do not generate fabricated spots.');
 function holeCards(hand,index){
  const [a,b,type]=hand;
  if(a===b)return [a+suits[index%4],b+suits[(index+1)%4]];
