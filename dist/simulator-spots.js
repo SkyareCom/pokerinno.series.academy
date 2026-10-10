@@ -30,6 +30,22 @@ const preflop=Array.from({length:720},(_,i)=>{
   aggressor:null,villainRange:'UNOPENED',bettingLine:[],
   solver:actions?{solveId:scenario.solveId,actions,context:'9MAX RFI PREFLOP'}:null};
 });
+// Academy-local weighted-range construction. BB weights are educational priors, not GTO solves.
+const rankOrder='23456789TJQKA';
+function bbDefendPrior(hand,stack){
+ const a=rankOrder.indexOf(hand[0]),b=rankOrder.indexOf(hand[1]);
+ const strength=hand.length===2?20+a*2:Math.max(a,b)*2+Math.min(a,b)*.65+
+  (hand.endsWith('s')?3:0)-(Math.abs(a-b)>1?(Math.abs(a-b)-1)*.8:0);
+ return Number((1/(1+Math.exp(-(strength-(stack===30?17:15))/3))).toFixed(6));
+}
+const academyWeightedRanges=Object.fromEntries([30,100].map(stack=>{
+ const rows=ranges.scenarios[stack+'|BTN']?.actions;
+ if(!rows||rows.length!==169)throw Error('Academy 9max BTN RFI range incomplete for '+stack+'bb');
+ return [stack,{
+  hero:Object.fromEntries(rows.map(([hand,...actions])=>[hand,Number(((actions.find(([a])=>a==='raise')?.[1]??0)/100).toFixed(6))])),
+  villain:Object.fromEntries(rows.map(([hand])=>[hand,bbDefendPrior(hand,stack)]))
+ }];
+}));
 const postflop=Array.from({length:780},(_,i)=>{
  const street=i<450?'flop':i<675?'turn':'river';
  const count={flop:3,turn:4,river:5}[street];
@@ -54,7 +70,9 @@ const postflop=Array.from({length:780},(_,i)=>{
  bettingLine.push({street,position:'BB',action:'check',sizeBB:0});
  const pot={flop:5.5,turn:9.5,river:17.5}[street];
  return {id:721+i,tableSize:9,street,position,stack,effectiveStack:stack-2.5-(street==='flop'?0:street==='turn'?2:6),
-  hand,heroCards,board,pot,aggressor:'BTN',villainRange:'BB_DEFEND_VS_BTN_OPEN_UNVERIFIED',
+  hand,heroCards,board,pot,aggressor:'BTN',
+  heroRange:academyWeightedRanges[stack].hero,villainRange:academyWeightedRanges[stack].villain,
+  rangeProvenance:{hero:'IMPORTED_9MAX_RFI_REFERENCE',villain:'ACADEMY_HEURISTIC_UNVERIFIED'},
   bettingLine,solver:null};
 });
 export const trainingSpots=[...preflop,...postflop];
