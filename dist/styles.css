@@ -1469,3 +1469,22 @@ html body:not(.login-screen) :is(#app,.sidebar,header,dialog,.pokerinno-balloons
 #app .simulator-actions{position:relative;}
 #app .simulator-actions .simulator-coach-overlay{position:absolute;inset:0;min-height:100%;z-index:25;}
 #app .simulator-actions .simulator-coach-card{max-height:300px;}
+
+/* Walking Pokerinno coach: one question, one bubble, over action buttons only. */
+#app .simulator-actions{position:relative;isolation:isolate}
+#app .simulator-actions .simulator-coach-overlay{position:absolute;inset:0;z-index:30;min-height:100%;background:transparent;display:block;padding:0;overflow:visible;pointer-events:none;animation:simCoachArrive .65s cubic-bezier(.2,.8,.3,1) both}
+#app .simulator-coach-stage{position:absolute;inset:0;display:flex;align-items:flex-end;gap:4px;pointer-events:none}
+#app .simulator-coach-character{width:32%;max-width:115px;height:100%;max-height:190px;object-fit:contain;object-position:center bottom;align-self:flex-end;flex-shrink:0;filter:drop-shadow(0 4px 5px #0009);animation:simCoachWalk .65s ease-out both}
+#app .simulator-coach-talk{flex:1;min-width:0;max-height:100%;display:flex;flex-direction:column;justify-content:center;gap:8px;pointer-events:auto}
+#app .simulator-coach-bubble{position:relative;border:1px solid #d5b56b;background:#183d30;color:#fff;border-radius:12px 12px 12px 2px;padding:10px;font-size:12px;line-height:1.45;min-height:50px;max-height:110px;overflow-y:auto;box-shadow:0 4px 12px #0008}
+#app .simulator-coach-bubble:before{content:'';position:absolute;left:-6px;bottom:10px;width:10px;height:10px;background:#183d30;border-left:1px solid #d5b56b;border-bottom:1px solid #d5b56b;transform:rotate(45deg)}
+#app .simulator-coach-bubble-enter{animation:simCoachBubble .25s ease-out}
+#app .simulator-coach-buttons{display:flex;gap:5px;margin:0}
+#app .simulator-coach-buttons button{flex:1;min-width:0;border-radius:6px;border:1px solid #c9a85c;padding:9px 3px;font-size:10px;line-height:1.2;background:#16372d;color:#fff;font-weight:600}
+#app .simulator-coach-buttons button:last-child{background:#edc76b;color:#183024}
+#app .simulator-coach-overlay.simulator-coach-exit{animation:simCoachDepart .42s ease-in forwards}
+@keyframes simCoachArrive{from{transform:translateX(-115%);opacity:.6}to{transform:translateX(0);opacity:1}}
+@keyframes simCoachWalk{0%,35%,70%{rotate:-5deg}18%,53%,88%{rotate:5deg}100%{rotate:0deg}}
+@keyframes simCoachBubble{from{opacity:0;transform:scale(.94) translateY(5px)}to{opacity:1;transform:scale(1) translateY(0)}}
+@keyframes simCoachDepart{from{transform:translateX(0);opacity:1}to{transform:translateX(-115%);opacity:0}}
+@media(prefers-reduced-motion:reduce){#app .simulator-actions .simulator-coach-overlay,#app .simulator-coach-character,#app .simulator-coach-bubble-enter,#app .simulator-coach-overlay.simulator-coach-exit{animation:none}}
