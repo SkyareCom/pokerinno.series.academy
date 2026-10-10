@@ -50,7 +50,7 @@ export function setupSimulator(root){
    comment.textContent=gap<=0.0001?'Parabéns!!! Excelente decisão!!!':gap<=0.1?'Boa decisão!!! Mas poderia ser melhor!!!':'Poxa, decisão ruim!!! Estude mais!!!';
    [top,...ev.filter(a=>a!==top).slice(0,2)].forEach((a,i)=>addRow((i===0?'Maior EV = ':'Outra ação = ')+label(a[0])+' '+a[1].toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2})+' BB'));
    while(lines.children.length<3)addRow('Outra ação = não disponível');
-   source.textContent='EV em BB por ação; percentuais não representam EV.';
+   source.textContent='';
    return;
   }
   const frequencies=Array.isArray(solver?.actions)?solver.actions.filter(a=>Array.isArray(a)&&a.length===2&&typeof a[1]==='number'&&Number.isFinite(a[1])&&a[1]>=0&&a[1]<=100).sort((a,b)=>b[1]-a[1]):[];
@@ -58,10 +58,10 @@ export function setupSimulator(root){
   if(frequencies.length){
    [frequencies[0],...frequencies.slice(1,3)].forEach((a,i)=>addRow((i===0?'Maior frequência = ':'Outra ação = ')+label(a[0])+' '+percent(a[1])));
    while(lines.children.length<3)addRow('Outra ação = não disponível');
-   source.textContent='Frequências de referência DCFR 9-max, não certificadas. Frequência não é EV.';
+   source.textContent='';
   }else{
    addRow('Maior EV = não disponível');addRow('Outra ação = não disponível');addRow('Outra ação = não disponível');
-   source.textContent='Este cenário não possui resultados de solver comparáveis.';
+   source.textContent='';
   }
  }
  function draw(){resetStart();decisionCard.hidden=true;const s=trainingSpots[index];folded=new Set();log=[];history.textContent='';potBB=0;heroIndex=6;
@@ -82,7 +82,7 @@ export function setupSimulator(root){
  // Waiting for user to select unit and press INICIAR SIMULAÇÃO.
  }
  page.querySelector('[data-sim-start]').addEventListener('click',startSimulation);
- page.querySelectorAll('[data-sim-action]').forEach(b=>b.addEventListener('click',()=>{const action=b.dataset.simAction;if(action==='PRÓXIMO'){index=(index+1)%trainingSpots.length;draw();startSimulation();return;}const s=trainingSpots[index];const result=checkTrainingAction(s,action);const bet=action==='CALL'?2:action==='RAISE'?3:action==='ALL IN'?stakes[heroIndex]:0;act(heroIndex,action,bet,true);feedback.textContent='AÇÃO: '+action+' · '+result.message;feedback.dataset.validationStatus=result.status;renderDecision(s,action,result);}));
+ page.querySelectorAll('[data-sim-action]').forEach(b=>b.addEventListener('click',()=>{const action=b.dataset.simAction;if(action==='PRÓXIMO'){index=(index+1)%trainingSpots.length;draw();startSimulation();return;}const s=trainingSpots[index];const result=checkTrainingAction(s,action);const bet=action==='CALL'?2:action==='RAISE'?3:action==='ALL IN'?stakes[heroIndex]:0;act(heroIndex,action,bet,true);feedback.textContent='';feedback.dataset.validationStatus=result.status;renderDecision(s,action,result);}));
  page.querySelector('[data-sim-random]')?.addEventListener('click',()=>{if(trainingSpots.length<2)return;let next=index;while(next===index)next=Math.floor(Math.random()*trainingSpots.length);index=next;draw();});
  page.querySelectorAll('[data-stack-unit]').forEach(b=>b.addEventListener('click',()=>{selectedUnit=b.dataset.stackUnit;page.querySelectorAll('[data-stack-unit]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));refresh();}));
  draw();
