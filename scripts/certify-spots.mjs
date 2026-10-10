@@ -48,7 +48,7 @@ export function certifySpot(spot,evidence,options={}) {
   return {schemaVersion:1,spotId:spot?.id??null,status:certified?'CERTIFIED':'BLOCKED',certified,
     failures,engineCount:new Set(runs.map(r=>r.engine)).size,
     policy:{maxExploitabilityPercent:target,maxActionFrequencyDifference:tolerance},
-    evidenceHash:sha256(JSON.stringify(evidence))};
+    evidenceHash:sha256(JSON.stringify(evidence??null))};
 }
 export function auditCatalog(spots,bundles,options={}) {
   const seen=new Set();
