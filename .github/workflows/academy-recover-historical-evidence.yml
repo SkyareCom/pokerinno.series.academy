@@ -1,0 +1,33 @@
+name: Academy Historical Evidence Recovery
+on:
+  workflow_dispatch:
+    inputs:
+      source_run_id:
+        description: GitHub Actions run containing solver artifacts
+        required: true
+        type: string
+permissions:
+  contents: read
+  actions: read
+jobs:
+  recover:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Download artifacts from selected previous run
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SOURCE_RUN_ID: ${{ inputs.source_run_id }}
+        run: |
+          mkdir -p reports/solver/certification/raw-artifacts
+          gh run download "$SOURCE_RUN_ID" --repo "$GITHUB_REPOSITORY" --dir reports/solver/certification/raw-artifacts
+      - name: Inventory diagnostic evidence
+        run: node scripts/inventory-solver-evidence.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: academy-historical-evidence-inventory
+          path: reports/solver/certification/
