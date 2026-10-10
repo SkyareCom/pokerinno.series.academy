@@ -1385,3 +1385,7 @@ html body:not(.login-screen) :is(#app,.sidebar,header,dialog,.pokerinno-balloons
 
 /* Educational table actions and motion */
 #app .simulator-actions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:12px 0}#app .simulator-actions button{min-height:42px;border:1px solid #a18a52;border-radius:9px;background:#18382c;color:#fff;font-size:12px;font-weight:500;cursor:pointer}#app .simulator-actions button:last-child{background:#f7c75b;color:#14251d}#app .simulator-actions button:active{transform:scale(.97)}#app .simulator-feedback{min-height:32px;font-size:12px;line-height:1.5;color:#f4f2e7}#app .simulator-card-dealt{animation:sim-deal .32s ease-out both}#app .simulator-acting{animation:sim-acting .8s ease-in-out 2;box-shadow:0 0 0 3px rgba(247,199,91,.4)}@keyframes sim-deal{from{opacity:.25;transform:translateY(-9px) rotate(-6deg)}to{opacity:1;transform:none}}@keyframes sim-acting{50%{filter:brightness(1.5);transform:translate(-50%,-50%) scale(1.06)}}@media(prefers-reduced-motion:reduce){#app .simulator-card-dealt,#app .simulator-acting{animation:none}}html.reduced-motion #app .simulator-card-dealt,html.reduced-motion #app .simulator-acting{animation:none}
+
+/* Simulator seats: position, stack, action (three rows). */
+#app .simulator-seat-action{display:block;font-size:12px;line-height:1.25;color:#f7c75b;white-space:nowrap;min-height:15px}
+@media(max-width:390px){#app .simulator-seat-action{font-size:10px}}
