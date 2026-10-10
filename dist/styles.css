@@ -1410,3 +1410,13 @@ html body:not(.login-screen) :is(#app,.sidebar,header,dialog,.pokerinno-balloons
 #app .simulator-hole-cards{position:absolute;top:-12px;left:50%;transform:translateX(-50%);display:flex;align-items:center;justify-content:center;width:auto;height:18px;gap:2px;z-index:3;pointer-events:none;}
 #app .simulator-card-back{width:13px;height:18px;flex:0 0 13px;}
 @media(max-width:480px){#app .simulator-hole-cards{top:-10px;height:15px;}#app .simulator-card-back{width:11px;height:15px;flex-basis:11px;}}
+
+/* Bets sit outside seats; pot remains beneath board. */
+#app .simulator-seat,#app .simulator-hero{overflow:visible;}
+#app .simulator-bet{position:absolute;left:50%;bottom:-17px;transform:translateX(-50%);white-space:nowrap;font-size:10px;line-height:12px;font-weight:600;color:#ffe08a;text-shadow:0 1px 2px #000;background:#15291ecc;border:1px solid #a18a52;border-radius:4px;padding:1px 3px;z-index:3;}
+#app .simulator-bet:empty{display:none;}
+#app .simulator-pot{order:3;margin-top:5px;font-size:12px;font-weight:600;}
+#app .simulator-action-history{font-size:10px;line-height:1.5;text-align:center;color:#dbcba1;margin:8px 0;overflow-wrap:anywhere;}
+#app .simulator-folded .simulator-hole-cards{opacity:0.12;}
+#app .simulator-folded{opacity:.72;}
+@media(prefers-reduced-motion:reduce){#app .simulator-folded{transition:none;}}
