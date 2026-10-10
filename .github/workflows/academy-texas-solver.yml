@@ -4,6 +4,15 @@ on:
     branches: [feat/pokerinno-frontend]
     paths: ['.github/workflows/academy-texas-solver.yml', 'scripts/prepare-texas-solver-inputs.mjs', 'scripts/audit-texas-solver-run.mjs', 'scripts/audit-solver-development-ten-layers.mjs', 'scripts/audit-solver-development-twenty-layers.mjs']
   workflow_dispatch:
+    inputs:
+      spot_id:
+        description: 'Postflop spot ID (721-1500)'
+        required: false
+        default: '721'
+      max_iterations:
+        description: 'Solver iterations (diagnostic default 100)'
+        required: false
+        default: '100'
 permissions:
   contents: read
 jobs:
@@ -20,6 +29,9 @@ jobs:
       - name: Validate twenty additional solver development layers
         run: node scripts/audit-solver-development-twenty-layers.mjs
       - name: Generate 780 independent-engine scenario inputs
+        env:
+          ACADEMY_SOLVER_SPOT_ID: ${{ inputs.spot_id || '721' }}
+          ACADEMY_SOLVER_MAX_ITERATIONS: ${{ inputs.max_iterations || '100' }}
         run: node scripts/prepare-texas-solver-inputs.mjs
       - name: Install independent solver toolchain
         run: sudo apt-get update && sudo apt-get install -y cmake ninja-build g++ libomp-dev
