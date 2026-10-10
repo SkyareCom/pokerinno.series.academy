@@ -13,7 +13,7 @@ export const trainingSpots=Array.from({length:1500},(_,i)=>{
  const actions=scenario?.actions.find(row=>row[0]===hand)?.slice(1)??null;
  return {id:i+1,street,stack,position,pot:street==='pre'?1.5:1.5+(i%12)*2,hand,board,solver:actions?{solveId:scenario.solveId,actions,context:'9MAX RFI PREFLOP'}:null};
 });
-export function legalTrainingActions(spot){return spot.street==='pre'&&spot.position!=='BB'&&spot.solver?['FOLD','RAISE','ALL IN']:[];}
+export function legalTrainingActions(spot){return spot.street==='pre'&&spot.position!=='BB'&&spot.solver?['FOLD','RAISE']:[];}
 export function checkTrainingAction(spot,action){
  if(!legalTrainingActions(spot).includes(action))return {status:'unvalidated',scorable:false,message:'Ação sem contexto de apostas suficiente.'};
  if(!spot.solver)return {status:'unvalidated',scorable:false,message:'Cenário didático: não existe solve correspondente nesta biblioteca.'};
@@ -22,5 +22,6 @@ export function checkTrainingAction(spot,action){
  const matched=spot.solver.actions.find(([a])=>a===chosen);
  if(!matched)return {status:'unvalidated',scorable:false,message:'Ação sem frequência explícita neste solve; não é possível avaliar.'};
  const frequency=matched[1];
+ if(!Number.isFinite(frequency)||frequency<0||frequency>100)return {status:'unvalidated',scorable:false,message:'Frequência inválida no registro do solver.'};
  return {status:'solver-reference',frequency,solveId:spot.solver.solveId,scorable:false,message:chosen.toUpperCase()+': '+frequency.toFixed(1)+'% no arquivo DCFR 9-max (RFI). Referência de solver ainda não certificada independentemente; sem pontuação.'};
 }
