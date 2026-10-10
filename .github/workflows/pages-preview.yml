@@ -45,6 +45,14 @@ jobs:
         with:
           name: academy-local-spot-audit
           path: reports/solver/academy-local-audit.json
+      - name: Cross-check Academy DCFR 9max ranges
+        run: node scripts/crosscheck-academy-dcfr.mjs
+      - name: Save DCFR cross-check
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: academy-dcfr-crosscheck
+          path: reports/solver/academy-dcfr-crosscheck.json
       - name: Audit each Academy spot certification
         run: node scripts/audit-academy-certification.mjs
       - name: Save certification ledger
