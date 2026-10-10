@@ -1515,3 +1515,10 @@ html body:not(.login-screen) :is(#app,.sidebar,header,dialog,.pokerinno-balloons
 #app .simulator-coach-buttons button{min-height:40px;padding:7px 3px;border:1px solid #e2c475;border-radius:8px;background:#163d31;color:#fff;font-size:10px;line-height:1.2;box-shadow:none;}
 #app .simulator-coach-buttons button:last-child{background:#f0c866;color:#14291e;}
 @media(max-width:380px){#app .simulator-coach-stage{gap:6px;padding:4px}#app .simulator-coach-character{width:27%}#app .simulator-coach-bubble{font-size:12px;padding:7px}#app .simulator-coach-buttons{gap:4px}}
+
+/* Never scroll or truncate Pokerinno speech bubbles; grow the panel with content. */
+#app .simulator-actions .simulator-coach-overlay{height:auto;min-height:100%;overflow:visible;}
+#app .simulator-coach-stage{height:auto;min-height:154px;overflow:visible;}
+#app .simulator-coach-talk{height:auto;max-height:none;overflow:visible;}
+#app .simulator-coach-bubble{height:auto!important;min-height:0!important;max-height:none!important;overflow:visible!important;overflow-y:visible!important;white-space:normal;word-break:normal;overflow-wrap:break-word;flex-shrink:0;}
+#app .simulator-coach-calculation{overflow:visible!important;overflow-x:visible!important;white-space:normal;overflow-wrap:anywhere;}
