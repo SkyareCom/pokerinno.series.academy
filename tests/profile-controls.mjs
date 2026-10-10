@@ -4,12 +4,13 @@ import {readFileSync} from 'node:fs';
 import {legacyProfile} from '../dist/legacy-profile-data.js';
 import {renderProfilePlans} from '../dist/profile-plans.js';
 import {t} from '../dist/i18n.js';
+import {coachProfileSetting} from '../dist/simulator-coach.js';
 
 const source=readFileSync(new URL('../dist/app.js',import.meta.url),'utf8');
 const profile=source.split('\n').find(line=>line.startsWith("else if(route==='profile')"));
 const expression=profile.split('app.innerHTML=')[1].replace(/;$/,'');
-const render=new Function('heading','pokerinnoPanel','messageSettings','storage','preferences','legacyProfile','nextApps','t','getLocale','autoSave','renderProfilePlans','return '+expression);
-const page=(locale,enabled=true)=>render(()=>'',()=>'<section data-profile-intro></section>',()=>'<section data-messages></section>',{},{sound:true,reducedMotion:false},legacyProfile,'<section class="next-apps"></section>',(key,params={})=>t(key,params,locale),()=>locale,()=>enabled,renderProfilePlans);
+const render=new Function('heading','pokerinnoPanel','messageSettings','storage','preferences','legacyProfile','nextApps','t','getLocale','autoSave','renderProfilePlans','coachProfileSetting','return '+expression);
+const page=(locale,enabled=true)=>render(()=>'',()=>'<section data-profile-intro></section>',()=>'<section data-messages></section>',{},{sound:true,reducedMotion:false},legacyProfile,'<section class="next-apps"></section>',(key,params={})=>t(key,params,locale),()=>locale,()=>enabled,renderProfilePlans,coachProfileSetting);
 
 test('profile replaces access, language and training cards with inline language buttons',()=>{
  for(const locale of ['pt-BR','en-US','es-ES']){
