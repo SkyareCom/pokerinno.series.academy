@@ -1,22 +1,53 @@
-import {readFileSync,existsSync,mkdirSync,writeFileSync} from 'node:fs';
+import {readFileSync,mkdirSync,writeFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {trainingSpots} from '../dist/simulator-spots.js';
-const dir='reports/solver/independent/';
-mkdirSync(dir,{recursive:true});
+import {matchesTexasSource,sourceSpotSha256} from './prepare-texas-solver-inputs.mjs';
+import {resolve} from 'node:path';
+import {pathToFileURL} from 'node:url';
+
+export function inspectTexasEvidence(directory='reports/solver/independent',explicitSpotId){
+const dir=directory.replace(/\/$/,'')+'/';
 const read=(name)=>{try{return JSON.parse(readFileSync(dir+name,'utf8'))}catch{return null}};
+const text=(name)=>{try{return readFileSync(dir+name,'utf8')}catch{return ''}};
 const manifest=read('texas-input-manifest.json');
 const audit=read('texas-run-audit.json');
 const result=read('texas-solver-result.json');
-const rows=manifest?.inputs??[];
-const selectedText=existsSync(dir+'selected-texas-input.txt')?readFileSync(dir+'selected-texas-input.txt','utf8'):'';
+const rows=Array.isArray(manifest?.inputs)?manifest.inputs:[];
+const selectedText=text('selected-texas-input.txt');
 const selectedHash=createHash('sha256').update(selectedText).digest('hex');
-const selected=rows.filter(r=>r.sha256===selectedHash);
-const sourceSpot=trainingSpots.find(s=>s.id===selected[0]?.id);
+const matchingInputs=rows.filter(r=>r?.sha256===selectedHash&&r.input===selectedText);
+const explicitProvided=explicitSpotId!==undefined&&explicitSpotId!==null&&String(explicitSpotId).trim()!=='';
+const manifestProvided=manifest?.selectedSpotId!==undefined;
+const requestedId=explicitProvided?Number(explicitSpotId):manifest?.selectedSpotId;
+const identityRows=rows.filter(r=>r?.id===requestedId);
+// A hash identifies a game, not a hero decision. Never infer the selected ID from its first match.
+const selectedSpotIdentityValid=Number.isInteger(requestedId)&&identityRows.length===1&&
+ (!manifestProvided||manifest.selectedSpotId===requestedId);
+const selectedRow=selectedSpotIdentityValid?identityRows[0]:null;
+const selectedInputIntegrityValid=!!selectedRow&&typeof selectedRow.input==='string'&&
+ selectedRow.input===selectedText&&selectedRow.sha256===selectedHash&&
+ (manifest?.selectedInputSha256===undefined||manifest.selectedInputSha256===selectedHash);
+const sourceSpot=selectedRow?trainingSpots.find(s=>s.id===selectedRow.id):null;
+const selectedSourceIntegrityValid=selectedInputIntegrityValid&&matchesTexasSource(selectedText,sourceSpot)&&
+ selectedRow.street===sourceSpot.street&&
+ JSON.stringify(selectedRow.rangeProvenance)===JSON.stringify(sourceSpot.rangeProvenance)&&
+ (selectedRow.sourceSpotSha256===undefined||selectedRow.sourceSpotSha256===sourceSpotSha256(sourceSpot));
+const matchingSourceSpotIds=trainingSpots.filter(s=>matchesTexasSource(selectedText,s)).map(s=>s.id);
 const board=sourceSpot?.board??[];
 const allCards=[...(board??[]),...(sourceSpot?.heroCards??[])];
-const solveLog=existsSync(dir+'texas-solver-run.log')?readFileSync(dir+'texas-solver-run.log','utf8'):'';
-const sampleValues=audit?.exploitabilityPercentSamples??[];
-const solverInputIds=rows.map(r=>r.id);
+const solveLog=text('texas-solver-run.log');
+const exitText=text('texas-solver-exit-code.txt').trim();
+const executionExitCode=/^-?\d+$/.test(exitText)?Number(exitText):null;
+const sampleValues=Array.isArray(audit?.exploitabilityPercentSamples)?audit.exploitabilityPercentSamples:[];
+const rawSamples=[...solveLog.matchAll(/Total exploitability\s+([+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?)\s+precent/gi)].map(m=>Number(m[1]));
+const samplesMatch=rawSamples.length>0&&rawSamples.length===sampleValues.length&&rawSamples.every((x,i)=>x===sampleValues[i]);
+const finalExploitabilityPercent=rawSamples.at(-1)??null;
+const strategyJsonValid=!!result&&typeof result==='object'&&!Array.isArray(result);
+const rawSolverConverged=executionExitCode===0&&strategyJsonValid&&rawSamples.length>0&&
+ rawSamples.every(x=>Number.isFinite(x)&&x>=0)&&finalExploitabilityPercent<=0.3;
+const solverConverged=rawSolverConverged&&audit?.convergedToTarget===true&&audit.executionExitCode===executionExitCode&&
+ samplesMatch&&audit.finalExploitabilityPercent===finalExploitabilityPercent;
+const solverInputIds=rows.map(r=>r?.id);
 const commands=selectedText.trim().split(/\r?\n/).filter(Boolean);
 const countCommand=(name)=>commands.filter(line=>line.startsWith(name+' ')).length;
 const valueOf=(name)=>commands.find(line=>line.startsWith(name+' '))?.slice(name.length+1);
@@ -27,28 +58,28 @@ const checks=[
  ['02_postflop_count',rows.length===780],
  ['03_preflop_count',trainingSpots.filter(s=>s.street==='pre').length===720],
  ['04_manifest_engine',typeof manifest?.engine==='string'&&manifest.engine.includes('TexasSolver')],
- ['05_manifest_unique_ids',new Set(rows.map(r=>r.id)).size===780],
- ['06_manifest_contiguous_ids',rows.every((r,i)=>r.id===i+721)],
- ['07_manifest_input_nonempty',rows.every(r=>typeof r.input==='string'&&r.input.length>100)],
- ['08_manifest_hash_valid',rows.every(r=>createHash('sha256').update(r.input).digest('hex')===r.sha256)],
+ ['05_manifest_unique_ids',new Set(solverInputIds).size===780],
+ ['06_manifest_contiguous_ids',rows.every((r,i)=>r?.id===i+721)],
+ ['07_manifest_input_nonempty',rows.every(r=>typeof r?.input==='string'&&r.input.length>100)],
+ ['08_manifest_hash_valid',rows.every(r=>typeof r?.input==='string'&&createHash('sha256').update(r.input).digest('hex')===r.sha256)],
  ['09_selected_input_exists',selectedText.length>100],
- ['10_selected_input_unique',selected.length===1],
- ['11_selected_input_matches_manifest',selected.length===1&&selected[0].input===selectedText],
- ['12_selected_spot_exists',selected.length===1&&trainingSpots.some(s=>s.id===selected[0].id)],
- ['13_selected_cards_valid',selected.length===1&&board.length>=3&&board.every(c=>cards.has(c))&&new Set(board).size===board.length],
- ['14_solver_exited_zero',audit?.executionExitCode===0],
+ ['10_selected_spot_identity_unique',selectedSpotIdentityValid],
+ ['11_selected_input_matches_manifest',selectedInputIntegrityValid],
+ ['12_selected_source_matches_input',selectedSourceIntegrityValid],
+ ['13_selected_cards_valid',selectedSpotIdentityValid&&board.length>=3&&board.every(c=>cards.has(c))&&new Set(board).size===board.length],
+ ['14_solver_exited_zero',executionExitCode===0&&audit?.executionExitCode===0],
  ['15_strategy_json_parseable',!!result&&typeof result==='object'],
- ['16_exploitability_numeric',Number.isFinite(audit?.finalExploitabilityPercent)],
- ['17_exploitability_threshold',audit?.convergedToTarget===true&&audit.finalExploitabilityPercent<=0.3],
- ['18_source_provenance_explicit',selected.length===1&&!!selected[0].rangeProvenance?.villain],
- ['19_no_false_manifest_certification',manifest?.certified===0&&rows.every(r=>r.status==='PROVISIONAL_UNVERIFIED')],
+ ['16_exploitability_numeric',Number.isFinite(finalExploitabilityPercent)&&Number.isFinite(audit?.finalExploitabilityPercent)],
+ ['17_exploitability_threshold',solverConverged],
+ ['18_source_provenance_explicit',selectedSpotIdentityValid&&!!selectedRow.rangeProvenance?.villain],
+ ['19_no_false_manifest_certification',manifest?.certified===0&&rows.every(r=>r?.status==='PROVISIONAL_UNVERIFIED')],
  ['20_no_false_independent_certification',audit?.independentlyCertified===false],
  ['21_solver_log_present',solveLog.length>100],
- ['22_solver_samples_finite',sampleValues.length>0&&sampleValues.every(Number.isFinite)],
- ['23_solver_samples_nonnegative',sampleValues.length>0&&sampleValues.every(x=>x>=0)],
- ['24_solver_samples_match_final',sampleValues.length>0&&sampleValues.at(-1)===audit?.finalExploitabilityPercent],
+ ['22_solver_samples_finite',rawSamples.length>0&&rawSamples.every(Number.isFinite)&&sampleValues.length>0&&sampleValues.every(Number.isFinite)],
+ ['23_solver_samples_nonnegative',rawSamples.length>0&&rawSamples.every(x=>x>=0)&&sampleValues.length>0&&sampleValues.every(x=>x>=0)],
+ ['24_solver_samples_match_final',samplesMatch&&finalExploitabilityPercent===audit?.finalExploitabilityPercent],
  ['25_manifest_ids_sorted',solverInputIds.every((id,i)=>i===0||id>solverInputIds[i-1])],
- ['26_selected_board_matches_input',selected.length===1&&selected[0].input.includes('set_board '+board.join(','))],
+ ['26_selected_board_matches_input',selectedInputIntegrityValid&&valueOf('set_board')===board.join(',')],
  ['27_input_has_solver_start',selectedText.includes('start_solve')],
  ['28_input_has_strategy_dump',selectedText.includes('dump_result')],
  ['29_input_has_two_player_ranges',selectedText.includes('set_range_ip ')&&selectedText.includes('set_range_oop ')],
@@ -62,7 +93,7 @@ const checks=[
  ['37_audit_certification_reason',typeof audit?.reason==='string'&&audit.reason.length>10],
  ['38_result_nonarray_object',!!result&&typeof result==='object'&&!Array.isArray(result)],
  ['39_solver_input_hash_sha256',/^[a-f0-9]{64}$/.test(selectedHash)],
- ['40_unverified_range_provenance_explicit',selected.length===1&&selected[0].rangeProvenance?.villain==='ACADEMY_HEURISTIC_UNVERIFIED'],
+ ['40_unverified_range_provenance_explicit',selectedSpotIdentityValid&&selectedRow.rangeProvenance?.villain==='ACADEMY_HEURISTIC_UNVERIFIED'],
  ['41_one_build_tree',countCommand('build_tree')===0&&commands.filter(x=>x==='build_tree').length===1],
  ['42_one_start_solve',commands.filter(x=>x==='start_solve').length===1],
  ['43_one_dump_result',countCommand('dump_result')===1],
@@ -85,7 +116,32 @@ const checks=[
  ['60_one_dump_rounds',countCommand('set_dump_rounds')===1]
 ];
 const layers=checks.map(([task,passed])=>({task,passed:Boolean(passed)}));
-const report={schemaVersion:1,spotId:selected[0]?.id??null,sourceInputSha256:selectedHash,tasks:layers,passed:layers.filter(x=>x.passed).length,total:checks.length,solverConverged:checks[16][1]===true,independentlyCertified:false,certificationBlockers:['Cross-engine agreement not established','Postflop opponent ranges are heuristic and unverified','720 preflop scenarios lack independent certification'],note:'Evidence-quality gate; passing 60 checks is not GTO certification'};
+const integrityProblems=[];
+if(!selectedSpotIdentityValid)integrityProblems.push('Explicit selected spot identity is absent, invalid, duplicated, or conflicts with the manifest');
+if(!selectedInputIntegrityValid)integrityProblems.push('Selected input does not match the explicitly selected manifest row and SHA256');
+if(!selectedSourceIntegrityValid)integrityProblems.push('Selected input, provenance, or source fingerprint does not match the current source spot');
+if(!strategyJsonValid)integrityProblems.push('Raw strategy JSON is missing, corrupt, or not an object');
+if(executionExitCode!==0||audit?.executionExitCode!==executionExitCode)integrityProblems.push('Raw solver exit code is missing, unsuccessful, or disagrees with the run audit');
+if(!samplesMatch||audit?.finalExploitabilityPercent!==finalExploitabilityPercent)integrityProblems.push('Raw exploitability log samples disagree with the run audit');
+if(layers.some(x=>x.task==='08_manifest_hash_valid'&&!x.passed))integrityProblems.push('Manifest contains an invalid input SHA256');
+return {schemaVersion:2,spotId:selectedRow?.id??null,sourceInputSha256:selectedHash,
+ selectedSpotIdentityValid,selectedInputIntegrityValid,selectedSourceIntegrityValid,
+ selectedIdentitySource:selectedSpotIdentityValid?(explicitProvided?'EXPLICIT_SPOT_ID':'MANIFEST_SELECTED_SPOT_ID'):null,
+ sourceIntegrityScope:selectedRow?.sourceSpotSha256?'SOURCE_SPOT_FINGERPRINT_AND_SOLVER_GAME':'SOLVER_GAME_PARAMETERS_AND_MANIFEST_PROVENANCE',
+ selectedInputUnique:matchingInputs.length===1&&matchingSourceSpotIds.length===1,
+ matchingManifestSpotIds:matchingInputs.map(r=>r.id),matchingSourceSpotIds,
+ executionExitCode,finalExploitabilityPercent,exploitabilityPercentSamples:rawSamples,
+ strategyJsonValid,rawSolverConverged,integrityProblems,tasks:layers,passed:layers.filter(x=>x.passed).length,total:checks.length,
+ solverConverged,independentlyCertified:false,
+ certificationBlockers:['Cross-engine agreement not established','Postflop opponent ranges are heuristic and unverified','720 preflop scenarios lack independent certification'],
+ note:'Evidence-quality gate; passing 60 checks is not GTO certification. Input hashes can be shared by multiple hero decisions.'};
+}
+function main(){
+const dir='reports/solver/independent/';
+const report=inspectTexasEvidence(dir,process.env.ACADEMY_SOLVER_SPOT_ID);
+mkdirSync(dir,{recursive:true});
 writeFileSync(dir+'twenty-evidence-tasks.json',JSON.stringify(report,null,2)+'\n');
-console.log(JSON.stringify({spotId:report.spotId,passed:report.passed,total:checks.length,failed:layers.filter(x=>!x.passed).map(x=>x.task),independentlyCertified:false}));
-if(report.passed!==checks.length)process.exitCode=1;
+console.log(JSON.stringify({spotId:report.spotId,passed:report.passed,total:report.total,failed:report.tasks.filter(x=>!x.passed).map(x=>x.task),matchingManifestSpotIds:report.matchingManifestSpotIds,independentlyCertified:false}));
+if(report.passed!==report.total)process.exitCode=1;
+}
+if(process.argv[1]&&import.meta.url===pathToFileURL(resolve(process.argv[1])).href)main();

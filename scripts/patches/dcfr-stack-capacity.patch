@@ -1,0 +1,20 @@
+diff --git a/include/util/stack_allocator.hpp b/include/util/stack_allocator.hpp
+index a1cb5a6..88c44fa 100644
+--- a/include/util/stack_allocator.hpp
++++ b/include/util/stack_allocator.hpp
+@@ -60,7 +60,7 @@ public:
+ 
+ private:
+     static constexpr int KB = (1 << 10);
+-    static constexpr int StackBytesPerThread = 512 * KB; // TODO: Maybe dynamically choose this based on tree size
++    static constexpr int StackBytesPerThread = 4096 * KB; // Academy: capacity only; CFR and strategies unchanged
+     FixedVector<std::size_t, MaxNumThreads> m_stackPointers;
+     FixedVector<std::vector<T>, MaxNumThreads> m_stacks;
+     FixedVector<std::size_t, MaxNumThreads> m_maximumStackUsage;
+@@ -130,4 +130,4 @@ private:
+     std::span<T> m_data;
+ };
+ 
+-#endif // STACK_ALLOCATOR_HPP
+\ No newline at end of file
++#endif // STACK_ALLOCATOR_HPP

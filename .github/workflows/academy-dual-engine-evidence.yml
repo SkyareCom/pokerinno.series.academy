@@ -1,0 +1,133 @@
+name: Academy Real Independent Solver Evidence
+on:
+  push:
+    branches: [feat/pokerinno-frontend]
+    paths:
+      - scripts/lib/independent-solver-adapters.mjs
+      - scripts/run-independent-postflop.mjs
+      - scripts/build-independent-solvers.sh
+      - scripts/patches/**
+      - scripts/compare-solver-exports.mjs
+      - tests/independent-solver-*.mjs
+      - tests/solver-comparator-integrity.mjs
+      - .github/workflows/academy-dual-engine-evidence.yml
+  workflow_dispatch:
+    inputs:
+      spot_ids:
+        description: 'Comma-separated postflop IDs or all. Diagnostic solves never verify heuristic ranges.'
+        default: '737,1171,1396'
+        type: string
+      max_iterations:
+        description: 'Maximum iterations per real engine'
+        default: '2000'
+        type: string
+permissions:
+  contents: read
+  actions: read
+jobs:
+  queue:
+    runs-on: ubuntu-24.04
+    outputs:
+      matrix: ${{ steps.plan.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify adapters, raw-file integrity and official registry rejection
+        run: node --test tests/independent-solver-adapters.mjs tests/independent-solver-runner.mjs tests/solver-comparator-integrity.mjs tests/certification-registry-integrity.mjs tests/historical-solver-evidence.mjs
+      - name: Verify all required postflop decisions
+        run: |
+          node scripts/prepare-postflop-certification-queue.mjs
+          node scripts/run-independent-postflop.mjs --ids all --prepare-only --out reports/solver/certification/canonical-queue > reports/solver/certification/queue-preparation.log
+      - name: Verify language catalog
+        run: npm run i18n:audit
+      - name: Split real solver execution into batches of at most ten decisions
+        id: plan
+        env:
+          SOLVER_IDS: ${{ inputs.spot_ids || '737,1171,1396' }}
+        run: |
+          node --input-type=module - <<'JS'
+          import {trainingSpots} from './dist/simulator-spots.js';
+          import {appendFileSync} from 'node:fs';
+          const text=process.env.SOLVER_IDS;
+          const ids=text==='all'?trainingSpots.filter(s=>s.street!=='pre').map(s=>s.id):text.split(',').map(Number);
+          if(new Set(ids).size!==ids.length||ids.some(id=>!Number.isInteger(id)||!trainingSpots.some(s=>s.id===id&&s.street!=='pre')))throw Error('Invalid postflop batch selection');
+          const rows=[];
+          for(let i=0;i<ids.length;i+=10)rows.push({index:rows.length,ids:ids.slice(i,i+10).join(',')});
+          appendFileSync(process.env.GITHUB_OUTPUT,'matrix='+JSON.stringify({include:rows})+'\n');
+          JS
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: academy-canonical-780-postflop-queue
+          path: reports/solver/certification/
+  historical:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Recover actual historical artifacts from run 38036113467
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p reports/solver/certification/raw-artifacts
+          gh run download 38036113467 --repo "$GITHUB_REPOSITORY" --dir reports/solver/certification/raw-artifacts
+          node scripts/inventory-solver-evidence.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: academy-recovered-historical-evidence
+          path: reports/solver/certification/
+  compare:
+    needs: queue
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix: ${{ fromJSON(needs.queue.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install independent solver build tools
+        run: sudo apt-get update && sudo apt-get install -y cmake ninja-build g++
+      - name: Build two pinned independent engines and preserve build evidence
+        run: bash scripts/build-independent-solvers.sh
+      - name: Execute both real solvers and compare exact hero decisions
+        env:
+          SOLVER_IDS: ${{ matrix.ids }}
+          SOLVER_ITERATIONS: ${{ inputs.max_iterations || '2000' }}
+        run: node scripts/run-independent-postflop.mjs --ids "$SOLVER_IDS" --iterations "$SOLVER_ITERATIONS" --timeout 180
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: academy-dual-engine-batch-${{ matrix.index }}
+          path: reports/solver/certification/
+  release-gate:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run full app suite including the mandatory certification gate
+        id: suite
+        continue-on-error: true
+        run: npm test
+      - name: Recompute the official 1500 registry
+        id: registry
+        continue-on-error: true
+        run: node scripts/certify-all-1500-spots.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: academy-current-official-certification-registry
+          path: reports/solver/certification/certification-registry.json
+      - name: Reject release while any required mathematical evidence is missing
+        if: steps.suite.outcome != 'success' || steps.registry.outcome != 'success'
+        run: exit 1
