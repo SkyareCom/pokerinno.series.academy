@@ -78,7 +78,7 @@ export function setupSimulator(root){
  // Waiting for user to select unit and press INICIAR SIMULAÇÃO.
  }
  page.querySelector('[data-sim-start]').addEventListener('click',startSimulation);
- page.querySelectorAll('[data-sim-action]').forEach(b=>b.addEventListener('click',()=>{const action=b.dataset.simAction;if(action==='PRÓXIMO'){index=(index+1)%trainingSpots.length;draw();return;}const s=trainingSpots[index];const result=checkTrainingAction(s,action);const bet=action==='CALL'?2:action==='RAISE'?3:action==='ALL IN'?stakes[heroIndex]:0;act(heroIndex,action,bet,true);feedback.textContent='AÇÃO: '+action+' · '+result.message;feedback.dataset.validationStatus=result.status;renderDecision(s,action,result);}));
+ page.querySelectorAll('[data-sim-action]').forEach(b=>b.addEventListener('click',()=>{const action=b.dataset.simAction;if(action==='PRÓXIMO'){index=(index+1)%trainingSpots.length;draw();startSimulation();return;}const s=trainingSpots[index];const result=checkTrainingAction(s,action);const bet=action==='CALL'?2:action==='RAISE'?3:action==='ALL IN'?stakes[heroIndex]:0;act(heroIndex,action,bet,true);feedback.textContent='AÇÃO: '+action+' · '+result.message;feedback.dataset.validationStatus=result.status;renderDecision(s,action,result);}));
  page.querySelector('[data-sim-random]')?.addEventListener('click',()=>{if(trainingSpots.length<2)return;let next=index;while(next===index)next=Math.floor(Math.random()*trainingSpots.length);index=next;draw();});
  page.querySelectorAll('[data-stack-unit]').forEach(b=>b.addEventListener('click',()=>{selectedUnit=b.dataset.stackUnit;page.querySelectorAll('[data-stack-unit]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));refresh();}));
  draw();
