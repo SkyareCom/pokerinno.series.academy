@@ -596,3 +596,28 @@ html body #app .ranges-activity-page .ranges-activity-choices>button,
 html body #app .ranges-activity-page .ranges-activity-next{
  border-color:#F7C75B!important;
 }
+
+/* AUTHORITATIVE BORDER PALETTE — enforced last, 1px.
+   Gold for standard UI; gray-green for secondary surfaces;
+   beige for playing cards; lilac for special elements. */
+html body #app :is(
+ article,.card,.ch,.subcard,.panel,.practice-card,.source-question,
+ .ranges-activity-card,.quiz-feedback,.quiz-counters article,
+ .profile-plan,.academy-inline-drawer,.ranges-practice-entry,
+ button,.primary,.app-back,.quiz-options button,.quiz-controls button,
+ .ranges-activity-choices button,.ranges-activity-next,
+ .modality-filters button,.simulator-actions button,
+ input,select,textarea
+){
+ border-color:#F7C75B!important;
+ border-width:1px!important;
+}
+html body #app :is(.secondary,.secondary-card,.secondary-panel,.muted-card,.muted-panel){
+ border-color:#536457!important;
+}
+html body #app :is(.playing-card,.street-card,.simulator-card){
+ border-color:#D4CFBD!important;
+}
+html body #app :is(.lilac-border,.purple-border,.special-lilac){
+ border-color:#B79AF5!important;
+}
