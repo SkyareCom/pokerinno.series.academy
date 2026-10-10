@@ -1,6 +1,6 @@
 import {coachProfileSetting,setCoachEnabled,setCoachQuestionCount} from './simulator-coach.js?v=9033571';
 import {rangesLibrary,setupRangesLibrary} from './ranges-library.js?v=170dd1d4';
-import {simulatorPage,setupSimulator} from './simulator.js?v=44d9ba7';
+import {simulatorPage,setupSimulator} from './simulator.js?v=8bcbe26';
 import {renderProfilePlans} from './profile-plans.js?v=profile-plans-9550c742';
 import {decorateStreetLesson} from './street-visuals.js?v=streets-table-v1';
 import {saveMessagePreference,trackMessageVisit} from './pokerinno-messages.js?v=pokerinno-balloons-v1';
