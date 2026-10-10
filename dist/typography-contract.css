@@ -949,3 +949,22 @@ html body:not(#force1):not(#force2):not(#force3):not(#force4):not(#force5) :is(b
  background:#D4CFBD!important;background-color:#D4CFBD!important;background-image:none!important;
  color:#061714!important;border-color:#D4CFBD!important;border-width:1px!important;
 }
+
+/* STRUCTURAL BORDER CLEANUP — remove outer rectangles, keep each plan card.
+   Override older blanket rules that added borders to every section/div. */
+html body:not(#struct-a):not(#struct-b):not(#struct-c):not(#struct-d) #app :is(.profile-plans,.profile-plans>.section-top,.profile-plans>.plan-grid,.section-top,.page-heading,.chapter-tag),
+html body:not(#struct-a):not(#struct-b):not(#struct-c):not(#struct-d) :is(.sidebar,.workspace>header,.mobile-nav,.side-bottom){
+ border:0!important;
+ border-top:0!important;
+ border-right:0!important;
+ border-bottom:0!important;
+ border-left:0!important;
+ outline:0!important;
+ box-shadow:none!important;
+}
+/* Preserve individual plan borders. */
+html body #app .profile-plan{border:1px solid #D4CFBD!important;}
+/* Requested section labels, including all adventure headings. */
+html body:not(#eyebrow-a):not(#eyebrow-b):not(#eyebrow-c) #app .page-heading .eyebrow{
+ color:#F7C75B!important;
+}
