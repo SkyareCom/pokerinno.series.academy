@@ -25,7 +25,7 @@ Status: **AAB NÃO ASSINADO GERADO EM CI; NÃO PUBLICADO / NÃO APTO À PLAY**.
 - [x] Integrar execução dos testes e auditorias ao workflow antes da compilação (commit `756f8a1`; resultado da execução ainda pendente).
 - [ ] Configurar assinatura de release somente após validar chave de upload/secret e versão Play.
 - [ ] Gerar AAB **assinado** e comprovar aceitação em Play internal testing.
-- [ ] Confirmar resultado CI de `npm test`, `npm run i18n:audit`, `npm run spacing:audit`, `npm run visual:audit`; execução `38057029067` iniciada.
+- [ ] Corrigir bloqueios CI da execução `38057029067`: `npm test` = 55 aprovados, 5 falharam. Auditorias seguintes não executadas devido ao bloqueio.\n- [ ] Certificação de 1.500 decisões solver independentes exigida por `tests/audit-simulator-uniqueness.mjs`; não alterar critério ou declarar certificação sem evidência.\n- [ ] Corrigir testes do Perfil (Coach, idioma, salvamento) e integridade dos ranges 9-max.
 - [ ] Testar AAB em dispositivo e Play internal testing; revisar crashes, login, pagamentos, navegação e offline.
 - [ ] Enviar à Google Play somente após aprovação explícita.
 
