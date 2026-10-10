@@ -1,0 +1,33 @@
+name: Academy 1500 Certification Registry
+on:
+  push:
+    branches: [feat/pokerinno-frontend]
+    paths:
+      - scripts/certify-all-1500-spots.mjs
+      - .github/workflows/academy-certification-registry.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  certify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify 1500 spots with strict independent evidence
+        id: verify
+        continue-on-error: true
+        run: node scripts/certify-all-1500-spots.mjs
+      - name: Publish certification registry (including failures)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: academy-1500-certification-registry
+          path: reports/solver/certification/certification-registry.json
+      - name: Fail unless all 1500 are independently certified
+        if: steps.verify.outcome != 'success'
+        run: |
+          echo 'CERTIFICATION REJECTED: one or more spots lack independently verified evidence.'
+          exit 1
