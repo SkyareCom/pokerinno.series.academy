@@ -1547,3 +1547,8 @@ html body:not(.login-screen) :is(#app,.sidebar,header,dialog,.pokerinno-balloons
 #app .simulator-turn-alert{position:absolute;z-index:12;left:50%;top:50%;transform:translate(-50%,-50%);padding:12px 20px;border:2px solid #f0c866;border-radius:9px;background:#09241d;color:#f0c866;font-size:20px;font-weight:700;white-space:nowrap;box-shadow:0 4px 16px #000b;pointer-events:none;animation:simHeroAlert .3s ease-out;}
 @keyframes simHeroAlert{from{opacity:0;transform:translate(-50%,-50%) scale(.85)}to{opacity:1;transform:translate(-50%,-50%) scale(1)}}
 #app .simulator-seat.simulator-acting{outline:2px solid #f0c866;outline-offset:2px;}
+
+/* Hero cards are visible while opponents retain card backs. */
+#app .simulator-seat .simulator-card-back.simulator-card-face{background:#f7f3e7!important;color:#172c28!important;border:1px solid #bd9b51!important;box-shadow:0 1px 3px #0009!important;font-size:10px!important;font-weight:800!important;line-height:15px!important;text-align:center!important;white-space:nowrap;}
+#app .simulator-seat .simulator-card-back.simulator-card-face.simulator-card-red{color:#b92331!important;}
+@media(max-width:480px){#app .simulator-seat .simulator-card-back.simulator-card-face{font-size:9px!important;line-height:13px!important;}}
