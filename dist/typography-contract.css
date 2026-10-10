@@ -645,25 +645,34 @@ html body #app *::before,html body #app *::after{
  border-left-width:1px!important;
 }
 
-/* FINAL OVERRIDE: official border colors, exactly 1px, without adding borders.
-   Use low-level universal selector as baseline and exceptions afterwards. */
-html body #app,html body #app *,
-html body #app *::before,html body #app *::after{
+
+/* GLOBAL OFFICIAL BORDER CONTRACT — one authoritative final override.
+   Only recolors existing borders; does not set border-style or create borders. */
+html body :is(#app,#app *,#app *::before,#app *::after,
+ .workspace,.workspace *, .sidebar,.sidebar *, .mobile-nav,.mobile-nav *,
+ dialog,dialog *,header,header *,footer,footer *){
  border-color:#F7C75B!important;
  border-width:1px!important;
 }
-html body #app :is(.secondary,.secondary-card,.secondary-panel,.muted-card,.muted-panel),
-html body #app :is(.secondary,.secondary-card,.secondary-panel,.muted-card,.muted-panel)::before,
-html body #app :is(.secondary,.secondary-card,.secondary-panel,.muted-card,.muted-panel)::after{
+/* Secondary structures */
+html body :is(.secondary,.secondary-card,.secondary-panel,.muted-card,.muted-panel){
  border-color:#536457!important;
 }
-html body #app :is(.playing-card,.street-card,.simulator-card),
-html body #app :is(.playing-card,.street-card,.simulator-card)::before,
-html body #app :is(.playing-card,.street-card,.simulator-card)::after{
+/* Real playing cards: beige */
+html body :is(.playing-card,.street-card,.simulator-card){
  border-color:#D4CFBD!important;
 }
-html body #app :is(.lilac-border,.purple-border,.special-lilac),
-html body #app :is(.lilac-border,.purple-border,.special-lilac)::before,
-html body #app :is(.lilac-border,.purple-border,.special-lilac)::after{
+/* Explicit special lilac elements */
+html body :is(.lilac-border,.purple-border,.special-lilac){
+ border-color:#B79AF5!important;
+}
+/* Preserve exceptions even when deeply nested in gold activity cards. */
+html body #app :is(.playing-card,.street-card,.simulator-card){
+ border-color:#D4CFBD!important;
+}
+html body #app :is(.secondary,.secondary-card,.secondary-panel,.muted-card,.muted-panel){
+ border-color:#536457!important;
+}
+html body #app :is(.lilac-border,.purple-border,.special-lilac){
  border-color:#B79AF5!important;
 }
