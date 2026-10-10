@@ -2,7 +2,7 @@ name: Academy Independent TexasSolver Build
 on:
   push:
     branches: [feat/pokerinno-frontend]
-    paths: ['.github/workflows/academy-texas-solver.yml', 'scripts/prepare-texas-solver-inputs.mjs', 'scripts/audit-texas-solver-run.mjs']
+    paths: ['.github/workflows/academy-texas-solver.yml', 'scripts/prepare-texas-solver-inputs.mjs', 'scripts/audit-texas-solver-run.mjs', 'scripts/audit-solver-development-ten-layers.mjs']
   workflow_dispatch:
 permissions:
   contents: read
@@ -15,6 +15,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Validate ten solver development layers
+        run: node scripts/audit-solver-development-ten-layers.mjs
       - name: Generate 780 independent-engine scenario inputs
         run: node scripts/prepare-texas-solver-inputs.mjs
       - name: Install independent solver toolchain
