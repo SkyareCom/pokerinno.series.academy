@@ -597,27 +597,50 @@ html body #app .ranges-activity-page .ranges-activity-next{
  border-color:#F7C75B!important;
 }
 
-/* AUTHORITATIVE BORDER PALETTE — enforced last, 1px.
-   Gold for standard UI; gray-green for secondary surfaces;
-   beige for playing cards; lilac for special elements. */
+
+/* PALETA OFICIAL DE BORDAS · VERSÃO CONSOLIDADA
+   Mantém a existência/estilo de cada borda; somente cor e espessura.
+   Padrão: dourado. Exceções: secundários, cartas e lilás. */
 html body #app :is(
  article,.card,.ch,.subcard,.panel,.practice-card,.source-question,
- .ranges-activity-card,.quiz-feedback,.quiz-counters article,
- .profile-plan,.academy-inline-drawer,.ranges-practice-entry,
+ .ranges-activity-card,.quiz-feedback,.quiz-counters article,.profile-plan,
+ .academy-inline-drawer,.ranges-practice-entry,.ranges-activity-page,
  button,.primary,.app-back,.quiz-options button,.quiz-controls button,
- .ranges-activity-choices button,.ranges-activity-next,
- .modality-filters button,.simulator-actions button,
- input,select,textarea
+ .ranges-activity-choices button,.ranges-activity-next,.modality-filters button,
+ .simulator-actions button,input,select,textarea,fieldset,
+ .practice-module,.quiz-card-group,.stats-metrics article
 ){
  border-color:#F7C75B!important;
  border-width:1px!important;
 }
 html body #app :is(.secondary,.secondary-card,.secondary-panel,.muted-card,.muted-panel){
  border-color:#536457!important;
+ border-width:1px!important;
 }
 html body #app :is(.playing-card,.street-card,.simulator-card){
  border-color:#D4CFBD!important;
+ border-width:1px!important;
 }
 html body #app :is(.lilac-border,.purple-border,.special-lilac){
  border-color:#B79AF5!important;
+ border-width:1px!important;
+}
+/* Stronger specificity for nested cards, options and ranges. */
+html body #app .ranges-activity-page article.ranges-activity-card,
+html body #app .ranges-activity-page .ranges-activity-choices>button,
+html body #app .ranges-activity-page .ranges-activity-next,
+html body #app .quiz-player .source-question.activity-unified-card,
+html body #app .quiz-player .source-question .quiz-options>button,
+html body #app .quiz-player .source-question .quiz-controls>button,
+html body #app .quiz-player .modality-filters>button{
+ border-color:#F7C75B!important;
+ border-width:1px!important;
+}
+/* Exact one-pixel rule; do not affect SVG stroke widths. */
+html body #app,html body #app *,
+html body #app *::before,html body #app *::after{
+ border-top-width:1px!important;
+ border-right-width:1px!important;
+ border-bottom-width:1px!important;
+ border-left-width:1px!important;
 }
