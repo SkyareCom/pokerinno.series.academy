@@ -751,3 +751,16 @@ html body:not(#_border_lock_a):not(#_border_lock_b){
  border-bottom-width:1px!important;
  border-left-width:1px!important;
 }
+
+/* FINAL BEIGE BORDER ENFORCEMENT: 100% of visible CSS border colors,
+   including nested cards and pseudo-elements. No border-style changes. */
+html body:not(#b1):not(#b2):not(#b3):not(#b4):not(#b5) *,
+html body:not(#b1):not(#b2):not(#b3):not(#b4):not(#b5) *::before,
+html body:not(#b1):not(#b2):not(#b3):not(#b4):not(#b5) *::after{
+ border-color:#D4CFBD!important;
+ border-top-color:#D4CFBD!important;
+ border-right-color:#D4CFBD!important;
+ border-bottom-color:#D4CFBD!important;
+ border-left-color:#D4CFBD!important;
+ border-width:1px!important;
+}
