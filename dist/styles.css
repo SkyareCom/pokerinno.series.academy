@@ -1433,3 +1433,20 @@ html body:not(.login-screen) :is(#app,.sidebar,header,dialog,.pokerinno-balloons
 #app .simulator-hole-cards{top:-12px;}
 #app .simulator-bet{bottom:-15px;}
 @media(max-width:480px){#app .simulator-table-area{aspect-ratio:1.15;min-height:0;margin:17px auto 22px;}#app .simulator-table{inset:17% 12%;}#app .simulator-seat,#app .simulator-hero{width:49px;min-width:49px;max-width:49px;}#app .simulator-seat-position,#app .simulator-stack,#app .simulator-seat-action{font-size:10px;line-height:11px;}#app .simulator-hole-cards{top:-10px;}}
+
+/* Predecision Pokerinno teaching overlay. */
+#app .simulator-page{position:relative}
+#app .simulator-coach-overlay{position:fixed;inset:0;z-index:1100;background:rgba(2,15,13,.82);display:flex;align-items:center;justify-content:center;padding:20px;box-sizing:border-box}
+#app .simulator-coach-card{width:min(100%,420px);max-height:85dvh;overflow-y:auto;border:1px solid #d9b762;border-radius:14px;background:#10251f;padding:18px;color:#f7f3e7;box-shadow:0 14px 38px #0008}
+#app .simulator-coach-avatar{width:44px;height:44px;border-radius:50%;background:#e7c46c;color:#123025;display:grid;place-items:center;font-size:24px;margin-bottom:8px;animation:simCoachAppear .35s ease-out}
+#app .simulator-coach-card>strong{display:block;color:#f4cd73;font-size:16px}
+#app .simulator-coach-card>small{display:block;color:#c3cbbf;font-size:12px;margin:6px 0}
+#app .simulator-coach-card h3{font-size:16px;color:#fff;margin:10px 0}
+#app .simulator-coach-bubble{border-radius:12px 12px 12px 3px;background:#1c4033;border:1px solid #52745b;padding:12px}
+#app .simulator-coach-bubble p{font-size:12px;line-height:1.5;margin:0 0 10px}
+#app .simulator-coach-bubble p:last-child{margin-bottom:0}
+#app .simulator-coach-buttons{display:flex;gap:10px;margin-top:14px}
+#app .simulator-coach-buttons button{flex:1;border:1px solid #d3b15c;border-radius:7px;background:#19382e;color:#fff;padding:12px 6px;font-size:12px;font-weight:600}
+#app .simulator-coach-buttons button:last-child{background:#e7c46c;color:#172a20}
+@keyframes simCoachAppear{from{transform:translateY(15px);opacity:0}to{transform:translateY(0);opacity:1}}
+@media(prefers-reduced-motion:reduce){#app .simulator-coach-avatar{animation:none}}
