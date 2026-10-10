@@ -458,3 +458,66 @@ body:not(.login-screen) #app .quiz-player .source-question .quiz-controls.activi
 body:not(.login-screen) #app .quiz-player .source-question .quiz-controls.activity-inline-controls>button:disabled{
  opacity:.4!important;
 }
+
+/* Shared action-row contract across the Academy: equal columns, full row.
+   Scoped to functional button groups; frozen login/footer/nav excluded. */
+body:not(.login-screen) #app :is(
+ .quiz-controls,.simulator-actions,.ranges-activity-choices,
+ .pokerinno-count-drawer
+){
+ display:grid!important;
+ grid-template-columns:repeat(3,minmax(0,1fr))!important;
+ width:100%!important;
+ max-width:100%!important;
+ min-width:0!important;
+ gap:10px!important;
+ align-items:stretch!important;
+ justify-items:stretch!important;
+ box-sizing:border-box!important;
+}
+body:not(.login-screen) #app .pokerinno-count-drawer{
+ grid-template-columns:repeat(2,minmax(0,1fr))!important;
+}
+body:not(.login-screen) #app :is(
+ .quiz-controls,.simulator-actions,.ranges-activity-choices,
+ .pokerinno-count-drawer
+)>button{
+ display:flex!important;
+ align-items:center!important;
+ justify-content:center!important;
+ width:100%!important;
+ min-width:0!important;
+ max-width:none!important;
+ min-height:48px!important;
+ height:auto!important;
+ box-sizing:border-box!important;
+ margin:0!important;
+ padding:10px 4px!important;
+ border-radius:10px!important;
+ font-size:12px!important;
+ font-weight:600!important;
+ text-align:center!important;
+ overflow-wrap:anywhere!important;
+ white-space:normal!important;
+}
+body:not(.login-screen) #app .quiz-player .quiz-controls.activity-inline-controls{
+ grid-template-columns:repeat(3,minmax(0,1fr))!important;
+}
+body:not(.login-screen) #app .ranges-activity-choices{
+ grid-template-columns:repeat(3,minmax(0,1fr))!important;
+ margin:0!important;
+}
+body:not(.login-screen) #app .ranges-activity-choices>button{
+ border:1px solid #D5B56B!important;
+ background:#17392D!important;
+ color:#F4F2E7!important;
+ -webkit-text-fill-color:#F4F2E7!important;
+}
+body:not(.login-screen) #app .simulator-actions{
+ margin:10px 0!important;
+}
+body:not(.login-screen) #app .modality-filters>button{
+ width:100%!important;
+ min-width:0!important;
+ box-sizing:border-box!important;
+}
