@@ -4,6 +4,7 @@ on:
     branches: [feat/pokerinno-frontend]
     paths:
       - scripts/certify-all-1500-spots.mjs
+      - scripts/certify-spots.mjs
       - .github/workflows/academy-certification-registry.yml
   workflow_dispatch:
 permissions:
