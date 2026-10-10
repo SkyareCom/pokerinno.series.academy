@@ -1,2 +1,22 @@
-// Educational scenarios, not solver-validated decisions.
-export const trainingSpots=Array.from({length:1500},(_,i)=>({id:i+1,street:i%100<48?'pre':i%100<78?'flop':i%100<93?'turn':'river',stack:[10,15,30,100][i%4],position:['UTG','UTG+1','UTG+2','LJ','HJ','CO','BTN','SB','BB'][Math.floor(i/4)%9],pot:1.5+(i%12)*2,hand:['AKs','QQ','JTs','77','AQo','KQs','T9s','A5s'][Math.floor(i/36)%8],board:['Ah','7d','2c','9s','Kd'].slice(0,i%100<48?0:i%100<78?3:i%100<93?4:5)}));
+import ranges from './ranges-dcfr-9max.json' with {type:'json'};
+// Only RFI in the eight non-BB positions can be matched to the imported DCFR dataset.
+// Other spots remain educational and have no solver-approved answer.
+const positions=['UTG','UTG+1','UTG+2','LJ','HJ','CO','BTN','SB','BB'];
+const stacks=[10,15,30,100];
+const hands=['AKs','QQ','JTs','77','AQo','KQs','T9s','A5s'];
+const cards=['Ah','7d','2c','9s','Kd'];
+export const trainingSpots=Array.from({length:1500},(_,i)=>{
+ const street=i%100<48?'pre':i%100<78?'flop':i%100<93?'turn':'river';
+ const stack=stacks[i%4],position=positions[Math.floor(i/4)%9],hand=hands[Math.floor(i/36)%8];
+ const board=cards.slice(0,street==='pre'?0:street==='flop'?3:street==='turn'?4:5);
+ const scenario=street==='pre'&&position!=='BB'?ranges.scenarios[stack+'|'+position]:null;
+ const actions=scenario?.actions.find(row=>row[0]===hand)?.slice(1)??null;
+ return {id:i+1,street,stack,position,pot:1.5+(i%12)*2,hand,board,solver:actions?{solveId:scenario.solveId,actions,context:'9MAX RFI PREFLOP'}:null};
+});
+export function checkTrainingAction(spot,action){
+ if(!spot.solver)return {status:'unvalidated',message:'Cenário didático: não existe solve correspondente nesta biblioteca.'};
+ const map={'RAISE':'raise','FOLD':'fold','ALL IN':'allin','CALL':'call','CHECK':'check'};
+ const chosen=map[action];
+ const frequency=spot.solver.actions.find(([a])=>a===chosen)?.[1]??0;
+ return {status:'solver-reference',frequency,solveId:spot.solver.solveId,message:chosen.toUpperCase()+': '+frequency.toFixed(1)+'% no arquivo DCFR 9-max (RFI).'};
+}
