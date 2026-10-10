@@ -1394,3 +1394,10 @@ html body:not(.login-screen) :is(#app,.sidebar,header,dialog,.pokerinno-balloons
 #app .simulator-seat,#app .simulator-hero{box-sizing:border-box;width:64px;min-width:64px;max-width:64px;padding:3px 2px;gap:1px;border-radius:6px;}
 #app .simulator-seat-position,#app .simulator-stack,#app .simulator-seat-action{font-size:10px;line-height:12px;min-height:12px;white-space:nowrap;}
 @media(max-width:390px){#app .simulator-seat,#app .simulator-hero{width:58px;min-width:58px;max-width:58px;padding:3px 1px;}#app .simulator-seat-position,#app .simulator-stack,#app .simulator-seat-action{font-size:10px;line-height:12px;}}
+
+/* Two compact face-down hole cards per player, with consistent avatar geometry. */
+#app .simulator-seat,#app .simulator-hero{width:64px;min-width:64px;max-width:64px;box-sizing:border-box;gap:1px;padding:3px 2px;}
+#app .simulator-hole-cards{display:flex;justify-content:center;align-items:center;gap:2px;width:100%;height:19px;flex-shrink:0;}
+#app .simulator-card-back{display:block;box-sizing:border-box;width:13px;height:18px;flex:0 0 13px;border:1px solid #e7dfc9;border-radius:2px;background:repeating-linear-gradient(45deg,#193c5c 0px,#193c5c 3px,#34678a 3px,#34678a 5px);box-shadow:inset 0 0 0 2px #193c5c;}
+#app .simulator-seat-position,#app .simulator-stack,#app .simulator-seat-action{font-size:10px;line-height:12px;min-height:12px;}
+@media(max-width:390px){#app .simulator-seat,#app .simulator-hero{width:58px;min-width:58px;max-width:58px;}}
