@@ -1,22 +1,19 @@
-# Auditoria de unicidade dos 1.500 candidatos — 9-max
+# Auditoria de spots 9-max
 
-**Estado: REPROVADO PARA CERTIFICAÇÃO E PUBLICAÇÃO COMO BANCO DE SPOTS.**
+Estado: BLOQUEADO PARA CERTIFICACAO.
 
-Reprodução local da função geradora e da assinatura em `dist/simulator-uniqueness.js`:
+Evidencia: GitHub Actions 38013840293, commit b8f3527.
 
-- Registros gerados: **1.500**
-- Assinaturas estratégicas distintas: **808**
-- Repetições por assinatura: **692 (46,13%)**
-- Solves independentemente reproduzidos/certificados nesta auditoria: **0**
+- Candidatos: 1500.
+- Assinaturas estrategicas distintas: 1500.
+- Duplicacoes: 0.
+- Decisoes com certificacao independente: 0.
+- Testes: 54 passaram, 1 falhou (audit-simulator-uniqueness.mjs).
 
-Esta contagem não é uma aprovação do CI. Reproduzir com `node tests/audit-simulator-uniqueness.mjs`; a execução deve falhar enquanto houver repetição ou contexto pós-flop ausente.
+As 720 decisoes preflop possuem referencias importadas DCFR 9-max RFI e correspondencia estrutural com as linhas importadas. Isso NAO equivale a certificacao independente do solver.
 
-## Condições obrigatórias para substituir um candidato
+Os 780 candidatos pos-flop nao possuem solves associados. Nao contam como certificados.
 
-1. Decisão única por situação estratégica: mesa 9-max, posição, mão, stack efetivo, adversário, ação anterior, sizing, ranges e street.
-2. Não contam como novidade: trocar naipes globalmente, inverter cartas, mudar ID, pote cosmético, ou apenas renomear o mesmo cenário.
-3. Registrar duas cartas concretas e board sem colisões, histórico real de apostas e pote derivado das contribuições.
-4. Associar solve original com referência verificável e estratégia correspondente; sem projeção de posição, street ou ação.
-5. Nenhum candidato sem contexto ou solve independente entra na contagem certificada ou no diagnóstico.
+Nao liberar os candidatos como banco validado. Nao remover o bloqueio de CI ate existir comprovacao individual verificavel de 1500 solves.
 
-**Não substituir as 692 repetições por dados artificiais para atingir a meta.** Preservar o bloqueio até que existam 1.500 decisões completas, distintas e solver-validadas.
+Log: https://github.com/SkyareCom/pokerinno.series.academy/actions/runs/38013840293
