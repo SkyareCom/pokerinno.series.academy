@@ -45,13 +45,18 @@ jobs:
           test -s reports/solver/independent/binaries.txt
       - name: Execute one real independent solve (diagnostic only)
         continue-on-error: true
-        timeout-minutes: 12
+        timeout-minutes: 25
         run: |
           set -o pipefail
           cd /tmp/academy-texas-solver/install
           cp "$GITHUB_WORKSPACE/reports/solver/independent/selected-texas-input.txt" ./academy-spot-input.txt
-          timeout 600 ./console_solver -i academy-spot-input.txt 2>&1 | tee "$GITHUB_WORKSPACE/reports/solver/independent/texas-solver-run.log"
+          set +e
+          timeout 1200 ./console_solver -i academy-spot-input.txt 2>&1 | tee "$GITHUB_WORKSPACE/reports/solver/independent/texas-solver-run.log"
+          solver_exit=${PIPESTATUS[0]}
+          set -e
+          printf '%s\n' "$solver_exit" > "$GITHUB_WORKSPACE/reports/solver/independent/texas-solver-exit-code.txt"
           if test -s academy-texas-result.json; then cp academy-texas-result.json "$GITHUB_WORKSPACE/reports/solver/independent/texas-solver-result.json"; fi
+          test "$solver_exit" -eq 0
           grep -q 'Total exploitability' "$GITHUB_WORKSPACE/reports/solver/independent/texas-solver-run.log"
           test -s "$GITHUB_WORKSPACE/reports/solver/independent/texas-solver-result.json"
       - name: Record independent certification limitations
