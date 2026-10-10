@@ -1,7 +1,7 @@
 import {trainingSpots} from '../dist/simulator-spots.js';
 import {auditStrategicDuplicates} from '../dist/simulator-uniqueness.js';
 const report=auditStrategicDuplicates(trainingSpots);
-console.log(JSON.stringify({total:report.total,unique:report.unique,duplicateCount:report.duplicateCount,examples:report.duplicates.slice(0,20)},null,2));
+console.log(JSON.stringify({total:report.total,unique:report.unique,duplicateCount:report.duplicateCount,examples:report.duplicates.slice(0,20),duplicateRate:report.total?report.duplicateCount/report.total:0},null,2));
 const missingContext=trainingSpots.filter(s=>s.street!=='pre'&&(!s.bettingLine||!s.aggressor||!s.effectiveStack||!s.villainRange));
 const missingProvenance=trainingSpots.filter(s=>!s.solver?.solveId);
 console.log(JSON.stringify({missingPostflopContext:missingContext.length,missingSolverReference:missingProvenance.length},null,2));
