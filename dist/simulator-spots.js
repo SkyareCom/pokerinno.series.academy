@@ -72,9 +72,20 @@ export function checkTrainingAction(spot,action){
 }
 
 export function independentlyCertifiedSpots(spots=trainingSpots){
- return spots.filter(s=>s.solver?.independentlyVerified===true&&
- typeof s.solver.solveId==='string'&&s.solver.solveId.length>0&&
- typeof s.solver.scenarioKey==='string'&&s.solver.scenarioKey.length>0&&
- typeof s.solver.sourceHash==='string'&&s.solver.sourceHash.length>0&&
- Array.isArray(s.solver.actions)&&s.solver.actions.length>0);
+ return spots.filter(s=>{
+  const v=s.solver;
+  if(v?.independentlyVerified!==true||!v.solveId||!v.scenarioKey||
+     !/^sha256:[a-f0-9]{64}$/.test(v.sourceHash??'')||
+     !Array.isArray(v.actions)||v.actions.length===0)return false;
+  const seen=new Set();
+  let total=0;
+  for(const row of v.actions){
+   if(!Array.isArray(row)||row.length!==2||
+      typeof row[0]!=='string'||seen.has(row[0])||
+      typeof row[1]!=='number'||!Number.isFinite(row[1])||
+      row[1]<0||row[1]>100)return false;
+   seen.add(row[0]);total+=row[1];
+  }
+  return Math.abs(total-100)<=0.2;
+ });
 }
