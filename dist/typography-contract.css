@@ -459,59 +459,30 @@ body:not(.login-screen) #app .quiz-player .source-question .quiz-controls.activi
  opacity:.4!important;
 }
 
-/* Shared action-row contract across the Academy: equal columns, full row.
-   Scoped to functional button groups; frozen login/footer/nav excluded. */
-body:not(.login-screen) #app :is(
- .quiz-controls,.simulator-actions,.ranges-activity-choices,
- .pokerinno-count-drawer
-){
+/* Shared full-width rows for simulator only; ranges retains its own approved visual. */
+body:not(.login-screen) #app .simulator-actions{
  display:grid!important;
  grid-template-columns:repeat(3,minmax(0,1fr))!important;
  width:100%!important;
- max-width:100%!important;
- min-width:0!important;
  gap:10px!important;
- align-items:stretch!important;
- justify-items:stretch!important;
+}
+body:not(.login-screen) #app .simulator-actions>button{
  box-sizing:border-box!important;
-}
-body:not(.login-screen) #app .pokerinno-count-drawer{
- grid-template-columns:repeat(2,minmax(0,1fr))!important;
-}
-body:not(.login-screen) #app :is(
- .quiz-controls,.simulator-actions,.ranges-activity-choices,
- .pokerinno-count-drawer
-)>button{
- display:flex!important;
- align-items:center!important;
- justify-content:center!important;
  width:100%!important;
  min-width:0!important;
- max-width:none!important;
  min-height:48px!important;
- height:auto!important;
+ margin:0!important;
+}
+body:not(.login-screen) #app .pokerinno-count-drawer{
+ display:grid!important;
+ grid-template-columns:repeat(2,minmax(0,1fr))!important;
+ width:100%!important;
+ gap:10px!important;
+}
+body:not(.login-screen) #app .pokerinno-count-drawer>button{
+ width:100%!important;
+ min-width:0!important;
  box-sizing:border-box!important;
- margin:0!important;
- padding:10px 4px!important;
- border-radius:10px!important;
- font-size:12px!important;
- font-weight:600!important;
- text-align:center!important;
- overflow-wrap:anywhere!important;
- white-space:normal!important;
-}
-body:not(.login-screen) #app .quiz-player .quiz-controls.activity-inline-controls{
- grid-template-columns:repeat(3,minmax(0,1fr))!important;
-}
-body:not(.login-screen) #app .ranges-activity-choices{
- grid-template-columns:repeat(3,minmax(0,1fr))!important;
- margin:0!important;
-}
-body:not(.login-screen) #app .ranges-activity-choices>button{
- border:1px solid #D5B56B!important;
- background:#17392D!important;
- color:#F4F2E7!important;
- -webkit-text-fill-color:#F4F2E7!important;
 }
 body:not(.login-screen) #app .simulator-actions{
  margin:10px 0!important;
@@ -520,4 +491,42 @@ body:not(.login-screen) #app .modality-filters>button{
  width:100%!important;
  min-width:0!important;
  box-sizing:border-box!important;
+}
+
+/* Restore the original distinctive ranges activity presentation. */
+body:not(.login-screen) #app .ranges-activity-page .ranges-activity-card{
+ display:block!important;
+ padding:14px!important;
+ border:1px solid #D5B56B!important;
+ border-radius:10px!important;
+ background:#102B23!important;
+}
+body:not(.login-screen) #app .ranges-activity-page .ranges-activity-choices{
+ display:grid!important;
+ grid-template-columns:repeat(3,minmax(0,1fr))!important;
+ gap:8px!important;
+ margin:16px 0!important;
+}
+body:not(.login-screen) #app .ranges-activity-page .ranges-activity-choices>button{
+ min-height:42px!important;
+ padding:8px 5px!important;
+ border:1px solid #D5B56B!important;
+ border-radius:8px!important;
+ background:#17392D!important;
+ color:#F4F2E7!important;
+ -webkit-text-fill-color:#F4F2E7!important;
+ font-weight:600!important;
+}
+body:not(.login-screen) #app .ranges-activity-page .ranges-activity-result{
+ min-height:45px!important;
+}
+body:not(.login-screen) #app .ranges-activity-page .ranges-activity-next{
+ width:100%!important;
+ min-height:42px!important;
+ margin-top:10px!important;
+ border:1px solid #D5B56B!important;
+ border-radius:8px!important;
+ background:#F0C66A!important;
+ color:#10271F!important;
+ -webkit-text-fill-color:#10271F!important;
 }
