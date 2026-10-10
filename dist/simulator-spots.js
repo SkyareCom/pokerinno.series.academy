@@ -6,6 +6,7 @@ const ranks='23456789TJQKA',suits='shdc';
 const deck=[...ranks].flatMap(rank=>[...suits].map(suit=>rank+suit));
 const handClasses=Object.keys(ranges.scenarios).length
  ? ranges.scenarios['100|UTG'].actions.map(row=>row[0]):[];
+const classFor=(i)=>handClasses[i%handClasses.length];
 function holeCards(hand,index){
  const [a,b,type]=hand;
  if(a===b)return [a+suits[index%4],b+suits[(index+1)%4]];
@@ -20,7 +21,7 @@ function boardCards(heroCards,index,count){
 }
 const preflop=Array.from({length:720},(_,i)=>{
  const position=positions[i%8],stack=stacks[Math.floor(i/8)%4];
- const hand=handClasses[Math.floor(i/32)%handClasses.length];
+ const hand=classFor(Math.floor(i/32));
  const scenario=ranges.scenarios[stack+'|'+position];
  const actions=scenario?.actions.find(row=>row[0]===hand)?.slice(1)??null;
  return {id:i+1,tableSize:9,street:'pre',position,stack,effectiveStack:stack,
@@ -32,7 +33,7 @@ const postflop=Array.from({length:780},(_,i)=>{
  const street=i<450?'flop':i<675?'turn':'river';
  const count={flop:3,turn:4,river:5}[street];
  const stack=[30,100][i%2],position='BTN';
- const hand=handClasses[Math.floor(i/2)%handClasses.length];
+ const hand=classFor(Math.floor(i/2));
  const heroCards=holeCards(hand,i);
  const board=boardCards(heroCards,i,count);
  const bettingLine=[
