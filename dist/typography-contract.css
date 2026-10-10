@@ -1027,3 +1027,13 @@ html body:not(#tier1):not(#tier2):not(#tier3):not(#tier4):not(#tier5):not(#tier6
 }
 /* Icon and text children inherit the parent button state. */
 html body:not(#tier1):not(#tier2):not(#tier3):not(#tier4):not(#tier5):not(#tier6) :is(button,[role="button"],.btn,.button,a.primary) :is(span,strong,small,em,b,i,svg){color:inherit!important;-webkit-text-fill-color:inherit!important;}
+
+/* ACTIVITY ANSWER SELECTION — user-approved gold state, overrides prior taupe. */
+html body:not(#answer-gold1):not(#answer-gold2):not(#answer-gold3):not(#answer-gold4):not(#answer-gold5):not(#answer-gold6):not(#answer-gold7) :is(
+ .quiz-options button,.ranges-activity-choices button,
+ .activity-options button,.answer-options button,.quiz-answers button
+):is(:active,.active,.selected,.is-active,.is-selected,.checked,[aria-pressed="true"],[aria-selected="true"],[aria-checked="true"],[data-selected="true"],[data-active="true"],[data-state="active"],[data-state="checked"]){
+ background:#F7C75B!important;background-color:#F7C75B!important;background-image:none!important;
+ color:#061714!important;-webkit-text-fill-color:#061714!important;
+ border:1px solid #F7C75B!important;
+}
