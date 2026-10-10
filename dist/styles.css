@@ -1598,3 +1598,13 @@ html body:not(.login-screen) :is(#app,.sidebar,header,dialog,.pokerinno-balloons
 #app .setting:has(.pokerinno-count-drawer){display:block;}
 #app .pokerinno-count-drawer button{min-width:0;min-height:42px;padding:8px 5px;border:1px solid #8b8060;border-radius:8px;background:#163329;color:#fff;font-size:12px;font-weight:600;text-align:center;}
 #app .pokerinno-count-drawer button[aria-pressed=true]{border-color:#f1c76b;background:#b9974d;color:#11271f;}
+
+/* Ranges filters: native selects replaced by inline expanding drawers. */
+#app .ranges-filters select[hidden]{display:none!important;}
+#app .ranges-filters .ranges-filter-trigger{display:block;width:100%;min-height:48px;margin-top:8px;padding:10px 14px;border:1px solid #8c784c;border-radius:8px;background:#0a211b;color:#f5f4eb;text-align:left;font-size:12px;font-weight:600;}
+#app .ranges-filters .ranges-filter-trigger::after{content:'⌄';float:right;color:#cbb478;}
+#app .ranges-filters .ranges-filter-trigger[aria-expanded=true]::after{content:'⌃';}
+#app .ranges-filters .ranges-filter-drawer{display:grid;grid-template-columns:1fr;gap:6px;margin:8px 0 12px;padding:9px;border:1px solid #8c784c;border-radius:8px;background:#102b23;}
+#app .ranges-filters .ranges-filter-drawer[hidden]{display:none!important;}
+#app .ranges-filters .ranges-filter-drawer button{display:block;width:100%;min-height:40px;padding:10px;border:1px solid #536b5e;border-radius:6px;background:#17382d;color:#f3f2eb;font-size:12px;text-align:left;white-space:normal;}
+#app .ranges-filters .ranges-filter-drawer button[aria-pressed=true]{border-color:#f0c86e;background:#4d4327;color:#fff;}
