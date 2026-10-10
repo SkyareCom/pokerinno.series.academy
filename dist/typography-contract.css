@@ -988,3 +988,42 @@ html body:not(#outer1):not(#outer2):not(#outer3):not(#outer4):not(#outer5) .work
 html body:not(#gold1):not(#gold2):not(#gold3):not(#gold4):not(#gold5) #app .page-heading .eyebrow{
  color:#F7C75B!important;
 }
+
+/* APPROVED BUTTON TIERS — main, activity answers, other.
+   Ordered by priority and high specificity to override legacy global locks.
+   Do not change sizes, positioning or typography. */
+html body:not(#tier1):not(#tier2):not(#tier3):not(#tier4):not(#tier5):not(#tier6) :is(button,[role="button"],input[type="button"],input[type="submit"],input[type="reset"],.btn,.button,a.primary){
+ background:#1C211E!important;background-color:#1C211E!important;background-image:none!important;
+ color:#DED6C8!important;-webkit-text-fill-color:#DED6C8!important;
+ border:1px solid #837F75!important;
+}
+html body:not(#tier1):not(#tier2):not(#tier3):not(#tier4):not(#tier5):not(#tier6) :is(button,[role="button"],input[type="button"],input[type="submit"],input[type="reset"],.btn,.button,a.primary):is(:active,.active,.selected,.is-active,.is-selected,.checked,[aria-pressed="true"],[aria-selected="true"],[aria-checked="true"],[data-selected="true"],[data-active="true"],[data-state="active"],[data-state="checked"]){
+ background:#B7A48B!important;background-color:#B7A48B!important;
+ color:#1C211E!important;-webkit-text-fill-color:#1C211E!important;
+ border-color:#837F75!important;
+}
+/* Main call-to-action buttons remain gold in every state. */
+html body:not(#tier1):not(#tier2):not(#tier3):not(#tier4):not(#tier5):not(#tier6) :is(button.primary,a.primary,.btn-primary,.button-primary,input[type="submit"]){
+ background:#F7C75B!important;background-color:#F7C75B!important;background-image:none!important;
+ color:#061714!important;-webkit-text-fill-color:#061714!important;
+ border:1px solid #061714!important;
+}
+/* Activity answer alternatives take priority over generic/primary styles. */
+html body:not(#tier1):not(#tier2):not(#tier3):not(#tier4):not(#tier5):not(#tier6) :is(
+ .quiz-options button,.ranges-activity-choices button,
+ .activity-options button,.answer-options button,.quiz-answers button
+){
+ background:#061714!important;background-color:#061714!important;background-image:none!important;
+ color:#F7C75B!important;-webkit-text-fill-color:#F7C75B!important;
+ border:1px solid #F7C75B!important;
+}
+html body:not(#tier1):not(#tier2):not(#tier3):not(#tier4):not(#tier5):not(#tier6) :is(
+ .quiz-options button,.ranges-activity-choices button,
+ .activity-options button,.answer-options button,.quiz-answers button
+):is(:active,.active,.selected,.is-active,.is-selected,.checked,[aria-pressed="true"],[aria-selected="true"],[aria-checked="true"],[data-selected="true"],[data-active="true"],[data-state="active"],[data-state="checked"]){
+ background:#B7A48B!important;background-color:#B7A48B!important;
+ color:#061714!important;-webkit-text-fill-color:#061714!important;
+ border-color:#F7C75B!important;
+}
+/* Icon and text children inherit the parent button state. */
+html body:not(#tier1):not(#tier2):not(#tier3):not(#tier4):not(#tier5):not(#tier6) :is(button,[role="button"],.btn,.button,a.primary) :is(span,strong,small,em,b,i,svg){color:inherit!important;-webkit-text-fill-color:inherit!important;}
