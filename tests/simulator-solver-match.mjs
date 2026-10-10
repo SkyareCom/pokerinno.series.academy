@@ -74,3 +74,16 @@ test('imported solver references have bounded numeric action frequencies',()=>{
   }
  }
 });
+
+test('hero has two distinct physical cards without collision with the board',()=>{
+ for(const s of trainingSpots){
+  assert.equal(s.heroCards.length,2);
+  assert.equal(new Set([...s.heroCards,...s.board]).size,2+s.board.length,'spot '+s.id);
+  assert.ok(s.heroCards.every(card=>/^[2-9TJQKA][shdc]$/.test(card)));
+  const [a,b]=s.heroCards;
+  assert.equal(a[0],s.hand[0]);
+  assert.equal(b[0],s.hand[1]);
+  if(s.hand.endsWith('s'))assert.equal(a[1],b[1]);
+  if(s.hand.endsWith('o'))assert.notEqual(a[1],b[1]);
+ }
+});
