@@ -13,6 +13,10 @@ on:
         description: 'Solver iterations (diagnostic default 100)'
         required: false
         default: '100'
+      dump_rounds:
+        description: 'Strategy export rounds (diagnostic default 1)'
+        required: false
+        default: '1'
 permissions:
   contents: read
 jobs:
@@ -32,6 +36,7 @@ jobs:
         env:
           ACADEMY_SOLVER_SPOT_ID: ${{ inputs.spot_id || '721' }}
           ACADEMY_SOLVER_MAX_ITERATIONS: ${{ inputs.max_iterations || '100' }}
+          ACADEMY_SOLVER_DUMP_ROUNDS: ${{ inputs.dump_rounds || '1' }}
         run: node scripts/prepare-texas-solver-inputs.mjs
       - name: Install independent solver toolchain
         run: sudo apt-get update && sudo apt-get install -y cmake ninja-build g++ libomp-dev
