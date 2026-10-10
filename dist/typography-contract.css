@@ -352,3 +352,67 @@ body:not(.login-screen) #app .ranges-activity-page>p{
  -webkit-text-fill-color:#9DB0A7!important;
  font-weight:400!important;
 }
+
+/* Playing cards: keep each hand/board on one horizontal line, shrinking cards
+   fluidly to available width instead of wrapping (2 through 7+ cards). */
+body:not(.login-screen) #app :is(.quiz-player,.ranges-activity-page) .playing-cards{
+ --hand-card-gap:clamp(2px,1vw,7px);
+ display:flex!important;
+ flex-flow:row nowrap!important;
+ align-items:center;
+ justify-content:center;
+ gap:var(--hand-card-gap)!important;
+ width:100%;
+ max-width:100%;
+ min-width:0;
+ margin:10px 0!important;
+ overflow:visible;
+}
+body:not(.login-screen) #app :is(.quiz-player,.ranges-activity-page) .playing-cards>.playing-card{
+ --hand-card-width:clamp(20px,calc((100cqw - 8 * var(--hand-card-gap)) / 9),48px);
+ flex:0 1 var(--hand-card-width)!important;
+ width:var(--hand-card-width)!important;
+ min-width:0!important;
+ aspect-ratio:48/70;
+ height:auto!important;
+ min-height:0!important;
+ box-sizing:border-box;
+ border-radius:clamp(3px,1vw,7px)!important;
+}
+body:not(.login-screen) #app :is(.quiz-player,.ranges-activity-page) .quiz-card-group{
+ min-width:0;
+ max-width:100%;
+ container-type:inline-size;
+ margin:10px 0!important;
+}
+body:not(.login-screen) #app :is(.quiz-player,.ranges-activity-page) .quiz-card-group .playing-cards>.playing-card{
+ flex:0 1 min(48px,calc((100cqw - 8 * var(--hand-card-gap)) / 9))!important;
+ width:min(48px,calc((100cqw - 8 * var(--hand-card-gap)) / 9))!important;
+}
+body:not(.login-screen) #app :is(.quiz-player,.ranges-activity-page) .playing-cards .card-corner{
+ font-size:clamp(8px,2.6vw,14px)!important;
+ top:3px;left:3px;
+}
+body:not(.login-screen) #app :is(.quiz-player,.ranges-activity-page) .playing-cards .card-corner small{
+ font-size:clamp(7px,2vw,12px)!important;
+}
+body:not(.login-screen) #app :is(.quiz-player,.ranges-activity-page) .playing-cards .card-corner-bottom{
+ top:auto;left:auto;bottom:3px;right:3px;
+}
+body:not(.login-screen) #app :is(.quiz-player,.ranges-activity-page) .playing-cards .card-pip{
+ font-size:clamp(12px,4vw,25px)!important;
+}
+body:not(.login-screen) #app .quiz-player .quiz-options button:has(.option-cards){
+ flex-wrap:nowrap!important;
+ min-width:0;
+}
+body:not(.login-screen) #app .quiz-player .quiz-options .option-cards{
+ flex:1 1 auto;
+ min-width:0;
+ margin:0!important;
+ container-type:inline-size;
+}
+body:not(.login-screen) #app .quiz-player .quiz-options .option-cards>.playing-card{
+ flex:0 1 min(48px,calc((100cqw - 8 * var(--hand-card-gap)) / 9))!important;
+ width:min(48px,calc((100cqw - 8 * var(--hand-card-gap)) / 9))!important;
+}
