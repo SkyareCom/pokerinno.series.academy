@@ -545,14 +545,18 @@ body:not(.login-screen) #app .ranges-activity-page>article.ranges-activity-card{
  box-shadow:none!important;
 }
 
-/* Global border thickness contract: 1px on all Academy bordered UI.
-   Do not change border styles, colors, radii, or layout. */
-body:not(.login-screen) #app,
-body:not(.login-screen) #app *,
-body:not(.login-screen) #app *::before,
-body:not(.login-screen) #app *::after{
+/* BORDER CONTRACT — all visible borders exactly 1px, including login.
+   No color, radius, position or visibility changes. */
+html body #app,
+html body #app *,
+html body #app *::before,
+html body #app *::after{
  border-top-width:1px!important;
  border-right-width:1px!important;
  border-bottom-width:1px!important;
  border-left-width:1px!important;
+}
+/* Other app-owned surfaces outside #app, excluding SVG strokes. */
+html body :is(button,input,select,textarea,fieldset,dialog){
+ border-width:1px!important;
 }
