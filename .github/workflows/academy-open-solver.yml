@@ -1,5 +1,11 @@
 name: Academy Open Solver Smoke
 on:
+  push:
+    branches:
+      - feat/pokerinno-frontend
+    paths:
+      - '.github/workflows/academy-open-solver.yml'
+      - 'scripts/prepare-open-solver-inputs.mjs'
   workflow_dispatch:
     inputs:
       spot_id:
@@ -20,7 +26,7 @@ jobs:
           node-version: '22'
       - name: Generate actual solver configuration
         env:
-          ACADEMY_SOLVER_SPOT_ID: ${{ inputs.spot_id }}
+          ACADEMY_SOLVER_SPOT_ID: ${{ inputs.spot_id || '721' }}
         run: node scripts/prepare-open-solver-inputs.mjs
       - name: Install build dependencies
         run: sudo apt-get update && sudo apt-get install -y cmake ninja-build g++ libomp-dev
@@ -39,5 +45,5 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: academy-solver-smoke-${{ inputs.spot_id }}
+          name: academy-solver-smoke-${{ inputs.spot_id || '721' }}
           path: reports/solver/postflop-inputs/
