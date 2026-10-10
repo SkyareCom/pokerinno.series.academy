@@ -1,0 +1,60 @@
+name: Academy Meta AI Audit Package
+on:
+  push:
+    branches: [feat/pokerinno-frontend]
+    paths:
+      - scripts/*meta-audit*.mjs
+      - scripts/lib/meta-audit-bundle.mjs
+      - scripts/certify-all-1500-spots.mjs
+      - scripts/compare-solver-exports.mjs
+      - scripts/lib/independent-solver-adapters.mjs
+      - tests/meta-audit-bundle.mjs
+      - dist/simulator-spots.js
+      - dist/ranges-dcfr-9max.json
+      - docs/meta-ai-audit.md
+      - .github/workflows/academy-meta-audit.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  package:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify source coverage, tamper rejection and opinion isolation
+        run: node --test tests/meta-audit-bundle.mjs tests/certification-registry-integrity.mjs tests/solver-comparator-integrity.mjs
+      - name: Verify language catalog
+        run: npm run i18n:audit
+      - name: Recover real diagnostic evidence and its Actions provenance
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p reports/solver/certification
+          gh run download 38060216526 --repo "$GITHUB_REPOSITORY" --name academy-dual-engine-batch-0 --dir reports/solver/certification
+          gh api "repos/$GITHUB_REPOSITORY/actions/artifacts/11672758536" > reports/solver/certification/ci-artifact-provenance.json
+          node --input-type=module - <<'JS'
+          import {readFileSync} from 'node:fs';
+          const p=JSON.parse(readFileSync('reports/solver/certification/ci-artifact-provenance.json'));
+          if(p.workflow_run.id!==38060216526||p.workflow_run.head_sha!=='875d386117e282bf4aa38a11aa580619b1b1894b'||p.name!=='academy-dual-engine-batch-0')throw Error('Unexpected historical evidence provenance');
+          JS
+      - name: Export every source spot and replay both engines from actual raw files
+        run: node scripts/export-meta-audit-bundle.mjs --out reports/meta-audit/bundle --provenance reports/solver/certification/ci-artifact-provenance.json
+      - name: Verify complete package and require the three recovered diagnostic comparisons
+        run: |
+          node scripts/verify-meta-audit-bundle.mjs --bundle reports/meta-audit/bundle
+          node --input-type=module - <<'JS'
+          import {readFileSync} from 'node:fs';
+          const s=JSON.parse(readFileSync('reports/meta-audit/bundle/review-summary.json'));
+          const ids=s.records.map(r=>r.spotId).sort((a,b)=>a-b);
+          if(JSON.stringify(ids)!=='[737,1171,1396]'||s.strategyAgreements!==3||s.certificationEffect!=='NONE')throw Error('Raw evidence replay failed');
+          JS
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pokerinno-academy-meta-ai-audit
+          path: reports/meta-audit/bundle/

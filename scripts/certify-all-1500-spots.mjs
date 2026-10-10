@@ -4,7 +4,7 @@ import {trainingSpots} from '../dist/simulator-spots.js';
 import {spawnSync} from 'node:child_process';
 // Only independent, per-spot evidence can grant certification. No heuristic shortcuts.
 const evidenceDir=process.env.ACADEMY_CERT_EVIDENCE_DIR??'reports/solver/certification/evidence';
-const outDir='reports/solver/certification';
+const outDir=process.env.ACADEMY_CERT_OUT_DIR??'reports/solver/certification';
 mkdirSync(outDir,{recursive:true});
 const sha=v=>createHash('sha256').update(v).digest('hex');
 const read=p=>{try{return JSON.parse(readFileSync(p,'utf8'))}catch{return null}};
