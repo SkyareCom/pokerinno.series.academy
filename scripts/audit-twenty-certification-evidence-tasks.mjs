@@ -85,7 +85,7 @@ const checks=[
  ['60_one_dump_rounds',countCommand('set_dump_rounds')===1]
 ];
 const layers=checks.map(([task,passed])=>({task,passed:Boolean(passed)}));
-const report={schemaVersion:1,spotId:selected[0]?.id??null,sourceInputSha256:selectedHash,tasks:layers,passed:layers.filter(x=>x.passed).length,total:60,solverConverged:checks[16][1]===true,independentlyCertified:false,certificationBlockers:['Cross-engine agreement not established','Postflop opponent ranges are heuristic and unverified','720 preflop scenarios lack independent certification'],note:'Evidence-quality gate; passing 60 checks is not GTO certification'};
+const report={schemaVersion:1,spotId:selected[0]?.id??null,sourceInputSha256:selectedHash,tasks:layers,passed:layers.filter(x=>x.passed).length,total:checks.length,solverConverged:checks[16][1]===true,independentlyCertified:false,certificationBlockers:['Cross-engine agreement not established','Postflop opponent ranges are heuristic and unverified','720 preflop scenarios lack independent certification'],note:'Evidence-quality gate; passing 60 checks is not GTO certification'};
 writeFileSync(dir+'twenty-evidence-tasks.json',JSON.stringify(report,null,2)+'\n');
-console.log(JSON.stringify({spotId:report.spotId,passed:report.passed,total:60,independentlyCertified:false}));
-if(report.passed!==60)process.exitCode=1;
+console.log(JSON.stringify({spotId:report.spotId,passed:report.passed,total:checks.length,independentlyCertified:false}));
+if(report.passed!==checks.length)process.exitCode=1;
