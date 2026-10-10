@@ -560,3 +560,39 @@ html body #app *::after{
 html body :is(button,input,select,textarea,fieldset,dialog){
  border-width:1px!important;
 }
+
+/* Approved Academy border palette — 1px everywhere.
+   Primary gold for all normal cards/buttons/activity cards/selection;
+   gray-green only for explicitly secondary surfaces; preserve physical card
+   beige and specialized lilac. Login layout and footer layout untouched. */
+html body #app :is(
+ article,.ch,.card,.subcard,.source-question,.ranges-activity-card,
+ .quiz-counters article,.quiz-feedback,.practice-card,.profile-plan,
+ .academy-inline-drawer,.ranges-practice-entry,
+ button,.primary,.app-back,.quiz-options button,.quiz-controls button,
+ .ranges-activity-choices button,.ranges-activity-next,
+ .modality-filters button,.simulator-actions button
+){
+ border-color:#F7C75B!important;
+}
+html body #app :is(
+ .playing-card,.street-card,.simulator-card
+){
+ border-color:#D4CFBD!important;
+}
+html body #app :is(
+ .secondary,.secondary-card,.secondary-panel,
+ .muted-card,.muted-panel
+){
+ border-color:#536457!important;
+}
+html body #app :is(
+ .lilac-border,.purple-border,.special-lilac
+){
+ border-color:#B79AF5!important;
+}
+html body #app .ranges-activity-page>article.ranges-activity-card,
+html body #app .ranges-activity-page .ranges-activity-choices>button,
+html body #app .ranges-activity-page .ranges-activity-next{
+ border-color:#F7C75B!important;
+}
