@@ -9,8 +9,8 @@ Status: **PREPARAÇÃO, NÃO PUBLICADO / AAB NÃO GERADO**.
 - Idiomas PT-BR, EN-US, ES-ES, auditados antes do release.
 
 ## Pendências obrigatórias
-- [ ] Definir **applicationId exclusivo** deste POKERINNO ACADEMY (não reutilizar o ID do Academy Verde sem plano de substituição).
-- [ ] Definir nome exibido, versão inicial `versionCode` / `versionName`, categoria, classificação etária e contato de suporte.
+- [x] **Decisão de produto:** POKERINNO ACADEMY substituirá o STACKUP HOLD’EM ACADEMY existente na Google Play.\n- [x] **applicationId a preservar:** `com.skyare.stackupacademy` (confirmar com o artefato publicado antes do build).\n- [ ] Confirmar o maior `versionCode` já enviado à Play; usar valor estritamente superior (não presumir 235).\n- [ ] Confirmar continuidade da chave de upload/assinatura via Play App Signing; não criar nova identidade de assinatura inadvertidamente.
+- [ ] Definir nome exibido POKERINNO ACADEMY, novo `versionName`, categoria, classificação etária e contato de suporte; preservar a ficha existente na Play.
 - [ ] Criar wrapper Android WebView **com assets locais** de `dist/`, sem dependência de GitHub Pages para o front.
 - [ ] Garantir roteamento `#/...`, botão Voltar Android, safe areas, navegação, viewport, teclado, rolagem, armazenamento e permissões mínimas.
 - [ ] Configurar ícone adaptativo, splash, tema, imagens e ficha Play Store.
@@ -26,5 +26,5 @@ Status: **PREPARAÇÃO, NÃO PUBLICADO / AAB NÃO GERADO**.
 ## Estado verificado em 2026-10-10
 O diretório raiz consultado contém `dist/`, `tests/`, `scripts/`, `docs/`, `package.json` e workflows web/solver. **Não há diretório Android/Gradle na raiz consultada.** Nenhum AAB, assinatura, build Android ou aprovação Play foi verificado.
 
-## Regra de liberação
+## Estratégia de substituição confirmada\nNão criar nova ficha Play Store. Gerar um AAB de atualização com o mesmo package ID e continuidade de assinatura; atualizar nome e identidade visual conforme autorizado. Evitar apagar dados locais sem plano de migração. Não alterar o app já publicado antes de build, testes e aprovação.\n\n## Regra de liberação
 Nunca declarar 'pronto para Google Play' antes de um build Android real, testes executados e artefato `.aab` comprovado.
