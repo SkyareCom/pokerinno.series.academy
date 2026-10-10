@@ -1,0 +1,2 @@
+// Educational scenarios, not solver-validated decisions.
+export const trainingSpots=Array.from({length:1500},(_,i)=>({id:i+1,street:i%100<48?'pre':i%100<78?'flop':i%100<93?'turn':'river',stack:[10,15,30,100][i%4],position:['UTG','UTG+1','UTG+2','LJ','HJ','CO','BTN','SB','BB'][Math.floor(i/4)%9],pot:1.5+(i%12)*2,hand:['AKs','QQ','JTs','77','AQo','KQs','T9s','A5s'][Math.floor(i/36)%8],board:['Ah','7d','2c','9s','Kd'].slice(0,i%100<48?0:i%100<78?3:i%100<93?4:5)}));
