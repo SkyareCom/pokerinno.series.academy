@@ -5,6 +5,8 @@ const out='reports/solver/independent';
 mkdirSync(out,{recursive:true});
 const selected=Number(process.env.ACADEMY_SOLVER_SPOT_ID??721);
 const maxIterations=Number(process.env.ACADEMY_SOLVER_MAX_ITERATIONS??100);
+const dumpRounds=Number(process.env.ACADEMY_SOLVER_DUMP_ROUNDS??1);
+if(!Number.isInteger(dumpRounds)||dumpRounds<1||dumpRounds>3)throw Error('Invalid dump round count');
 if(!Number.isInteger(maxIterations)||maxIterations<1||maxIterations>10000)throw Error('Invalid iteration limit');
 const rows=[];
 const fmt=r=>Object.entries(r??{}).filter(([,v])=>v>0).map(([k,v])=>k+':'+Number(v).toFixed(6)).join(',');
@@ -26,7 +28,7 @@ for(const s of trainingSpots.filter(s=>s.street!=='pre')){
   'set_print_interval 10',
   'set_use_isomorphism 1',
   'start_solve',
-  'set_dump_rounds 3',
+  'set_dump_rounds '+dumpRounds,
   'dump_result academy-texas-result.json'
  ];
  const input=lines.join('\n')+'\n';
