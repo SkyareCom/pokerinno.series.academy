@@ -46,6 +46,7 @@ jobs:
           grep -q 'Successfully loaded field tree::starting-wager-per-player' reports/solver/postflop-inputs/solver-smoke.log
       - name: Execute DCFR solve and capture strategy
         continue-on-error: true
+        timeout-minutes: 12
         run: |
           set -o pipefail
           printf 'holdem %s\nsolve\nstrategy all\nexit\n' "$GITHUB_WORKSPACE/reports/solver/postflop-inputs/selected-spot.yml" | timeout 600 /tmp/academy-open-solver/build/PostflopSolver 2>&1 | tee reports/solver/postflop-inputs/solver-run.log
