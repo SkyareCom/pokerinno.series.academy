@@ -17,10 +17,10 @@ jobs:
       - name: Checkout independently maintained TexasSolver source
         run: |
           mkdir -p reports/solver/independent
-          git clone --recursive https://github.com/bupticybee/TexasSolver.git /tmp/academy-texas-solver
-          git -C /tmp/academy-texas-solver checkout bb53f8cbfff4841da2d75bd060d0ab269c3d5881
+          git clone --recursive --branch console https://github.com/bupticybee/TexasSolver.git /tmp/academy-texas-solver
+          git -C /tmp/academy-texas-solver checkout 6dfb65b4d7ed081da509e8d8c3d82138c4708267
           git -C /tmp/academy-texas-solver submodule update --init --recursive
-          test "$(git -C /tmp/academy-texas-solver rev-parse HEAD)" = bb53f8cbfff4841da2d75bd060d0ab269c3d5881
+          test "$(git -C /tmp/academy-texas-solver rev-parse HEAD)" = 6dfb65b4d7ed081da509e8d8c3d82138c4708267
           git -C /tmp/academy-texas-solver rev-parse HEAD | tee reports/solver/independent/texas-solver-commit.txt
           cp /tmp/academy-texas-solver/LICENSE* reports/solver/independent/ 2>/dev/null || true
       - name: Inspect TexasSolver build interfaces
