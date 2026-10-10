@@ -1,4 +1,4 @@
-import {results} from './progress.js?v=cards-no-arrows-20261008';
+import {results} from './progress.js?v=3ce5c6a';
 import {activityDifficulty} from './xp.js';
 import {creativeActivities} from './creative-activities.js?v=3ffb838';
 import {academyVerde9} from './academy-verde9-content.js';
