@@ -17,6 +17,15 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Download existing solver evidence artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: academy-texas-batch-*-evidence
+          path: reports/solver/certification/raw-artifacts
+          merge-multiple: false
+        continue-on-error: true
+      - name: Inventory diagnostic evidence (never auto-certify)
+        run: node scripts/inventory-solver-evidence.mjs
       - name: Verify 1500 spots with strict independent evidence
         id: verify
         continue-on-error: true
