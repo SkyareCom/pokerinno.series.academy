@@ -7,9 +7,12 @@ export const coachSections=[
 ['INTENÇÃO DA APOSTA',['Se eu apostar por valor, mãos piores vão pagar?','Se eu blefar, mãos melhores vão desistir?','Qual será meu plano diante de um raise?']],
 ['PLANEJAMENTO FUTURO',['Qual é meu plano para a próxima rua?']]
 ];
+export const coachCountKey='academy.pokerinno.questionCount';
+export function coachQuestionCount(){try{const n=Number(localStorage.getItem(coachCountKey));return [3,5,7,10].includes(n)?n:5}catch{return 5}}
+export function setCoachQuestionCount(value){const n=Number(value);if(![3,5,7,10].includes(n))return;try{localStorage.setItem(coachCountKey,String(n))}catch{}}
 export function coachEnabled(){try{return localStorage.getItem(coachKey)!=='off'}catch{return true}}
 export function setCoachEnabled(value){try{localStorage.setItem(coachKey,value?'on':'off')}catch{}}
-export function coachProfileSetting(){return '<div class="setting"><div><h3>REFLEXÃO COM POKERINNO ANTES DA DECISÃO</h3><p>Exibir perguntas didáticas antes de cada decisão na mesa.</p></div><input type="checkbox" id="pokerinnoPredecision" aria-label="Ativar reflexão do Pokerinno" '+(coachEnabled()?'checked':'')+'></div>'}
+export function coachProfileSetting(){return '<div class="setting"><div><h3>AJUDA DO POKERINNO NO SIMULADOR</h3><p>Ative a orientação antes de cada decisão e escolha quantas perguntas adaptativas deseja receber.</p></div><input type="checkbox" id="pokerinnoPredecision" aria-label="Ativar ajuda do Pokerinno" '+(coachEnabled()?'checked':'')+'></div><div class="setting"><div><h3>PERGUNTAS POR SPOT</h3><p>As perguntas mudam conforme posição, street, apostas e cartas.</p></div><select id="pokerinnoQuestionCount" aria-label="Quantidade de perguntas do Pokerinno">'+[3,5,7,10].map(n=>'<option value="'+n+'" '+(coachQuestionCount()===n?'selected':'')+'>'+n+' PERGUNTAS</option>').join('')+'</select></div>'}
 export function buildDecisionQuestions(spot){
  const street=spot.street||'pre',position=spot.position||'BTN';
  const line=Array.isArray(spot.bettingLine)?spot.bettingLine:[];
@@ -63,10 +66,10 @@ export function buildDecisionQuestions(spot){
  }
  // Academy: a short guided path, never the entire question bank at once.
  // Rotate one optional contextual question across scenarios while preserving the decision sequence.
- const limit=street==='pre'?5:5;
+ const limit=coachQuestionCount();
  const first=q[0],lastQuestion=q.at(-1),middle=q.slice(1,-1);
  const required=middle.find(item=>item.category==='SPR'||(item.category==='APOSTA RECEBIDA'&&item.calculation));
- const selected=required?[...middle.filter(item=>item!==required).slice(0,limit-3),required]:middle.slice(0,limit-2);
+ const selected=required?[...middle.filter(item=>item!==required).slice(0,Math.max(0,limit-3)),required]:middle.slice(0,Math.max(0,limit-2));
  return [first,...selected,lastQuestion];
 }
 export function showDecisionCoach(page,spot,proceed){
