@@ -19,3 +19,20 @@ test('solver frequencies are only taken from the exact RFI hand and scenario',()
   }
  }
 });
+
+test('no spot can receive a diagnostic score before independent solver certification',()=>{
+ for(const s of trainingSpots){
+  for(const action of ['CALL','CHECK','FOLD','RAISE','ALL IN']){
+   const result=checkTrainingAction(s,action);
+   assert.equal(result.scorable,false,'spot '+s.id+' action '+action+' must not be scored');
+   assert.ok(['solver-reference','unvalidated'].includes(result.status));
+  }
+ }
+});
+test('only RFI preflop is eligible for the imported solver reference',()=>{
+ const byStreet={pre:0,flop:0,turn:0,river:0},withReference={pre:0,flop:0,turn:0,river:0};
+ for(const s of trainingSpots){byStreet[s.street]++;if(s.solver)withReference[s.street]++;}
+ assert.deepEqual(byStreet,{pre:720,flop:450,turn:225,river:105});
+ assert.equal(withReference.pre>0,true);
+ assert.equal(withReference.flop+withReference.turn+withReference.river,0);
+});
