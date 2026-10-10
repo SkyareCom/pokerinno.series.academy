@@ -1,0 +1,44 @@
+import {trainingSpots,independentlyCertifiedSpots} from '../dist/simulator-spots.js';
+import {auditStrategicDuplicates,strategicSpotKey} from '../dist/simulator-uniqueness.js';
+import {mkdirSync,writeFileSync,readFileSync,existsSync} from 'node:fs';
+import {createHash} from 'node:crypto';
+
+// Ten independent audit layers; checks are evidence gates, not a solver.
+const layers=[];
+const add=(name,passed,details)=>layers.push({layer:layers.length+1,name,passed,details});
+const spots=trainingSpots;
+const streets=['pre','flop','turn','river'];
+const counts=Object.fromEntries(streets.map(street=>[street,spots.filter(s=>s.street===street).length]));
+const ids=spots.map(s=>s.id);
+add('inventory',spots.length===1500&&JSON.stringify(counts)===JSON.stringify({pre:720,flop:450,turn:225,river:105}),{total:spots.length,counts});
+add('unique-ids',new Set(ids).size===1500&&ids.every((id,i)=>id===i+1),{uniqueIds:new Set(ids).size});
+const unique=auditStrategicDuplicates(spots);
+add('strategic-uniqueness',unique.duplicateCount===0,{unique:unique.unique,duplicates:unique.duplicateCount});
+const card=/^[2-9TJQKA][shdc]$/;
+const invalidCards=spots.filter(s=>!Array.isArray(s.heroCards)||s.heroCards.length!==2||!Array.isArray(s.board)||[...s.heroCards,...s.board].some(c=>!card.test(c))||new Set([...s.heroCards,...s.board]).size!==2+s.board.length).map(s=>s.id);
+add('card-integrity',invalidCards.length===0,{invalidIds:invalidCards.slice(0,30),count:invalidCards.length});
+const invalid9max=spots.filter(s=>s.tableSize!==9||!Number.isFinite(s.stack)||!Number.isFinite(s.effectiveStack)||s.effectiveStack<0||s.effectiveStack>s.stack||!Number.isFinite(s.pot)||s.pot<=0).map(s=>s.id);
+add('nine-max-and-stack',invalid9max.length===0,{count:invalid9max.length,invalidIds:invalid9max.slice(0,30)});
+const invalidStreets=spots.filter(s=>s.board.length!==({pre:0,flop:3,turn:4,river:5}[s.street]??-1)).map(s=>s.id);
+add('street-and-board',invalidStreets.length===0,{count:invalidStreets.length,invalidIds:invalidStreets.slice(0,30)});
+const pre=spots.filter(s=>s.street==='pre');
+const preBad=pre.filter(s=>!s.solver?.solveId||!Array.isArray(s.solver?.actions)||Math.abs(s.solver.actions.reduce((a,entry)=>a+Number(entry[1]),0)-100)>0.2).map(s=>s.id);
+add('preflop-reference-integrity',preBad.length===0,{referenceOnly:true,independentlyVerified:false,count:preBad.length});
+const post=spots.filter(s=>s.street!=='pre');
+const rangeBad=post.filter(s=>!s.heroRange||!s.villainRange||Object.keys(s.heroRange).length!==169||Object.keys(s.villainRange).length!==169||[...Object.values(s.heroRange),...Object.values(s.villainRange)].some(v=>!Number.isFinite(v)||v<0||v>1)).map(s=>s.id);
+add('postflop-range-shape',rangeBad.length===0,{count:rangeBad.length,provisional:post.filter(s=>s.rangeProvenance?.villain!=='SOLVER_VERIFIED'||s.rangeProvenance?.hero!=='SOLVER_VERIFIED').length});
+const solved=independentlyCertifiedSpots();
+const certifiedKeys=new Set(solved.map(s=>strategicSpotKey(s)));
+const duplicateCertified=solved.length!==certifiedKeys.size;
+const certificationComplete=solved.length===1500&&!duplicateCertified;
+add('independent-certification',certificationComplete,{certified:solved.length,required:1500,missing:1500-solved.length,duplicateCertified});
+const evidencePath='reports/solver/postflop-inputs/solver-completion-audit.json';
+let evidence=null;
+if(existsSync(evidencePath)){try{evidence=JSON.parse(readFileSync(evidencePath,'utf8'));}catch(e){evidence={error:String(e)};}}
+add('solver-evidence-replay',!!evidence?.independentlyCertified&&certificationComplete,{available:!!evidence,independentlyCertified:evidence?.independentlyCertified===true,warning:'A smoke test or strategy dump does not certify historical reach ranges or convergence.'});
+const report={schemaVersion:1,policy:'STRICT_1500_INDEPENDENT_SOLVES',scope:'ACADEMY_ONLY',total:spots.length,certified:solved.length,uncertified:spots.length-solved.length,structuralPassed:layers.slice(0,8).every(l=>l.passed),fullyCertified:layers.every(l=>l.passed),layers,sha256:createHash('sha256').update(JSON.stringify(spots.map(s=>({id:s.id,key:strategicSpotKey(s),solveId:s.solver?.solveId??null})))).digest('hex')};
+mkdirSync('reports/solver',{recursive:true});
+writeFileSync('reports/solver/academy-ten-layer-audit.json',JSON.stringify(report,null,2)+'\n');
+console.log(JSON.stringify({layers:layers.map(l=>({name:l.name,passed:l.passed})),certified:report.certified,uncertified:report.uncertified,fullyCertified:report.fullyCertified}));
+if(!report.structuralPassed)process.exitCode=1;
+if(process.argv.includes('--strict')&&!report.fullyCertified)process.exitCode=1;
