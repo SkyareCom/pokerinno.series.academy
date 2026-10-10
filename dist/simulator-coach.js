@@ -11,36 +11,54 @@ export function coachEnabled(){try{return localStorage.getItem(coachKey)!=='off'
 export function setCoachEnabled(value){try{localStorage.setItem(coachKey,value?'on':'off')}catch{}}
 export function coachProfileSetting(){return '<div class="setting"><div><h3>REFLEXÃO COM POKERINNO ANTES DA DECISÃO</h3><p>Exibir perguntas didáticas antes de cada decisão na mesa.</p></div><input type="checkbox" id="pokerinnoPredecision" aria-label="Ativar reflexão do Pokerinno" '+(coachEnabled()?'checked':'')+'></div>'}
 export function buildDecisionQuestions(spot){
- const street=spot.street||'pre',position=spot.position||'BTN',pot=Number(spot.pot)||0;
- const effective=Number(spot.effectiveStack??spot.stack);
+ const street=spot.street||'pre',position=spot.position||'BTN';
  const line=Array.isArray(spot.bettingLine)?spot.bettingLine:[];
  const current=line.filter(a=>a.street===street);
  const last=current.at(-1);
- const facingBet=last&&['bet','raise','all in'].includes(String(last.action).toLowerCase())&&last.position!==position;
- const isIP=['BTN','CO','HJ'].includes(position);
+ const bet=last&&['bet','raise','all in','all-in'].includes(String(last.action).toLowerCase())&&last.position!==position;
+ const unopened=street==='pre'&&!line.some(a=>['raise','bet','all in','all-in'].includes(String(a.action).toLowerCase()));
+ const order=['UTG','UTG+1','UTG+2','LJ','HJ','CO','BTN','SB','BB'];
+ const after=Math.max(0,order.length-1-order.indexOf(position));
+ const eff=Number(spot.effectiveStack??spot.stack),pot=Number(spot.pot);
+ const board=Array.isArray(spot.board)?spot.board:[];
+ const multiway=spot.playersInHand>2;
+ const short=Number.isFinite(eff)&&eff<=20;
  const q=[];
  const add=(category,question)=>q.push({category,question});
- add('1 · ENTENDA A SITUAÇÃO',`Você está no ${position} ${isIP?'(posição geralmente tardia)':'(posição inicial ou intermediária)'} com ${spot.hand||'sua mão'}. Quem ainda pode agir depois de você?`);
+ add('POSIÇÃO',`Você está em ${position}. Quantos jogadores ainda precisam agir depois de você?`);
  if(street==='pre'){
-  if(!line.length){add('2 · AÇÃO ANTERIOR','O pote está sem aumentos registrados. Quais mãos você abriria desta posição e por quê?');}
-  else add('2 · AÇÃO ANTERIOR','Quais ações pré-flop estão registradas e como alteram os ranges de quem entrou no pote?');
-  add('3 · STACK E RISCO',`Com aproximadamente ${effective} BB efetivos, qual tamanho de abertura preserva suas opções futuras?`);
-  add('4 · RANGES','Que mãos mais fortes e mais fracas fazem sentido no seu range de abertura nesta posição?');
-  add('5 · DECISÃO','Seu objetivo é abrir por valor, exercer pressão ou desistir? O que faria diante de um 3-bet?');
-  add('6 · PLANO','Se houver call, quais tipos de flop favorecem seu range e como você pretende reagir?');
+  if(unopened){
+   add('AÇÃO PRÉVIA','Ninguém aumentou até agora. Sua mão faz parte de um range de abertura adequado para esta posição?');
+   add('RANGE',position==='UTG'||position==='UTG+1'?'Em posição inicial, por que devemos selecionar mãos mais fortes para abrir?':'Quais mãos fortes e mãos especulativas fazem sentido abrir nesta posição?');
+   add('DECISÃO',short?'Com stack curto, sua mão justifica colocar fichas em risco agora?':'Qual tamanho de abertura combina com sua posição e com os stacks da mesa?');
+  }else{
+   add('AÇÃO PRÉVIA','Quem aumentou antes de você e de qual posição veio a agressão?');
+   add('RANGE','Sua mão joga melhor como call, novo aumento ou fold contra esse range provável?');
+   add('DECISÃO',bet?'Quanto precisa pagar e o que pode acontecer se alguém aumentar novamente?':'Há jogadores que ainda podem fazer uma 3-bet depois de você?');
+  }
+  if(position==='SB'||position==='BB')add('BLINDS','Quanto você já investiu obrigatoriamente neste pote e como isso afeta sua decisão?');
+  else add('JOGADORES RESTANTES','Quais jogadores atrás de você ainda podem entrar no pote ou aumentar?');
+  add('PLANO',short?'Se entrar no pote, quanto do seu stack ficará comprometido?':'Se receber um call, qual será seu plano para o flop?');
  }else{
-  const cards=(spot.board||[]).join(' ');
-  add('2 · HISTÓRICO',`No ${street.toUpperCase()}, o board é ${cards}. Quem teve a iniciativa pré-flop e como as ações anteriores influenciam os ranges?`);
-  if(facingBet){add('3 · APOSTA RECEBIDA','Qual foi o tamanho da aposta enfrentada? Calcule pot odds e compare com sua equidade antes de pagar.');}
-  else add('3 · AÇÃO DISPONÍVEL','Você enfrenta um check ou nenhuma aposta registrada. É melhor apostar por valor, blefar ou controlar o pote?');
-  if(Number.isFinite(effective)&&pot>0)add('4 · MATEMÁTICA',`Com stack efetivo aproximado de ${effective} BB e pote de ${pot} BB, o SPR é cerca de ${(effective/pot).toFixed(1)}. Como isso muda seu plano?`);
-  add('5 · TEXTURA',street==='flop'?'Este flop é seco ou conectado? Quem tem vantagem de range e quais draws existem?':street==='turn'?'O turn completou draws ou mudou a vantagem de range em relação ao flop?':'O river completou draws? Quais mãos agora apostam por valor ou podem blefar?');
-  add('6 · RANGE ADVERSÁRIO','Quais mãos do adversário chegam a esta street pela linha de ações registrada? O perfil dele é conhecido ou ainda precisa ser observado?');
-  add('7 · DECISÃO',facingBet?'Você tem odds e equidade para pagar, motivos para aumentar ou deve desistir?':'Mãos piores pagariam uma aposta por valor? Mãos melhores desistiriam de um blefe?');
-  if(street!=='river')add('8 · PRÓXIMA STREET','Qual é seu plano diante de um raise agora e das possíveis cartas da próxima street?');
-  else add('8 · CONCLUSÃO','Se houver raise no river, quais mãos de valor e blefes plausíveis você espera encontrar?');
+  add('HISTÓRICO',`No ${street.toUpperCase()}, quem foi o agressor pré-flop e como a ação chegou até você?`);
+  add('BOARD',street==='flop'?'Com estas três cartas do flop, sua mão acertou algo ou possui algum projeto?':street==='turn'?'A quarta carta melhorou sua mão ou completou algum projeto?':'Com as cinco cartas na mesa, qual é a força final da sua mão?');
+  add('TEXTURA',street==='flop'?'O flop é seco, conectado ou apresenta possibilidade de flush?':street==='turn'?'O turn mudou a textura ou a vantagem de range?':'O river completou sequência, flush ou outra combinação que muda o valor das mãos?');
+  if(bet)add('APOSTA RECEBIDA','Quanto você precisa pagar em relação ao pote? Quais pot odds precisa considerar?');
+  else add('AÇÃO DISPONÍVEL','Como não há aposta a pagar agora, apostar por valor, blefar ou fazer check faz mais sentido?');
+  if(multiway)add('POTE MULTIWAY','Sua mão perde valor por enfrentar vários adversários ao mesmo tempo?');
+  else if(short)add('STACK CURTO','Quanto do seu stack efetivo ficaria comprometido se você apostasse ou pagasse?');
+  else if(Number.isFinite(eff)&&Number.isFinite(pot)&&pot>0)add('STACK E POTE',`O pote é de cerca de ${pot} BB e o stack efetivo de ${eff} BB. Como a relação stack/pote muda o risco?`);
+  else add('RANGE','Quais mãos fortes e projetos o adversário pode ter pela linha de ações apresentada?');
+  add('DECISÃO',bet?'Você está pagando por valor de showdown, por um projeto com odds adequadas, ou deveria desistir?':street==='river'?'Quais mãos piores pagariam sua aposta de valor e quais mãos melhores desistiriam de um blefe?':'Quais mãos piores pagariam sua aposta e o que você faria diante de um raise?');
+  if(street==='river')add('CONCLUSÃO','Se enfrentar um raise no river, quais mãos de valor e possíveis blefes explicam essa ação?');
+  else add('PRÓXIMA STREET',street==='flop'?'Quais cartas do turn seriam boas ou perigosas e como você reagiria?':'Quais cartas do river mudariam sua decisão e como você reagiria a uma aposta?');
  }
- return q;
+ // Academy: a short guided path, never the entire question bank at once.
+ // Rotate one optional contextual question across scenarios while preserving the decision sequence.
+ const limit=street==='pre'?5:5;
+ const first=q[0],lastQuestion=q.at(-1),middle=q.slice(1,-1);
+ const selected=middle.length<=limit-2?middle:middle.filter((_,i)=>i!==((Number(spot.id)||0)%middle.length)).slice(0,limit-2);
+ return [first,...selected,lastQuestion];
 }
 export function showDecisionCoach(page,spot,proceed){
  page.querySelector('.simulator-coach-overlay')?.remove();
