@@ -1,7 +1,7 @@
 import {questionVisual,optionVisual} from './quiz-visuals.js?v=cards-no-arrows-20261008';
 import {activityDifficulty} from './xp.js';
 import {t} from './i18n.js?v=cards-no-arrows-20261008';
-import {results,record,percent,pendingCount,autoSave} from './progress.js?v=cards-no-arrows-20261008';
+import {results,record,percent,pendingCount,autoSave} from './progress.js?v=3ce5c6a';
 const escape=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let session;
 export function sourceQuiz(questions,module='practice',theme='decisions'){session={questions,module,theme,index:0,answers:new Map(),selected:[],saved:true,id:crypto.randomUUID()};return `<section class="quiz-player">${view()}</section>`}
