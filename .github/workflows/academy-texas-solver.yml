@@ -2,7 +2,7 @@ name: Academy Independent TexasSolver Build
 on:
   push:
     branches: [feat/pokerinno-frontend]
-    paths: ['.github/workflows/academy-texas-solver.yml', 'scripts/prepare-texas-solver-inputs.mjs']
+    paths: ['.github/workflows/academy-texas-solver.yml', 'scripts/prepare-texas-solver-inputs.mjs', 'scripts/audit-texas-solver-run.mjs']
   workflow_dispatch:
 permissions:
   contents: read
@@ -59,6 +59,10 @@ jobs:
           test "$solver_exit" -eq 0
           grep -q 'Total exploitability' "$GITHUB_WORKSPACE/reports/solver/independent/texas-solver-run.log"
           test -s "$GITHUB_WORKSPACE/reports/solver/independent/texas-solver-result.json"
+      - name: Audit actual TexasSolver convergence evidence
+        if: always()
+        continue-on-error: true
+        run: node scripts/audit-texas-solver-run.mjs
       - name: Record independent certification limitations
         if: always()
         run: |
