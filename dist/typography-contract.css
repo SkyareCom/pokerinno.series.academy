@@ -181,3 +181,84 @@ body:not(.login-screen) #app :is(
  .profile-setting-copy p,.profile-plan p,.stats-history small,
  .stats-storage,.practice-mix-note
 ){font-weight:400!important;color:#9DB0A7!important;-webkit-text-fill-color:#9DB0A7!important}
+
+/* Unified presentation for every PRACTICAR activity player, including 9-max ranges.
+   Excludes login and fixed navigation. */
+body:not(.login-screen) #app :is(.quiz-player,.ranges-activity-page){
+ --activity-gap:10px;
+ --activity-panel:#0C2420;
+ --activity-border:#29413A;
+ --activity-title:#F4F2E7;
+ --activity-copy:#9DB0A7;
+ display:flex;
+ flex-direction:column;
+ gap:var(--activity-gap);
+ min-width:0;
+}
+body:not(.login-screen) #app :is(.quiz-player,.ranges-activity-page) :is(
+ .source-question,.ranges-activity-card,.quiz-counters article,.quiz-feedback
+){
+ box-sizing:border-box;
+ min-width:0;
+ max-width:100%;
+ border:1px solid var(--activity-border)!important;
+ border-radius:12px!important;
+ background:var(--activity-panel);
+ padding:12px!important;
+ margin:0!important;
+}
+body:not(.login-screen) #app :is(.source-question,.ranges-activity-card){
+ display:flex;
+ flex-direction:column;
+ gap:10px;
+}
+body:not(.login-screen) #app :is(.source-question h2,.ranges-activity-question){
+ font-size:14px!important;
+ font-weight:600!important;
+ color:#F4F2E7!important;
+ -webkit-text-fill-color:#F4F2E7!important;
+ line-height:1.45!important;
+ margin:0!important;
+ overflow-wrap:anywhere;
+}
+body:not(.login-screen) #app :is(.ranges-activity-page>p,.ranges-activity-context,
+ .ranges-activity-progress,.ranges-activity-result,.source-question>p,
+ .quiz-feedback p,.quiz-counters span,.quiz-counters small){
+ font-size:12px!important;
+ font-weight:400!important;
+ color:#9DB0A7!important;
+ -webkit-text-fill-color:#9DB0A7!important;
+ line-height:1.5!important;
+ margin:0!important;
+ overflow-wrap:anywhere;
+}
+body:not(.login-screen) #app :is(.quiz-options,.ranges-activity-choices){
+ display:grid!important;
+ grid-template-columns:repeat(auto-fit,minmax(min(100%,125px),1fr))!important;
+ gap:10px!important;
+ margin:0!important;
+ min-width:0;
+}
+body:not(.login-screen) #app :is(.quiz-options button,.ranges-activity-choices button,
+ .quiz-controls button,.ranges-activity-next){
+ box-sizing:border-box;
+ min-width:0;
+ min-height:44px;
+ padding:10px!important;
+ border-radius:10px!important;
+ border:1px solid #29413A!important;
+ font-size:12px!important;
+ font-weight:600!important;
+ line-height:1.4!important;
+ overflow-wrap:anywhere;
+}
+body:not(.login-screen) #app :is(.quiz-controls,.modality-filters){
+ display:flex;
+ flex-wrap:wrap;
+ gap:10px!important;
+ margin:0!important;
+}
+body:not(.login-screen) #app .ranges-activity-next{width:100%;margin:0!important}
+body:not(.login-screen) #app :is(.quiz-feedback strong,.quiz-counters strong){
+ font-weight:600!important;
+}
