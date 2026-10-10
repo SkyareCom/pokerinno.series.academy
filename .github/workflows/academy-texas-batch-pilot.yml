@@ -6,9 +6,9 @@ on:
   workflow_dispatch:
     inputs:
       spot_ids:
-        description: 'JSON list of postflop IDs, e.g. [729,730,731,732]'
+        description: 'JSON list of postflop IDs, e.g. [733,734,735,736]'
         required: false
-        default: '[729,730,731,732]'
+        default: '[733,734,735,736]'
       max_iterations:
         description: 'Solver iterations (diagnostic default 100)'
         required: false
@@ -27,7 +27,7 @@ jobs:
       fail-fast: false
       max-parallel: 4
       matrix:
-        spot_id: ${{ fromJSON(inputs.spot_ids || '[729,730,731,732]') }}
+        spot_id: ${{ fromJSON(inputs.spot_ids || '[733,734,735,736]') }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -89,9 +89,7 @@ jobs:
         if: always()
         continue-on-error: true
         run: node scripts/audit-texas-solver-run.mjs
-      - name: Audit twenty certification evidence tasks
-        if: always()
-        continue-on-error: true
+      - name: Audit forty certification evidence tasks
         run: node scripts/audit-twenty-certification-evidence-tasks.mjs
       - name: Record independent certification limitations
         if: always()
