@@ -133,3 +133,30 @@ body:not(.login-screen) #app :is(
  .source-lesson>p,.editorial-note p,.practice-mix-note,
  .stats-history small,.stats-storage,.setting-description,.setting-desc
 ){font-weight:400!important}
+
+/* Mandatory Academy content typography contract.
+   Explicitly excludes frozen login and footer/navigation. */
+body:not(.login-screen) #app :is(h1,h2,h3,h4,h5,h6,
+ .page-title,.section-title,.section-heading,.card-title,.chapter-title,
+ .lesson-title,.source-title,.stats-panel>h2,.stats-swot h3,
+ .learn-extra-copy h3,.source-lesson>summary>strong,
+ .feature>strong,.chapter>strong,.editorial-note>strong){
+ font-weight:600!important;
+ color:#F4F2E7!important;
+ -webkit-text-fill-color:#F4F2E7!important;
+}
+body:not(.login-screen) #app :is(.subtitle,.sub-title,.subheading,
+ .section-subtitle,.card-subtitle,.page-subtitle,.lesson-subtitle,
+ .chapter-subtitle,.source-subtitle,.description,.card-description,
+ .section-description,.page-description,.lesson-description,
+ .chapter-description,.source-description,.muted,.tiny,
+ .learn-extra-copy>p,.chapter>p,.feature>p,.stats-panel>p,
+ .stats-swot article>p,.stats-swot article>small,
+ .source-lesson>summary>small,.source-lesson>p,
+ .page-heading>p,.editorial-note>p,.profile-setting-copy>p,
+ .profile-plan>p,.stats-history small,.stats-storage,
+ .setting-description,.setting-desc,.practice-mix-note){
+ font-weight:400!important;
+ color:#9DB0A7!important;
+ -webkit-text-fill-color:#9DB0A7!important;
+}
