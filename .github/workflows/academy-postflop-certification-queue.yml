@@ -1,0 +1,26 @@
+name: Academy Postflop Certification Queue
+on:
+  push:
+    branches: [feat/pokerinno-frontend]
+    paths:
+      - 'scripts/prepare-postflop-certification-queue.mjs'
+      - '.github/workflows/academy-postflop-certification-queue.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  queue:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate 450 flop 225 turn 105 river
+        run: node scripts/prepare-postflop-certification-queue.mjs
+      - name: Publish certification queue
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: academy-postflop-certification-queue
+          path: reports/solver/certification/postflop-queue.json
