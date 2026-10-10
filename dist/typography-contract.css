@@ -537,10 +537,22 @@ body:not(.login-screen) #app .ranges-activity-page>article.ranges-activity-card{
  width:100%!important;
  max-width:100%!important;
  box-sizing:border-box!important;
- border:2px solid #D5B56B!important;
+ border:1px solid #D5B56B!important;
  border-radius:12px!important;
  background:#102B23!important;
  padding:14px!important;
  overflow:visible!important;
  box-shadow:none!important;
+}
+
+/* Global border thickness contract: 1px on all Academy bordered UI.
+   Do not change border styles, colors, radii, or layout. */
+body:not(.login-screen) #app,
+body:not(.login-screen) #app *,
+body:not(.login-screen) #app *::before,
+body:not(.login-screen) #app *::after{
+ border-top-width:1px!important;
+ border-right-width:1px!important;
+ border-bottom-width:1px!important;
+ border-left-width:1px!important;
 }
