@@ -77,7 +77,7 @@ export function showDecisionCoach(page,spot,proceed){
  if(!coachEnabled()){proceed();return}
  const host=page.querySelector('.simulator-actions')||page;
  const overlay=document.createElement('section');
- overlay.className='simulator-coach-overlay';
+ overlay.className='simulator-coach-overlay simulator-coach-drawer';
  overlay.setAttribute('role','group');
  overlay.setAttribute('aria-label','Orientação do Pokerinno antes da decisão');
  const questions=buildDecisionQuestions(spot);
@@ -89,5 +89,5 @@ export function showDecisionCoach(page,spot,proceed){
  function finish(){if(closing)return;closing=true;overlay.classList.add('simulator-coach-exit');const done=()=>{overlay.remove();proceed()};if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){done();return}overlay.addEventListener('animationend',e=>{if(e.target===overlay)done()},{once:true});setTimeout(()=>{if(overlay.isConnected)done()},550)}
  overlay.querySelector('[data-coach-skip]').addEventListener('click',finish);
  next.addEventListener('click',()=>{if(index>=questions.length-1){finish();return}index++;show()});
- host.append(overlay);show();
+ host.insertAdjacentElement('beforebegin',overlay);show();
 }
