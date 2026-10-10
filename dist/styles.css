@@ -1552,3 +1552,11 @@ html body:not(.login-screen) :is(#app,.sidebar,header,dialog,.pokerinno-balloons
 #app .simulator-seat .simulator-card-back.simulator-card-face{background:#f7f3e7!important;color:#172c28!important;border:1px solid #bd9b51!important;box-shadow:0 1px 3px #0009!important;font-size:10px!important;font-weight:800!important;line-height:15px!important;text-align:center!important;white-space:nowrap;}
 #app .simulator-seat .simulator-card-back.simulator-card-face.simulator-card-red{color:#b92331!important;}
 @media(max-width:480px){#app .simulator-seat .simulator-card-back.simulator-card-face{font-size:9px!important;line-height:13px!important;}}
+
+/* Decision feedback below action controls; independent of button dimensions. */
+#app .simulator-decision-card{margin:10px 0;padding:12px 8px;border:1px solid #d4b56b;border-radius:10px;background:#102b23;text-align:center;color:#fff;}
+#app .simulator-decision-card[hidden]{display:none!important;}
+#app .simulator-decision-comment{display:block;color:#f0cb76;font-size:14px;line-height:1.4;margin-bottom:10px;}
+#app .simulator-decision-lines{display:grid;gap:6px;text-align:center;font-size:12px;line-height:1.4;}
+#app .simulator-decision-lines>div{display:block;}
+#app .simulator-decision-source{display:block;margin-top:9px;font-size:10px;color:#c9d0c6;line-height:1.4;}
